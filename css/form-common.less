@@ -1,0 +1,169 @@
+.form-common{
+    //padding:20px;
+    //border:solid 1px #eee;
+    font-size:14px;
+} /*外框填充大小控制*/
+.form-common .control-label{color:#333;font-weight:normal;padding-right:0;text-align: right;} 
+.form-common .control-label .i-important{font-style:normal;color:#f7787a;line-height:18px;}
+.form-common .form-control{border:solid 1px #ddd;color:#333;font-size:12px;}
+.form-common .radio-inline input[type=radio]{top:10px;}
+.form-common .radio-inline span{color:#333;font-size:12px;}
+.form-common .btn-box{margin-top:20px;} 
+.form-common .btn{min-width:40px;font-size:14px;color:#7d7d7d;margin-left: 0;}
+.form-common .btn-box-two{font-size:0;}
+.form-common .btn-box-two .btn:nth-of-type(1){margin-right:40px;}
+.form-common .btn-box-two .btn:nth-of-type(2){margin-right:40px;}
+//.form-common .form-group{margin-bottom:20px;}
+.form-common .form-group-tips{margin-bottom:0;}
+
+
+/*宽度100%样式*/
+.form-common .from-group-wid100{margin-bottom:20px;}
+.form-common .from-group-wid100 .fix{width:96%;height:35px;margin:0 auto;}
+.form-common .from-group-wid100 .fix:before,.form-common .from-group-wid100 .fix:after{
+    content:'';
+    width:100%;
+    height:1px;
+    background:#eee;
+    position:absolute;
+    top:13px;
+    left:0;
+    z-index:1;
+}
+.form-common .from-group-wid100 .fix:after{
+    top:20px!important;
+}
+.form-common .from-group-wid100 .control-label{text-align:left!important;margin-bottom:8px!important;color:#7d7d7d;float:inherit;}
+.form-common .from-group-wid100 .control-title{
+    width:70px;
+    padding-left:0;
+    background:#fff;
+    font-size:15px;
+    z-index:2;
+    left:50%;margin-left:-35px;
+    text-align:center!important;margin-bottom:8px!important;color:#7d7d7d;float:inherit;}
+.form-common .from-group-wid100 .col-sm-12{float:inherit;}
+/*宽度100%样式里面的float*/
+.form-common .from-group-default .control-label{float:left;text-align:right!important;white-space:nowrap;}
+.form-common .from-group-default .col-sm-12{float:left;}
+/*placeholder样式设置*/
+.form-common input::-webkit-input-placeholder,.form-common textarea::-webkit-input-placeholder{font-size:12px;}
+.form-common input:-moz-placeholder,.form-common textarea:-moz-placeholder{font-size:12px;}                  /* Firefox版本4-18 */
+.form-common input::-moz-placeholder,.form-common textarea::-moz-placeholder{font-size:12px;}                  /* Firefox版本19+ */
+.form-common input:-ms-input-placeholder,.form-common textarea:-ms-input-placeholder{font-size:12px;}
+/*添加商品属性按钮*/
+.form-common .btn-attr-box .btn-sure{width:60px;}
+.form-common .btn-attr-box .btn-add{width:100%;font-size:20px;line-height:19px;margin-left:2px;background-color:#00cdff!important;color: #fff;border: 1px solid #00cdff;}
+.form-common span.label{
+    line-height:28px;
+    display:inline-block;
+    border:solid 1px #ddd;
+    border-radius:4px;
+    color:#999;
+    font-size:1.2px;
+    padding:0 8px;
+    font-weight:normal;
+    position:relative;
+    background:#f9f9f9;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+.form-common span.label i{position:absolute;right:-7px;top:-12px;cursor:pointer;}
+.form-common .row-line{
+    border-top:solid 1px #eee;
+    border-bottom:solid 1px #eee;
+    padding:20px 0;}
+.word-edit-goods .row-line{
+    border-bottom:none;
+}    
+#attrBox{
+    border-bottom:solid 1px #eee;
+}
+#addAttr{
+    margin-bottom: 10px;
+}
+/*广告图片*/
+.btn-add-box .img-btn{
+    width: 90px;
+    height: 90px;
+    line-height: 72px;
+    display: inline-block;
+    text-align: center;
+    font-size: 32px;
+    color: #bebebe;
+    border-radius:2px;
+    overflow:hidden;
+    margin-right:15px;
+}
+.btn-add-box .img-btn:nth-last-of-type(1){margin-right:0;}
+
+.img-btn:hover{color:#bebebe;}
+.img-btn-small{width:60px;height:60px;line-height:60px;font-size:26px;}
+.img-btn-small .sp-color{line-height:60px!important;}
+.img-btn-small img{height:100%;display:block;}
+/*广告图片(3张)*/
+.btn-add-box{font-size:0;}
+.btn-add-box .sp-color{color:#bebebe;display:table;line-height:90px;font-size:20px;}
+p.btn-desc{font-size:12px;color:#7d7d7d;margin:5px 0 0 0;}
+@media (min-width: 768px){
+    .two .col-sm-2.control-label{width:32%!important;}
+    .two .col-sm-10{width:66%!important;}
+    .two .col-sm-10.two-row{position:relative;right:-8px;padding-right:0!important;}
+}
+
+/*添加属性*/
+.form-common .select-box{cursor:pointer;}
+.form-common .select-input{width:85%;color:#999;font-size:12px;background:#fff;cursor:pointer;z-index:3;top:0;left:0;border-right:solid 1px #ddd;}
+.form-common .tags-span{margin:0 8px 8px 0;white-space:nowrap;border-radius:4px;padding:6px 10px;color:#666;border:solid 1px #ddd;display:inline-block;}
+#personinfo  .form-common .tags-span{padding:0 3px;}
+.form-common .i-tags-close{ /*标签关闭*/
+    top:-8px;
+    right:-8px;
+    cursor:pointer;
+    display: none;
+    transition: all .4s;
+}
+.form-common .tags-span:hover .i-tags-close{
+    display: block;
+    color: #666;
+    transition: all .4s;
+}
+#mgecolumn{
+    .form-common .tags-span{margin:10px 8px 0 0}
+}
+@media (max-width:900px){
+    .form-common .tags-span{margin:10px 8px 0 0}
+    
+    
+}
+
+/*在线客服样式*/
+.show-css{display:inline-block;line-height:34px;color:#7d7d7d;font-size:12px;}
+/*(右侧悬浮框)*/
+.suspension{width:70px;position:absolute;right:40px;top:10px;z-index:5;}
+.suspension ul li{width:100%;padding:8px 0;text-align:center;background:#fff;color:#999;border:solid 1px #e3e3e3;border-bottom:none;}
+.suspension ul li:nth-last-of-type(1){border-bottom:solid 1px #e3e3e3;}
+.suspension ul li span{display:block;font-size:12px;}
+.suspension ul li i{font-size:26px;margin:0 auto;}
+.suspension-small{width:44px;}
+.suspension-small ul li i{font-size:20px;}
+.suspension-small ul li{padding:5px 0;}
+
+
+.suspension .active{background:#499ee1;color:#fff;}
+.red .active{background:red;color:#fff;}
+.yellow .active{background:#feb509;color:#fff;}
+
+.form-common .tab-content{border:solid 1px #ddd;
+padding:10px;border-top:none;}
+.form-common .tab-content p{color:#7d7d7d;font-size:12px;}
+.form-common .mr0{margin-right:0!important}
+.form-common .ml0{margin-left:0!important}
+.form-common .nav-tabs>li>a{color:#7d7d7d;}
+.form-common .nav-tabs>li.active>a,.form-common .nav-tabs>li.active>a:focus,.form-common .nav-tabs>li.active>a:hover{
+    color:#666;
+}
+/*在线客服信息*/
+.form-common .span-add{line-height:34px;font-weight:bold;color:#bebebe;cursor:pointer;}
+.form-common .i-clone-del{position:absolute;right:8px;top:-8px;color:#7d7d7d;cursor:pointer;}
+#serverOne .i-clone-del{right:-8px; top:-11px;}

@@ -1,0 +1,173 @@
+文件夹/页面说明：
+
+表格demo    // user/servMge/mgrComment
+
+css:{
+		base.css      全局样式文件*
+		index.css     首页及前台页面样式
+		user.css      用户中心样式
+		skin.css      皮肤风格样式
+	}
+	
+js:	{
+		common.js       全局基础效果
+	}	
+	
+img:{
+
+
+	}
+
+Ctrl：{
+		插件包
+
+	}
+
+demo:{
+		布局及特效demo
+
+	}
+	
+models:模板网站{
+
+        1{模板一}
+		1{模板二}
+		
+	}
+
+goods:商品相关{
+
+     	list.html	    商品列表
+		
+     
+     }
+     
+news:新闻相关{
+
+     	list.html    新闻列表                                 
+     	info.html    新闻详情				 
+     
+     }
+     
+pro:产品相关{
+}
+     
+page:单页{
+     
+     }
+     
+user:用户中心{
+		
+		sign.html				登录/注册
+		fgtow.html				忘记密码
+		agreement.html          用户协议
+		mgecustom.html          我的用户-用户管理   1
+		mgecustom.html          我的客户-客户管理
+		
+
+	coluMge：栏目管理{
+		栏目管理                                                        1
+	}
+	contMge：内容管理{
+		merCon.html             内容管理  1
+		rclCon.html            内容回收站 1 
+		mgrRecom.html          推荐管理
+		mgrBanner.html         订单管理
+	}
+	servMge：业务管理{
+		mgrComment.html        评论管理    1
+		mgrMessage.html        留言管理   1
+		editMeber.html        会员管理编辑
+		mgeMeber.html           会员管理
+		mgrOrder.html          订单管理
+	}
+	plugMge：插件管理{
+		plugServer.html        插件管理-在线客服
+	}
+	webBusiness：云站业务{
+		webPend.html          待开通云站   1
+		webList.html          云站列表        1
+	}
+	webSet: 网站设置{
+		webBasinfo.html         网站设置-基本信息  1
+		mgrUser.html            用户管理       1
+	}
+	myServ:我的服务{
+		servRecharge.html      我的服务-账户充值          1
+		servPersinfo.html		我的服务-个人信息
+	 	workInfo.html           工单信息
+	}
+	
+	 trade：交易相关{
+	 
+  		shoppingCar.html        购物车
+  		mgeTrackOrder.html      订单跟踪
+	  		
+	  		}
+	}
+	
+
+
+/*--------------------------------页面样式待调整汇总------------------------*/
+/*       路径  					|	 页面名称           |     待调整样式		  	  */			
+/*--------------------------------------------------------------------*/
+云站业务-待开通云站
+/user/webBusiness/webPend.html  |  待开通云站           |    （开通FTP莫泰框   查看FTP信息模态框）
+云站业务-云站列表
+/user/webBusiness/webList.html  |  云站列表               |    （详情查看模态框    点击查询按钮距离和图标调整 ）   
+
+业务管理-会员管理
+/user/servMge/mgeMeber.html     |  会员管理               |     （用户账号或昵称待调整    编辑页面内需要调整）
+
+我的客户-客户管理
+/user/mgecustom.html            |  客户管理               |     （状态按钮调整    添加客户弹窗样式待调整）
+
+产品列表页
+/goods/list.html                |  网站模板               |     （分页样式待调整）
+
+新闻列表页
+/news/list.html                 |  行业动态               |     （分页样式待调整）
+
+新闻详情页
+/news/info.html                 |  新闻详情页           |     （评论样式待调整）
+
+我的客户-客户管理
+/user/mgecustom.html            |  客户管理               |     （状态按钮调整）
+
+内容管理
+user/mgrCon.html                |  内容管理         	 |   	状态的样式 
+
+网站设置
+/webSet/mgrUser.html            |  用户管理               |    备注和操作的样式 （参照cws3）
+
+
+我的服务-工单信息
+/user/myServ/workInfo.html		|  工单信息               |    （页面样式待调整）
+
+业务管理-会员管理
+/user/servMge/mgeMeber.html		|  会员管理               |    （页面样式待调整     修改弹窗样式待修改）
+
+栏目管理
+/user/mgecolumn.html            |  栏目管理               |    （添加栏目弹窗的预览样式待调整）
+
+我的服务-工单信息
+/user/myServ/workInforSubm.html |  提交工单                |   （提交工单信息待调整）
+
+(平台展示页面：新闻详情页的留言     单页样式和左侧二级导航   新闻左侧二级导航   产品列表    模板展示样式  待调整)
+
+
+
+
+
+
+
+
+
+导航未处理完：推荐管理、banner管理,账户详情,
+
+
+/////////////
+iframe 调用说明：
+1.从单页面跳转到user/user.html定位到指定页面
+	setIframeUrl('user/servMge/mgeTrackOrder.html?orderId='+ orderId)
+	window.open('user/user.html', '_self');

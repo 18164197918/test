@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>内容管理</title>
+	
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild-->
+
+	<link rel="stylesheet" href="/ctrl/font-awesome-4.7.0/css/font-awesome.min.css"><!--字体图标-->
+
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	<link rel="stylesheet" href="css/table.css" />
+    <link href="css/zTreeStyle.css"  rel="stylesheet">
+	<link href="css/user/custom-tree.css"  rel="stylesheet">
+</head>
+<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="内容管理"/>
+    <input type="hidden"  id="leftstatus" value="内容列表"/>
+	
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">内容管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+	<!--right start-->
+	<div class="" id="mgecontent" v-cloak>
+		
+		<!--table start-->
+		<div class="table">
+			<!--表头操作按钮   start-->
+			<div class="tab-header clearfix">
+				<div class="col-md-12 col-sm-12 ml-15">
+					<div class="col-md-3 col-xs-3">
+						<div class="row">
+							<div class="tree-nav rel">
+								<div onclick="showMenu()">
+									<input type="hidden" :value="params.mid" class="cs-point mid"/>
+									<input id="citySel" class="form-control" type="text" readonly value="网站栏目" class="cs-point"/>
+								</div>
+								<div id="menuContent" class="menuContent wid100 x-select-box" style="">
+									<ul id="selctTree" class="ztree" style="margin-top:0; "></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-3">
+						<div class="row">
+							<!--选择列表  start-->
+							<div class="down-wrap">
+							  	<!--bootstrap start-->
+							  	<div class="dropdown">
+									<button type="button" class="btn btn-default" id="dropdownMenu1" data-toggle="dropdown">
+										<span class="dec">批量操作</span>
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+										<li role="presentation">
+											<a role="menuitem" tabindex="-1" onclick='batchOpear(1)'>删除</a>
+										</li>
+										<li role="presentation">
+											<a role="menuitem" tabindex="-1" onclick='batchOpear(2)'>发布</a>
+										</li>
+									</ul>
+								</div>
+							  	<!--选择列表  end-->
+							</div>
+							<!--下拉菜单  end-->
+						</div>
+					</div>
+					<div class="col-md-6 col-xs-6 pdNone">
+						<div class="row text-right">
+							<!--刷新、添加  start-->
+							<div class="btn-group" role="group" aria-label="...">
+							  <button type="button" class="btn btn-default" onclick="reload()">
+							  	<i class="iconfont">&#xe631;</i>
+							  	刷新
+							  </button>
+							  <button type="button" class="btn btn-default" onclick="addcontent()">
+							  	<i class="iconfont">&#xe608;</i>
+							  	添加
+							  </button>
+							</div>
+							<!--刷新、添加  end-->
+						</div>
+					</div>
+	
+				</div>
+				
+				
+			</div>
+			<!--表头操作按钮   end-->
+				<table class="table table-bordered table-hover table-condensed tab-ts">
+					<thead>
+						<tr>
+							<th class="tc th30">
+							  <label>
+							   	 <input type="checkbox" class="ck_all" id="blankCheckbox" value="option1" aria-label="...">
+							  </label>
+							</th>
+							<th class="tc">标题</th>
+							<!--<th class="wid20 tc">栏目</th>
+							<th class="wid25 tc">
+								修改时间
+							</th>-->
+							<th class="wid40 tc">
+								<div class="l-col one-line">栏目</div>
+								<div class="r-col one-line">修改时间</div>
+							</th>
+							<th class="wid14">
+								<!--<div class="l-col one-line tc">排序</div>-->
+								<div class="l-col one-line tc">类型</div>
+								<div class="r-col one-line tc">状态</div>
+							</th>
+
+							<th class="wid11 tc">操作</th>
+						</tr>
+					</thead>
+					<tbody class="content-edit-box-bg ">
+						<tr v-for="contentLine in contentLines">
+							<td class="tc">
+								<label>
+							    	<input type="checkbox"  class="ck_one"  :value="contentLine['id']"  aria-label="...">
+							  	</label>
+							</td>
+							<td >
+								    <div class="x-img-box-repeat ThumbNailImg" >
+								    	<!--<img :src="contentLine.img || ''" onerror="imgerror(this)"/>-->
+								    	<img class="smallImg"  src="/img/user/ThumbNail.png" onerror="imgerror(this)"/>
+								    	<div class="showImg x-img-box-repeat">
+								    		<!--<div class="triangular"></div>-->
+								    		<img :src="contentLine.img || ''"  onerror="imgerror(this)"/>
+								    	</div>
+								    </div>
+									<div class="one-line contentTitle" style="float: left;">{{ contentLine['title'] }}</div>
+							</td>
+							<!--<td class="tc">
+								<div class="one-line">
+									{{ contentLine['fullpath'] }}
+								</div>
+							</td>
+							<td>
+									{{ contentLine['update_time'] }}
+							</td>-->
+							<td class="">
+								<div class="l-col one-line tl">
+									
+									<span v-if="contentLine['pName'] != null">{{ contentLine['pName'] }} /</span>
+									{{ contentLine['column_name'] }}
+								</div>
+								<div class="r-col tl">
+									{{ contentLine['update_time'] }}
+								</div>
+							</td>
+							<td>
+								<!--<div class="l-col tc">
+									<input type="button" value="置顶" :data="contentLine['id']"  onclick='setTop(this)'>
+								</div>-->
+								<div class="l-col tc">
+									{{ contentLine['typeName'] }}
+								</div>
+							    <div class="r-col tc" v-if="contentLine['status'] === 1">发布</div>
+								<div class="r-col tc" v-else-if="contentLine['status'] === 0">草稿</div>
+								<div class="r-col tc" v-else>未审核</div>
+							</td>
+							<td class="opr tc">
+								<a :data3="contentLine['type']" :data2="contentLine['mid']" class="a-default"  :data="contentLine['id']" onclick="operate(2,this)" style="cursor: pointer;">修改
+								</a><a :data="contentLine['id']"   class="a-del"  onclick="operate(3,this)">删除</a>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<!--暂无数据   start-->
+				<div class="no-data" v-if="noData">
+					结果数据0条
+				</div>
+				<!--暂无数据   end-->
+		           <!--翻页-->
+	    		    <div class="PageF row" v-if="totalPages>=1">
+						<div class="paTotle col-md-3 col-sm-3">
+						</div>
+						<div class="flip col-md-9 col-sm-9">
+							<div class="page-number fr">
+								<ul>
+									<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+									<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+									<li class="li-3">
+										<p>{{ currentpage }}/{{ totalPages }}</p> 
+										<input type="text" class="currentpage" v-model="jumppage"> 
+											<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+									</li> 
+									<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+									<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+								</ul>
+							</div>
+							<div class="filp-x fr">
+					    		每页显示行
+			    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+			    		    		<option v-for="lines in linesPerPage">
+			    		    			{{ lines }}
+			    		    		</option>
+			    		    	</select>
+							</div> 
+						</div>
+					</div>
+	    		    <!--翻页结束-->
+			</div>
+	
+
+		<!--table end-->
+		<!--提示弹窗html start-->
+		<div class="md-modal md-effect-2">
+			<div class="md-content">
+				<h3>提示<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+				<!--nr start-->
+				<div>
+					<!--中间内容   start-->
+					<p>邀请成功</p>
+					<!--中间内容   end-->
+					<div class="tc btn-box">
+						<input class="btn btn-default md-close" type="submit" value="取消"><input class="btn btn-default md-close" type="submit" value="确认">
+					</div>
+					
+				</div>
+				<!--nr end-->
+			</div>
+		</div>
+		<!--提示弹窗html end-->
+		
+		<!--遮罩层  start-->
+		<div class="mask-layer"></div>
+		<!--遮罩层  end-->
+		<!--弹窗   end-->
+		<!--页面加载提示-->
+		<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+	</div>
+	<!--right end-->
+	<!--内容部分 end-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"></script><!--z-Tree-->
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	
+	<script type="text/javascript" src="js/user/colums.js"></script><!--自定义封装zTree方法-->
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/contMge/mgrCon.js"></script>
+	
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    	$(document).on("click",".ThumbNailImg  .smallImg",function(){
+    		$(this).next(".showImg").toggle();
+    	})
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>业务管理-会员管理</title>
+
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+    <body class="userNav">
+	<input type="hidden"  id="leftstatu" value="业务管理"/>
+    <input type="hidden"  id="leftstatus" value="会员管理"/>
+    <!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">会员管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--内容部分 start-->
+		<!--right start-->
+		<div class="" id="order" v-cloak>
+			
+			<!--table start-->
+			<div class="table">
+				<!--表头操作按钮   start-->
+				<form class="form-inline header-member mb15 pdNone">
+				  <div class="form-group">
+				    <input type="text" class="form-control" name="user_name" placeholder="输入用户账号/昵称">
+				  </div>
+				  <button type="button" class="btn btn-default btn-search" onclick="search()">查询</button>
+				</form>
+				<!--表头操作按钮   end-->
+						<table class="table table-bordered table-hover table-condensed tab-ts">
+						<thead>
+							<tr>
+								<!--<th class="tc th30">
+								  <label>
+								    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+								  </label>	
+								</th>-->
+								<th class="wid20">
+									<div class="tc">用户昵称</div>
+								</th>
+								<th>
+									<div class="l-col tc">用户账号</div>
+									<div class="r-col tc">会员级别</div>
+								</th>
+								<th class="wid18 tl">
+									注册时间
+								</th>
+								<th class="tc wid10">
+									操作
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="item in meberList" class="tc">
+								<!--<td>
+									<label>
+								    	<input type="checkbox" id="blankCheckbox" aria-label="..."  :value="item['id']" @click="ckCur">
+								  	</label>
+								</td>-->
+								<td class="tl">
+									<div class="one-line">{{item.nick}}</div><!--用户昵称-->
+								</td>
+								<td><!--用户账号（手机 邮箱） 会员级别-->
+									<div class="l-col one-line tl" v-if='item.mobile' :title="item.mobile">{{item.mobile}}</div>
+									<div class="l-col one-line tl" v-else :title="item.email">{{item.email}}</div>
+									<div class="r-col one-line">普通用户</div>
+								</td>
+							
+								<td class="tl">
+									<div class="one-line">
+										{{item.insert_time}}
+									</div>
+								</td>
+								<td class="opr">
+									<a class="modifyInfo a-default" :data="item.id" @click="detailModify">修改</a>
+									<a class="a-del" :data="item.id" @click="operate($event)">删除</a>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				<!--暂无数据   start-->
+				<div class="no-data" v-if="noData">
+					结果数据0条
+				</div>
+				<!--暂无数据   end-->
+			</div>
+			<!--table end-->
+			<!--修改弹窗-->
+			<div class="md-modal-demo md-modal md-effect-1">
+				<div class="md-content">
+					<h3>修改会员<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<!--<div>-->
+						<div class="table">
+						<!--中间内容   start-->
+						<!--<div class="form-center">-->
+						<table class="table table-bordered table-hover table-condensed tab-ts">
+					       <tbody>
+					        	<input type="hidden" name="id" id="" v-model="editInfo.id" disabled="disabled" />
+					          <tr>
+					            <th class="wid21"><div>用户昵称</div></th>
+					            <td class="wid50"><input type="text" name="nick" id="" v-model="editInfo.nick" disabled="disabled" /></td><!--值-->
+					            <td class="wid18"><button type="button" class="modifyBtn btn btn-default  btn-primary pd0 btn-sm" >修改</button></td><!--操作-->
+					          </tr>
+					          <tr>
+					            <th class="wid21"><div>用户账号</div></th>
+					            <td class="wid50"><input type="text" name="name" id="" v-model="editInfo.name" disabled="disabled"/></td><!--值-->
+					           	<td class="wid18"><button type="button" class="modifyBtn btn btn-default  btn-primary pd0" >修改</button></td><!--操作-->
+					          </tr>
+					          <tr>
+					            <th class="wid21"><div>用户手机</div></th>
+					           	<td class="wid50"><input type="text" name="mobile" id="" v-model="editInfo.mobile" disabled="disabled"/></td><!--值-->
+					            <td class="wid18"><button type="button" class="modifyBtn btn btn-default  btn-primary pd0" >修改</button></td><!--操作-->
+					          </tr>
+				         		<tr>
+					            <th class="wid21"><div>用户邮箱</div></th>
+					           	<td class="wid50"><input type="text" name="email" id="" v-model="editInfo.email" disabled="disabled"/></td><!--值-->
+					            <td class="wid18"><button type="button" class="modifyBtn btn btn-default  btn-primary pd0" >修改</button></td><!--操作-->
+					          </tr>
+					        </tbody>
+					      </table>
+						<!--</div>-->
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消">
+						</div>
+						</div>
+					<!--</div>-->
+					<!--nr end-->
+				</div>
+			</div>
+			
+			
+					<!--翻页-->
+	    		    <div class="PageF row" v-if="totalPages>=1">
+						<div class="paTotle col-md-3 col-sm-3">
+						</div>
+						<div class="flip col-md-9 col-sm-9">
+							<div class="page-number fr">
+								<ul>
+									<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+									<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+									<li class="li-3">
+										<p>{{ currentpage }}/{{ totalPages }}</p> 
+										<input type="text" class="currentpage" v-model="jumppage"> 
+											<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+									</li> 
+									<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+									<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+								</ul>
+							</div>
+							<div class="filp-x fr">
+					    		每页显示行
+			    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+			    		    		<option v-for="lines in linesPerPage">
+			    		    			{{ lines }}
+			    		    		</option>
+			    		    	</select>
+							</div> 
+						</div>
+					</div>
+	    		    <!--翻页结束-->
+				
+				
+			<!--修改弹窗结束-->
+			<!--<div class="mask-layer"></div>-->
+		</div>
+		<!--right end-->
+		<!--important start-->
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script><!--占位-->
+		<!-- endbuild-->
+	    
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/mgeMeber.js"></script><!--本页面加载数据部分-->
+		</body>
+		
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+    		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+	  <script type="text/javascript">
+//		$(function(){
+		//添加用户
+  		$(document).on('click','.modifyInfo',function(){
+  			 $('.md-modal-demo').toggleCommModal('show')
+	  	})
+		// 自定义弹窗
+		$('.md-close').on('click', function() {
+			$(this).parents('.md-modal').toggleCommModal('close');
+		});
+		
+		
+//		});
+</script>
+</html>
+
+

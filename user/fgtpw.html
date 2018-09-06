@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+ 	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+	<title>找回密码</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild-->
+
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="ctrl/ckeditor/plugins/copyformatting/styles/copyformatting.css" />
+	
+	
+	<!-- build:css css/other.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<!-- endbuild -->
+
+	<link rel="stylesheet" href="css/index-news.css" /><!--公用样式-->
+	<link rel="stylesheet" href="css/user/fgtpw.css" /><!--前台页面样式-->
+</head>
+<body>
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+	<!--banner部分 start-->
+	<div class="fgtpwBox">
+		<div class="forgetPWBox container container-forget" id="fgtpw" v-cloak>
+			<div class="title">找回密码</div>
+			<ul class="step1">
+				<li class="active"><span class="active">1</span></li>
+				<li><span>2</span></li>
+				<li><span>3</span></li>
+			</ul>
+			<ul class="step2">
+				<li class="active">身份验证</li>
+				<li>重置密码</li>
+				<li>完成</li>
+			</ul>
+		    <div class="">
+		    	<div class="row">
+					<div class="formBox  col-sm-5  col-xs-12" >
+					    <form action="" method="" id="forgetPWForm1">
+					    		<input type="text"      style="display: none;"/>
+					 	 		<input type="password"  style="display: none;"/>
+							<div class="regLine" >
+				 	 			<div class="item2 overflow">
+				 	 				<label class="item1 wid25 fl" for="username">手机/邮箱:</label>
+				 	 				<input type="text" class="form-control wid75 fl"  name="username" id="username" placeholder="输入手机号/邮箱"  v-model='username' />
+				 	 			</div>
+				 	 			<div class="err-msg">
+				 	 				
+				 	 			</div>
+				 	 		</div>
+							<div class="regLine ">
+				 	 			<div class="item2 overflow">
+					 	 			<label class="item1 wid25 fl" for="imgCode">图形验证码:</label>
+				 	 				<input type="text" class="form-control wid40 fl"  name="imgCode" id="imgCode"  v-model='imgCode' maxlength="4"/>
+				 	 				<img  class="wid25 fr cur-p" id="codeImg" onclick='changeCode()' />
+				 	 			</div>
+				 	 			<div class="err-msg">
+				 	 				
+				 	 			</div>
+				 	 		</div>
+				 	 		<div class="regLine">
+				 	 			<div class="item2 overflow">
+					 	 			<label class="item1 wid25 fl" for="identifyingCode">验证码:</label>
+				 	 				<input type="text" class="form-control wid35 fl" name="identifyingCode" id="identifyingCode" placeholder="验证码" v-model='identifyingCode'/>
+								 	<button type="button"  class="item_code btn btn-default wid35 fr"  onclick="getCode()" >获取验证码</button>
+				 	 			</div>
+				 	 			<div class="err-msg">
+				 	 				
+				 	 			</div>
+				 	 		</div>
+				 	 		<div class="regLine">
+				 	 			<div class="item1"></div>
+				 	 			<div class="item2 overflow">
+				 	 				<button type="button" class="next_btn btn btn-primary wid75 fr"  onclick="nextStep1()" id="step1">下一步</button>
+				 	 			</div>
+				 	 		</div>
+						</form>
+						
+						
+						<form action="" method="" id="forgetPWForm2" style="display: none;">
+							<div class="find_name">
+								您正在找回的账号是：{{username}}
+							</div>
+							<div class="regLine rel">
+				 	 			<div class="item2 overflow">
+					 	 			<label class="item1 wid25 fl" for="password">新密码:</label>
+				 	 				<input type="text" class="form-control wid75 fl"  name="password" id="password" placeholder=""  v-model='password' onkeyup='checkPWleave()'/>
+				 	 			</div>
+					 	 			<div class="passwordLevel wid30 fr abs ">
+			                             	<ul class="leavePiece">
+			                             		<li></li>
+			                             		<li></li>
+			                             		<li></li>
+			                             	</ul>
+			                             	<ul class="levelCode">
+			                             		<li>危险</li>
+			                             		<li>一般</li>
+			                             		<li>安全</li>
+			                             	</ul>
+					 	 			</div>
+				 	 			<div class="err-msg">
+				 	 				
+				 	 			</div>
+				 	 		</div>
+							<div class="regLine">
+				 	 			<div class="item2 overflow">
+					 	 			<label  class="item1 wid25 fl" for="password2">确认新密码:</label>
+				 	 				<input type="text" class="form-control wid75 fl"  name="password2" id="password2"  v-model='password2'/>
+				 	 			</div>
+				 	 			<div class="err-msg">
+				 	 			</div>
+				 	 		</div>
+				 	 	    <div class="regLine">
+				 	 			<div class="item1"></div>
+				 	 			<div class="item2">
+				 	 				<button type="button" class="next_btn btn btn-primary wid75 fr" onclick="nextStep2()" id="step2">下一步</button>
+				 	 			</div>
+				 	 		</div>
+						</form>
+						<form class="" id="forgetPWForm3" style="display: none;">
+							<div class="successPw">
+								<span id="success_code"><img src="img/user/success.png" /></span>
+									您的密码已重置成功！
+							</div>
+							<!--<div class="" id='entry_btn' @click='signin()'>
+							 <a href="user/sign.html">登录</a>
+							</div>-->
+				 	 		<button type="button" class="next_btn btn btn-primary wid75 " onclick="signin()" id="entry_btn">登录</button>
+						</form>
+					</div>
+	        	</div>
+		    </div>
+		</div>
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer id="footer"></footer>
+
+	<!--footer end-->
+	<!-- build:js js/other.libs.js -->
+	<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="/js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.offcanvas.min.js"></script>
+  <script type="text/javascript" src="js/comm/bluebird.js"></script>  <!--引入解析es6Promise对象-->
+	<script type="text/javascript" src="js/comm/es6-promise.js"></script><!--解析es6 promise-->
+	<script type="text/javascript" src="js/comm/vue.min.js"></script><!--vue -->
+	<script type="text/javascript" src="js/comm/axios.js"></script><!--axios-->
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/comm/comm.js" ></script><!--公共处理函数-->
+	<!-- build:js js/user.comm.js -->
+  <script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+  <script type="text/javascript" src="js/CwsPopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="/js/validation.js"></script>
+	<!-- endbuild-->
+
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/user/fgtpw.js"></script><!--首页数据加载 js-->
+	
+</body>
+</html>
+

@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <!--<Deject>-->
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+     <!--</Deject>-->
+	 <!--basepath end-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>云站网站模板</title>
+	<meta name="keywords" content="网站模板，手机模板，企业模板，电商模板，论坛模板，门户模板" />
+	<meta name="description" content="百捷云站网站模板，所有模板利于SEO优化，适合企业、个人建站。"/>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+		
+	<!-- build:css css/other.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<!-- endbuild -->
+	
+	<!--bootstrap 兼容ie8-->
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+    <style type="text/css">
+	.flexColor .colorC.li_hover{
+		    transform: scale(1.3, 1.3);
+		    transition: all .4s;
+		    box-shadow: 4px 2px 12px #9c9b9b;
+		}
+	</style>
+</head>
+
+<body class="proCont">
+	<div class="list-wrapper">
+		<!--header start-->
+		<div  id="header" v-cloak></div>
+		<!--header end-->
+		<!--二级导航   start-->
+		<div class="nav-wid100">
+			<div class="proTitle clearfix container" style="clear:both;">
+				<div class="pull-right">
+					<p><a href="index.html">首页</a><span class="arrow">&gt;</span>网站模板</p>
+				</div>
+			</div>
+		</div>
+		<!--二级导航   end-->
+		<!--内容部分 start-->
+		<div class="bjContainer proCont container-page" id="prdcontent"  v-cloak>
+			<!--行业及颜色分类 start-->
+			<div class="colorClass container ">
+				<div class="colorBox">
+					<div class="flex-l" style="border-bottom: 1px solid #e7e6eb;">
+						<div class="colTitle">
+							<p>基本类型：</p>
+						</div>
+						<div class="colMidel flex chooseType">
+							<ul class="clearfix" >
+								<li    :class="[ param.type == null || param.type == 'null'  ? 'li_hover' : '','fl']" value="不限" >
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&type=3010000,null"+"&fg=3020000,"+param.fg+"&trade=3030000,"+param.trade+"&ys=3040000,"+param.ys+""+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' style="display: inline-block;width:100%;height:100%;" target="_self">不限</a></li>
+								<li  class="fl"  v-for="(mdt,index) in mdType" v-if="index < 4"   :class="[mdt.name == param.type  ? 'li_hover' : '']" :data-type="[mdt.cat+','+mdt.name]" >
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&type="+mdt.cat+","+mdt.name+"&fg=3020000,"+param.fg+"&trade=3030000,"+param.trade+"&ys=3040000,"+param.ys+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' style="display: inline-block;width:100%;height:100%;" target="_self">{{ mdt.name }}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="flex-l" style="border-bottom: 1px solid #e7e6eb;">
+						<div class="colTitle">
+							<p>风格样式：</p>
+						</div>
+						<div class="colMidel flex chooseFg">
+							<ul class="clearfix">
+								<li  :class="[ param.fg == null || param.fg == 'null' ? 'li_hover' : '','fl']" value="不限" data-fg="">
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&fg=3020000,null"+"&type=3010000,"+param.type+"&trade=3030000,"+param.trade+"&ys=3040000,"+param.ys+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' target="_self">不限</a>
+								</li>
+								<li class="fl" :value="fg_cat" v-for="kidS in kindSty" :class="[kidS.name == param.fg  ? 'li_hover' : '']" :data-fg="[kidS.cat+','+kidS.name]">
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&fg="+kidS.cat+","+kidS.name+"&type=3010000,"+param.type+"&trade=3030000,"+param.trade+"&ys=3040000,"+param.ys+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' target="_self">{{kidS.name}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="flex-l" style="border-bottom: 1px solid #e7e6eb;">
+						<div class="colTitle">
+							<p>行业分类：</p>
+						</div>
+						<div class="colMidel flex chooseTrade" style="position: relative;">
+							<ul class="clearfix">
+								<li  :class="[ param.trade == null ||  param.trade == 'null'  ? 'li_hover' : '','fl']" value="不限" data-trade="">
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&trade=3030000,null"+"&fg=3020000,"+param.fg+"&type=3010000,"+param.type+"&ys=3040000,"+param.ys+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' target="_self">不限</a>
+								</li>
+								<li  class="fl" :value="trade_cat" v-for="pro in professon" :class="[pro.name == param.trade  ? 'li_hover' : '']" :data-trade="[pro.cat+','+pro.name]">
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&trade="+pro.cat+","+pro.name+"&fg=3020000,"+param.fg+"&type=3010000,"+param.type+"&ys=3040000,"+param.ys+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' target="_self">{{pro.name}}</a>
+								</li>
+							</ul>
+						</div>
+						<div class="colMore tr">
+							<p  onclick="showMore(this)">更多<span class="iconfont ml10 moreIcon">&#xe627;</span> <span class="iconfont ml10 moreIcon dis-n">&#xe7ac;</span></p>
+						</div>
+					</div>
+					<div class="flex-l flexColor"  style="border-bottom: 1px solid #e7e6eb;"><!--待添加-->
+						<div class="colTitle">
+							<p>色彩分类：</p>
+						</div>
+						<div class="colMidel flex chooseColor">
+							<ul class="clearfix">
+								<li  class="fl colorT" :class="[param.ys == null || param.ys == 'null' ? 'li_hover' : '','fl']"  value="不限" data-ys="">
+									<a :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&ys=3040000,null"+"&trade=3030000,"+param.trade+"&fg=3020000,"+param.fg+"&type=3010000,"+param.type+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")'  target="_self">不限</a>
+								</li>
+								<li class="fl mt10 rel colorC " v-for="colr in colorSty"  :class="[param.ys == colr.name ? 'li_hover' : '']" :style="{'background': '#'+colr.name}" :data-trade="[colr.cat+','+colr.name]">
+									<a  :href='encodeURI(fontBaseUrl+"goods/list.html?id="+col_id+"&ys="+colr.cat+","+colr.name+"&trade=3030000,"+param.trade+"&fg=3020000,"+param.fg+"&type=3010000,"+param.type+"&crtpage=1"+"&psize="+param.pagesize+"&tpEntry=true")' class="colorA" target="_self">
+										<span class="iconfont">&#xe61f;</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="flex-l">
+						<div class="colTitle">
+							<p>高级搜索：</p>
+						</div>
+						<div class="colMidel flex chooseTrade" style="position: relative;">
+							<div class="pro-search">
+								<input type="text" id="searchText"  value=""  placeholder="请输入模板编号或名称" />
+								<span  class="iconfont" onclick="searchTem()">&#xe6b7;</span>	
+							</div>
+							
+						</div>
+						<!--<div class="colMore tr">
+							<p  onclick="showMore(this)">更多<span class="iconfont ml10 moreIcon">&#xe627;</span> <span class="iconfont ml10 moreIcon dis-n">&#xe7ac;</span></p>
+						</div>-->
+					</div>
+				</div>
+			</div>
+			<!--行业及颜色分类 end-->
+			  
+			  <!--<div class="container " v-if="productName" style="text-align: right;">
+			  	模板搜索结果"{{productName}}"共{{searchNum}}个
+			  </div>
+			  -->
+			<!--列表 start-->
+			<div class="proList container mt40">
+				
+				<div class="listBox">
+					<!--模板列表 start-->
+					<!--<div class="modelList">
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								dsdsd
+							</div>
+							<div class="col-md-6 col-sm-6">
+								sfsd
+							</div>
+							
+							
+						</div>
+					</div>-->
+					<div class="mList">
+						<div class="">
+							<div class="row">
+								<p v-if="mdList.length==0" class="tc" style="font-size:1.5rem;"><span class="iconfont mr5" style="color:rgb(254, 187, 34);">&#xe68f;</span>暂无模板数据！</p>
+								<div class="col-md-6 col-sm-6 rowLi" v-for="(mditem,index) in mdList" :id="mditem.id" :cid="mditem.cid" >
+								
+									<div class="mList-imgB">
+										
+										<div class="mList-img clearfix">
+											
+											<div class="mList-imgPcbg">
+												<a :href="['models/showmodel.html?id='+mditem.id+'&p='+mditem['model_path']+'&cmpid='+ mditem.cid+'&modNum='+mditem['number'] +'&modTotal='+totalMods]" class="fr">
+													<div class="mList-imgPcI"><img :src="mditem.img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+												</a>
+											</div>
+											<div class="mList-imgMapbg">
+												<a href="#">
+													<div class="mList-imgMapI"><img :src="mditem.res_url" class="wid100" onerror="imgerror(this)" alt=""/></div>
+												</a>
+											</div>
+										</div>
+										
+										<p class="listPrice">￥<span>{{mditem.price}}</span></p>
+										<p class="listName txt-ln1">
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0">{{ mditem.number }}</span>
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0" :title="mditem.cat">{{ mditem.cat }} </span>
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0">{{mditem.type}}</span>
+										</p>
+										<div class="listInfo clearfix">
+											<div class="fl">
+												<span class="liNam mr20"><i class="iconfont">&#xe607;</i>{{mditem.view_times}}</span>
+											</div>
+											<a :href="['models/showmodel.html?id='+mditem.id+'&p='+mditem['model_path']+'&cmpid='+ mditem.cid+'&modNum='+mditem['number'] +'&modTotal='+totalMods]" class="fr"><div class=""><span class="pkTitle">使用模板</span></div></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--模板列表 end-->
+				</div>
+			
+				<!--分页1-->
+				<div class="PageF" v-if="totalPages>=1">
+					<!--<div class="paTotle col-md-3 col-sm-3">本页当前 {{ currentLines }} 条</div>-->
+					<div class="flip" style="overflow: hidden;">
+						<div class="page-number fr">
+							<ul>
+								<li><a :href="firstPageUrl"  target="_self" ><i class="iconfont">&#xe6e8;</i></a></li> 
+								<li><a :href="upPageUrl" target="_self" ><i class="iconfont">&#xe63b;</i></a></li> 
+								<li class="li-3">
+									<p>{{ param.currentpage }}/{{ totalPages }}</p> 
+									<input type="text" class="currentpage" value="" id="jumpPg"> 
+									<p  onclick="changeCurrentPage()"  style="cursor: pointer;"><i>GO</i></p>
+								</li> 
+								<li><a :href="downPageUrl" target="_self" ><i class="iconfont">&#xe65a;</i></a></li> 
+								<li><a :href="lastPageUrl" target="_self" ><i class="iconfont">&#xe6f4;</i></a></li>
+							</ul>
+						</div>
+						<div class="filp-x fr">
+				    		每页显示行
+		    		    	<select class="selectPage" @change="selcValue">
+		    		    		<option v-for="line in linesPerPage1" :selected="line.selected">
+		    		    			{{ line.page }}
+		    		    		</option>
+		    		    	</select>
+						</div> 
+					</div>
+				</div>
+				<!--分页1-->
+			</div>
+			<!--列表 end-->
+			
+		</div>
+		<!--内容部分 end-->
+		<!--footer start-->
+		<footer id="footer"></footer>
+		<!--footer end-->
+		<div id="plugin" class="technicolor"></div>
+	</div>
+
+	<!-- build:js js/other.libs.js -->
+	<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js" ></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.offcanvas.min.js"></script>
+  <script type="text/javascript" src="js/comm/bluebird.js"></script>  <!--引入解析es6Promise对象-->
+	<script type="text/javascript" src="js/comm/es6-promise.js"></script><!--解析es6 promise-->
+	<script type="text/javascript" src="js/comm/vue.min.js"></script><!--vue -->
+  <script type="text/javascript" src="js/comm/axios.js"></script><!--axios-->
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<!-- endbuild -->
+
+	<!-- build:js js/other.comm.js -->
+	<script type="text/javascript" src="js/validation.js" ></script>
+  <script type="text/javascript" src="/js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/comm/comm.js" ></script><!--公共处理函数-->
+  <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/tpl/plugin.js"></script><!--右侧悬浮框加载js-->
+	<!-- endbuild -->
+
+	<script type="text/javascript" src="js/goods/list.js"></script><!--模板数据-->
+	<script type="text/javascript" src="js/slide.min.js"></script>
+	
+	
+	<script type="text/javascript">
+		window.onload = function (){
+			initPageInfo();
+		}
+		function showMore(target){
+			if($(target).parent().siblings(".more").text()){
+				$(target).parent().siblings(".chooseTrade").removeClass("more");
+				$(".moreIcon").eq(0).show();
+				$(".moreIcon").eq(1).hide();
+			}else{
+				$(target).parent().siblings(".chooseTrade ").addClass("more");
+				$(".moreIcon").eq(1).show();
+				$(".moreIcon").eq(0).hide();
+				
+			}
+		}
+	</script>
+</body>
+</html>

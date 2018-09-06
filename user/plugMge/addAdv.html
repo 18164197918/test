@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>添加广告</title>
+    
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+    <link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--前台页面样式-->
+    <!--top 样式-->
+    <!--全局基础样式-->
+   
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+	
+	 
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/form-common.css" />
+	<!-- cutImg文件 -->
+	<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+	<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+    <!--时间插件样式 -->
+  	 <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+    <!--用户中心-->
+    <!--用户中心样式-->
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+</head>
+
+<body class="userNav">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="广告管理" />
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">广告管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+    <!--right start-->
+    <div class="" id="addadv" >
+    	
+    	            <div class="form-common rel">
+						<form class="form-horizontal" id="addAdvForm" >
+		    			<div class="pad-box">	
+    						<div class="form-group form-group-tips">
+    							<label class="control-label col-sm-2" for="advName">广告名称(<i class="i-important">*</i>)：</label>
+    							<div class="col-sm-10 ">
+    								<input type="text" class="form-control" id="advName" name="advName" v-model="title" />
+		    						<div class="err-msg" ></div>
+    							</div>
+		    				</div>
+		    				<div class="form-group form-group-tips">
+		    					<label class="control-label col-sm-2" for="advUrl">广告链接(<i class="i-important">*</i>)：</label>
+		    					<div class="col-sm-10">
+			    					<input type="text" class="form-control" id="advUrl" name="advUrl" v-model="res_url" />
+			    					<div class="err-msg" ></div>
+			    				</div>
+		    				</div>
+		    			
+							<div class="form-group " >
+								<label class="col-sm-2  control-label"><span class="col-danger"></span>广告图片(<i class="i-important">*</i>)：</label>
+								<div class="col-sm-10 ">
+									<div class="row ">
+							    		<div class="col-md-6 col-sm-6">
+							    			<div class="btn-add-box">
+							    				<div title="rImg" data-toggle="modal" data-target="#show_cutimg" class="useupImg maimglst  img-btn" onclick="1"   style="border: 1px solid #ddd;">
+													<a>
+														<span class="iconfont sp-color">&#xe61d;</span> 
+														<img src=""  alt="" name="rImg" class="uploadimg"/>
+													</a>
+												</div>
+							    			</div>
+							    			<p class="btn-desc">每张大小不得超过3M('jpg'、'bmp'、'png'、'gif')</p>
+							    		</div>
+							    		<div class="col-md-6 col-sm-6">
+							    			<div class="row mb18">
+							    				<label for="inputPassword3" class="col-sm-2 control-label">宽(<i class="i-important">*</i>)</label>
+											    <div class="col-sm-10">
+											      <input type="text" class="form-control adv-size" placeholder="单位为px" name="img_width"  v-model='img_width'>
+											      <div class="err-msg"></div>
+											    </div>
+							    			</div>
+							    			<div class="row">
+							    				<label for="inputPassword3" class="col-sm-2 control-label" >高(<i class="i-important">*</i>)</label>
+											    <div class="col-sm-10">
+											      <input type="text" class="form-control adv-size" placeholder="单位为px" name="img_height" v-model='img_height'>
+											       <div class="err-msg"></div>
+											    </div>
+							    			</div>
+							    		</div>
+							    	</div>
+								</div>
+							</div>
+							
+							<div class="form-group ">
+								<div class="col-md-6 col-sm-6 two">
+									<label class="col-sm-2  control-label"><span class="col-danger"></span>投放时间：</label>
+			    					<div  class="col-sm-10">
+				    					<div class="input-group date " id='datetimepicker2'>
+				    						<input id="d4311" class=" form-control" type="text" readonly="readonly"/> 
+				    						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+						                    </span>
+				    						<div class="err-msg" ></div>
+				    					</div>
+			    					</div>
+								</div>
+			    					
+			    				<div class="col-md-6 col-sm-6 two">
+			    					<label class="col-sm-2  control-label"><span class="col-danger"></span>结束时间：</label>
+			    					<div  class="col-sm-10">
+				    					<div  class=" input-group date " id='datetimepicker3'>
+				    						<input id="d4312" class="Wdate form-control" type="text" readonly="readonly"/>
+				    					    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+						                    </span>
+				    						<div class="err-msg" ></div>
+				    					</div>
+			    					</div>
+			    				</div>
+			    					
+							</div>
+		    				<div class="form-group">
+		    					<label class="col-sm-2  control-label"><span class="col-danger"></span>广告位置：</label>
+		    					<div class="col-sm-10">
+			    					<select class="form-control adfd"><option value="-10">左部居中</option><option value="10">右部居中</option></select>
+		    					</div>
+		    				</div>
+		    				<div class="form-group">
+		    					<label class="col-sm-2  control-label"><span class="col-danger"></span>悬浮位置：</label>
+								<div class="col-sm-10 ">
+									<!--<div class="checkbox">-->
+											<label class="radio-inline">
+												<input type="radio" value="1" class="pst-cho" name="pst-cho" checked="checked"/>
+												<span>启用</span>
+											</label>
+											<label class="radio-inline">
+												<input type="radio" value="0" class="pst-cho" name="pst-cho"/>
+												<span>禁用</span>
+											</label>
+									<!--</div>-->
+								</div>
+		    			</div>
+							<!--一个按钮  start-->
+							<div class="btn-box btn-box-one text-center">
+							  	 <button type="button" class="btn btn-default"  @click='saveAdv($event)'>提交</button>
+							</div>
+							<!--一个按钮  end-->
+							
+							
+						</div>	
+		    			</form>
+		    		</div>	
+						<!-- 弹出选择图片上传框 -->
+						<div class="show  useupImgbox in upImg" id="show_cutimg">
+							<div class="modal-dialog">	
+										   <div class="modal-dialog">	
+											    <div class="modal-content" id="myModal">
+											        <div class="modal-body">
+											            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+											                <div class="img-container">
+											                    <img  alt="点击下面选择文件按钮进行选择文件！" style="opacity: 0;">
+				                    							<p class="cutimg-tips">点击下面选择文件按钮进行选择文件！</p>
+											                    <div class="img-type" style="display:none"></div>
+											                </div>
+											            </div>
+											        </div>
+											        <div class="modal-footer2">
+											            <div class=" col-xs-12">
+											            	<div class="row mt-10 mb-5">
+												        		<div class="col-sm-7">
+												                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+												                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+												                        	<span class="iconfont">&#xe613;</span>
+												                    	</span>
+												                    </button>
+												                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+												                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+												                        	<span class="iconfont">&#xe632;</span>
+												                    	</span>
+												                    </button>
+												                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+												                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+												                        	<span class="iconfont">&#xe60c;</span>
+												                   		 </span>
+												                    </button>
+												                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+												                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+												                        	<span class="iconfont">&#xe60c;</span>
+												                    	</span>
+												                    </button>
+																	<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+																	    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+																			<span class="iconfont">&#xe697;</span>
+																	    </span>
+																	</button>
+									
+												                </div>
+												                <div class="col-sm-5 upload-fr">
+											                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+											                        <input class="sr-only" id="inputImage" type="file" name="file">
+											                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+											                            选择文件 
+											                        </span>
+											                    </label>  
+											                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+											                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+											                            确认上传
+											                        </span>
+											                    </label>
+											                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+											                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+											                            取消
+											                        </span>
+											                    </label>
+												                </div>
+											            	</div>
+											            </div>
+											            
+											            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+											            </div>
+											        </div>
+											    </div> 	
+											</div>
+										</div>
+						</div>
+		    			
+		    			
+			    	
+
+    </div>
+    <!--right end-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	</body>
+	
+	<!-- build:js js/user.plugin-libs.js -->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/cutimg.libs.js -->
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+	
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+    
+    <!--页面独有-->
+	<script type="text/javascript" src="js/user/plugMge/addAdv.js"></script>
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+    		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+
+
+</html>

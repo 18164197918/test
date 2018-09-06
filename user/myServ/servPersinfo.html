@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>我的服务-个人信息</title>
+
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild-->
+
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+	<link rel="stylesheet" href="css/form-common.css" /><!--用户中心-->
+	
+	<!-- cutImg文件 -->
+	<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+	<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+<style>
+.md-modal .form-content{
+    height: 436px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+/*#wrapper{height:500px;-webkit-overflow-scrolling:touch;overflow:auto;}*/
+</style>
+</head>
+<body class="defaultNav" style="overflow-x:hidden">
+	
+	<input type="hidden"  id="leftstatu" value="我的服务"/>
+    <input type="hidden"  id="leftstatus" value="个人信息"/>
+	<!--内容部分 start-->
+
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">基本信息</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--right start-->
+	<div class="personL" style="min-height: 600px;" >
+		<div class="Recharge" id="personinfo"  v-cloak>
+			<div id="alipay"></div>
+			<!--个人信息 start-->
+			<div class="servTop bdLine clearfix">
+				<div class="col-md-6 col-sm-6 flex-l create">
+					<div class="perImg useupImg maimglst" title="personImg" data-toggle="modal" data-target="#show_cutimg">
+						<a class="bor-primary">
+				      		<img :src="personImg"  alt="个人头像" class="uploadimg" id="personImg" name="personImg" class="uploadimg" onerror="imgerror(this)">
+				      	</a>
+						<p class="txt-ln1">修改个人头像</p>
+					</div>
+					<!-- 弹出选择图片上传框 -->
+				<div class="show upImg useupImgbox" id="show_cutimg" style="">
+					<div class="modal-dialog">	
+					    <div class="modal-content" id="myModal">
+					        <div class="modal-body">
+					            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+					                <div class="img-container">
+					                    <img  alt="点击下面选择文件按钮进行选择文件！" style="opacity: 0;">
+            							<p class="cutimg-tips">点击下面选择文件按钮进行选择文件！</p>
+					                    <div class="img-type" style="display:none"></div>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="modal-footer2">
+					            <div class=" col-xs-12">
+					            	<div class="row mt-10 mb-5">
+						        		<div class="col-sm-7">
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe613;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe632;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+						                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                   		 </span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                    	</span>
+						                    </button>
+											<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+											    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+													<span class="iconfont">&#xe697;</span>
+											    </span>
+											</button>
+			
+						                </div>
+						                <div class="col-sm-5 upload-fr">
+					                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+					                        <input class="sr-only" id="inputImage" type="file" name="file">
+					                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+					                            选择文件
+					                        </span>
+					                    </label>  
+					                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+					                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+					                            确认上传
+					                        </span>
+					                    </label>
+					                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+					                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+					                            取消
+					                        </span>
+					                    </label>
+						                </div>
+					            	</div>
+					            </div>
+					            
+					            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+					            </div>
+					        </div>
+					    </div> 	
+					</div>
+				</div>
+				<!--图片上传结束-->
+					
+					<div class="perInfo flex">
+						<p><i>用户账号：</i><span>{{username}}</span></p>
+						<p><i>余额：</i>{{money}}元 <a  href="user/myServ/servRecharge.html" target="_self">充值</a>
+							<!--|<a href="user/myServ/acntInfo.html" target="_self">详情</a>-->
+						</p>
+						
+						<p class="Auth"><i>认证：</i><span class="iconfont">&#xe6d7;</span><span class="iconfont"  style="background: #4a99f4;">&#xe66d;</span></p>
+						<p class="Grade"><i>账号等级：</i></p>
+					</div>
+				</div>
+				<div class="col-md-6 flex-l md-modalL create">
+					
+					<div class="perInfo flex perCre" style="border: none;">
+						<div class="" v-if="join_status==2">
+							<p>绑定的企业：<a>{{company_name}}</a></p>
+							<div class="webCreat popup-window-tips cur-p" @click="cancelBind">解除绑定</div>
+						</div>
+						<div class="" v-if="join_status==3">
+							<p>绑定的企业：<a>{{company_name}}</a></p>
+							<div class="webCreat popup-window-tips mt10 cur-p" id="show1">创建网站</div>
+						</div>
+						<div class="" v-else>
+							<div class="" v-if="join_status==0">
+								<div class="webCreat popup-window-tips mt10 cur-p" id="show2">创建网站</div>
+								<div class="join-company popup-window-tips mt10 cur-p" id="show3">加盟企业</div>
+							</div>
+							<div v-if="join_status==1" class="webCreat popup-window-tips mt10 cur-p" @click="cancelApply">取消申请</div>
+						</div>
+
+						
+						<!--01 start-->
+						<div class="md-modal md-effect-3">
+							<div class="md-content md-content1">
+								<h3>加入公司<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+								<!--nr start-->
+								<div>
+									
+									<!--中间内容   start-->
+									<div class="form-center">
+										<form class="form-horizontal">
+										  <div class="form-group">
+										  	<div class="col-md-12 col-sm-12">
+										  		<div class="col-sm-10 col-xs-10 pd0">
+											      <input type="text" class="form-control joinComI" v-model='ser_company' @keyup='search_company($event)' placeholder="请输入公司名搜索">
+											    </div>
+											    <div class="col-sm-2 col-xs-2 pd0">
+											    	<input class="btn btn-default widl00 joinComS" type="button" value="搜索" id="ser_btn">
+											    </div>
+										  	</div>
+										  </div>
+										  <div class="form-group">
+										  	<div class="col-md-12 col-sm-12">
+										  		<div class="ulBox" style="min-height:100px;">
+											      <ul >
+											      	 <li v-for='item in ser_company_list' :id='item.id' :name='item.name' onclick='choose_company(this)'>{{item.name}}</li>
+											      </ul>
+											  </div>
+										  	</div>
+										  </div>
+										</form>
+									</div>
+									
+									<!--中间内容   end-->
+									<div class="tc btn-box">
+										<input class="btn btn-default md-close" type="button" value="取消申请" @click='apply_out'>
+										<input class="btn md-close" type="button" value="申请加入" @click='apply_in' style="background: #4a96f1;color: #fff;">
+									</div>
+									
+								</div>
+								<!--nr end-->
+							</div>
+						</div>
+						<!--01 end-->
+
+						<!--01 start-->
+						<div class="md-modal md-effect-1 md-effectZ" sign="change">
+							<div class="md-content md-content1">
+								<h3><i class="iconfont pull-right md-close">&#xe619;</i></h3>
+								<!--<h3>创建网站</h3>-->
+								<!--nr start-->
+								<div>
+									<!--中间内容   start-->
+						            <!-- 创建网站弹框 start -->
+								   	<div class="sitewebMask">
+									    <div class="siteweb form-common rel" style="border: none;padding: 0;">
+										    <!--第一步（网站资料）start-->
+										    <div class="sitewebStep siteweb-f form-horizontal>">
+										    	<!--正文-->
+										    	<div class="siteWord" >
+										    		<!--正文进度显示-->
+										    		<div class="siteSpeed clearfix">
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stOn">1</div>
+										    				<span class="fl stWord">资料</span>
+										    				<div class="fl stLine"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl">2</div>
+										    				<span class="fl stWord">选择模板</span>
+										    				<div class="fl stLine"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl">3</div>
+										    				<span class="fl stWord">支付</span>
+										    				<!--<div class="fl stLine"></div>-->
+										    			</div>
+										    		</div>
+										    		<form method="post" class="form-sam" id="webInfoForm">
+										    			<div class="form-content">
+														<!--输入框  start-->
+														<div class="inp inp-1 flex-cont clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">网站名称(<i class="i-important">*</i>)：</span></div>
+															<div class="form-rt flex">
+																<input type="text" id="companyname" placeholder="" name="companyname"  v-model="params['name']" class="fz12 form-control" style="display: inline-block;"/>
+																<!--<span class="form-tip ml5 ft-cl9">
+																	<span class="iconfont ml15 mr5 fz18" style="color: #ffc925;">&#xe642;</span>
+																	填写您的姓名或企业名称，如：百捷云建站
+																</span>-->
+																<div class="form-error col-error err-msg"></div>
+															</div>
+														</div>
+														<!-- 样式1 -->
+														<div class="inp inp-1 flex-cont clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">二级域名(<i class="i-important">*</i>)：</span></div>
+															<div class="form-rt flex">
+																<input type="text" placeholder="" name="sys_domain" v-model="params['sys_domain']"  id="sys_domain" class="fz12 form-control" style="display: inline-block;"/>
+																<span>.baijiekj.com</span>
+																<!--<span class="form-tip ml5 ft-cl9">-->
+																	<!--<span class="iconfont mr5 fz18" style="color: #ffc925;">&#xe642;</span>
+																	网站未备案时访问地址，可以填写您网站首字母，如百捷集团：bjjt</span>-->
+																<div class="form-error col-error err-msg" ></div>
+															</div>
+														</div>
+														<div class="inp inp-1 flex-cont clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3"><!--<span class="form-error col-error">*</span>-->网站域名：</div>
+															<div class="form-rt flex rel">
+																<span class="abs" style="left: 6px;">www.</span>
+																<input type="text" placeholder="" name="self_domain" id="self_domain" v-model="params['self_domain']" class="fz12 form-control" style="display: inline-block;padding-left: 50px;"/>
+																<span>如：baidu.com</span>
+																<!--<span class="form-tip ft-cl9">
+																	<span class="iconfont ml15 mr5 fz18" style="color: #ffc925;">&#xe642;</span>
+																	您网站的正式域名，如百捷集团：baijiegroup.com
+																</span>-->
+																<div class="form-error col-error err-msg"></div>
+															</div>
+														</div>
+														<div class="inp inp-1 flex-cont clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">网站所属：</div>
+															<div class="form-rt flex">
+																<!--<input type="text" name="legal_person" placeholder="互联网" id="legal_person"  v-model="params['legal_person']"  class="fz12 form-control" style="display: inline-block;"/>-->
+																<select class="form-control" id="companyCat">
+																	<option selected="selected" disabled="disabled"  style='display: none' value=''></option> 
+															      	<option :value="item.id" v-for="item in catList">{{item.name}}</option>
+														        </select>
+																<div class="form-error col-error err-msg"></div>
+															</div>
+														</div>
+														
+														<div class="inp inp-1 flex-cont clearfix mb20 keywordBox">
+															<div class="form-lt mr5 fz14 ft-cl3">网站关键词：</div>
+															<div class="form-rt flex row">
+																<!--<div class="col-sm-10 row-item">
+																	<div class="keyword_box">
+																    	<div class="col-md-3 col-sm-3 col-xs-3 ml-15 rel">
+																    		<input type="text" class="form-control keyword" style="width: 100%;" >
+																    	</div>
+															    	</div>
+															    	
+															    	<div class="col-md-1 col-sm-1 col-xs-1 ml-15">
+															    		<span class="iconfont span-add" onclick="addKeyword(this)"></span>
+															    	</div>
+															    </div>-->
+															    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox col-xs-12 mobile_mb15">
+															 		<div class="row row-attr">
+															 			<div class="col-md-9 col-sm-9 col-xs-9">
+															 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important; width:100% !important;"/>
+															 			</div>
+															 			<div class="col-md-3 col-sm-3 ml-15 col-xs-3" style="margin-left: -25px;">
+															 				<div class="btn-attr-box">
+															 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+															 		  		</div>
+															 	  		</div>
+															 		</div>
+														  		</div>
+														  		<!--标签值存放框    start-->
+														  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12"></div>
+													  			<!--标签值存放框    end-->
+																
+																<!--<input type="text" placeholder="建站、空间、域名" v-model="params['site_keywords']"  name="site_keywords" class="fz12 form-control" style="display: inline-block;"/>-->
+																<!--<div class="form-error col-error fz12 err-msg"></div>-->
+															</div>
+															
+															
+															
+															
+															
+															
+														</div>
+														<div class="text-area text-area1 flex-cont clearfix">
+															<div class="form-lt mr5">站点描述：</div>
+															<div class="form-rt flex">
+																<textarea type="text" name="site_description" v-model="params['description']" placeholder="主题的关键词及网站的特色、字数上限76个字" style="min-height: 70px;" class="form-control" maxlength="76"></textarea>
+																<!--<div class="form-tip ft-cl9">
+																	<span class="iconfont mr5 fz18" style="color: #ffc925;">&#xe642;</span>
+																	如：主题的关键词及网站的特色、字数上限76个字
+																</div>-->
+																<div class="form-error col-error err-msg"></div>
+															</div>
+														</div>
+														<div class="inp inp-1 flex-cont clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3" ></div>
+															<div class="form-rt flex">
+								                                
+								                                <div class="setPassword overflow">
+								                                	<div class="rememberPW">
+								                                		<input type="checkbox" name="inlineRadioOptions" id="inlineRadioOptions" value="testdata" checked="checked" class="valid"> 
+							                                			<label for="rememberPW" class="mb0">添加模板样例数据</label>
+								                                	</div> 
+								                                </div>
+								                                
+								                                <!--<label class="mg0">
+								                                    <input type="radio" value="0" name="testdata" class="mr5 form-control">不添加
+								                                </label>-->
+															</div>
+														</div>
+														<!--<div class="form-group">
+														    <label for="inputPassword3" class="col-sm-2 control-label tr">测试数据(<i class="i-important">*</i>)：</label>
+														    <div class="col-sm-10">
+														    	<div class="row">
+														    		<div class="col-md-12">
+														    			<label class="radio-inline">
+																		  <input type="radio" name="inlineRadioOptions" value="testdata"><span>添加</span>
+																		</label>
+														    		</div>
+														    	</div>
+														    </div>
+													  	</div>-->
+														
+														
+														
+														<!--<div class="text-btn text-btn4">
+															<input type="text" value="下一步" @click="firstStep()" readonly="readonly" class="next-f  cur-p  " >
+														</div>-->
+														</div>
+														<!--中间内容   end-->
+														<div class="tr btn-box" style="padding:0 20px;">
+															<!--<input class="btn btn-default md-close" type="submit" value="取消">-->
+															<input class="btn btn-default nextbtn" type="button" value="下一步"   onclick="firstStep()">
+														</div>
+														
+										    		</form>
+										    	</div>
+										    </div>
+										    <!--第一步（网站资料）end-->
+										    <!--第二步（选择模板）start-->
+										    <div class="sitewebStep siteweb-s">
+										    	
+										    	<!--正文-->
+										    	<div class="siteWord">
+										    		<!--正文进度显示-->
+										    		<div class="siteSpeed clearfix">
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stComp">1</div>
+										    				<span class="fl stWord">资料</span>
+										    				<div class="fl stLine stComp"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stOn">2</div>
+										    				<span class="fl stWord">选择模板</span>
+										    				<div class="fl stLine"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl">3</div>
+										    				<span class="fl stWord">支付</span>
+										    			</div>
+										    		</div>
+										    		<!--<p class="tc ft-cl6 pb20">平台已根据您所属行业为您自动筛选以下模板，您可根据喜好自行选择</p>-->
+										    		<div class="">
+														<form class="form-horizontal">	
+													    	<div class="form-group" style="margin-bottom: 10px;">
+															    <!--<label for="inputPassword3" class="col-sm-2 col-xs-2 control-label">临时联系人：</label>-->
+															    <div class="col-sm-12 col-xs-12">
+															        <div class="col-md-2 col-sm-2 col-xs-3" style="margin-left: 22px;">
+																      	<div class="row">
+																      		<!--<input type="text" class="form-control formC" placeholder="类型">-->
+																      			<select name="" class="form-control " onchange="loadModels(1,this)" style="width:100%;">
+																      				<option value="all">所有</option>
+																      				<option :value="[item.cat+','+item.name]"   v-for="item in mdType">{{item.name}}</option>
+																      			</select>
+																      	</div>
+															        </div>
+															        <div class="col-md-2 col-sm-2 col-xs-3 mg0 ">
+															      		<!--<input type="text" class="form-control formC" placeholder="行业">-->
+															      				<select name="" class="form-control" onchange="loadModels(2,this)" style="width:100%;">
+															      					<option value="all">所有</option>
+																      				<option  :value="[item.cat+','+item.name]"   v-for="item in professon">{{item.name}}</option>
+																      			</select>
+															        </div>
+															        <div class="col-md-3 col-sm-3 col-xs-5 mg0 pd0">
+																		<!--<input type="text" class="form-control formC" placeholder="">-->
+																		<div class="input-group date" id="datetimepicker2">
+																			  <input type="text"  class="dis-n">
+														                    <input type="text" class="form-control formC" id="searchItem" style="width: 100%;">
+														                    <span class="input-group-addon" onclick="loadModels(3,this)">
+														                    	<span class="iconfont">&#xe612;</span>
+														                    </span>
+														               	</div>
+															        </div>
+															    </div>
+															</div>
+														</form>
+													</div>
+													
+										    		<div class="modelsArea row">
+										    			<div class="modelsAreaLeft col-md-9 col-sm-9 col-xs-12">
+										    					
+										    					<ul class="clearfix ulZ">
+										    						<div style="position: absolute;top: 0;" class="wid100">
+										    							<p v-if="noData" style="color:#999;text-indent: 20px;">没有符合条件的记录!</p>
+												    					<li class="fl mb10" v-for ="mditem in mdList">
+												    						<div class="rel im-box">
+												    							<div class="">
+												    								
+																					<div class="mList-img clearfix">
+																						<div class="mList-imgPcbg">
+																								<div class="mList-imgPcI"><img :src="mditem.img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+																								<div class="imgWapB-hov"></div>
+																						</div>
+																						<div class="mList-imgMapbg">
+																								<div class="mList-imgMapI"><img :src="mditem.img" class="wid100"  onerror="imgerror(this)" alt=""/></div>
+																								<div class="imgWapB-hov"></div>
+																						</div>
+																						
+																						<div class="modelsAreaHov abs clearfix">
+														    								<div class="fl pointer mr10">
+														    									<a :href="['models/showmodel.html?id='+mditem.id+'&p='+mditem['model_path']+'&cmpid='+mditem.cid]" style="width: 100%;height: 100%;color: #ffffff;display: inline-block;">
+														    										预览
+														    									</a>
+														    								</div>
+														    								<div class="fl pointer" @click="chooseModel($event,mditem.id,mditem.number,mditem.img)">选用</div>
+														    							</div>
+																					</div>
+																					
+																					
+																					
+																					<p class="listName txt-ln1" style="z-index: 999;">
+																						<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0" :title="mditem.number">{{ mditem.number }}</span>
+																						<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0" :title="mditem.cat">{{ mditem.cat }} </span>
+																						<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0" :title="mditem.type">{{mditem.type}}</span>
+																					</p>
+																					
+																				</div>
+												    						</div>
+												    					</li>
+											    					</div>
+											    				</ul>
+										    				
+										    				<div class="PageF" style="margin-bottom: 0;margin-top: 10px;">
+																<!--<div class="paTotle col-md-3 col-sm-3 col-xs-12">本页当前6 条</div>-->
+																<div class="flip">
+																	<div class="page-number fr">
+																		<ul class="Ful">
+																			<li class="Fli"  onclick="personInfo_vm.subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+																			<li class="Fli"  onclick="personInfo_vm.subPage('son')"><i class="iconfont fz18">&#xe758;</i></li> 
+																			<li class="Fli li-3">
+																				<p>{{ currentpage }}/{{ totalPages }}</p> 
+																				<input type="text" class="currentpage" v-model="currentpage"  id="currentPage"> 
+																				<p @click="changeCurrentPage"  :value="currentpage" style="cursor: pointer;">GO</p>
+																			</li> 
+																			<li class="Fli" onclick="personInfo_vm.addPage('son')"><i class="iconfont fz18">&#xe759;</i></li> 
+																			<li class="Fli" onclick="personInfo_vm.addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+																		</ul>
+																	</div>
+																	<!--<div class="filp-x fr">
+															    		每页显示行
+													    		    	<select style="width: initial;">
+													    		    		<option v-for="lines in linesPerPage">
+													    		    			 {{ lines }}
+													    		    		</option>
+													    		    	</select>
+																	</div> -->
+																</div>
+															</div>
+										    				
+										    			</div>
+										    			<div class="modelsAreaRight col-md-3 col-sm-3 col-xs-6" v-if="rid">
+										    				<p class="ft-cl6 mb20">您当前选择的模板为：</p>
+										    				<ul class="clearfix">
+										    					<li class="fl mb10" style="width: 100%;"  >
+										    						<div class="rel im-box">
+										    							<div class="mList-img clearfix">
+																			<div class="mList-imgPcbg">
+																					<div class="mList-imgPcI"><img :src="choose_img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+																			</div>
+																			<div class="mList-imgMapbg">
+																					<div class="mList-imgMapI"><img :src="choose_img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+																			</div>
+																		</div>
+										    						</div>
+										    						<p class="ft-cl6 modeWor txt-ln1">模板编号：{{choose_number}}</p>
+										    					</li>
+										    					
+										    				</ul>
+										    			</div>
+										    			<div class="modelsAreaRight fl" v-else>
+										    				<p class="ft-cl6 mb20">请您选择您的模板！</p>
+										    			</div>
+										    		</div>
+										    		
+										    		<form method="post" class="form-sam">
+														<!--<div class="text-btn text-btn4">
+															<input type="text" value="下一步" @click="secondStep" readonly="readonly" class="next-s cur-p ">
+															<input type="text" value="上一步" readonly="readonly" class="prev-s cur-p ">
+														</div>-->
+														<div class="tr btn-box">
+															<input class="btn btn-default prevbtn" type="button" value="上一步">
+															<input class="btn btn-default nextbtn" type="button" value="下一步"  onclick="secondStep()">
+														</div>
+										    		</form>
+										    	
+										    	</div>
+										    </div>
+										    <!--第二步（选择模板）end-->
+									        <!--第三步（确认）start-->
+										    <div class="sitewebStep siteweb-t">
+										    	<!--正文-->
+										    	<div class="siteWord">
+										    		<!--正文进度显示-->
+										    		<div class="siteSpeed clearfix">
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stComp">1</div>
+										    				<span class="fl stWord">资料</span>
+										    				<div class="fl stLine stComp"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stComp">2</div>
+										    				<span class="fl stWord">选择模板</span>
+										    				<div class="fl stLine stComp"></div>
+										    			</div>
+										    			<div class="siteSpeedli fl clearfix">
+										    				<div class="stStep fz16 fl stOn">3</div>
+										    				<span class="fl stWord">支付</span>
+										    				<!--<div class="fl stLine"></div>-->
+										    			</div>
+										    		</div>
+										    		
+										    		<form method="post" class="form-sam">
+										    			<div class="inp inp-1 flex-cont mt10 clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">当前模板：</div>
+															<div class="form-rt flex">
+																<!--<img :src="choose_img" style="width: 290px;height: 100px;"/>-->
+																<div class="fl" style="width: 250px;">
+										    						<div class="mList-img clearfix">
+																		<div class="mList-imgPcbg">
+																			<div class="mList-imgPcI"><img :src="choose_img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+																			<div class="imgWapB-hov"></div>
+																		</div>
+																		<div class="mList-imgMapbg">
+																			<div class="mList-imgMapI"><img :src="choose_img" class="wid100" onerror="imgerror(this)" alt=""/></div>
+																			<div class="imgWapB-hov"></div>
+																		</div>
+																	</div>
+										    						<!--<p class="ft-cl6 modeWor txt-ln1" style="margin-bottom: 0;line-height: 16px;margin-top:14px;">模板编号：{{choose_number}}</p>-->
+										    					</div>
+															</div>
+														</div>
+														<div class="inp inp-1 flex-cont mt10 clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">模板编号：</div>
+															<div class="form-rt flex fz14">
+																<span style="color: #7d7d7d;">{{choose_number}}</span>
+															</div>
+														</div>
+										    			<div class="inp inp-1 flex-cont mt10 clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">模板属性：</div>
+															<div class="form-rt flex fz14">
+																<span style="color: #ff8808;">{{choose_type}}</span>
+															</div>
+														</div>
+														<div class="text-select text-select1 flex-cont mt10 mb10 clearfix">
+															<div class="form-lt mr5">开通年限：</div>
+															<div class="form-rt flex">
+																<select name="open_time" id="open_time" class="form-control" style="width: initial;" onchange="getPayAmount()">
+																	<option value="1">--1年--</option>
+																	<option value="2">--2年--</option>
+																	<option value="3">--3年--</option>
+																</select>
+															</div>
+														</div>
+														<div class="inp inp-1 flex-cont mt10 clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">订单金额：</div>
+															<div class="form-rt flex">
+																<span class="fz20" style="color: #e53935;">￥{{pay_amount}}</span>
+															</div>
+														</div>
+														<div class="text-radio text-radio1 flex-cont mt10 mb10 clearfix">
+															<div class="form-lt mr5 fz14 ft-cl3">支付方式：</div>
+															<div class="form-rt flex">
+																<div class="">
+																	<label class="mr15" style="margin-top: 7px;"><input class="mr5" type="radio" name="pay_type" value="10" checked="checked"><span><img src="img/user/wei.png"  alt="微信支付" style="width:22px;height:22px;margin-right: 4px;"/></span>微信</label>
+																	<label class="mr15" style="margin-top: 7px;"><input class="mr5" type="radio" name="pay_type" value="20"><span><img src="img/user/zhifu1.png"  alt="支付宝支付" style="width:22px;height:22px;margin-right: 4px;"/></span>支付宝</label>
+																	<!--<label class="radio-inline">
+																	    <input type="radio" name="inlineRadioOptions" value="option1"><span>不显示客服</span>
+																	</label>-->
+																</div>
+																<!--<div class="form-error col-error"><a>*</a>请输入您的反馈</div>-->
+															</div>
+														</div>
+														<div class="tr btn-box clearfix">
+															<input class="btn btn-default prevbtn" type="button" value="上一步">
+															<input class="btn btn-default nextbtn" type="button" value="支付" onclick="payMoney()">
+														</div>
+										    		</form>
+										    	
+										    	</div>
+										    </div>
+										    <!--第三步（确认）end-->
+									    </div>
+								    </div>				
+										<!-- 创建网站弹框 end -->
+								</div>
+								<!--nr end-->
+							</div>
+						</div>
+						<!--01 end-->
+					
+						
+					</div>
+					<div class="perImg useupImg maimglst" title="companyImg"   v-if="join_status == 2 || join_status == 3" >   <!--data-toggle="modal" data-target="#show_cutimg"-->
+						<a class="bor-primary ">
+				      		<img :src="companyImg" alt="" name="companyImg" id="companyImg" class="uploadimg" onerror="imgerror(this)"/>
+				      	</a>
+						<p>修改主体头像</p>
+						<input type="hidden" name="hiddenvalue" />
+						<input type="file" id="uploadLogoImage" onchange="selectImage(this,'companyImg')"  name="logofile" accept="video/*;capture=camcorder"  style="display:none;" />
+					</div>
+				</div>
+			</div>
+			
+			<!--个人信息end-->
+			
+			<!--网站信息 start-->
+			<div class="serWeb bdLine clearfix" v-if="join_status==2">
+				<div class="col-md-2 col-sm-2 col-xs-12 serWleft">
+					<p class="myWeb tc">我的网站</p>
+					<p class="freeW tc">免费商务版</p>
+					<div class="preImg" style=""><img :src="choose_img" onerror="imgerror(this)" alt=""/></div>
+				</div>
+				<div class="col-md-10 col-sm-10 col-xs-12 serWright">
+					<form class="form-horizontal userForm userFormF" action="javascript:void(0);" >
+						
+					    <div class="form-group">
+						    <label for="" class="col-sm-2 col-xs-4 control-label userFormL pr0 pt0">开通时间：</label>
+						    <div class="col-sm-8 col-xs-4">
+						    	<p class="">{{begin_time}}</p>
+						    </div>
+						    <div class="col-sm-2 col-xs-4" style="line-height: 34px;">
+						    	<a href="https://cloud.baidu.com/product/bcd.html?track=cp:aladdin%7Ckw:23398">域名查询</a>
+						    </div>
+					    </div>
+					    <div class="form-group">
+						    <label for="" class="col-sm-2 control-label userFormL pr0 pt0">到期时间：</label>
+						    <div class="col-sm-9">
+						    	<p class="">{{end_time}}</p>
+						    </div>
+					    </div>
+					    <div class="form-group">
+						    <label for="" class="col-sm-2 col-xs-4 control-label userFormL pr0 pt0">空间大小：</label>
+						    <div class="col-sm-9 col-xs-8 flex-l pl0">
+						    	<p class="formNum">{{space}}M</p>
+						    	<div class="progress flex">
+								    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" :style="{width:space_pct}">
+								    	<span class="sr-only" style="color: #fff;">{{space_pct}}</span>
+								    </div>
+								</div>
+						    </div>
+					    </div>
+					    <div class="form-group">
+						    <label for="" class="col-sm-2 col-xs-4 control-label userFormL pr0 pt0">空间流量：</label>
+						    <div class="col-sm-9 col-xs-8 flex-l pl0">
+						    	<p class="formNum">{{space_flow}}G/月</p>
+						    	<div class="progress flex">
+								    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" :style="{width:space_flow_pct}">
+								    	<span class="sr-only" style="color: #fff;">{{space_flow_pct}}</span>
+								    </div>
+								</div>
+						    </div>
+					    </div>
+					   	
+					<!--table start-->
+
+						<!--table start-->
+						<div class="table perInfoT mt20">
+	
+								<!--02 start-->
+								<table class="table table-bordered table-hover table-condensed tab-ts">
+									<thead>
+										<tr>
+											<th class="tc" style="width:80px;">
+											  <label>
+											    <div class="tc">种类</div>
+											  </label>	
+											</th>
+											<th>
+												<div class="tc">域名</div>
+											</th>
+											<th>
+												<div class="l-col one-line tc">解析别名地址</div>
+												<div class="r-col one-line tc">状态</div>
+											</th>
+											
+											<th style="width:60px;">
+												<div class="tc">操作</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<label class="tc">
+											    	<div class="">系统域名</div>
+											  	</label>
+											</td>
+											<td colspan="3">
+												<div class=""><a :href="['http://'+system_src+'.baijiekj.com']">{{system_src}}.baijiekj.com</a></div>
+											</td>
+										</tr>
+										
+										<tr v-for="item in choose_src_arr" >
+											<td>
+												<label class="tc">
+											    	<div class="">绑定域名</div>
+											  	</label>
+											</td>
+											<td class="txt-ln1" >
+												<a v-bind:href="['http://'+item.domain_addr]" >{{item.domain_addr}}</a>
+											</td>
+											<td>
+												<div class="l-col one-line" :title="[system_src+'.baijiekj.com']">{{system_src}}.baijiekj.com</div>
+												<div class="r-col one-line tc">
+													<span v-if="item.status==0">解析错误</span>
+													<span v-if="item.status==1">解析成功</span>
+												</div>
+											</td>
+											
+											<td class="opr">
+												<div class="one-line tc">
+													<a class="a-del" @click="delUrl(item.id)">删除</a>
+												</div>
+											</td>
+										</tr>
+										<tr class="aDomain tc">
+											<td colspan="4" class="tc">
+												<div class="clearfix">
+													<span class="">绑定新域名：</span>
+													<input type="text"  class="" style="display: none;"/>
+													<input type="text" name="" v-model="new_domain_addr" />
+												    <span class="aDomainadd ml5 mr5" @click="newUrlSet">添加</span>
+												    <span class="" style="color: #ccc;">(比如：www.baijie.com)</span>
+												</div>
+											    	
+											</td>
+										</tr>
+										<tr>	
+										<!--<input type="text" name="" id="" value="" />-->
+										</tr>
+									</tbody>
+								</table>
+						
+								<!--02 end-->
+							</div>
+						<!--table end-->
+					</form>
+				</div>
+				
+			</div>
+			<!--网站信息 end-->
+		
+		
+			<!--服务市场-->
+			<div class="servMarket flex-l mb30 mt20" v-else>
+				  <!--v-else-->
+				<div class="servMarket_left">
+					<img src="img/user/ser_mark.png" class="wid100" onerror="imgerror(this)" alt="服务市场"/>
+				</div>
+				<div class="sesrvMaright flex">
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<div class="seBox">
+							<div class="seBoxI"><a href="goods/list.html?id=36449d9f2d254430b54a7ae6ec827bab"><img src="img/user/web_model.png" onerror="imgerror(this)" alt="网站模板"/></a></div>
+							<p class="txt-ln1"><a href="goods/list.html?id=36449d9f2d254430b54a7ae6ec827bab">网站模板</a></p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<div class="seBox">
+							<div class="seBoxI"><a href="prod/list.html?id=c8064adf8b824305b2d7fb8635dd344e"><img src="img/user/web_space.png" onerror="imgerror(this)" alt="网站空间" /></a></div>
+							<p class="txt-ln1"><a href="prod/list.html?id=c8064adf8b824305b2d7fb8635dd344e">网站空间</a></p>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-4">
+						<div class="seBox bor-rn">
+							<div class="seBoxI"><a href="https://cloud.baidu.com/product/bcd.html?track=cp:aladdin%7Ckw:23398"><img src="img/user/web_src.png" onerror="imgerror(this)" alt="网站域名" /></a></div>
+							<p class="txt-ln1"><a href="https://cloud.baidu.com/product/bcd.html?track=cp:aladdin%7Ckw:23398">网站域名</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--服务市场-->
+			
+			
+			<!--浏览记录 start-->
+			<div class="Browse mb30">
+				<div class="BrowseT">
+					<ul class="leftTitle">
+						<li>浏览记录</li>
+					</ul>
+					<div class="rightBtn">
+						<span class="next_btn iconfont" onclick="nextHistory()">&#xe67c;</span>
+						<span class="prev_btn iconfont" onclick="prevHistory()">&#xe67f;</span>
+					</div>
+				</div>
+				<div class="browseBox">
+					<p v-if="historyList.length==0" class="tc" style="font-size:1.5rem;margin-top:30px;"><span class="iconfont mr5" style="color:rgb(254, 187, 34);">&#xe68f;</span>暂无浏览记录   ！</p>
+					<ul class="mt15 BrowseList">
+						<li class="col-md-4 col-sm-4 col-xs-6"  v-for='mditem in historyList'>
+							<div class="BrowseImg"  @click="jumpModel(mditem.id, mditem['model_path'], mditem.cid)" style="cursor: pointer;">
+								<img :src="mditem.img" onerror="imgerror(this)" alt="模板图片"/>
+							</div>
+							<p class="txt-ln1">模板编号：{{mditem.number}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--浏览记录 end-->
+			
+		</div>
+	</div>
+	<!--right end-->
+	<!--页面加载提示-->
+	<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+	<!--footer start-->
+	<!--<footer id="footer"></footer>-->
+	<!--footer end-->
+</body>
+	
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+
+	<!-- build:js js/cutimg.libs.js -->
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+	
+	<!--页面独有-->
+	<script type="text/javascript" src="js/form.js"></script><!--本页面效果-->
+	<script type="text/javascript" src="js/user/myServ/servPersinfo.js"></script>
+	
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+	<script>
+		$(function() {
+			$(document).on('click','.md-close', function() {
+				$(this).closest('.md-modal').toggleCommModal('close');
+			});
+			
+			// 自定义弹窗
+			$(document).on('click','#show1,#show2', function() {
+				$('.md-effect-1').toggleCommModal('show');
+			});
+			// 提示弹窗
+			$(document).on('click','#show3', function() {
+				$('.md-effect-3').toggleCommModal('show');
+			});
+		});
+			
+		
+	</script>
+	<script>
+//	  var UA = navigator.userAgent;
+//	  var forIOS = function(){
+//	    if(!UA.match(/iPad/) && !UA.match(/iPhone/) && !UA.match(/iPod/)){return;}
+//	    if($('#wrapper').length){return;}
+//	    $('body').children().not('script').wrapAll('<div id="wrapper"></div>');
+//	  }();
+</script>
+</html>

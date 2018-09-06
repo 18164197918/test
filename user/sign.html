@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+ 	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>登录/注册页</title>
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/ckeditor/plugins/copyformatting/styles/copyformatting.css" />
+	
+	<!-- build:css css/other.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<!-- endbuild -->
+	
+	<link rel="stylesheet" href="css/user/sign.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/index-news.css" /> <!--公用样式-->
+</head>
+<body class="signHtml">
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+	<!--banner部分 start-->
+	<div class="bjBanner" id="sign_banner">
+		<div class="container">
+				<div id="signbox" class="col-md-4 col-sm-6 col-xs-12 "></div>
+		</div>
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer id="footer"></footer>
+
+	<!--footer end-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"charset="utf-8"></script>
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js" ></script><!--公共处理函数-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+  <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+
+	<!--页面独有-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/tpl/sign.js"></script><!--首页数据加载 js-->
+</body>
+</html>

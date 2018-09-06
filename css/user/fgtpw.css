@@ -1,0 +1,133 @@
+/*忘记密码页*/
+.fgtpwBox {
+  background: #f2f2f2;
+  padding: 20px 0;
+}
+.fgtpwBox .container-forget {
+  min-height: 560px;
+}
+.fgtpwBox .forgetPWBox {
+  height: 500px;
+  background: #fff;
+}
+.fgtpwBox .forgetPWBox .title {
+  font-size: 20px;
+  margin-top: 14px;
+  line-height: 92px;
+  text-align: center;
+  font-weight: 500;
+}
+.fgtpwBox .forgetPWBox .step1 {
+  width: 60%;
+  height: 8px;
+  background: #cbcbcb;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+.fgtpwBox .forgetPWBox .step1 li {
+  width: 33.33%;
+  height: 8px;
+  background: #cbcbcb;
+  float: left;
+  border-radius: 4px;
+}
+.fgtpwBox .forgetPWBox .step1 li span {
+  width: 23px;
+  height: 23px;
+  line-height: 23px;
+  text-align: center;
+  border-radius: 50%;
+  background: #cbcbcb;
+  margin: 0 auto;
+  display: block;
+  margin-top: -6px;
+  color: #fff;
+}
+.fgtpwBox .forgetPWBox .step1 .active {
+  background: #2f82ff;
+}
+.fgtpwBox .forgetPWBox .step2 {
+  width: 60%;
+  height: 24px;
+  line-height: 24px;
+  margin: 12px auto 0px;
+}
+.fgtpwBox .forgetPWBox .step2 li {
+  width: 33%;
+  float: left;
+  font-size: 13px;
+  text-align: center;
+}
+.fgtpwBox .forgetPWBox .step2 .active {
+  color: #2f82ff;
+}
+.fgtpwBox .forgetPWBox .formBox {
+  float: none !important;
+  margin: 40px auto;
+}
+.fgtpwBox .forgetPWBox .formBox .item2 label {
+  margin-top: 10px;
+  text-align: right;
+  padding-right: 4px;
+}
+.fgtpwBox .forgetPWBox .formBox .item2 #codeImg {
+  height: 34px;
+}
+.fgtpwBox .forgetPWBox .formBox .err-msg {
+  margin-left: 25%;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .find_name {
+  margin-bottom: 28px;
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .regLine .passwordLevel {
+  padding: 0 7px;
+  left: 100%;
+  top: 0px;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .regLine .passwordLevel .leavePiece {
+  margin-top: 9px;
+  margin-bottom: 0;
+  width: 100%;
+  height: 8px;
+  border: 1px solid #dddddd;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .regLine .passwordLevel .leavePiece li {
+  float: left;
+  margin: 1%;
+  width: 31%;
+  height: 4px;
+  background: #dddddd;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .regLine .passwordLevel .levelCode {
+  width: 100%;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm2 .regLine .passwordLevel .levelCode li {
+  width: 33%;
+  text-align: center;
+  float: left;
+  font-size: 14px;
+  color: #7d7d7d;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm3 .successPw {
+  margin: 0 auto;
+  width: 195px;
+  height: 45px;
+  line-height: 45px;
+  color: #3fb836;
+  margin-top: 45px;
+  margin-bottom: 78px;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm3 .successPw span {
+  float: left;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 20px;
+}
+.fgtpwBox .forgetPWBox .formBox #forgetPWForm3 #entry_btn {
+  margin-left: 12.5%;
+}

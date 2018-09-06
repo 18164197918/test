@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<!--basepath start-->
+		<base id="bpid" href="/" target="_blank" />
+		<script type="text/javascript">
+			window['fontBaseUrl'] = '/'
+		</script>
+		<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		<!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>订单管理-批量发货</title>
+
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" />
+		<!-- endbuild -->
+
+		<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+		
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/table.css" />
+		<link rel="stylesheet" href="css/form-common.css">
+		<style>
+			.wid-zj{width:30%!important;}
+			.wid-time{width:70%!important;}
+			.wid-xq{width:50%!important;}
+		</style>
+		<!--用户中心-->
+
+		<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+	</head>
+
+	<body class="userNav">
+		<input type="hidden" id="leftstatu" value="业务管理" />
+		<input type="hidden" id="leftstatus" value="订单管理" />
+         <!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">订单管理</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+		<!--banner部分 start-->
+		<!--banner部分 end-->
+
+		<!--内容部分 start-->
+			<!--right start-->
+			<div class="col-md-9 col-sm-9 wordRight" id="webPend" v-cloak>
+				
+				<!--table start-->
+				<div class="table form-common" id="shipOrder">
+					<div class="oliOrderTitle clearfix">
+							<div class="fz14 or-tip">
+								<li class="fl ml10">发货列表</li>
+							</div> 
+					</div>
+					<table class="table table-bordered table-hover table-condensed tab-ts">
+						<thead>
+							<tr>
+								<th class="tc" style="width:30px;">
+									<label>
+									    <input type="checkbox" class="ck_all"   id="blankCheckbox" value="option1" aria-label="...">
+									  </label>
+								</th>
+								<th class="wid10">
+									<div class="">订单编号</div>
+								</th>
+								<th class="wid10">
+									<div class="l-col">发货人</div>
+									<div class="r-col">手机号码</div>
+								</th>
+								<th class="wid30">
+									<div class="l-col">邮政编号</div>
+									<div class="r-col">发货地址</div>
+								</th>
+								<th class="wid16">
+									<div class="l-col">配送方式</div>
+									<div class="r-col">物流单号</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="item in tableList">
+								<td>
+									<label>
+								    	<input type="checkbox" class="ck_one"  id="" :value="item.od.odId" aria-label="...">
+								  	</label>
+								</td>
+								<td>
+									<div class="">{{item.od.odId|| item.od.id }}</div><!--订单编号-->
+								</td>
+								<td>
+									<div class="l-col one-line" v-for="resInfo in item.resList">{{resInfo.resName}}</div><!--发货人-->
+									<div class="r-col one-line">{{item.username}}</div><!--手机号码-->
+								</td>
+								<td>
+									<div class="l-col one-line">{{item.od.amount}}</div><!--邮政编号-->
+									<div class="r-col one-line">{{item.od.addr}}</div><!--发货地址-->
+								</td>
+								<td class="ver-cz">
+									<div class="l-col one-line">
+										<!--<label class="col-md-3 control-label" for="">订单状态</label>-->
+										<div class="column">
+											<select class="clm-txt form-control">
+												<option catid="1" selected="selected">中通快递</option>
+												<option catid="2">申通快递</option>
+												<option catid="3">圆通快递</option>
+												<option catid="4">顺丰快递</option>
+											</select>
+										</div>
+									</div><!--配送方式-->
+									<div class="r-col one-line">
+										<!--{{item.od.amount}}-->
+										<input type="text" value=""  class="logisticsNum" />
+									</div><!--物流单号-->
+								</td>
+							</tr>
+						
+						</tbody>
+					</table>
+					<!--暂无数据   start-->
+					<div class="no-data" v-if="noData">
+						结果数据0条
+					</div>
+					<!--暂无数据   end-->
+					<div class="btn-box btn-box-two text-center">
+				      	<button type="submit" class="btn btn-default" onclick="window.open('user/servMge/mgrOrder.html','_self')">取消</button>
+				      	<button type="submit" class="btn btn-primary" onClick="pileDispatch()">确认</button>
+				    </div>
+				</div>
+				<!--table end-->
+			
+			</div>
+		<!--right end-->
+		<!--内容部分 end-->
+
+		<!--important start-->
+		
+
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+		<!--个人公共-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		
+		<!--页面独有-->
+		
+		<script type="text/javascript" src="js/user/servMge/mgeShipping.js"></script>	<!--本页面加载数据部分-->
+		
+		<script type="text/javascript">
+			var a=isSignIn();
+        if(a==null){
+        	 window.top.location.href = fontBaseUrl+'user/sign.html';
+        }
+    </script>
+		
+	</body>
+</html>

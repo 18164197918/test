@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>内容管理-内容回收站</title>
+	
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="/ctrl/font-awesome-4.7.0/css/font-awesome.min.css"><!--字体图标-->
+	 <!-- build:css ../../css/combined.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<!-- endbuild -->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<link rel="stylesheet" href="css/table.css" />
+	 <link rel="stylesheet" href="css/form-common.css" />
+    <link href="css/zTreeStyle.css"  rel="stylesheet">
+	<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+	<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+	<link rel="stylesheet" href="ctrl/editormd/css/editormd.min.css">
+	<style type="text/css">
+			  #commentForm .goods-close{
+			  	    right: 8px;
+				    top: -8px;
+				    color: #000000;
+				    line-height: 16px;
+				    cursor: pointer;
+			  }
+			  .x-tips{
+			  	width: 100%;
+			  	height: 100%;
+			  	position: fixed;
+			  	top:0;
+			  	left: 0;
+			  	background: #fff;
+			  	z-index:1000 ;
+			  }
+			  .x-tips .x-tips-box{
+				  	max-width: 200px;
+				    border-radius: 3px;
+				    padding: 10px;
+				    position: fixed;
+				    left: 50%;
+				    margin: -20px 0 0 -100px;
+				    top: 20%;
+				    background: rgba(0, 0, 0, 0.5);
+				    z-index:1001 ;
+			  }
+			  .x-tips-box p{
+			  	color: #ffffff;
+			    margin: 0;
+			  }
+		</style>
+</head>
+<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="源码编辑"/>
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">源码编辑</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+	<div id="htmlContent"class="form-common" v-cloak> 
+		<form  class="form-horizontal" action="">
+			<div id="my-editormd" >
+			<textarea id="my-editormd-markdown-doc" name="my-editormd-markdown-doc" style="display:none;"></textarea>
+			<!-- 注意：name属性的值-->
+			<textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
+			</div>
+		</form>
+      	<div class="btn-box btn-box-two text-center">
+      		<button type="button" class="btn btn-default" v-on:click="setHtml()">确认</button>
+      	</div>
+  	</div>
+	<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+	<!--内容部分 end-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="ctrl/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="ctrl/ckeditor/config.js" ></script>
+	<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"  charset="utf-8"></script>  <!--z-Tree-->
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script><!--占位-->
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/user/colums.js" charset="utf-8"></script><!--自定义封装zTree方法-->
+	<!--页面独有-->
+
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="js/user/editorCode.js"></script>
+
+	<script type="text/javascript" src='ctrl/editormd/editormd.min.js'></script>
+	<script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+</body>
+</html>

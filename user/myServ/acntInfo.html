@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+       <!--basepath start-->
+        <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+		<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+        <meta name="toTop" content="true"><!--返回顶部-->
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>	
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <title>账户详情</title>
+        
+        
+        <!-- ==========插件link开始========== -->	
+        	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css">
+        	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+        	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css"><!--字体图标-->
+        <!-- ==========全局link开始========== -->	
+        	<link rel="stylesheet" type="text/css" href="css/comm/topbar.css"><!--头部样式-->
+			<link rel="stylesheet" type="text/css" href="css/comm/crumbs.css"><!--面包屑导航样式-->
+    		<link rel="stylesheet" type="text/css" href="css/comm/leftnav.css"><!--左部菜单样式-->
+        	<link rel="stylesheet" type="text/css" href="css/base.css"><!--全局base样式-->
+			<link rel="stylesheet" type="text/css" href="css/personinfo.css"><!--左部菜单样式-->
+    		<link rel="stylesheet" type="text/css" href="css/user.css"><!--全局base样式-->
+    		<!--原项目样式加入-->
+			<link rel="stylesheet" href="css/orign.css">
+        	<style type="text/css">
+        		.putImg{ background: url("img/details.png");}
+        	</style>	
+    </head>
+	
+    <body class="userNav">
+    <input type="hidden"  id="leftstatu" value="我的服务"/>
+    <input type="hidden"  id="leftstatus" value="个人信息"/>
+    <!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">账户详情</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	
+    <div class="box-content">
+	    <!--sites_details-->
+	    <div class="acontDetail" id="acntInfo" style="border: 0;" >
+    		<div class="infotop">
+    			<p class="topbanner" style="margin-bottom: 20px; border-left: 4px solid #008bfb; padding-left: 6px;margin-bottom:12px;color: #666666;">
+    				账户信息
+    			</p>
+    			
+    			<div class="topContent">
+    				<div class="lftInfo">
+    					<div class="lftTit">
+	    					<span class="accotTip">现金账户余额</span>
+    					</div>
+    					<div class="lftPrice">
+	    					<span class="accotCash"><i style="color: #ff6405; font-size: 28px;">0.</i>00元</span>
+	    				</div>
+	    				<div class="lftBtn">
+							<button class="accotBtn" onclick="window.location.href='user/myServ/servRecharge.html'">立即充值</button>
+						</div>
+	    			</div>
+    			
+	    			<div class="rightInfo">
+    					<div class="rightTit">
+	    					<span  class="accotTip">积分</span>
+    					</div>
+	    				
+	    				<div class="rightPrice">
+	    					<span class="accotCash"><i style="color: #333333; font-size: 28px;">0</i></span>
+	    				</div>
+	    				
+	    				<div class="rightBtn">
+	    					<button class="accotBtn" type="button" style="background-color: #5360c8;">积分兑换</button>
+	    				</div>
+	    			</div>
+    			</div>
+    			
+    		</div>
+    		
+    		<div class="infoinner">
+    			<p class="topbanner" style="border-left: 4px solid #008bfb; padding-left: 6px;color: #666666;">
+    				消费信息
+    			</p>
+    			
+    			<div class="innerContainer">
+	    			<div class="innerContent col-md-1-5">
+	    				<div class="putImg lftInfo todayCus">
+	    					<!--<img src="img/details.png" class="todayCus"/>-->
+	    				</div>
+	    				
+	    				<div class="rightInfo">
+	    					<span style="color: #666666;" class="txt-ln1">&yen;0.00元</span>
+							<span style="color: #666666;" class="txt-ln1">今日消费金额</span>
+						</div>
+	    			</div>
+	    			
+	    			<div class="innerContent col-md-1-5">
+	    				<div class="putImg lftInfo monthCus">
+	    					<!--<img src="img/details.png" class="monthCus"/>-->
+	    				</div>
+	    				
+	    				<div class="rightInfo">
+	    					<span style="color: #108cee;" class="txt-ln1">&yen;439.00元</span>
+							<span style="color: #666666;" class="txt-ln1">本月消费金额</span>
+						</div>
+	    			</div>
+				</div>
+    		</div>
+    		
+    		<div class="infobotm">
+				<p class="topbanner" style="border-left: 4px solid #008bfb; padding-left: 6px;color: #666666;">
+    				待办事项
+    			</p>
+    			
+    			<div class="btmContainer wid100">
+	    			<div class="btmContent col-md-2 col-xs-12">
+	    				<div class="putImg lftInfo getWait">
+	    					<!--<img src="img/details.png" class="getWait"/>-->
+	    				</div>
+	    				
+	    				<div class="rightInfo">
+	    					<span style="color: #108cee;">0</span>
+							<span style="color: #666666;">待支付订单</span>
+						</div>
+	    			</div>
+	    			
+	    			<div class="btmContent col-md-2 col-xs-12">
+	    				<div class="putImg lftInfo getMoney">
+	    					<!--<img src="img/details.png" class="getMoney"/>-->
+	    				</div>
+	    				
+	    				<div class="rightInfo">
+	    					<span style="color: #108cee;">0</span>
+							<span style="color: #666666;">待续费订单</span>
+						</div>
+	    			</div>
+	    			
+	    			<div class="btmContent col-md-2 col-xs-12">
+	    				<div class="putImg lftInfo putCash" >
+	    					<!--<img src="img/details.png" class="getMoney"/>-->
+	    				</div>
+	    				
+	    				<div class="rightInfo">
+	    					<span style="color: #108cee;">0</span>
+							<span style="color: #666666;">待开票金额</span>
+						</div>
+	    			</div>
+    			</div>
+    		</div>
+		</div>
+    </div>
+	
+    </body>
+    <div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+      <!-- ==========script开始========== -->
+    <!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script><!--占位-->
+	<script type="text/javascript"  src="js/comm/comm.js" type="text/javascript"></script>
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+
+  <script type="text/javascript">
+      var a=isSignIn();
+      if(a==null){
+        	 window.top.location.href = fontBaseUrl+'user/sign.html';
+  }
+        </script>
+
+	<!--页面独有-->
+	<!--<script type="text/javascript"  src="js/user/addadv.js"></script>-->
+</html>
+

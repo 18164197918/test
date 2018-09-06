@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+		<base id="bpid" href="/" target="_blank" />
+		<script type="text/javascript">
+			window['fontBaseUrl'] = '/'
+		</script>
+		<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		<!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>订单管理</title>
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css" />
+		<link rel="stylesheet" href="ctrl/animate.min.css" />
+		<!-- endbuild-->
+		
+		<!--前台页面样式-->
+		<link rel="stylesheet" href="/ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+		<!--字体图标-->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		
+		
+		
+		<link rel="stylesheet" href="css/table.css" />
+		<!--用户中心-->
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+		<!--bootstrap 兼容ie8-->
+	</head>
+
+	<body class="userNav">
+		<input type="hidden" id="leftstatu" value="业务管理" />
+		<input type="hidden" id="leftstatus" value="订单管理" />
+		<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">订单管理</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+		<!--内容部分 start-->
+		<!--right start-->
+		<div class="" id="order"  v-cloak>
+
+			<div class="order">
+				<!--订单状态显示    start-->
+				<div class="state">
+					<ul class="column-status nav nav-tabs" role="tablist">
+						<li role="presentation" class="active" data-status="" onclick="toggleOrder('', this)">
+							<a href="#home" aria-controls="home" role="tab" data-toggle="tab">全部({{ orderListCount.all || 0 }})</a>
+						</li>
+						<li role="presentation" data-status="100" onclick="toggleOrder(100, this)">
+							<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">待付款({{ orderListCount.dfk || 0 }})</a>
+						</li>
+						<li role="presentation" data-status="200" onclick="toggleOrder(200, this)">
+							<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">待发货({{ orderListCount.dfh || 0}})</a>
+						</li>
+						<li role="presentation" data-status="500" onclick="toggleOrder(500, this)">
+							<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">已发货({{ orderListCount.yfh || 0}})</a>
+						</li>
+						<li role="presentation" data-status="300" onclick="toggleOrder(300, this)">
+							<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">已完成({{ orderListCount.ywc || 0}})</a>
+						</li>
+						<li role="presentation" data-status="-900" onclick="toggleOrder(-900, this)">
+							<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">已删除({{ orderListCount.ysc || 0}})</a>
+						</li>
+						<li role="presentation" data-status="-100" onclick="toggleOrder(-100, this)">
+							<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">已关闭({{ orderListCount.ygb || 0}})</a>
+						</li>
+					</ul>
+				</div>
+				<!--订单状态显示    end-->
+				<!--筛选查询   start-->
+				<div class="screening">
+					<div class="row">
+						<!--筛选查询    strat-->
+						<div class="srn-box">
+							<div class="srn-top clearfix mr15 ml15">
+								<div class="col-md-3 col-sm-3 col-xs-3">
+									<span class="srn-tit"><i class="iconfont">&#xe747;</i>筛选查询</span>
+								</div>
+								<div class="col-md-9 col-sm-9 col-xs-9 col-md-offset-3 text-right ">
+									<div class="btn-group mr-15" role="group" aria-label="...">
+										<button id="close-srn" type="button" class="btn btn-default">
+								  	<i class="iconfont">&#xe615;</i>
+								  	关闭筛选
+								  </button>
+										<button type="button" class="btn btn-default">
+								  	<i class="iconfont">&#xe747;</i>
+								  	查询结果
+								  </button>
+										<button id="high-search" type="button" class="btn btn-default">
+								  	<i class="iconfont">&#xe612;</i>
+								  	高级搜索
+								  </button>
+									</div>
+								</div>
+							</div>
+							<!--nr start-->
+							<div class="srn-bottom mr15 ml15 clearfix">
+								<div class="col-md-4 col-sm-4 form-inline">
+									<div class="form-group ml-15">
+										<label class="col-md-3 control-labeltc" for="exampleInputName2">订单号</label>
+										<input type="text" class="form-control" id="exampleInputName2" v-model="orderExport.searchItems">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 form-inline">
+									<div class="form-group ml-15 mr-15">
+										<label class="col-md-3 col-sm-3 control-label" for="exampleInputName2">收货人</label>
+										<input type="text" class="form-control" id="exampleInputName2" v-model="orderExport.searchItems1">
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-4 form-inline">
+									<div class="form-group mr-15">
+										<label class="col-md-3 col-sm-3 control-label order-state" for="exampleInputName2">订单状态</label>
+										<div class="col-md-3 col-sm-3 mr-15">
+											<select id="clm-nr" class="form-control" onchange=''>
+												<option catid="100">待付款</option>
+												<option catid="200">待发货</option>
+												<option catid="500">已发货</option>
+												<option catid="300">已完成</option>
+												<option catid="-900">已删除</option>
+												<option catid="-100">已关闭</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div id="hideBox" class="none">
+									<div class="col-md-4 col-sm-4 form-inline">
+										<div class="form-group ml-15">
+											<label class="col-md-3 col-sm-3 control-label" for="exampleInputName2">开始时间</label>
+											<div class='input-group date col-sm-8' id='datetimepicker2'>
+												<input type='text' class="form-control"  id="d4311"/>
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 form-inline">
+										<div class="form-group ml-15">
+											<label class="col-md-3 col-sm-3 control-label" for="exampleInputName2">开始时间</label>
+											<div class='input-group date col-sm-8' id='datetimepicker3'>
+												<input type='text' class="form-control" id="d4312" />
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 col-sm-12 btn-box btn-order text-center">
+										<input class="btn btn-default" type="button" value="重置" onclick="resetSearch()">
+										<input class="btn btn-default" type="button" value="检索" onclick="satrtSearch()">
+									</div>
+								</div>
+							</div>
+							<!--nr end-->
+						</div>
+						<!--筛选查询    end-->
+
+					</div>
+
+				</div>
+				<!--筛选查询   end-->
+				<!--table-->
+				<div class="table">
+					<!--操作按钮   start-->
+					<div class="btn-group mb10" role="group">
+					  <button type="button" class="btn btn-default" onClick="pileDispatch()">批量发货</button>
+					  <button type="button" class="btn btn-default" onClick="exportOrderFun()">导出订单</button>
+					  <button type="button" class="btn btn-default" onclick="deleteOrderFun()">删除订单</button>
+					</div>
+					<!--操作按钮   end-->
+					<!--表   start-->
+						<table class="table table-bordered table-hover table-condensed tab-ts">
+							<thead>
+								<tr>
+									<th class="tc th30">
+										<label>
+										    <input type="checkbox" id="blankCheckbox" class="ck_all" value="" aria-label="...">
+										  </label>
+									</th>
+									<th>
+										<div class="tc">订单号</div>
+									</th>
+									<th class="wid25">
+										<div class="l-col tc">商品信息</div>
+										<div class="r-col tc">提交时间</div>
+									</th>
+									<th>
+										<div class="l-col tc">账号</div>
+										<div class="r-col tc">金额</div>
+									</th>
+									<th class="wid15">
+										<div class="l-col tc">地址</div>
+										<div class="r-col tc">状态</div>
+									</th>
+									<th class="wid10 tc">
+										<div class="">操作</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr v-for="item in tableList">
+									<td>
+										<label>
+									    	<input type="checkbox" class="ck_one" :value="item.od.odId" aria-label="...">
+									  	</label>
+									</td>
+									<td>
+										<div class="one-line">{{item.od.odId}}</div><!--订单号-->
+									</td>
+									<td>
+										<div class="l-col one-line" v-for="resInfo in item.resList">{{resInfo.resName}}</div><!--商品信息-->
+										<div class="r-col txt-ln1">{{getTime(new Date(item.od.insert_time))}}</div><!--提交时间-->
+									</td>
+									<td>
+										<div class="l-col one-line">{{item.username}}</div><!--用户账号-->
+										<div class="r-col">{{item.od.amount}}</div><!--金额-->
+									</td>
+									<td>
+										<div class="l-col one-line">{{item.od.addr}}</div><!--收货地址-->
+										<div class="r-col tc">
+											<span class="label label-blue label-phone" v-if="item.od.status === -100">主动取消</span>
+											<span class="label label-blue" v-if="item.od.status === -200">超时取消</span>
+											<span class="label label-blue" v-if="item.od.status ===  100">待付款</span>
+											<span class="label label-blue" v-if="item.od.status === 200">待收货</span>
+											<span class="label label-blue" v-if="item.od.status === 300">已完成</span>
+											<span class="label label-blue" v-if="item.od.status === 400">待评价</span>
+											<span class="label label-blue" v-if="item.od.status === 500">已发货</span>
+										</div><!--状态-->
+									</td>
+									<td class="opr"><!--操作-->
+										<div>
+											<a class="a-default" :ordId="item.od.odId" onclick="jumpDetail(this)">详情</a>
+											<a v-if="item.od.status ===  100" class="a-default">关闭</a>
+											<a v-if="item.od.status === 200" class="a-default" :ordId="item.od.odId" onclick="jumpDispatch(this)">发货</a>
+											<a v-if="item.od.status === 500 || item.od.status === 300" class="a-default" :ordId="item.od.odId"  onclick="trackFunOrder(this)">跟踪</a>
+											<a v-if="item.od.status === -100" class="a-default" :ordId="item.od.odId" onclick="deleteOrderFun(this)">删除</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<!--暂无数据   start-->
+						<div class="no-data" v-if="noData">
+							结果数据0条
+						</div>
+						<!--暂无数据   end-->
+				</div>	<!--表   end-->
+			</div>
+		</div>
+		<!--right end-->
+		<!--公共类库-->
+		
+		<!-- build:js js/user.plugin-libs.js -->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="ctrl/bootstrap/js/moment-with-locales.js"></script>
+		<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+		<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<!-- endbuild-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/mgrOrder.js"></script>
+		<script type="text/javascript">
+			var a = isSignIn();
+			if(a == null) {
+				window.top.location.href = fontBaseUrl + 'user/sign.html';
+			}
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				$('#datetimepicker2').datetimepicker({
+					minView: "month",
+					format: 'yyyy-mm-dd',
+					language: 'zh-CN'
+				});
+				$('#datetimepicker3').datetimepicker({
+					minView: "month",
+					format: 'yyyy-mm-dd',
+					language: 'zh-CN'
+				});
+				// 高级搜索
+				$('#high-search').on('click', function() {
+					$('#hideBox').removeClass('none');
+					callBackLoadIframe();
+				});
+				// 关闭晒选
+				$('#close-srn').on('click', function() {
+					$('#hideBox').addClass('none');
+					callBackLoadIframe();
+				});
+			});
+		</script>
+	</body>
+
+</html>

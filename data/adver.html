@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>广告位</title>
+		<style type="text/css">
+			.bd-hl-content {
+				width: 100%;
+			}
+			/*.s-hl-content{
+				position: relative;
+			}
+			.s-hl-content .bd-hl-content{
+				position: relative;
+				margin: 0;
+				font-size: 14px;
+				font-weight: normal;
+				overflow: hidden;
+				border: 0px solid #CCCCCC;
+				background-color: #FFFFFF;
+				width: 1000px;
+				height: 90px;
+				padding: 0px;
+			}
+			.s-hl-content .bd-hl-content .title_style_0{
+				display: none;
+			}
+			.s-hl-content .bd-hl-content .title_style{
+				    width: 995px;
+				    height: 25px;
+				    line-height: 25px;
+				    padding-left: 5px;
+				    font-size: 14px;
+				    margin-bottom: 3px;
+				    font-weight: 900;
+			}
+			.s-hl-content .bd-hl-content .pic_container{
+				padding: 0px;
+				border: 0;
+				position: relative;
+				overflow: hidden;
+				float: left;
+			}
+			.bd-logo2{
+				background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/4.0.0/pc_ads_bear.1x.png) no-repeat left top;
+				overflow: hidden;
+				position: absolute;
+			}
+			#tipWrapper{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				overflow: hidden;
+				z-index: 21474483648;
+				text-align: left;
+				background: url('//cpro.baidustatic.com/cpro/exp/closead/img/bg_rb.png') no-repeat right bottom;
+				background-color: #fafafa;
+			}
+		    #closeBtn {
+		    background-size: 100% 100%;
+		    margin: 0 2px 2px 0;
+		    }
+		    #closeBtn:hover {
+		    background-size: 100% 100%;
+		    }*/
+			
+			.adv-wrap {
+				width: 145px;
+				position: relative;
+			}
+			
+			.bd-hl-content {
+				position: relative;
+			}
+			
+			.adv-tip {
+				position: absolute;
+				bottom: 15px!important;
+				right: 6px!important;
+				background-color: #101010!important;
+				opacity: .4;
+				color: #fff;
+				font-size: 12px;
+				padding: 2px;
+			}
+			
+			.adv-close {
+				width: 60px;
+				height: 22px;
+				position: absolute;
+				right: 0px;
+				top: 0px;
+				z-index: 11010;
+				background: url('img/adv-close.gif') no-repeat;
+				margin: 0px;
+				padding: 0px;
+				cursor: pointer
+			}
+			
+			.bd-hl-content .adv-tip-top {
+				top: 0!important;
+				bottom: 0;
+			}
+		</style>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<script type="text/javascript">
+		/*推广类型广告效果*/
+		$(document).on('mouseover', "#imgRow0 .pic_item", function() {
+			$(this).addClass('pic_item_hover');
+		});
+		$(document).on('mouseout', "#imgRow0 .pic_item", function() {
+			$(this).removeClass('pic_item_hover');
+		});
+
+		/*浮动广告关闭*/
+		$(document).on('click', ".adv-close", function() {
+			$(this).parent('div').remove();
+		});
+	</script>
+
+	<body>
+		<!--adv1   推广-->
+		<div class="adv-wrap">
+			<div id="bd-hl-content" class="bd-hl-content">
+				<!--<div class="title_style title_style_0">undefined</div>-->
+				<div id="pic_container" class="pic_container">
+					<div style="margin-top:0px;">
+						<div id="imgRow0" style="margin-top:6px;clear:both;">
+							<div class="pic_itemColumnSpace"></div>
+							<div class="pic_item" id="picItem_0_1">
+								<div class="pic">
+									<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k0=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k3=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k4=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;k5=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=2&amp;lukid=2&amp;mcpm=6648&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=3081106394,3620002829&amp;fm=76">
+										<div class="mask" style="display: block; top: -90px;"> <img src="http://f12.baidu.com/it/u=3081106394,3620002829&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+											<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:90px;width:111px;"> <span class="mask_title" style="margin-top:24.5px" x="56" y="1">水冷机箱</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+											</div>
+										</div>
+									</a>
+								</div>
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k0=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k3=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k4=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;k5=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=2&amp;lukid=2&amp;mcpm=6648&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+									<div class="pic_title title_under_pic"> 水冷机箱 </div>
+								</a>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+						<div id="imgRow1" style="margin-top:6px;clear:both;">
+							<div class="pic_itemColumnSpace"></div>
+							<div class="pic_item" id="picItem_1_1">
+								<div class="pic">
+									<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k0=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k3=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k4=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;k5=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=4&amp;lukid=4&amp;mcpm=74069&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=4223662883,1927143662&amp;fm=76">
+										<div class="mask" style="display: block; top: -90px;"> <img src="http://f12.baidu.com/it/u=4223662883,1927143662&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+											<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:90px;width:111px;"> <span class="mask_title" style="margin-top:24.5px" x="70" y="1">一点点加盟</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+											</div>
+										</div>
+									</a>
+								</div>
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k0=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k3=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k4=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;k5=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=4&amp;lukid=4&amp;mcpm=74069&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+									<div class="pic_title title_under_pic"> 一点点加盟 </div>
+								</a>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+						<div id="imgRow2" style="margin-top:6px;clear:both;">
+							<div class="pic_itemColumnSpace"></div>
+							<div class="pic_item" id="picItem_2_1">
+								<div class="pic">
+									<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;k0=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k3=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k4=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k5=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=6&amp;lukid=6&amp;mcpm=15115&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=1103263328,1532471324&amp;fm=76">
+										<div class="mask" style="display: block; top: -90px;"> <img src="http://f12.baidu.com/it/u=1103263328,1532471324&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+											<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:90px;width:111px;"> <span class="mask_title" style="margin-top:14px" x="98" y="2">新能源汽车价格</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+											</div>
+										</div>
+									</a>
+								</div>
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?adclass=0&amp;app_id=0&amp;c=news&amp;cf=1&amp;ch=0&amp;di=8&amp;expid=9170_9522_9557_9558_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;is_app=0&amp;itm=0&amp;jk=5c46763a29a37dc7&amp;k=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;k0=%D0%C2%C4%DC%D4%B4%C6%FB%B3%B5%BC%DB%B8%F1&amp;k1=%BC%C6%CB%E3%BB%FA+%BF%BC%D1%D0&amp;k2=%CB%AE%C0%E4%BB%FA%CF%E4&amp;k3=%BF%BC%D1%D0%CA%B1%BC%E4%B9%E6%BB%AE&amp;k4=%D2%BB%B5%E3%B5%E3%BC%D3%C3%CB&amp;k5=%B9%AB%D6%DA%BA%C5%BF%AA%B7%A2&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;luki=6&amp;lukid=6&amp;mcpm=15115&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;q=92073368_cpr&amp;rb=0&amp;rs=1&amp;seller_id=1&amp;sid=c77da3293a76465c&amp;ssp2=1&amp;stid=116&amp;t=tpclicked3_hc&amp;td=3198791&amp;tsf=dtp:1&amp;tu=u3198791&amp;u=http%3A%2F%2Fwww%2Esina%2Ecom%2Ecn%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+									<div class="pic_title title_under_pic"> 新能源汽车价格 </div>
+								</a>
+							</div>
+							<div style="clear:both;"></div>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<style>
+						.pic_itemColumnSpace {
+							height: 40px;
+							float: left;
+							margin-top: 0;
+							margin-bottom: 0;
+							width: 4px
+						}
+						
+						.pic_item {
+							float: left;
+							overflow: hidden;
+							width: 113px;
+							height: 108px;
+							position: relative;
+						}
+						
+						.pic {
+							text-align: center;
+							margin: 0px;
+							border: 1px solid #ddd;
+							height: 90px;
+							overflow: hidden;
+						}
+						
+						.pic .img {
+							width: 111px;
+							height: 90px;
+						}
+						
+						.pic_title {
+							margin: 0 auto;
+							padding: 0;
+							overflow: hidden;
+							text-align: center;
+							text-decoration: none;
+							font-weight: normal;
+							width: 111px;
+							height: 16px;
+							line-height: 16px;
+							font-family: "微软雅黑";
+							font-size: 14px;
+							font-weight: normal;
+						}
+						
+						.pic_container .title_on_pic {
+							color: #ffffff;
+							position: absolute;
+							top: 71px;
+							left: 1px;
+						}
+						
+						.pic_container .title_under_pic {
+							color: #000000;
+						}
+						
+						.title_on_pic_bg {
+							background-color: #000000;
+							filter: alpha(opacity=50);
+							opacity: 0.7;
+							height: 20px;
+						}
+						
+						.mask {
+							position: absolute;
+							top: 1px;
+							left: 1px;
+							height: 90px;
+							width: 111px;
+							display: none;
+						}
+						
+						.mask_head {
+							color: #fff;
+							text-align: left;
+							display: inline-block;
+							padding: 2px 4px;
+							font-size: 12px;
+						}
+						
+						.mask_title {
+							color: #fff;
+							padding: 3px 5px;
+							border: 1px solid #fff;
+							display: inline-block;
+							width: 91px;
+							font-size: 14px;
+							overflow: hidden;
+							max-height: 32px;
+							line-height: 16px;
+						}
+						
+						.hover .pic {
+							border: 1px solid #f40000;
+						}
+						
+						.hover .title_under_pic {
+							color: #f40000;
+						}
+						
+						.hover .title_on_pic {
+							color: #f40000;
+						}
+						
+						.pic_item_hover .mask {
+							display: block;
+						}
+						
+						.pic_item_hover .pic_title a {
+							color: #ffffff;
+							font-weight: 900;
+						}
+						
+						.pic_item_hover .title_on_pic_bg {
+							display: none;
+						}
+						
+						.pic_item_hover .title_on_pic {
+							top: -145px;
+							font-size: 16px;
+							font-weight: 900;
+						}
+						
+						.img_blur {
+							-webkit-filter: blur(4px);
+							-moz-filter: blur(4px);
+							-ms-filter: blur(4px);
+							filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+						}
+					</style>
+				</div>
+				<span class="adv-tip">广告</span>
+			</div>
+		</div>
+
+		<!--adv1 推广广告2-->
+		<!--<div id="wrapper">-->
+		<!--<div class="s-hl-content">-->
+		<div id="bd-hl-content" class="bd-hl-content">
+			<div class="title_style title_style_0">undefined</div>
+			<div id="pic_container" class="pic_container">
+				<div style="margin-top:0px;">
+					<div id="imgRow0" style="margin-top:2px;clear:both;">
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_0">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRcdFRFjFRc4FRNjFRPKFRFDFRn4FRuDFRFDFRcdFRFaFRuKFh_s5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuonHY-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchp1cqFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_15iNjPiN7PzNjnBN7fBNafBNAfiuoPjY-f1n-wHc-fWT-wjD-fbf-fH6-wjR-fbRhp1Rqpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchUZNopHYkFhdWTAYqn1csnW6hTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdbuymYuHK9ms&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=1&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=286217819,1730262326&amp;fm=76">
+									<div class="mask"> <img src="http://f12.baidu.com/it/u=286217819,1730262326&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="84" y="1">导轨式升降机</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRcdFRFjFRc4FRNjFRPKFRFDFRn4FRuDFRFDFRcdFRFaFRuKFh_s5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuonHY-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchp1cqFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_15iNjPiN7PzNjnBN7fBNafBNAfiuoPjY-f1n-wHc-fWT-wjD-fbf-fH6-wjR-fbRhp1Rqpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchUZNopHYkFhdWTAYqn1csnW6hTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdbuymYuHK9ms&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=1&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 导轨式升降机 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_1">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRnLFRcvFRn3FRNaFRPKFRFDFRFAFR7KFRcLFRDzFh_s5iNjPzNaPBNjraN7fBNjfiNawaNawBNKfiNaPzNKnBuonHY-fYf-wW6-f1b-fYm-f1b-fYn-fWn-f1T-fYm-fWR-fYf-fWnhp1cqFRndFRRLFRnzFRNaFRFaFRuKFh_15iNjnzN7nBNaPzNDniNawaNKraNDPiNawiuoPjdGIaNjPiN7naNDniNaPiNafBNAfiNariNariNjPiNjPiNjnzNAfBuoPHY-wjT-wDc-fbD-fYm-fWc-fbn-fYm-wDmhUZNopHYzFhdWTAYqn1mYnHnhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdbmHDkPHIBr0&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=2&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=216691214,2370151062&amp;fm=76">
+									<div class="mask" style="display: block; top: -84px;"> <img src="http://f12.baidu.com/it/u=216691214,2370151062&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="70" y="1">嵌入式开发</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRnLFRcvFRn3FRNaFRPKFRFDFRFAFR7KFRcLFRDzFh_s5iNjPzNaPBNjraN7fBNjfiNawaNawBNKfiNaPzNKnBuonHY-fYf-wW6-f1b-fYm-f1b-fYn-fWn-f1T-fYm-fWR-fYf-fWnhp1cqFRndFRRLFRnzFRNaFRFaFRuKFh_15iNjnzN7nBNaPzNDniNawaNKraNDPiNawiuoPjdGIaNjPiN7naNDniNaPiNafBNAfiNariNariNjPiNjPiNjnzNAfBuoPHY-wjT-wDc-fbD-fYm-fWc-fbn-fYm-wDmhUZNopHYzFhdWTAYqn1mYnHnhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdbmHDkPHIBr0&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=2&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 嵌入式开发 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_2">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_s5iNjwaNAraNjriNjwBNjriNjfzNanzNjPzNjwBNaPiNjwaNanzuonHY-f1R-wHT-f1c-wRc-fbc-wbDhp1cqFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7Fh_15y-YFRndFRRsFRfkFRcdFRFaFRuKFRc4FRc4FRndFRndFRn1FRuaFh_Y5iNDPzNDfBNafiNjwBNanBNafzNjwBNDwBuoPHY-fWR-fbn-fWb-wRn-fYD-fbf-f1b-wbf-fbf-fWR-fbc-wbDhUZNopHY1FhdWTAYqn16LrjfhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHd9rj7bn1n3u6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=3&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f11.baidu.com/it/u=4244329366,1441887756&amp;fm=76">
+									<div class="mask" style="display: block; top: -84px;"> <img src="http://f11.baidu.com/it/u=4244329366,1441887756&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="84" y="1">网上商城系统</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_s5iNjwaNAraNjriNjwBNjriNjfzNanzNjPzNjwBNaPiNjwaNanzuonHY-f1R-wHT-f1c-wRc-fbc-wbDhp1cqFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7Fh_15y-YFRndFRRsFRfkFRcdFRFaFRuKFRc4FRc4FRndFRndFRn1FRuaFh_Y5iNDPzNDfBNafiNjwBNanBNafzNjwBNDwBuoPHY-fWR-fbn-fWb-wRn-fYD-fbf-f1b-wbf-fbf-fWR-fbc-wbDhUZNopHY1FhdWTAYqn16LrjfhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHd9rj7bn1n3u6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=3&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 网上商城系统 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_3">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRndFRRLFRnzFRNaFRFaFRuKFh_s5iNjPiN7PzNjnBN7fBNafBNAfiuonHY-f1n-wHc-fWT-wjD-fbf-fH6-wjR-fbRhp1cqpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp1nqFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_Y5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuoPHY-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchUZNopHYYFhdWTAYqPjRLrjnhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHY1m1RsPvfsn6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=4&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://t11.baidu.com/it/u=343667044,2509237470&amp;fm=76">
+									<div class="mask" style="display: block; top: -84px;"> <img src="http://t11.baidu.com/it/u=343667044,2509237470&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="42" y="1">喷码机</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRndFRRLFRnzFRNaFRFaFRuKFh_s5iNjPiN7PzNjnBN7fBNafBNAfiuonHY-f1n-wHc-fWT-wjD-fbf-fH6-wjR-fbRhp1cqpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp1nqFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_Y5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuoPHY-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchUZNopHYYFhdWTAYqPjRLrjnhTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHY1m1RsPvfsn6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=4&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 喷码机 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_4">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7Fh_s5iNjnzN7nBNaPzNDniNawaNKraNDPiNawiuonHdGIaNjPiN7naNDniNaPiNafBNAfiNariNariNjPiNjPiNjnzNAfBuonWY-wjT-wDc-fbD-fYm-fWc-fbn-fYm-wDmhp1nqFRcdFRFjFRc4FRNjFRPKFRFDFRn4FRuDFRFDFRcdFRFaFRuKFh_Y5iNjPzNaPBNjraN7fBNjfiNawaNawBNKfiNaPzNKnBuoPHY-fYf-wW6-f1b-fYm-f1b-fYn-fWn-f1T-fYm-fWR-fYf-fWnhUZNopHYdFhdWTAYqn1m4nHchTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdWm1msmyPWP6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=5&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f11.baidu.com/it/u=302384710,1910672858&amp;fm=76">
+									<div class="mask" style="display: block; top: -84px;"> <img src="http://f11.baidu.com/it/u=302384710,1910672858&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="56" y="1">免费建站</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7Fh_s5iNjnzN7nBNaPzNDniNawaNKraNDPiNawiuonHdGIaNjPiN7naNDniNaPiNafBNAfiNariNariNjPiNjPiNjnzNAfBuonWY-wjT-wDc-fbD-fYm-fWc-fbn-fYm-wDmhp1nqFRcdFRFjFRc4FRNjFRPKFRFDFRn4FRuDFRFDFRcdFRFaFRuKFh_Y5iNjPzNaPBNjraN7fBNjfiNawaNawBNKfiNaPzNKnBuoPHY-fYf-wW6-f1b-fYm-f1b-fYn-fWn-f1T-fYm-fWR-fYf-fWnhUZNopHYdFhdWTAYqn1m4nHchTHY4nW0Ln1nvr7qWTZchThcqnauzT1YkFMP-UAk-T-qGujYkFMPGujYYuyDvrHfsuADLuhndP1uWFMPYpyfqnHDdFMfqIZKWUA-WpvNbndqCmzuYujY1nHb3P1TsFMwVT1YkPHc1n1cvPj0YFMwd5gR1nHb3P1TsFMRqpZwYTaR1fiRzwBRzwMILIzRzwgPGUhD-nbNWUvY-nbNWUBuv5HDhpHdWm1msmyPWP6&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=5&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 免费建站 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_5">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp10qpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp1DqFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_z5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuon1Y-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchp1fqFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_d5iNjPiN7PzNjnBN7fBNafBNAfiu_IyVG5HmhUyPsUHY1rHb1niuk5HbznjT1n1m3gvPsTBuzmWYsFMF15HDhTvN_UANzgv-b5HDhTv-b5Hw-mHm4PjKbmHIhm1RLPhnhTLwGujYknHRhIjdYTAP_pyPouyf1gv9WFMwb5HnkrH6LP10hIAd15HDdnWn1nWmYnjfhIZRqIHnkrH6LP10hIHdCIZwsFHPKFHFAFHFAILILFHF7Tv-8miRzwyPEUiRzwyP8FMmqniuG5yF9n1c4mWf1&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=6&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f12.baidu.com/it/u=504448898,3300590535&amp;fm=76">
+									<div class="mask" style="display: block; top: -84px;"> <img src="http://f12.baidu.com/it/u=504448898,3300590535&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="56" y="1">it培训机构排名</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp10qpgf-f1R-wH0-wjD-fWR-fbc-wbD-fWb-fWb-f1R-f1R-f1n-wbchp1DqFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_z5iNaPiNafzNariN7fzNjfiNawaNjriNAwaNawaNaPiNafBNAfiuon1Y-f1T-fWm-f16-wRc-fYD-fbf-fbm-fRD-fWT-fHchp1fqFRPDFRm3FRn4FRPAFRn4FRPjFRc1FRnLFRPAFRcdFRPDFRc1Fh_d5iNjPiN7PzNjnBN7fBNafBNAfiu_IyVG5HmhUyPsUHY1rHb1niuk5HbznjT1n1m3gvPsTBuzmWYsFMF15HDhTvN_UANzgv-b5HDhTv-b5Hw-mHm4PjKbmHIhm1RLPhnhTLwGujYknHRhIjdYTAP_pyPouyf1gv9WFMwb5HnkrH6LP10hIAd15HDdnWn1nWmYnjfhIZRqIHnkrH6LP10hIHdCIZwsFHPKFHFAFHFAILILFHF7Tv-8miRzwyPEUiRzwyP8FMmqniuG5yF9n1c4mWf1&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=6&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> it培训机构排名 </div>
+							</a>
+						</div>
+						<div class="pic_itemColumnSpace"></div>
+						<div class="pic_item" id="picItem_0_6">
+							<div class="pic">
+								<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_s5iNDPzNDfBNafiNjwBNanBNafzNjwBNDwBuonHY-fWR-fbn-fWb-wRn-fYD-fbf-f1b-wbf-fbf-fWR-fbc-wbDhp1cqFRnLFRcvFRn3FRNaFRPKFRFDFRFAFR7KFRcLFRDzFh_15iNjwaNAraNjriNjwBNjriNjfzNanzNjPzNjwBNaPiNjwaNanzuoPjY-f1R-wHT-f1c-wRc-fbc-wbDhp1RqFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7FhkdpvbqPzuVmLKV5HcYPjb4FMDqrHcsP1n1PW9xmLKzFMFB5H0hTMnqniu1uyk_ugFxpyfqniu1pyfqPAN9PWbYnAw9PvuWPHTvmzu1IA-b5HDkPiuY5gwsmvkGmvV-ujPxpAnhIAfqn1D4rjTLnauYUgnqnHRzn1nzPWfsPauYIHddn1D4rjTLnaud5y9YIZ0-nYD-nbm-nbuLILT-nbN1py49FHF7mvqVFHF7mv3hIWYkFhbqmWI9rjczmWD&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=7&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer"> <img class="img" src="http://f10.baidu.com/it/u=964357431,730291363&amp;fm=76">
+									<div class="mask"> <img src="http://f10.baidu.com/it/u=964357431,730291363&amp;fm=76" class="img img_blur" style="position:absolute;top:0px;left:0px;">
+										<div style="position:absolute;left:0px;background-color:rgba(0,0,0,0.5) !important;filter:Alpha(opacity=50); background:#000;height:84px;width:131px;"> <span class="mask_title" style="margin-top:21.5px" x="56" y="1">综合布线</span> <span class="mask_head"><div class="mask_logo" src="//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png" style="background: url(//cpro.baidustatic.com/cpro/ui/noexpire/img/2.0.1/bg.png) no-repeat left top;background-position: 0 -19px;float:left;width:15px;height:15px;margin-right:3px;"></div><span class="mask_logo" style="">百度一下</span></span>
+										</div>
+									</div>
+								</a>
+							</div>
+							<a href="https://cpro.baidu.com/cpro/ui/uijs.php?en=mywWUA71T1YsFh7sT7qGujYsFhPC5H0huAbqrauGTdq9TZ0qnauJp1Yvm1RLuhP9P1KbrHw9PWw-Fh_qFRfLFRwaFRFKFRPAFRczFRFjFRPAFRwAFh_s5iNDPzNDfBNafiNjwBNanBNafzNjwBNDwBuonHY-fWR-fbn-fWb-wRn-fYD-fbf-f1b-wbf-fbf-fWR-fbc-wbDhp1cqFRnLFRcvFRn3FRNaFRPKFRFDFRFAFR7KFRcLFRDzFh_15iNjwaNAraNjriNjwBNjriNjfzNanzNjPzNjwBNaPiNjwaNanzuoPjY-f1R-wHT-f1c-wRc-fbc-wbDhp1RqFRn1FRRzFRcLFRfkFRFDFRD3FRfdFRF7FhkdpvbqPzuVmLKV5HcYPjb4FMDqrHcsP1n1PW9xmLKzFMFB5H0hTMnqniu1uyk_ugFxpyfqniu1pyfqPAN9PWbYnAw9PvuWPHTvmzu1IA-b5HDkPiuY5gwsmvkGmvV-ujPxpAnhIAfqn1D4rjTLnauYUgnqnHRzn1nzPWfsPauYIHddn1D4rjTLnaud5y9YIZ0-nYD-nbm-nbuLILT-nbN1py49FHF7mvqVFHF7mv3hIWYkFhbqmWI9rjczmWD&amp;c=news&amp;cf=1&amp;expid=9176_9557_9561_9576_9577_9597_9599_9791_80537&amp;fv=0&amp;itm=0&amp;kdi0=8&amp;kdi1=8&amp;kdi2=8&amp;kdi3=8&amp;kdi4=8&amp;kdi5=8&amp;lukid=7&amp;mscf=600&amp;n=10&amp;nttp=1&amp;p=baidu&amp;ssp2=1&amp;tsf=dtp:1&amp;u=%2F&amp;urlid=0&amp;jincheng1=1" target="_blank" style="cursor: pointer">
+								<div class="pic_title title_on_pic title_on_pic_bg"></div>
+								<div class="pic_title title_on_pic"> 综合布线 </div>
+							</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<style>
+					.pic_itemColumnSpace {
+						height: 40px;
+						float: left;
+						margin-top: 0;
+						margin-bottom: 0;
+						width: 8px
+					}
+					
+					.pic_item {
+						float: left;
+						overflow: hidden;
+						width: 133px;
+						height: 86px;
+						position: relative;
+					}
+					
+					.pic {
+						text-align: center;
+						margin: 0px;
+						border: 1px solid #ddd;
+						height: 84px;
+						overflow: hidden;
+					}
+					
+					.pic .img {
+						width: 131px;
+						height: 84px;
+					}
+					
+					.pic_title {
+						margin: 0 auto;
+						padding: 0;
+						overflow: hidden;
+						text-align: center;
+						text-decoration: none;
+						font-weight: normal;
+						width: 131px;
+						height: 16px;
+						line-height: 16px;
+						font-family: "宋体";
+						font-size: 15px;
+						font-weight: normal;
+					}
+					
+					.pic_container .title_on_pic {
+						color: #ffffff;
+						position: absolute;
+						top: 65px;
+						left: 1px;
+					}
+					
+					.pic_container .title_under_pic {
+						color: #000000;
+					}
+					
+					.title_on_pic_bg {
+						background-color: #000000;
+						filter: alpha(opacity=50);
+						opacity: 0.6;
+						height: 20px;
+					}
+					
+					.mask {
+						position: absolute;
+						top: 1px;
+						left: 1px;
+						height: 84px;
+						width: 131px;
+						display: none;
+					}
+					
+					.mask_head {
+						color: #fff;
+						text-align: left;
+						display: inline-block;
+						padding: 2px 4px;
+						font-size: 12px;
+					}
+					
+					.mask_title {
+						color: #fff;
+						padding: 3px 5px;
+						border: 1px solid #fff;
+						display: inline-block;
+						width: 111px;
+						font-size: 14px;
+						overflow: hidden;
+						max-height: 32px;
+						line-height: 16px;
+					}
+					
+					.hover .pic {
+						border: 1px solid #f40000;
+					}
+					
+					.hover .title_under_pic {
+						color: #f40000;
+					}
+					
+					.hover .title_on_pic {
+						color: #f40000;
+					}
+					
+					.pic_item_hover .mask {
+						display: block;
+					}
+					
+					.pic_item_hover .pic_title a {
+						color: #ffffff;
+						font-weight: 900;
+					}
+					
+					.pic_item_hover .title_on_pic_bg {
+						display: none;
+					}
+					
+					.pic_item_hover .title_on_pic {
+						top: -135px;
+						font-size: 16px;
+						font-weight: 900;
+					}
+					
+					.img_blur {
+						-webkit-filter: blur(4px);
+						-moz-filter: blur(4px);
+						-ms-filter: blur(4px);
+						filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+					}
+				</style>
+			</div>
+			<span class="adv-tip">广告</span>
+			<!--<a class="bd-logo2" target="_blank" href="http://wangmeng.baidu.com/" title="" style="zoom: 1; cursor: default; display: none; background-position: 0px center; right: 32px; margin: 0px 0px 2px; height: 16px; width: 16px; bottom: 0px; z-index: 2147483647;">&nbsp;</a>-->
+			<!--<a id="closeBtn" title="停止此推广位显示" style="display: block; height: 16px; line-height: 16px; width: 30px; margin: 0px 2px 2px 0px; right: 0px; bottom: 0px;"></a>-->
+			<!--<div id="tipWrapper" class="min_90 min_hei wrapper_panel " style="display: none; width: 1000px; height: 90px;">
+						<div id="closeEnd" style="display:none;margin:10px 10px 0;">
+							<div class="tit" style="font-size:14px;">感谢您的反馈！</div>
+							<p class="question_tit"><span class="goback toAd">返回</span>
+								<a class="btn-blue" href="//yingxiao.baidu.com/zhichi/knowledge/detail.action?channelId=3&amp;classId=10845&amp;knowledgeId=14394" target="_blank">了解详情</a>
+							</p>
+							<p class="question_tit">我们已记录您对此推广内容的反馈，以便改善您今后的浏览体验。</p>
+						</div>
+						<div id="closeChoice" style="margin: 10px 10px 0px; width: 980px; height: 80px;">
+							<div class="tit" style="width:auto;font-size:14px;">将为您停止此次推广展示<span class="goback">撤销</span></div>
+							<p class="question_tit">此推广有什么问题？</p>
+							<div class="question_choice">
+								<a index="0" href="javascript:;" class="choice" id="5">视觉干扰</a>
+								<a index="1" href="javascript:;" class="choice" id="6">内容不宜</a>
+								<a index="2" href="javascript:;" class="choice" id="7">不感兴趣</a>
+								<a index="3" href="javascript:;" class="choice" id="8">其它</a>
+							</div>
+							<a href="javascript:;" class="complaint" style="*margin-top:0;">意见反馈</a>
+						</div>
+						<a href="http://www.baidu.com" target="_blank" class="baidu_logo"><img src="//cpro.baidustatic.com/cpro/exp/closead/img/bd_logo.png" width="59" height="19"></a>
+						<div id="closePop" style="display:none;margin:10px 10px 0">
+							<div class="tit" style="width:auto;font-size:14px;">将为您停止此次推广展示<span class="goback">撤销</span></div>
+							<div class="space">
+								<div class="panel panel-cause" style="padding-right:12px;">
+									<p style="margin:0;">您对展示内容的意见：</p>
+									<div class="sel-panel"><input class="ipt-other" id="iptOther" type="text" value="请输入..." style="display:block;"><span class="show-cause" id="showCause"></span>
+										<ul class="causeSelect" id="causeSelect">
+											<li class="opts" data-value="0">请输入...</li>
+											<li class="opts" data-value="内容低俗">内容低俗</li>
+											<li class="opts" data-value="内容虚假">内容虚假</li>
+											<li class="opts" data-value="不美观">不美观</li>
+										</ul>
+									</div>
+								</div>
+								<div class="panel panel-email">
+									<p style="margin:0;">（选填）您的邮箱：</p>
+									<div class="sel-panel"><input class="i-email" id="iptEmail" type="text" style="position:absolute;left:0;bottom:0;"></div>
+								</div>
+								<div class="panel">
+									<p class="btns" style="margin-top:0;*margin-top:0;">
+										<a id="affirmBtn" class="ok-btn" href="javascript:;">确认</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>-->
+			<style type="text/css">
+				.s-hl-content .bd-hl-content a,
+				.s-hl-content .bd-hl-content a:hover,
+				.s-hl-content .bd-hl-content a:visited,
+				.s-hl-content .bd-hl-content a {
+					text-decoration: none
+				}
+				
+				.s-hl-content .bd-hl-content .pic_container {
+					padding: 0px;
+					border: 0;
+					position: relative;
+					overflow: hidden;
+					float: left;
+				}
+				
+				.s-hl-content .bd-hl-content {
+					position: relative;
+					margin: 0;
+					padding: 0;
+					font-family: &#39;
+					microsoft yahei&#39;
+					;
+					font-size: 14px;
+					font-weight: normal;
+					overflow: hidden;
+					border: 0px solid #CCC;
+					background-color: #ffffff;
+					width: 1000px;
+					height: 90px;
+					padding: 0px 0px 0px 0px;
+				}
+				
+				.bd-logo2 {
+					text-decoration: none;
+					cursor: pointer;
+					display: block;
+					overflow: hidden;
+					position: absolute;
+					bottom: 0;
+					right: 0;
+					z-index: 2147483647
+				}
+				
+				.bd-logo2 {
+					margin: 0 0px 2px 0;
+					height: 14px;
+					width: 13px;
+					background: url('img/b&j.png') no-repeat left top;
+					background-position: 0 -20px;
+					_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="//cpro.baidustatic.com/cpro/ui/noexpire/img/4.0.0/pc_ads_bear.1x.png", sizingMethod="crop");
+					_background: 0
+				}
+				
+				.bd-logo2:hover {
+					background-position: 0 -35px;
+					_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, src="//cpro.baidustatic.com/cpro/ui/noexpire/img/4.0.0/pc_ads_bear.1x.png", sizingMethod="crop")
+				}
+				
+				.s-hl-content .bd-hl-content .title_style {
+					width: 995px;
+					height: 25px;
+					line-height: 25px;
+					padding-left: 5px;
+					font-size: 14px;
+					margin-bottom: 3px;
+					font-weight: 900;
+				}
+				
+				.s-hl-content .bd-hl-content .title_style_0 {
+					display: none;
+				}
+				
+				.s-hl-content .bd-hl-content .title_style_2 {
+					border-left: 5px solid #ffffff;
+					color: #000000
+				}
+				
+				.s-hl-content .bd-hl-content .title_style_1 {
+					background-color: #ffffff;
+					color: #000000
+				}
+			</style>
+		</div>
+		<!--</div>-->
+
+		<!--</div>-->
+		<!--adv2  图片广告（嵌入x-item内部）-->
+		<div class="extra-item" title="日本赏樱季 订酒店赏樱花">
+			<span class="adv-close">
+				
+			</span>
+			<span class="adv-tip">广告</span>
+			<a href="http://pages.c-ctrip.com/hotel/201801/yinghua/index.html#ctm_ref=ssc_hp_htl_sni_txt_5" target="_blank">
+				<p class="extra-thumbnail"><img src="//pages.c-ctrip.com/hotel/201801/yinghua/220330.jpg" alt="日本赏樱季 订酒店赏樱花"></p>
+				<p class="extra-text">日本赏樱季 订酒店赏樱花</p>
+			</a>
+			<style type="text/css">
+				.extra-item {
+					position: absolute;
+					top: 0;
+					right: 0;
+					z-index: 9;
+					clear: both;
+					overflow: hidden;
+					width: 220px;
+					height: 330px;
+				}
+				
+				.extra-item .extra-thumbnail {
+					width: 220px;
+					height: 330px;
+				}
+				
+				.extra-text {
+					position: absolute;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					z-index: 2;
+					overflow: hidden;
+					width: 100%;
+					height: 30px;
+					background: rgba(0, 0, 0, .5);
+					color: #fff;
+					text-align: center;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					line-height: 30px;
+					margin-bottom: 0;
+				}
+			</style>
+		</div>
+
+		<!--adv2 产品广告轮播-->
+		<div id="leftbannerv2" style="height: 70px" class="g-bg11 g-br3 wslider" monkey="leftbanner" alog-alias="leftbanner">
+			<div class="slider slider--type-l2r slider--navshow-hover slider--nav-1" id="leftbannerv2-slider">
+				<div class="slider__grid">
+					<div class="slider__content">
+						<ul class="slider__slides" style="width: 1112px; left: 0px;">
+							<li class="slider__slide selected">
+								<div class="item-pic" monkey="0">
+									<a href="http://clickc.admaster.com.cn/c/a105672,b2427878,c1165,i0,m101,8a1,8b2,h" target="_blank" title="荣耀畅玩7A"><img src="https://gss0.bdstatic.com/5bVWsj_p_tVS5dKfpU_Y_D3/res/r/image/2018-04-10/2fd93178847afa156f9773648088225c.jpg" width="278" height="70"></a>
+								</div>
+								<div class="item-text" monkey="0">
+									<div class="txt">
+										<a href="http://clickc.admaster.com.cn/c/a105672,b2427878,c1165,i0,m101,8a1,8b2,h" class="link" target="_blank" title="荣耀畅玩7A">荣耀畅玩7A</a>
+									</div>
+								</div>
+							</li>
+							<li class="slider__slide">
+								<div class="item-pic" monkey="1">
+									<a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DvXs83NfAQ8McQipKwQzePCperVdZeJviK7Vc7tFgwiFRAdhuF14FMSnnp3todt2tlovu%2FCElQOv%2FTrTNBNETjAtOHPHN0vsswMtcQQb5DKUtkdEDdzMdg47LAa3DUrM2zt5vEinufIVAFEHVckI7b5%2FNZpdQjSxu1vgFTVPz8OPAUxBJ7QMuvGU9XPFmibuZdYe117SOeFa%2BoGWVbLq%2FB%2FvmKFGaCytsgCAVKle7GoGcCKkR8Mb495w1gkkfEjQ%2FomfkDJRs%2BhU%3D" target="_blank" title="春季有妙招 优质家纺这样选"><img src="https://gss0.bdstatic.com/5bVWsj_p_tVS5dKfpU_Y_D3/res/r/image/2018-04-10/57975e4cec4de385b52136273621665a.jpg" width="278" height="70"></a>
+								</div>
+								<div class="item-text" monkey="1">
+									<div class="txt">
+										<a href="https://s.click.taobao.com/t?e=m%3D2%26s%3DvXs83NfAQ8McQipKwQzePCperVdZeJviK7Vc7tFgwiFRAdhuF14FMSnnp3todt2tlovu%2FCElQOv%2FTrTNBNETjAtOHPHN0vsswMtcQQb5DKUtkdEDdzMdg47LAa3DUrM2zt5vEinufIVAFEHVckI7b5%2FNZpdQjSxu1vgFTVPz8OPAUxBJ7QMuvGU9XPFmibuZdYe117SOeFa%2BoGWVbLq%2FB%2FvmKFGaCytsgCAVKle7GoGcCKkR8Mb495w1gkkfEjQ%2FomfkDJRs%2BhU%3D" class="link" target="_blank" title="春季有妙招 优质家纺这样选">春季有妙招 优质家纺这样选</a>
+									</div>
+								</div>
+							</li>
+							<li class="slider__slide">
+								<div class="item-pic" monkey="2">
+									<a href="http://www.hao123.com/zt/qpcm03#l-1468469038778" target="_blank" title="少林寺这事情竟骗了我们一千多年"><img src="https://gss0.bdstatic.com/5bVWsj_p_tVS5dKfpU_Y_D3/res/r/image/2018-04-02/a1ab880949476be653aa4634ef99a486.jpg" width="278" height="70"></a>
+								</div>
+							</li>
+							<li class="slider__slide selected">
+								<div class="item-pic" monkey="0">
+									<a href="http://clickc.admaster.com.cn/c/a105672,b2427878,c1165,i0,m101,8a1,8b2,h" target="_blank" title="荣耀畅玩7A"><img src="https://gss0.bdstatic.com/5bVWsj_p_tVS5dKfpU_Y_D3/res/r/image/2018-04-10/2fd93178847afa156f9773648088225c.jpg" width="278" height="70"></a>
+								</div>
+								<div class="item-text" monkey="0">
+									<div class="txt">
+										<a href="http://clickc.admaster.com.cn/c/a105672,b2427878,c1165,i0,m101,8a1,8b2,h" class="link" target="_blank" title="荣耀畅玩7A">荣耀畅玩7A</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<a class="slider__nav slider__nav--prev" alog-text="slider-nav-prev" href="#" style="display: none;"></a>
+					<a class="slider__nav slider__nav--next" alog-text="slider-nav-next" href="#" style="display: none;"></a>
+				</div>
+			</div>
+			<style type="text/css">
+				.wslider{
+					position: relative;
+					overflow: hidden;
+					zoom: 1;
+					width: 278px;
+					margin-bottom: 10px;
+				}
+				.g-bgl1{
+					background-color: #fff;
+				}
+				.g-br3{
+					border: 1px solid #dee3eb;
+				}
+			</style>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+        <!--basepath start-->
+        <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+        <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+        <meta name="toTop" content="true"><!--返回顶部-->
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>	
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+        <title>支付失败</title>
+        
+				 <!-- ==========插件link开始========== -->
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+    <link rel="stylesheet" type="text/css" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" type="text/css" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+		<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+		
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" type="text/css" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" type="text/css" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" type="text/css" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" type="text/css" href="css/user.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+		<link rel="stylesheet" type="text/css" href="css/footer.css" /><!--footer 样式-->
+    	
+    </head>
+    <body>
+       <!--header start-->
+	<div  id="header" v-cloak></div>
+ 	<!--header end-->
+ 	
+     <div class="boxContent" >
+	    <div class="payFal">
+	    	<div class="tc clearfix" style="width:194px;margin: 0 auto;">
+	    		<div class="fl"><span class="iconfont" style="font-size: 46px;color: #f44a4b;">&#xe6b3;</span></div>
+	    		<div class="fl ml10"><span style="color: #f44a4b;font-size: 18px;line-height: 64px;">抱歉，支付失败</span></div>
+	    	</div>
+	    	<div class="payLine"></div>
+	    	<p style="color: #6a6a6a;font-size: 16px;">支付失败，请联系客服：400-027-8800</p>
+	    	<!--<p style="color: #6a6a6a;font-size: 16px;">5秒后自动跳转</p>-->
+	    	<div class="payBack mt20  cs-point" onclick="window.history.go(-1) ||setIframeUrl('user/myServ/servPersinfo.html') && window.open('user/user.html', '_self');">&lt; 重新支付</div>
+	    </div>
+     </div>
+      
+      
+    <style>
+    	#header{box-shadow: 0 2px 6px #f2f2f2;}
+    	.boxContent{width: 1200px;margin: 0 auto;min-height: 600px;padding-top: 140px;}
+    	.payLine{height: 2px;width: 600px;background: #e9e9e9;margin:0 auto 20px auto;}
+    	.boxContent p{text-align: center;}
+    	.payBack{width:94px;border-radius: 4px;background: #469bf5;line-height: 34px;color: #fff;text-align: center;margin:37px auto;}
+    </style>
+       
+    <!--footer-->
+   <!--footer start-->
+	<footer id="footer"></footer>
+	<!--footer end-->
+    </body>
+				<!-- ==========script开始========== -->
+				
+	<script type="text/javascript" src="js/comm/bluebird.js"></script>  <!--引入解析es6Promise对象-->
+	<!-- build:js js/pay.libs.js -->
+	<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/comm/es6-promise.js"></script><!--解析es6 promise-->
+  <script type="text/javascript" src="js/comm/vue.min.js"></script><!--vue -->
+	<script type="text/javascript" src="js/comm/axios.js"></script><!--axios-->
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件--><!--占位-->
+	<!-- endbuild -->
+	
+	<!-- build:js js/pay.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+  <script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- endbuild -->
+	<script type="text/javascript">
+		var a=isSignIn();
+      if(a==null){
+        	window.location.href = fontBaseUrl+'user/sign.html';
+      }
+  </script>
+   
+</html>

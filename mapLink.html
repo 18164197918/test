@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>baiduMap</title>
+		<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+		<script src="/js/comm/comm.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&services=true"></script>
+	</head>
+
+	<body >
+		<div style="width:540px;height:320px;border:1px solid gray" id="containerMap"></div>
+	</body>
+
+</html>
+<div></div>
+
+<script type="text/javascript">
+var map = new BMap.Map("containerMap"); // 创建地图实例
+    var _point = getQueryString('point').split(',');
+    var lati = _point[0];
+    var alti = _point[1];
+	var point = new BMap.Point(lati, alti); // 创建点坐标
+	map.centerAndZoom(point, 13);
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.ScaleControl());
+	map.addControl(new BMap.OverviewMapControl());
+	var marker = new BMap.Marker(point); // 创建标注
+	map.addOverlay(marker); // 将标注添加到地图中
+	marker.enableDragging(); //可以拖拽
+</script>

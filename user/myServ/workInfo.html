@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+		<base id="bpid" href="/" target="_blank" />
+		<script type="text/javascript">
+			window['fontBaseUrl'] = '/'
+		</script>
+		<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		<!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>工单信息</title>
+		
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" />
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+		<!--用户中心样式-->
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+		<!--bootstrap 兼容ie8-->
+	</head>
+
+	<body class="userNav">
+		
+		<input type="hidden" id="leftstatu" value="我的服务" />
+		<input type="hidden" id="leftstatus" value="工单信息" />
+		<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">工单信息</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+		<!--right start-->
+		<div class="" id="workInfo" v-cloak>
+			
+			<!--table start-->
+			<!--表头操作按钮   end-->
+        <!--table start-->
+        <form class="mb15 form-group-tra clearfix">
+             <!--提交工单   start-->
+			 <div class="fl form-inline" style="margin-right: 15px;">
+				<div class="form-group">
+					<a href="user/myServ/workInforSubm.html" class="btn btn-default" target="_self">+ 提交工单</a>
+				</div>
+			</div>
+            <!--提交工单   end-->
+            <div class="col-md-3 col-sm-3 col-xs-5 form-inline ml-15 mr-15">
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" id="d4311" placeholder="开始时间" readonly="readonly"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-5 form-inline">
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker2'>
+                        <input type='text' class="form-control" id="d4312" placeholder="结束时间" readonly="readonly"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!--time end-->
+            <!--查询   start-->
+            <input class="btn btn-default btn-my" type="button" value="查询" onclick="workInfo_vm.listOrders()">
+        </form>
+
+			<div class="table">
+				<table class="table table-bordered table-hover table-condensed tab-ts">
+					<thead>
+						<tr>
+						
+							<th class="wid20 tc"><!--工单主题-->
+								<div class="">工单主题</div>
+							</th>
+							<th class="wid40 tc"><!--问题描述  所属站点-->
+								<div class="l-col one-line">问题描述</div>
+								<div class="r-col one-line">所属站点</div>
+							</th>
+							<!--<th class=" tc">
+								<div>提交时间</div>
+							</th>
+							<th class="wid8 tc">
+								<div>提交人</div>
+							</th>-->
+							<th class="wid20">
+								<!--<div class="l-col one-line tc">排序</div>-->
+								<div class="l-col tc one-line">提交时间</div>
+								<div class="r-col  tc one-line">提交人</div>
+							</th>
+							<!--<th class="wid8 tc">
+								<div >状态</div>
+							
+							</th>
+							<th class="wid11 tc">
+								<div >操作</div>
+							</th>-->
+							<th class="wid20">
+								<!--<div class="l-col one-line tc">排序</div>-->
+								<div class="l-col  tc">状态</div>
+								<div class="r-col  tc">操作</div>
+							</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="contentLine in contentLines">
+							
+							<td><!--工单主题-->
+								<div class="one-line">{{ contentLine['title'] }}</div>
+							</td>
+							<td><!--问题描述  所属站点-->
+								<div class="l-col tl one-line" :title=" contentLine['vtext']">{{ contentLine['vtext'] }}</div>
+								<div class="r-col tl one-line" :title=" contentLine['vtext']">{{ contentLine['site'] }}</div>
+							</td>
+							<!--<td>
+								<div class="one-line " :title=" getTime(new Date(contentLine['insert_time']))">{{ getTime(new Date(contentLine['insert_time'])) }}</div>
+							</td>
+							<td>
+								<div class="one-line" :title=" contentLine['mobile']">{{ contentLine['mobile'] }}</div>
+							</td>-->
+							<td><!--提交时间  提交人-->
+								<div class=" l-col one-line" :title=" getTime(new Date(contentLine['insert_time']))">{{ getTime(new Date(contentLine['insert_time'])) }}</div>
+								<div class=" r-col one-line" :title=" contentLine['mobile']">{{ contentLine['mobile'] }}</div>
+							</td>
+							<td><!--状态  操作-->
+								<div class="txt-ln1 l-col tc">
+									<span class="" v-if="contentLine['status'] === 0">进行中</span>
+									<span class="" v-if="contentLine['status'] === 100">已回复</span>
+									<span class="" v-if="contentLine['status'] === 200">已完成</span>
+									<!--<span class="" v-if="contentLine['status'] === -200">删除</span>-->
+									<span class="" v-if="contentLine['status'] === -100">撤销</span>
+								</div>
+							
+								<div  class="r-col tc">
+									<a class="searchOrder dis-i-b" :id="contentLine['id']" href="javascript:void(0)">查看</a>
+									<a class="delOrder dis-i-b" :id="contentLine['id']" href="javascript:void(0)" style="color:red">删除</a>
+								</div>
+							</td>
+							<td>
+							</td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<!--暂无数据   start-->
+				<div class="no-data" v-if="noData">
+					结果数据0条
+				</div>
+				<!--暂无数据   end-->
+			</div>
+
+			<!--table end-->
+			<div>
+				<div class="PageF" v-if="totalPages>=1">
+					<!--<div class="paTotle col-md-3 col-sm-3">本页当前 {{ currentLines }} 条</div>-->
+					<div class="flip">
+						<div class="page-number fr">
+							<ul>
+								<li onclick="workInfo_vm.subPage('grad')">
+									<i class="iconfont">&#xe6e8;</i>
+								</li>
+								<li onclick="workInfo_vm.subPage('son')">
+									<i class="iconfont">&#xe63b;</i>
+								</li>
+								<li class="li-3">
+									<p>{{ params.currentpage }}/{{ totalPages }}</p>
+									<input type="text" :value="params.currentpage" id="currentPage">
+									<p onclick="workInfo_vm.changeCurrentPage()" :value="jumppage"  style="cursor: pointer;">GO</p>
+								</li>
+								<li onclick="workInfo_vm.addPage('son')">
+									<i class="iconfont">&#xe65a;</i>
+								</li>
+								<li onclick="workInfo_vm.addPage('grad')">
+									<i class="iconfont">&#xe6f4;</i>
+								</li>
+							</ul>
+						</div>
+						<div class="filp-x fr">
+							每页显示行
+							<select id="pageNum" @change="selcValue($event)" :value="params.pagesize">
+								<option v-for="lines in linesPerPage" >
+									{{ lines }}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!--分页1-->
+			</div>
+
+			</dir>
+
+			<!--right end-->
+		</div>
+		
+		<!--right end-->
+		<!--页面加载提示-->
+		<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+		<!--公共类库-->
+		
+		<!-- build:js js/user.server-libs.js -->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+		<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+		<!-- endbuild-->
+		<!--<script type="text/javascript" src="/ctrl/My97DatePicker/WdatePicker.js"></script>-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/myServ/workInfo.js"></script>
+		
+		 <script type="text/javascript">
+			var a=isSignIn();
+	    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+	    	}
+	    </script>
+		<script type="text/javascript">
+            $(function () {
+				$('#datetimepicker1').datetimepicker({
+                    minView: "month",
+                    format: 'yyyy-mm-dd',
+                    language: 'zh-CN',
+                    yearStart:2017,
+                    autoclose : true  
+                });
+                $('#datetimepicker2').datetimepicker({
+                    minView: "month",
+                    format: 'yyyy-mm-dd',
+                    language: 'zh-CN',
+                    yearStart:2017,
+                    autoclose : true 
+                });
+            });
+        </script>
+        
+	</body>
+
+</html>

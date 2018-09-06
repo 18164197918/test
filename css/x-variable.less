@@ -1,0 +1,208 @@
+@cr-0:              #000;
+@cr-1:            lighten(@cr-0, 6.75%); // #111(正确)
+@cr-2:            lighten(@cr-0, 13.5%); // #222(正确)
+@cr-3:            lighten(@cr-0, 20%); // #333(正确)
+@cr-4:            lighten(@cr-0, 26.75%); // #444(正确)
+@cr-5:            lighten(@cr-0, 33.5%); // #555(正确)
+@cr-6:            lighten(@cr-0, 40%); // #666(正确)
+@cr-7:            lighten(@cr-0, 46.7%); // #777(正确)
+@cr-8:            lighten(@cr-0, 53.5%); // #888(正确)
+@cr-9:            lighten(@cr-0, 60%); // #999(正确)
+@cr-a:            lighten(@cr-0, 66.7%); // #aaa(正确)
+@cr-b:            lighten(@cr-0, 73.5%); // #bbb(正确)
+@cr-c:            lighten(@cr-0, 80%); // #ccc(正确)
+@cr-d:            lighten(@cr-0, 86.75%); // #ddd(正确)
+@cr-e:            lighten(@cr-0, 93.5%); // #eee(正确)
+@cr-f:            lighten(@cr-0, 100%); // #fff(正确)
+
+@cr-e5:#e5e5e5; 
+@cr-f1:#f1f1f1;         
+
+//* 预定义样式 */
+@cr-primary:#49d9fc;//主要面板颜色
+@cr-succes:#5cb85c;//绿色面板颜色
+@cr-info:#5bc0de;//蓝色面板标签颜色
+@cr-warning:#f0ad4e;//橙色面板颜色
+@cr-danger:#d9534f;//红色面板颜色
+
+@btn-primary:#337ab7;//按钮主要颜色
+@btn-success:#5cb85c;//按钮成功颜色
+@btn-info:#5bc0de;//按钮信息标签颜色
+@btn-warning:#f0ad4e;//按钮警告颜色
+@btn-danger:#d9534f;//按钮危险颜色
+
+
+
+.tc{text-align:center;}
+.tr{text-align:right;}
+.tl{text-align: left;}
+.vc{vertical-align:middle;}
+
+/*浮动*/
+.fl{float:left;}
+.fr{float:right;}
+
+/* 行内、块级 */
+.block{display:block;}
+.inline{display:inline-block;}
+.none{display:none;}
+
+/* 定位 */
+.rel{position:relative;}
+.abs{position:absolute;}
+.fix{position:fixed;}
+
+//@font-family-sans-serif:  "Microsoft Yahei","Helvetica Neue", Helvetica, Arial, sans-serif;
+//@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+//@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+//@font-family-base:        @font-family-sans-serif;
+
+@ft-sz:          14px;
+@ft-sz-0:         ceil((@ft-sz * 0)); // ~0px
+@ft-sz-s:         ceil((@ft-sz * 0.85)); // ~12px
+@ft-sz-ls:         ceil((@ft-sz * 1.125)); // ~16px
+@ft-sz-l:         ceil((@ft-sz * 1.25)); // ~18px
+@ft-sz-xl:         ceil((@ft-sz * 1.7)); // ~24px
+@ft-sz-xll:         ceil((@ft-sz * 2.28)); // ~32px
+
+@ft-sz-h1:            floor((@ft-sz * 2.6)); // ~36px
+@ft-sz-h2:            floor((@ft-sz * 2.15)); // ~30px
+@ft-sz-h3:            ceil((@ft-sz * 1.7)); // ~24px
+@ft-sz-h4:            ceil((@ft-sz * 1.25)); // ~18px
+@ft-sz-h5:            @ft-sz;
+@ft-sz-h6:            ceil((@ft-sz * 0.85)); // ~12px
+
+/* 圆角 */
+.radius0{border-radius:0;}
+.radius3{border-radius:3px;}
+.radius4{border-radius:4px;}
+.radius5{border-radius:5px;}
+.radius6{border-radius:6px;}
+.radius10{border-radius:10px;}
+.radius20{border-radius:20px;}
+.radius50{border-radius:50%;}
+
+
+/* 宽度 */
+.wid100{width:100%;}
+.wid50{width:50%;}
+.wid40{width:40%;}
+.wid30{width:30%;}
+.wid20{width:20%;}
+.wid15{width:15%;}
+.wid10{width:10%;}
+.wid8{width:8%;}
+.wid5{width:5%;}
+
+/* 高度 */
+.higt100{height:100%;}
+
+/* 边线  */
+.b-none{border:0;}
+.b-b-none{border-bottom:0;}
+.b-l-none{border-left:0;}
+.b-r-none{border-right:0;}
+
+.b-all-c-t{border-color:transparent;}
+.b-all-w8{border-width:8px;}
+.b-all-w7{border-width:7px;}
+.b-all-t0{border-top-width:0;}
+.b-all-s-s{border-style:solid;}
+
+//弹性布局
+.flex-l{
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    
+    }
+.flex{box-flex:1;-webkit-box-flex:1;-moz-box-flex:1;-ms-box-flex:1;-o-box-flex:1;flex: 1;}
+
+/* 一行显示 */
+.row-shows{
+//      width:-moz-calc(100%);
+//      width:-webkit-calc(100%);
+//      width:calc(100%);
+//      .wid100;
+    text-overflow: ellipsis;
+    .overflow;
+    .nowrap;
+    .word;
+}
+.txt-ln1{overflow:hidden;text-overflow:ellipsis;white-space:nowrap; -webkit-box-orient:vertical;-webkit-line-clamp:1}
+/*两行文字，多余超出省略*/
+.txt-ln2{overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2}
+/*三行文字，多余超出省略*/
+.txt-ln3{overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:3}
+/*四行文字，多余超出省略*/
+.txt-ln4{overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:4}
+/*五行文字，多余超出省略*/
+.txt-ln5{overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:5}
+                
+/* 字体粗细 */
+@normal:normal;
+.normal{font-weight:normal;}
+.bold{font-weight:bold;}
+.fw300{font-weight:300;}
+.opc8{opacity:.8;}
+.opc1{opacity:1;}
+
+/* 文字加线 */
+.underline{text-decoration:underline;}
+@none-underline:none;
+/*去掉li的点*/
+li{list-style-type:none;}
+
+/*鼠标手势*/
+.cursor{cursor:pointer;}
+
+
+/* 溢出隐藏  */
+.overflow{overflow:hidden;}
+.nowrap{white-space:nowrap;}
+.word{word-break:keep-all;}
+
+//清除浮动
+.clearfix{
+    &:after{
+        visibility:hidden;
+        display:block;
+        height:0;
+        font-size:0;
+        content:"";
+        clear:both;
+    }
+}
+        
+
+/*隐藏、显示(没有占位符)*/
+.v-h{visibility:hidden;}
+.v-v{visibility:visible;}
+
+.mg(@v:0.2rem){
+    margin: @v;
+}
+.pd(@v:0 0.46rem){
+    padding: @v;
+}
+
+/* 去除填充 */
+.pdNone{.pd(0)!important}
+//图片宽高比
+.x-img-box{
+    &.pd-bottom10:before{padding-bottom: 10%;}
+    &.pd-bottom20:before{padding-bottom: 20%;}
+    &.pd-bottom30:before{padding-bottom: 40%;}
+    &.pd-bottom35:before{padding-bottom: 35%;}
+    &.pd-bottom40:before{padding-bottom: 40%;}
+    &.pd-bottom50:before{padding-bottom: 50%;}
+    &.pd-bottom60:before{padding-bottom: 60%;}
+    &.pd-bottom70:before{padding-bottom: 70%;}
+    &.pd-bottom50:before{padding-bottom: 80%;}
+    &.pd-bottom60:before{padding-bottom: 90%;}
+    &.pd-bottom70:before{padding-bottom: 100%;}
+    
+}
+

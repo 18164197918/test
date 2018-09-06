@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<title>评论管理</title>
+		
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		<link rel="stylesheet" href="css/footer.css" /><!--footer 样式-->
+	
+		
+		<!--[if lt IE 9]>
+    　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<div class="container con-comment">
+			<div class="row">
+				<!--left start-->
+				<div class="col-md-3 col-sm-3">
+					<div class="row">
+						<div class="menu-child">
+							<!--二级菜单导航  start-->
+							<div class="menu-nav">
+								<div class="img-center">
+									
+								</div>
+							</div>
+							<!--二级菜单导航  end-->
+							<ul>
+								<li class="hover">
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe64e;</i>
+										<span>网站设置</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												基本信息
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												用户管理
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe653;</i>
+										<span>栏目管理</span>
+									</a>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe818;</i>
+										<span>内容管理</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												内容管理
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												内容回收站
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												推荐管理
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe668;</i>
+										<span>业务管理</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												留言管理
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												评论管理
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												订单管理
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												会员管理
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe6aa;</i>
+										<span>插件管理</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												广告管理
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												友情链接
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												图片水印
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												在线客服
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe6aa;</i>
+										<span>云站业务</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												待开发云站
+											</a>
+										</li>
+										
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												云站列表
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe64a;</i>
+										<span>我的服务</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												个人信息
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												交易记录
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												账户充值
+											</a>
+										</li>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												工单信息
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:void(0)">
+										<i class="iconfont">&#xe6aa;</i>
+										<span>我的客户</span>
+									</a>
+									<ul>
+										<li>
+											<a href="javascript:void(0)">
+												<i class="iconfont">&#xe60a;</i>
+												客户管理
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--left end-->
+				<!--right start-->
+				<div class="col-md-9 col-sm-9">
+					<!--table start-->
+					<div class="table">
+						<!--表头操作按钮   start-->
+						<div class="tab-header clearfix">
+							<div class="col-md-3 col-sm-3 col-xs-3">
+								<div class="row">
+									<!--树形菜单  start-->
+									<div class="tree-wrap">
+										<div id="tree"></div>
+									</div>
+									<!--树形菜单  end-->
+								</div>
+							</div>
+							<div class="col-md-3 col-xs-3">
+								<div class="row">
+									<!--选择列表  start-->
+									<div class="down-wrap">
+									  	<!--bootstrap start-->
+									  	<div class="dropdown">
+											<button type="button" class="btn dropdown-toggle btn-default" id="dropdownMenu1" 
+													data-toggle="dropdown">
+												<span class="dec">批量操作</span>
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+												<li role="presentation">
+													<a role="menuitem" tabindex="-1" href="javascript:void(0)">删除</a>
+												</li>
+												<li role="presentation">
+													<a role="menuitem" tabindex="-1" href="javascript:void(0)">发布</a>
+												</li>
+											</ul>
+										</div>
+									  	<!--选择列表  end-->
+									</div>
+									<!--下拉菜单  end-->
+								</div>
+							</div>
+							<div class="col-md-6 col-xs-6">
+								<div class="row text-right">
+									<!--刷新、添加  start-->
+									<div class="btn-group" role="group" aria-label="...">
+									  <button type="button" class="btn btn-default">
+									  	<i class="iconfont">&#xe631;</i>
+									  	刷新
+									  </button>
+									  <button type="button" class="btn btn-default">
+									  	<i class="iconfont">&#xe608;</i>
+									  	添加
+									  </button>
+									</div>
+									<!--刷新、添加  end-->
+								</div>
+							</div>
+				
+							
+						</div>
+						<!--表头操作按钮   end-->
+						
+							<table class="table table-bordered table-hover table-condensed">
+								<thead>
+									<tr>
+										<th class="vertical">
+											
+										  <label>
+										    <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+										  </label>
+										  <div class="even">
+										  	评论人
+										  </div>	
+										</th>
+										<th class="vertical">评论人</th>
+										<th class="vertical one">
+											评论内容
+											<div class="even">
+												所属内容
+											</div>
+										</th>
+										<th class="vertical one">
+											所属内容
+										</th>
+										<th class="vertical">
+											评论时间
+											<div class="even">
+												公开
+											</div>
+										</th>
+										<th class="vertical one">
+											公开
+										</th>
+										<th class="vertical one">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="vertical">
+											<label>
+										    	<input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+										  	</label>
+										  	<div class="even one-line">
+										  		曾黎
+										  	</div>
+										</td>
+										<td class="vertical">
+											<div class="one-line">
+												曾黎
+											</div>
+										</td>
+										<td class="vertical">
+											<div class="one-line">
+												大海呀全是水，骏马呀四条腿！
+											</div>
+											<div class="even one-line">
+												飞跃大洪山 百炼淬金玉 ——2017百捷高管大洪山品质之旅
+											</div>
+										</td>
+										<td class="vertical">
+											<div class="one-line">
+												飞跃大洪山 百炼淬金玉 ——2017百捷高管大洪山品质之旅
+											</div>
+										</td>
+										<td class="vertical">
+											<div class="one-line">
+												2017-12-1 18:00:11
+											</div>
+											<div class="even">
+												<div class="one-line">公开</div>
+											</div>
+										</td>
+										<td class="vertical">
+											<div class="one-line">公开</div>
+										</td>
+										<td class="vertical opr">
+											<a class="a-default" href="javascript:void(0)">回复</a>
+											<a class="a-del" href="javascript:void(0)">删除</a>
+										</td>
+									</tr>
+									
+								</tbody>
+							</table>
+					
+						</div>
+				
+	
+					<!--table end-->
+				</div>
+				<!--right end-->
+			</div>
+		</div>
+		<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+		<script src="ctrl/bootstrap/js/bootstrap.min.js"></script><!--bootstrap引用-->
+		<script src="js/common.js"></script>
+		</body>
+</html>

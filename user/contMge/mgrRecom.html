@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>排行管理</title>
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+
+		<link rel="stylesheet" href="/ctrl/font-awesome-4.7.0/css/font-awesome.min.css"><!--字体图标-->
+
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link href="css/zTreeStyle.css"  rel="stylesheet">
+		<link href="css/user/custom-tree.css"  rel="stylesheet">
+		<!-- cutImg文件 -->
+		<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+		<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+		<style type="text/css">
+			.x-tips {
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    top: 0;
+			    left: 0;
+			    background: #fff;
+			    z-index: 1000;
+			}
+			.x-tips .x-tips-box {
+			    max-width: 200px;
+			    border-radius: 3px;
+			    padding: 10px;
+			    position: fixed;
+			    left: 50%;
+			    margin: -20px 0 0 -100px;
+			    top: 20%;
+			    background: rgba(0, 0, 0, 0.5);
+			    z-index: 1001;
+			    color: #FFFFFF;
+			}
+			.form-divid{
+				width: 50%;
+				
+			}
+			.tip_tit{
+				font-size: 16px;
+			    text-align: left;
+			    line-height: 43px;
+			    padding-left: 0;
+			}
+			.err-msg{
+				text-indent: 10px;
+			}
+			.rec-contents,.rec-items{
+				height: auto;
+				overflow: hidden;
+			}
+			.rec-items .rec-list{
+				height: 334px;
+				overflow-y: auto;
+			}
+		</style>
+	</head>
+	<body class="userNav"  >
+	<input type="hidden"  id="leftstatu" value="内容管理"/>
+    <input type="hidden"  id="leftstatus" value="排行管理"/>
+	<!--内容部分 start-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">排行管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+				<!--right start-->
+				<div class="" id="mgerecmd" v-cloak>
+					
+					<!--up start-->
+					<div class="rec-up clearfix">
+							<div class="col-md-3 col-sm-3">
+							<div class="rel" style="margin-bottom: 15px;">
+								<div class="ml-15" style="height:38px;">
+									<!--树形菜单  start-->
+									<!--<div class="tree-wrap rel">
+										<div id="tree"></div>
+									</div>-->
+									<!--树形菜单  end-->
+									<!--<div class="tree-nav rel">-->
+										<!--<div  onclick="showMenu()">
+											<input type="hidden" :value="params.mid" class="cs-point"/>
+											<input id="citySel" class="form-control" type="text" readonly value="网站栏目" class="cs-point"/>
+										</div>
+										<div id="menuContent" class="menuContent wid100" style="">
+											<ul id="selctTree" class="ztree" style="margin-top:0; "></ul>
+										</div>-->
+										<select name="" id="selectLabel" class="form-control cur-p" onchange="selectListByLabel(this)">
+											<option v-for="item in lableList" :value="item.id" :data-num="item.num" :data-label="item.label">{{item.name}}</option> 
+										</select>
+									<!--</div>-->
+									
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3" style="height:39px;"></div>
+						<div class="col-md-6 col-sm-6 col-xs-12 pdNone">
+							<!--<ul id="myTabs" class="nav nav-tabs nav-justified nav-my">
+							  <li class="col-sm-4  col-xs-4 active" role="presentation" number="10" @click="navClick(0)"><a>热门</a></li>
+							  <li class="col-sm-4 col-xs-4 " role="presentation" number="20" @click="navClick(1)"><a>精品</a></li>
+							  <li class="col-sm-4 col-xs-4 " role="presentation" number="30" @click="navClick(2)"><a>推荐</a></li>
+							</ul>-->
+						</div>
+					</div>
+					<!--up end-->
+					<!--down start-->
+				
+					<div class="rec-down clearfix">
+						<!--77777777777777777777777777777-->
+						<div class="rec-contents" style="border-bottom:  1px solid #eee;">
+						<!--排行版   start-->
+						<div class="col-md-12 col-sm-12">
+							<div class="page-header page-header-my mb-my clearfix" style="margin-bottom: 0;">
+							  <h1><i class="iconfont i-ph">&#xe683;</i>排行榜设置</h1>
+							</div>
+							<!--排行榜内容-->
+							<div class="list-group-item right-item" v-if="!labelSet">暂无相关数据</div>
+							<div class="rec-list clearfix" style="padding-top: 20px; min-height: 152px;overflow-y: auto;" v-if="labelSet">
+							<!--form start-->
+							<!--<form action="javascript:void(0)" class="form-horizontal userForm userFormF" id="remomForm" >-->
+								
+								<div class="pad-box" style="height: auto;overflow: hidden;" >
+									    <div class="form-group  form-group-tips form-text col-sm-6" v-if="labelSet.text" v-for="(txt_item,index) in labelSet.text" >
+										    <label for="" class="col-sm-2 control-label userFormL pr0 pt0 tip_tit">标签{{index+1}}:</label>
+										    <div class="col-sm-10">
+										      <input type="text" id="websiteTitle" name="websiteTitle"  v-model="txt_item.val"  class="form-control" placeholder="如：热门新闻">
+										      <div class="err-msg">{{txt_item.tip}}</div>
+										    </div>
+									    </div>
+							    		
+							    		<div class="form-group  form-group-tips form-img col-sm-6" v-if="labelSet.img" v-for="(img_item,index) in labelSet.img">
+										    <div  class="col-sm-2 control-label userFormL pr0 pt0"><img :src="img_item.url" onerror="imgerror(this)" style="width: 50px;"/></div>
+										    <div class="col-sm-10">
+										    	<div class="col-sm-12" style="padding-left: 0px;">
+								    			<form  class="form-horizontal userForm userFormF formComm" :id="['form_img'+index]">
+									    		    <input type="file" id="" name="file" accept="image/*"  class="form-control hidden iptfile" @change="upFile($event,index,'img')" placeholder="如：hot news">
+										            <input type="text"  class="col-sm-10  filetext" disabled="disabled" :value="img_item.url"/><button type="button" class="col-sm-2 btn btn-default upload-btn">...</button>
+										            <!--<button type="submit" class="col-sm-2 btn btn-default submit-btn" :data-form="['form_img'+index]" :data-index="index" data-type="img">上传</button>-->
+									           </form>
+										    	</div>
+										      <div class="err-msg"></div>
+										      <div id="" class="col-sm-12 top_desc">
+										    		<p class="red" style="margin-top: 4px; color: rgb(125, 125, 125); font-size: 12px;">{{img_item.tip}}</p><!--建议图片大小200*200,png透明格式-->
+										    	</div>
+										    </div>
+										    	
+
+									    </div>
+									    <div class="form-group  form-group-tips form-media col-sm-6" v-if="labelSet.media" v-for="(media_item, index) in labelSet.media">
+										    <div  class="col-sm-2 control-label userFormL pr0 pt0"><img src="" onerror="imgerror(this)" style="width: 50px;"/></div><!--视频没有图片  有个默认图-->
+										    <div class="col-sm-10">
+										    	<div class="col-sm-12" style="padding-left: 0px;">
+										    		<form class="form-horizontal userForm userFormF formComm" :id="['form_media'+index]">
+									    		    <input type="file" id="" name="file"    multiple= "multiple"   class="form-control hidden iptfile"  @change="upFile($event,index,'media')" placeholder="如：热门视频">
+										            <input type="text"  class="col-sm-10  filetext" disabled="disabled" :value="media_item.url"/><button type="button" class="col-sm-2 btn btn-default upload-btn">...</button>
+										             <!--<button type="submit" class="col-sm-2 btn btn-default submit-btn" :data-form="['form_media'+index]"  :data-index="index" data-type="media">上传</button>-->
+										            </form>
+										    	</div>
+										      <div class="err-msg"></div>
+										      <div id="" class="col-sm-12 top_desc">
+										    		<p class="red" style="margin-top: 4px; color: rgb(125, 125, 125); font-size: 12px;">{{media_item.tip}}</p><!--建议图片大小200*200,png透明格式-->
+										    	</div>
+										    </div>
+									    </div>
+							   </div>
+							   <div class="btn-box btn-box-one text-center">
+									<div type="button" class="btn btn-default" @click="submitAllSet($event)">提交</div>
+								</div>
+							<!--</form>-->
+							</div>
+						</div>
+						<!--排行版   end-->
+						
+						</div>
+						
+					<div class="rec-items">
+						<!--排行版   start-->
+						<div class="col-md-6 col-sm-6">
+							<div class="page-header page-header-my mb-my clearfix">
+							  <h1><i class="iconfont i-ph">&#xe683;</i>排行榜内容</h1>
+							</div>
+						
+							<!--排行榜内容-->
+							<div class="rec-list clearfix">
+								<ul id="lf-item" class="list-group">
+								  	<li class="list-group-item" v-if="noTopTen">无排行</li>
+								  
+									<li v-else v-for="(item,index) in topTenList" class="list-group-item list-group-hasitem">
+										<span class="badge">{{index+1}}</span>
+										<span class="desc" :title="item.title">{{item.title}}</span>
+										<!--新增缩图-->
+										<div class="min_pic" >		
+											<div class="min_Img maimglst img-btn useupImg" :data="item.rtlid"  :title="['min_Img'+index]"    data-toggle="modal" data-target="#show_cutimg" >
+												<a class="">
+													<span class="iconfont sp-color">&#xe602;</span>
+										      		<img class="uploadimg" :name="['min_Img'+index]" :src="item.rtl_img" onerror="imgerror(this)"/>
+										      	</a>
+											</div>
+										</div>
+										<!--新增缩图-->
+										
+										<div class="top_operate">
+											<span @click.stop="deleteFun(item.rtlid)" class="fa fa-trash fa-dele icon-size "></span>
+											<span @click.stop="rankFun(item.rtlid,'desc')" class="fa fa-arrow-down fa-next icon-size "></span>
+											<span @click.stop="rankFun(item.rtlid,'asc')" class="fa fa-arrow-up fa-prev icon-size "></span>
+										</div>
+										<!--<span style="width:86px;" class="top-new-date" v-text="item.update_time"></span>-->
+									</li>
+										<input type="hidden" name="" id="" value=""/>
+								</ul>
+								<label for="" class="" style="margin-top: 10px;color:#aaa;font-weight: normal;">还可以添加 {{res_topTenNum}} 条数据</label>
+							<!--color:#FE4FFE ;-->
+							</div>
+						</div>
+						<!--排行版   end-->
+						<!--中间按钮   start-->
+						<div class="col-md-1 col-sm-1  md-row pdNone">
+							<i class="iconfont i-arrow-big"  @click="addContent()">&#xe66e;</i>
+							<i class="iconfont i-arrow-big1" @click="addContent()">&#xe60b;</i>
+						</div>
+						<!--中间按钮   end-->
+						<!--全部   start-->
+						<div class="col-md-5 col-sm-5 ">
+							<div class="page-header page-header-my">
+							    <!--搜索条件   start-->
+								<div class="row">
+								  <div class="col-lg-12 rec-mb-15">
+								    <div class="input-group">
+								      <input type="text" id="searchrightinfo" class="form-control" v-model="searchValue" placeholder="输入关键词搜索排行榜源数据">
+								      <span class="input-group-btn">
+								        <button class="btn btn-default" type="button" @click="searchNews()">搜索</button>
+								      </span>
+								    </div><!-- /input-group -->
+								  </div><!-- /.col-lg-6 -->
+								</div><!-- /.row -->
+							</div>
+							<div class="rec-list clearfix">
+								
+								<!--搜索条件   end-->
+								<ul class="list-group">
+								  	<li class="list-group-item right-item" v-if="this.allCatList.length==0">暂无相关数据</li>
+									<li v-else v-for="(item,index) in allCatList" class="list-group-item right-item"  @click="listSet($event,index)" :class="{ 'checked': item.checked}" :rowId="item.id">
+										<span class="badge" v-text="index+1"></span>
+										<span v-if="item.number">{{item.number}}&nbsp;</span>
+										<span class="desc" >{{item.title}}</span>
+									</li>
+								</ul>
+
+									
+									<!--翻页-->
+					    		    <div class="PageF PageF-recom row" v-if="totalPages>1">
+										<div class="flip col-md-12 col-sm-10 pdNone">
+											<div class="page-number fr">
+												<ul>
+													<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+													<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+													<li class="li-3">
+														<p>{{ currentpage }}/{{ totalPages }}</p> 
+														<input type="text" class="currentpage" v-model="currentpage"> 
+															<p @click="changeCurrentPage" :value="currentpage"  value="1" style="cursor: pointer;">GO</p>
+													</li> 
+													<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+													<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+												</ul>
+											</div>
+											
+										</div>
+									</div>
+					    		    <!--翻页结束-->
+									
+									
+									
+									
+								  
+							</div>
+						</div>
+						</div>
+						</div>
+						
+						<!--888888888888888888888888888888-->
+						
+					
+						<!--全部   end-->
+					</div>
+					<!--down end-->
+				</div>
+				<!--right end-->
+				
+			<!--上传图片-->
+			<div class="show useupImgbox in upImg" id="show_cutimg">
+				<div class="modal-dialog">	
+				    <div class="modal-content" id="myModal">
+				        <div class="modal-body">
+				            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+				                <div class="img-container">
+				                    <img  alt="点击下面选择文件按钮进行选择文件！" style="opacity: 0;">
+				                    <p class="cutimg-tips">点击下面选择文件按钮进行选择文件！</p>
+				                    <div class="img-type" style="display:none"></div>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="modal-footer2">
+				            <div class=" col-xs-12">
+				            	<div class="row mt-10 mb-5">
+					        		<div class="col-sm-7">
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe613;</span>
+					                    	</span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe632;</span>
+					                    	</span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+					                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe60c;</span>
+					                   		 </span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe60c;</span>
+					                    	</span>
+					                    </button>
+										<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+										    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+												<span class="iconfont">&#xe697;</span>
+										    </span>
+										</button>
+		
+					                </div>
+					                <div class="col-sm-5 upload-fr">
+				                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+				                        <input class="sr-only" id="inputImage" type="file" name="file">
+				                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+				                            选择文件
+				                        </span>
+				                    </label>  
+				                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+				                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+				                            确认上传
+				                        </span>
+				                    </label>
+				                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+				                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+				                            取消
+				                        </span>
+				                    </label>
+					                </div>
+				            	</div>
+				            </div>
+				            
+				            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+				            </div>
+				        </div>
+				    </div> 	
+				</div>
+			</div>
+				
+			<div class="x-tips" style="display: none;" id="x-loading">
+				<div class="x-tips-box">
+					<p>删除中...</p>
+				</div>
+			</div>	
+				
+				
+				
+	<!--内容部分 end-->
+	<!--公共类库-->
+	
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="ctrl/ckeditor/ckeditor.js" ></script>
+	<script type="text/javascript" src="ctrl/ckeditor/config.js" ></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	
+	<!-- build:js js/cutimg.libs.js --> 
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+
+	<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"  charset="utf-8"></script> <!--z-Tree-->
+	<!--个人公共-->
+
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+
+	<script type="text/javascript" src="js/user/colums.js" charset="utf-8"></script><!--自定义封装zTree方法-->
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/contMge/mgrRecom.js"></script><!--footer 模块加载js-->
+	
+		 <script type="text/javascript">
+			var a=isSignIn();
+	    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+	    	}
+	    </script>
+		<script>
+			var flag = false;
+			$(function() {
+				$('#lf-item > li').on('click', function(){
+					if(flag) {
+						$(this).find('div').remove();
+						// span移除active样式
+						$(this).find('span.desc').removeClass('active');
+						flag = false;
+					} else {
+						var addBtn =   '<div>'
+							   +      '<span class="iconfont">&#xe68b;</span>'
+							   +      '<span class="iconfont">&#xe638;</span>'
+							   +      '<span class="iconfont i-del">&#xe633;</span>'
+						   	   +      '</div>';
+			   	    	$(this).append(addBtn);
+			   	    	// span添加active样式
+			   	    	$(this).find('span.desc').addClass('active');
+			   	    	flag = true;
+					}
+					
+				});
+				
+
+			});
+		    //管理设置上传附件触发效果
+		    $(document).on('click', ".upload-btn", function(){
+		    	 $(this).siblings(".iptfile").click();
+		    });
+//		      $(document).on('change', ".iptfile", function(){
+//		    	  $(this).siblings(".filetext").val($(this).val());
+//		    });
+		  
+		</script>
+	</body>
+</html>

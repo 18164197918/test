@@ -1,0 +1,6 @@
+
+
+function save(){
+    editor.updateElement();
+
+}

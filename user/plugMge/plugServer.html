@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>插件管理-在线客服</title>
+   
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+	
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/form-common.css" />
+	<!-- cutImg文件 -->
+	<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+	<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+    <!--时间插件样式 -->
+  	 <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+    <!--用户中心-->
+    <!--用户中心样式-->
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+</head>
+
+<body class="userNav">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="在线客服" />
+    
+      		<!--手机内页头部-->
+			<div class="wapTop">
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<span class="iconfont Back fl">&#xe66e;</span>
+						<span class="leftstatus-mobile fz15">在线客服</span>
+					</div>
+				</div>
+			</div><!--手机内页头部end-->
+            <!--right start-->
+            <div class="" id="plugserver" v-cloak>
+            	
+				
+				<!--选项卡 开始-->
+				<!--<ul id="myTab" class="nav nav-tabs">
+					<li class="active">
+						<a href="#home" data-toggle="tab">在线客服样式</a>
+					</li>
+					<li>
+						<a href="#ios" data-toggle="tab">在线客服信息</a>
+					</li>
+				</ul>-->
+				<div id="myTabContent" class="tab-content form-common rel" >
+				   <div class="tab-pane fade in active" id="home">
+				   	
+				   	<form action="" id='serverOne' class="form-horizontal">
+				   		<div class="form-group ">
+				   			
+						<label class="col-sm-2 control-label col-xs-3 mobile_mt6">样式选择(<i class="i-important">*</i>)：</label>
+				   		<div class="col-sm-10 col-xs-9 ">
+							<div class="row mb10 row-style">
+					    		<div class="col-md-12 col-sm-12">
+					    			<div class="col-md-1 col-sm-1 pdNone col-xs-3">
+								      	<label class="radio-inline">
+										  <input type="radio" checked="checked" name="plug-ra" id="inlineRadio1" value="option1"><span>启用</span>
+										</label>
+							      	</div>
+							      	<div class="col-md-2 col-sm-2 pdNone col-xs-4 ">
+							      		<select class="form-control select-color select-color-big color-1">
+							      			<option value="0">默认</option>
+									      	<option value="1">红色</option>
+									      	<option value="2">黄色</option>
+									    </select>
+							      	</div>
+							      	<div class="col-md-2 col-sm-2 col-xs-5 " >
+							      		<span class="show-css show-big">显示样式</span>
+							      	</div>
+					    		</div>	
+
+					    	</div>	
+							<!--第二行   start-->
+					    	<div class="row row-style">
+					    		<div class="col-md-12">
+					    			<div class="col-md-1 col-sm-1 pdNone col-xs-3">
+								      	<label class="radio-inline">
+										  <input type="radio" name="plug-ra" id="inlineRadio1" value="option1"><span>启用</span>
+										</label>
+							      	</div>
+							      	<div class="col-md-2 col-sm-2 pdNone col-xs-4">
+							      		<select class="form-control select-color select-color-small color-2">
+							      			<option value="0">默认</option>
+									      	<option value="1">红色</option>
+									      	<option value="2">黄色</option>
+									    </select>
+							      	</div>
+							      	<div class="col-md-2 col-sm-2 col-xs-5 " >
+							      		<span class="show-css show-small">显示样式</span>
+							      	</div>
+					    		</div>	
+					    	</div>
+					    	<!--第二行   end-->
+					    	<!--第三行   start-->
+					    	<div class="row">
+					    		<div class="col-md-12 col-sm-12">
+					    			<label class="radio-inline">
+									  <input type="radio" name="plug-ra" value="option1"><span>不显示客服</span>
+									</label>
+					    		</div>
+					    	</div>
+					    	<!--第三行   end-->	
+						</div>	
+				   		</div>
+				   		<div class="form-group form-group-del form-mobile-pd">
+						    <label  class="col-sm-2 col-md-2 col-xs-2 control-label">客服QQ：</label>
+						    <div class="col-sm-10 col-md-10 col-xs-10 row-item plug-box-right-1">
+						    	<div class="add-plu-box mobile_mb15">
+							    	<div class="col-md-3 col-sm-3 col-xs-3 ml-15 rel mobile_mb15">
+							    		<div class="add-plu">
+								    		<input type="text" class="form-control qq-number " name="serverQQ">
+							    		</div>
+							    	</div>
+							    </div>	
+						    	<div class="col-md-1 col-sm-1 col-xs-1 ml-15" >
+						    		<span class="iconfont span-add"  @click='addItem($event,1)'>&#xe61d;</span>
+						    	</div>
+						    </div>
+						</div>
+				   		<!--02(客服电话) start-->
+						<div class="form-group form-group-del form-mobile-pd">
+							    <label  class="col-sm-2 control-label">客服电话：</label>
+							    <div class="col-sm-10 row-item plug-box-right-1 ">
+							    	<div class="add-plu-box mobile_mb15">
+								    	<div class="col-md-3 col-sm-3 col-xs-3 ml-15 mobile_mb15">
+								    		<div class="add-plu ">
+								    			<input type="text" name="serverPhone" class="form-control phone-number">
+								    		</div>
+								    	</div>
+							    	</div>
+							    	<div class="col-md-1 col-sm-1 ml-15" >
+							    		<span class="iconfont span-add" @click='addItem($event,2)' >&#xe61d;</span>
+							    	</div>
+							    </div>
+						</div>
+						<div class="form-group form-mobile-pd" style="margin-bottom: 0;">
+						    <label for="inputPassword3" class="col-sm-2 control-label">微信二维码：</label>
+						    <div class="col-sm-10">
+								<div class="row">
+						    		<div class="col-md-12 col-sm-12 ">
+						    			<div class="btn-add-box">
+						    				<div title="wxImg " data-toggle="modal" data-target="#show_cutimg" class="useupImg maimglst  img-btn" style="border: 1px solid #ddd;">
+												<a>
+													<span class="iconfont sp-color">&#xe61d;</span> 
+													<img src=""  alt="" name="wxImg" class="uploadimg">
+												</a>
+											</div>
+						    			</div>
+						    		</div>
+						    	</div>
+						    </div>
+						</div>
+						
+						<div class="form-group form-mobile-pd" style="margin-bottom: 0;">
+					        <label for="cname" class=" col-sm-2 control-label">悬浮位置：</label>
+					        <div class="col-sm-10">
+						        <div class="checkbox">
+									<label class="fz14 textarea-color" style="padding-left: 0;"><input name="pst-cho" class="pst-cho " type="radio" value='1'  checked="checked"/>右部居中 </label> 
+									<label class="fz14 textarea-color"><input name="pst-cho" class="pst-cho " type="radio" value='0'/>左部居中 </label> 
+						        </div>	  
+							</div> 
+					    </div>
+				   		
+				   		
+							<div class="plug-code">
+								<ul class="plug-code-box">
+									<li class="plug-code-box-list plug-code-box-list-active" style="cursor: pointer" @click='changeCode($event)'>
+										<div class="plug-code-title fz12 textarea-color">第三方电脑网站代码</div>
+									</li>
+									<li class="plug-code-box-list " style="cursor: pointer" @click='changeCode($event)'>
+										<div class="plug-code-title fz12 textarea-color"  class="fz12 textarea-color">第三方手机网站代码</div>
+									</li>
+								</ul>
+								<ul class="plug-code-text">
+									<li><textarea v-model='computerCode' class="fz12 textarea-color ">第三方电脑代码</textarea></li>
+									<li><textarea v-model='phoneCode'    class="fz12 textarea-color dis-n">第三方手机代码</textarea></li>
+								</ul>
+							</div>
+							
+							
+							  <!--一个按钮  start-->
+							  <div class="btn-box btn-box-one text-center">
+							  	 <button type="button" class="btn btn-default" @click='keepCode'>提交</button>
+							  </div>
+							  <!--一个按钮  end-->
+						</form>
+				   </div>
+				   
+				   
+				   
+				  		
+						     <div class="suspension suspension-big dis-n" >
+						  	  	<ul>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe621;</i>
+						  	  			<span>在线客服</span>
+						  	  		</li>
+						  	  		<li class="active">
+						  	  			<i class="iconfont">&#xe620;</i>
+						  	  			<span>电话咨询</span>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe659;</i>
+						  	  			<span>微信咨询</span>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe61e;</i>
+						  	  			<span>意见反馈</span>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe623;</i>
+						  	  			<span>回到顶部</span>
+						  	  		</li>
+						  	  	</ul>
+						  	  </div>
+						  	  <!--右侧悬浮样式 (大)   end-->
+						  	  <!--右侧悬浮样式 (小)   start-->
+						  	  <div class="suspension suspension-small dis-n" >
+						  	  	<ul>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe621;</i>
+						  	  		</li>
+						  	  		<li class="active">
+						  	  			<i class="iconfont">&#xe620;</i>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe659;</i>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe61e;</i>
+						  	  		</li>
+						  	  		<li>
+						  	  			<i class="iconfont">&#xe623;</i>
+						  	  		</li>
+						  	  	</ul>
+						  	  </div>
+						  	  <!--右侧悬浮样式 (小)   end-->
+				   
+				   
+				   
+				</div>
+				<!--选项卡 结束-->
+				
+				<!--客服第一步样式选择 start-->
+				
+				    	
+				<!--客服第一步样式选择 end-->
+				    
+			<!--上传图片组件-->
+			    <div class="show useupImgbox in upImg" id="show_cutimg">
+					<div class="modal-dialog">	
+					    <div class="modal-content" id="myModal">
+					        <div class="modal-body">
+					            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+					                <div class="img-container">
+					                    <img  alt="点击下面选择文件按钮进行选择文件！" style="opacity: 0;">
+            							<p class="cutimg-tips">点击下面选择文件按钮进行选择文件！</p>
+					                    <div class="img-type" style="display:none"></div>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="modal-footer2">
+					            <div class=" col-xs-12">
+					            	<div class="row mt-10 mb-5">
+						        		<div class="col-sm-7">
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe613;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe632;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+						                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                   		 </span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                    	</span>
+						                    </button>
+											<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+											    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+													<span class="iconfont">&#xe697;</span>
+											    </span>
+											</button>
+			
+						                </div>
+						                <div class="col-sm-5 upload-fr">
+					                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+					                        <input class="sr-only" id="inputImage" type="file" name="file">
+					                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+					                            选择文件
+					                        </span>
+					                    </label>  
+					                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+					                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+					                            确认上传
+					                        </span>
+					                    </label>
+					                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+					                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+					                            取消
+					                        </span>
+					                    </label>
+						                </div>
+					            	</div>
+					            </div>
+					            
+					            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+					            </div>
+					        </div>
+					    </div> 	
+					</div>
+				</div>
+            </div>
+            <!--right end-->
+    <!--公共类库-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	<!-- build:js js/user.plugin-libs.js -->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+	<!-- endbuild-->
+   <script type="text/javascript" src="js/comm/comm.js"></script>
+	<script type="text/javascript" src="ctrl/ckeditor/ckeditor.js" ></script>
+	<script type="text/javascript" src="ctrl/ckeditor/config.js" ></script>
+
+	<!-- build:js js/cutimg.libs.js -->
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+	
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+   	
+    
+	<!--页面独有-->
+	<script type="text/javascript" src="js/form.js"></script>
+	<script type="text/javascript" src="js/user/plugMge/plugServer.js"></script>
+	
+	<script type="text/javascript">
+	   var a=isSignIn();
+	   if(a==null){
+			window.top.location.href = fontBaseUrl+'user/sign.html';
+	   }
+   </script>
+    <script type="text/javascript">
+    	    $('body').on("click",".add-remove",function(){
+				var qqNum = $('body').find('.qq-number').length;
+				$(this).parent().parent().parent().find('.fa-plus').show();
+				$(this).parent().remove();
+			})
+    	    $(function(){
+    	      $('#myTab li:eq(0) a').tab('show');
+    	    })
+    </script> 
+</body>
+
+</html>

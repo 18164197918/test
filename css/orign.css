@@ -1,0 +1,42 @@
+
+/*################################ 我的服务-个人信息（详情）  开始  ##############################*/
+/*账户信息*/
+.acontDetail .infotop,
+.acontDetail .infoinner,
+.acontDetail .infobotm{width: 100%;height: auto;}
+.acontDetail .infotop{margin-bottom: 15px;border-bottom: 2px solid #e3e3e3;padding-bottom: 10px;}
+.acontDetail .infotop .topbanner{color: #515151;}
+.acontDetail .infotop .topContent{min-height: 140px;overflow: hidden;}
+.acontDetail .infotop .topContent>div{font-size: 14px;float: left;width: 50%;height: auto;}
+.acontDetail .infotop .topContent .lftInfo{border-right: 1px solid #E3E3E3;}
+.acontDetail .infotop .topContent .rightInfo{padding-left: 34px;}
+.acontDetail .infotop .topContent .lftInfo div,
+.acontDetail .infotop .topContent .rightInfo div{margin-bottom: 14px;margin-left: 6px;}
+.acontDetail .infotop .topContent .lftInfo .accotTip,
+.acontDetail .infotop .topContent .rightInfo .accotTip{font-size: 16px;color: #818088;}
+.acontDetail .infotop .topContent .lftInfo .accotCash,
+.acontDetail .infotop .topContent .rightInfo .accotCash{color: #ff743b;}
+.acontDetail .infotop .topContent .lftInfo .accotBtn,
+.acontDetail .infotop .topContent .rightInfo .accotBtn{width: 89px;height: 30px;background-color: #f38804;color: #FFFFFF;border-radius: 3px;}
+/*消费信息lftInfo*/
+.acontDetail .innerContainer{height: auto;overflow: hidden;}
+.acontDetail .innerContainer div{float: left;}
+.acontDetail .infoinner{margin-bottom: 15px;border-bottom: 2px solid #e3e3e3;padding-bottom: 10px;}
+.acontDetail .infoinner .innerContent{overflow: hidden;float: left;min-width: 120px;margin-top: 10px;background-color: #f6f7fb;margin-right: 10px;padding: 20px 20px;}
+.acontDetail .infoinner .innerContent .rightInfo{width: auto;margin-top: 10px;margin-left: 10px;}
+.acontDetail .infoinner .innerContent .rightInfo span{width: 97px;display: inline-block;width: 100%;}
+.acontDetail .infoinner .todayCus{width:50px;height:50px;  background-position: 0 0px;}
+.acontDetail .infoinner .monthCus{width:50px; height:50px;background-position: -57px 0px;
+}
+
+/*待办事项*/
+.acontDetail .infoinner  .btmContainer{width: 100%;}
+.acontDetail .infoinner  .infobotm{width: 25%;min-height: 140px;overflow: hidden;float: left;}
+.acontDetail .infobotm>div{float: left;}
+.acontDetail .infobotm .btmContent{overflow: hidden; float: left;min-width: 120px;background-color: #f6f7fb;margin-top: 10px;margin-right: 10px;padding: 20px 20px;}
+.acontDetail .infobotm .btmContent div{float: left;}
+.acontDetail .infobotm .btmContent .rightInfo span{display: inline-block;width: 100%;margin-left: 10px;margin-top: 10px;}
+.acontDetail .infobotm .getWait{width:50px;  height:50px;  background-position:-57px -57px; }
+.acontDetail .infobotm .getMoney{width:50px;  height:50px;  background-position:-57px -57px; }
+.acontDetail .infobotm .putCash{width:50px;  height:50px;  background-position: -115px -57px; }
+/*################################ 我的服务-个人信息（详情）  结束  ##############################*/

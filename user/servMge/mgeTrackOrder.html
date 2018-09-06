@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>订单跟踪1</title>
+
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="userNav">
+	<input type="hidden" id="leftstatu" value="业务管理" />
+	<input type="hidden" id="leftstatus" value="订单管理" />
+	<!--banner部分 start-->	
+	<!--<div class="bjnewsBanner">
+		<div id="myCarousel" class="carousel slide">
+			<div class="carousel-inner">
+				<img src=" img/news/newsbanner.jpg" />
+			</div>
+		</div>
+	</div>-->
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">订单管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+
+	<!--right start-->
+	<div class="trackOrder pb20" style="min-height: 600px;">
+		
+		<div class="bdLine" id="track">
+			
+			<div class="trackO">
+				订单跟踪
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3 col-sm-3 pt20">
+					<p>送货方式:
+						<span v-if="deliveryType == 1">中通快递</span>
+						<span v-if="deliveryType == 2">申通快递</span>
+						<span v-if="deliveryType == 3">圆通快递</span>
+						<span v-if="deliveryType == 4">顺丰快递</span>
+					</p>
+					<p>承运人: {{name}}</p>
+					<p>货运单号:{{logistics}}</p>
+				</div>
+				<div class="col-md-9 col-sm-9 order">
+					<!--right start-->
+		    		<div id="rgHeight" class="trk-fr fl">
+		    			<div class="timeline">
+		    				<ul class="time-line">
+		    					<li>
+		    						<p>订单已签收,期待再次为您服务</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>到达目的地网点广东深圳公司,快件将很快进行派送</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>在广东深圳公司进行发出扫描</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>在分拨中心广东深圳公司进行卸车扫描</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>在北京市进行下级地点扫描</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>订单付款成功</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    					<li>
+		    						<p>订单已提交,等待付款</p>
+		    						<span>2017-04-01 12:00:00</span>
+		    					</li>
+		    				</ul>
+		    			</div>
+		    		</div>
+		    		<!--right end-->
+				</div>
+			</div>						
+		</div>
+	</div>
+	<!--right end-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/servMge/mgeTrackOrder.js"></script><!--数据加载 js-->
+	<script type="text/javascript">
+		var a = isSignIn();
+		if(a == null) {
+			window.top.location.href = fontBaseUrl + 'user/sign.html';
+		}
+	</script>
+</body>
+</html>

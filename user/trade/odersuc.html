@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		 <!--basepath start-->
+        <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+		<script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		 <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<title>支付页面</title>
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	  <link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild-->
+
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		<link rel="stylesheet" href="css/index-news.css" /><!--footer 样式-->
+			
+			
+	</head>
+	<body>
+		<div id="header" v-cloak></div>
+		<div class="box-content" id="succontent">
+	   	  	<iframe  src=""  style="width: 100%; min-height: 713px;" frameborder="0" scrolling="no"  width="" height="">
+	   	  	</iframe>
+		</div>
+		<footer id="footer"></footer>
+	</body>
+	<!-- build:js js/user.trade-libs.js -->
+	<script type="text/javascript" src="ctrl/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.offcanvas.min.js"></script>
+	<script src="js/comm/vue.min.js"></script><!--vue -->
+	<script src="js/comm/axios.js"></script><!--axios-->
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.trade-comm.js -->
+  <script src="js/api.js"></script><!--api-->
+  <script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+  
+    <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<!-- endbuild-->
+	
+	<script type="text/javascript">
+		new Vue({
+			data: function(){
+				return {
+					cid:'',
+					uid:'',
+					total_fee:0,        //总金额
+					out_trade_no:null,  //流水号
+					product_id:null,    //产品号
+					user_id:null,      //用户ID
+					body:null,         // 
+					urlSign:null,     //支付签证
+					paysrc:null,       //支付类型（PC或手机端）
+					status:null        //支付状态
+				}
+			},
+			methods:{
+			    //截取url的参数值
+				GetQueryString:function (name){
+				     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+				     var r = window.location.search.substr(1).match(reg);
+				     if(r!=null)return  unescape(r[2]); return null;
+				},
+				//获取微信支付信息
+				getInvoice: function(){
+					var isMobile=judgmentBrowser(); 
+					var mOrpc=null;
+					console.log(isMobile);
+					if(isMobile){
+						mOrpc='mobile';
+					}else{
+						mOrpc='pc';
+					}
+						  this.product_id=this.cid;
+				  		  this.total_fee=this.GetQueryString('amount');
+						  this.out_trade_no=this.GetQueryString('oid');
+						  this.urlSign=this.GetQueryString('urlSign');
+						  this.body=this.GetQueryString('body');
+						  this.user_id=this.GetQueryString('user_id') || this.uid;
+						  var baseurl =api.baseUrl();
+						  this.paysrc= api.payApi()+"wx/wxToPay.do?total_fee="+this.total_fee+"&out_trade_no="+this.out_trade_no+"&product_id="+this.product_id+"&body="+this.body+"&user_id="+this.user_id+"&mOrpc="+mOrpc+"&urlSign="+this.urlSign;
+				     	  $("iframe").attr("src", this.paysrc);
+				},
+				render: function(){
+					if(!this.uid){
+						window.location.href = fontBaseUrl + "user/sign.html";
+					}
+				},
+				
+				getUser: function(){
+					if(getUserCookie()){
+						this.cid = getUserCookie().cid;
+						this.uid  = getUserCookie().uid;
+					}
+				}
+			},
+			mounted: function(){
+				this.getUser();
+				this.render();
+				this.getInvoice();
+			}
+		}).$mount("#succontent");
+	</script>
+</html>

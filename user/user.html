@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>用户中心</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link type="text/css" href="ctrl/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" >  
+	
+	
+	<!-- build:css css/user.center.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<link rel="stylesheet" href="css/table.css" />
+	<!-- endbuild -->
+	
+	
+	<!--用户中心样式-->
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    	html,body{
+    		margin: 0px 0px;
+    		height: 100%;
+    	}
+    	.comm-backdrop{
+		    width: 100%;
+		    height: 100%;
+		    left: 0px;
+		    top: 0px;
+		    opacity: 1;
+		    visibility: visible;
+		    display: block;
+	        position: fixed;
+		    z-index: 1000;
+		    background: rgba(0, 0, 0, 0.4);
+		}
+    </style>
+</head>
+<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="我的客户"/>
+    <input type="hidden"  id="leftstatus" value="客户管理"/>
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+	
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	
+	<!--内容部分 start-->
+	<div class="bjContainer">
+		
+		<!--二级导航   start-->
+		<div class="nav-wid100">
+			<div class="proTitle container">
+				<div class="clearfix pull-right">
+					<p>
+						<a  class="leftstatu" style="cursor:default;">我的服务</a>
+						<span class="arrow leftstatus">个人信息</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--二级导航   end-->
+		
+		<div class="container con-comment containter-mrgKh">
+			<div class="row">
+				<!--left start-->
+				
+				<div id="leftnav" class="col-md-1-5 wordLeft"></div>
+				<!--left end-->
+				<!--right start-->
+				
+				<div class="col-md-4-5 wordRight" >
+					<!--手机内页头部-->
+					<!--<div class="wapTop">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<span class="iconfont Back fl">&#xe66e;</span>
+								<span class="leftstatus-mobile fz15">基本信息</span>
+							</div>
+						</div>
+					</div>-->
+					<!--手机内页头部-->
+				 	<iframe  src="user/myServ/servPersinfo.html" frameborder="no"  scrolling="no"  height="625" name="RtFrameContent" id="RtFrameContent" class="wid100"></iframe>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer id="footer"></footer>
+	<!--footer end-->
+	<div class="x-tips x-cwspop" style="display: none;"><div class="x-tips-box"><p>操作中...</p></div></div>
+	<!-- build:js js/user.libs.js -->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<!-- endbuild -->
+	<script  type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.center.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/leftnav.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<!-- endbuild -->
+</body>
+
+<script type="text/javascript">
+ var a=isSignIn();
+		 if(a==null){
+				window.location.href = fontBaseUrl+'user/sign.html';
+		 }
+ </script>
+<script type="text/javascript">
+	var iframe = document.getElementById("RtFrameContent") || window.parent.document.getElementById("RtFrameContent");
+		$(function(){
+			if(getIframeUrl()){
+				toggleIframeUrl();
+			}
+		});
+		iframe.onload = function(){
+ 			var mainTit =iframe.contentWindow.document.getElementById("leftstatu")&& iframe.contentWindow.document.getElementById("leftstatu").value|| "";
+			var subTit = iframe.contentWindow.document.getElementById("leftstatus")&& iframe.contentWindow.document.getElementById("leftstatus").value || "";
+			mainTit && $(".leftstatu").html(mainTit) ;
+			subTit && $(".leftstatus").html("&gt;"+subTit);
+			subTit &&$(".leftstatus-mobile").html(subTit);
+			subTit || $(".leftstatus").html("");
+			triger(mainTit, subTit);//切换当前iframe的页面
+//			iframe.height = $(window).height();
+		}
+		
+		
+		function toggleBackDrop(sign, top){//在父页面动态添加或删除遮罩
+			if(sign){
+				if(sign == 'show'){
+					if($("body").find(".comm-backdrop").length == 0 || top == false){
+						$(iframe).parent().css({'zIndex': '3000'});
+			     		$("body").append("<div class='comm-backdrop'></div>");
+		     		}
+				}else{
+					if(!top){//存在二级自定义弹窗
+						console.log($(".md-show"));
+						if($(".md-show").length == 1){
+							$("body").find(".comm-backdrop").remove();
+						}else{
+							$("body").find(".comm-backdrop:first").remove()
+						}
+					}else{
+						$("body .comm-backdrop").remove()
+		     			$(iframe).parent().css({'zIndex': ''});
+					}
+				}
+			}else{
+				if($("body").find("div").hasClass("comm-backdrop")){
+		     		$("body .comm-backdrop").remove()
+		     		$(iframe).parent().css({'zIndex': ''});
+		     	}else{
+	 		  		$(iframe).parent().css({'zIndex': '3000'});
+		     		$("body").append("<div class='comm-backdrop'></div>");
+		     	}
+				
+			}
+		}
+		
+		// 自定义弹窗
+		$('.md-close').on('click', function(){
+			$(this).closest('.md-modal-demo').removeClass('md-show');
+		});
+</script>
+</html>

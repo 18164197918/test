@@ -1,0 +1,286 @@
+@red:#f7787a;   /*(提示信息颜色)红色*/
+@blue:#00cdff;  /* 页面全局颜色 */
+@white:#fff;    /* 白色 */
+@gray:#dbdbdb; /*灰色*/
+@label:rgb(51,51,51);
+
+
+
+.mg(@v:0.2rem){
+    margin: @v;
+}
+.pd(@v:0 0.46rem){
+    padding: @v;
+}
+.sz14{font-size:1.4rem;}
+.rel{position:relative;}
+.abs{position:absolute;}
+.fl{ float: left; }
+.fr{float:right;}
+.bor-b-3{border-bottom:2px solid   @gray!important;}  /*2px*/
+.bor-b-3-active{border-bottom:2px solid   @blue!important;}  /*2px*/
+//登录注册组件
+.a-agreen{color:@blue;}
+#sign_banner{
+    height:648px;
+    background:#a8c8fb;
+    .container{
+        .rel;
+        height:100%;
+        background: url('/img/user/sign_banner.jpg');
+//      background-size:100% 100%;
+        #signbox{
+            height:460px;
+            background:@white;
+            .abs;
+            right: 10px;
+            top:50px;
+            .pd(0 40px);
+            .change_login{
+                overflow: hidden;
+              ul{
+                  overflow: hidden;
+                 .mg(25px 0 0 0);
+                li{
+                  .fl;  
+                  text-align: center; 
+                  .bor-b-3;
+                  line-height: 44px;
+                  font-size: 20px;
+                  a{
+                      color:@gray;
+                  }
+                }
+                .active{
+                    a{
+                        color:@blue;
+                    }
+                   .bor-b-3-active; 
+                }
+              }  
+            }
+            .regContent{
+                     .mg(32px 0 0 0);
+                     .regLine{
+                         .item2{
+                             margin-top:2px;
+                             margin-bottom: 5px;
+                             height:20px;
+                             line-height: 20px;
+                         }
+                     }
+                 }    
+            #entryBoxForm{
+                 .regContent{
+                     .mg(32px 0 0 0);
+                     .regLine{
+                         .item2{
+                             margin:5px 0;
+                             height:20px;
+                             line-height: 20px;
+                         }
+                     }
+                     .setPassword{
+                         .sz14;
+                         margin-top:10px;
+                         .rememberPW{
+                             .fl;
+                             input{
+                                 .fl;
+                             }
+                             label{
+                                 .fl;
+                                 margin-top:10px;
+                                 margin-left:4px;
+                             }
+                         }
+                         .forgetPW{
+                             .fl;
+                             overflow: hidden;
+                             margin-top: 10px;
+                             height: 20px;
+                             line-height: 20px;
+                             text-align: right;
+                             a{
+                                color: @label;
+                             }
+                         }
+                     }
+                     
+                 }
+            }
+            #codeLoginForm {
+                #validateCodeBox2{
+                    .item1{
+                        overflow: hidden;
+                         input{
+                          .fl;   
+                         }
+                         button{
+                             .fr;
+                         }
+                    }
+                }
+            }
+            #registerBoxForm{
+                .passwordLevel{
+                    padding:0 7px;
+                    .leavePiece{
+                            margin-top: 9px;
+                            width: 100%;
+                            height: 8px;
+                            border: 1px solid #dddddd;
+                            li{
+                                float: left;
+                                margin: 1%;
+                                width: 31%;
+                                height: 4px;
+                                background: #dddddd;
+                            }
+                    }
+                    .levelCode{
+                         width:100%;
+                         li{
+                            width: 33%;
+                            text-align: center;
+                            float: left;
+                            .sz14;
+                            color: #7d7d7d;
+                         }
+                    }
+                }
+                .agreement{
+                          margin-top:-10px;
+                      label{
+                          margin-left: 5px;
+                          margin-top:12px;
+                      }
+                      #agreeInfo{
+                          margin-top:12px;
+                          label{
+                              margin: 0;
+                          }
+                      }
+                }
+                .phonecode{
+                        display:none;
+                        height:170px;
+                        width:60%;
+                        z-index: 1000;
+                        position: absolute;
+                        background: #fff;
+                        left: 20%;
+                        top: 22%;
+                    .headerline{
+                            text-indent: 10px;
+                            height: 29px;
+                            line-height: 29px;
+                            text-align: left;
+                            background: #e0e1e5;
+                            font-size: 12px;
+                            color: #525254;
+                            .closePopUpVc{
+                                width:30px;
+                                height:30px;
+                                float: right;
+                                cursor: pointer;
+                            }
+                    }
+                    .validateContant{
+                         margin-top:30px;
+                         padding:0 20px;
+                         .overflow{
+                             input{
+                                 width:40%;
+                             }
+                             img{
+                                 width:40%;
+                                 height:34px;
+                                 border-radius: 3px;
+                                 border: 1px solid #d2d2d2;
+                                 margin:0 7px;
+                             }
+                         }
+                         .refreshVC{
+                            display: inline-block;
+                            margin-top: 7px;
+                            width: 21px;
+                            height: 18px;
+                            cursor: pointer;
+                            img{
+                                width:100%;
+                                height:100%;
+                                border:none;
+                                margin:0;
+                            }
+                         }
+                    }
+                }
+                
+            }
+            .register_success{
+                width:100%;
+                margin-top:32px;
+                padding: 0 40px;
+                display: none;
+                img{
+                    display:block;
+                     margin: 20px auto;
+                }
+                .user_info{
+                        line-height: 36px;
+                        font-size: 14px;
+                        text-align: center;
+                        color: #828282;
+                }
+                .entry_a{
+                        line-height: 40px;
+                        text-align: center;
+                        a{
+                             color: #e94d4e;
+                             font-size: 18px;
+                        }
+                }
+                .auto_entry{
+                        line-height: 52px;
+                        font-size: 12px;
+                        color: #c4c4c4;
+                        text-align: center;
+                }
+            }
+            
+        .phonecode_box{
+                display: none;
+                z-index: 999;
+                background: rgba(0, 0, 0, 0.3);
+                position: fixed;
+                left: 0;
+                top: 0;
+        }  
+          
+            
+        } 
+    }
+}
+
+@media (min-width:320px) and (max-width:479px) {
+    .signHtml {
+        height:100%;
+    }
+    .signHtml  #header{
+        display: none;
+    }
+    .signHtml  #footer{
+        display: none;
+    }
+    .signHtml .container{
+        background-color: #fff !important;
+        background-image: none !important;
+    }
+}
+@media (min-width:480px) and (max-width: 768px){ /* 手机端 */
+  
+}
+@media (min-width: 769px) and (max-width:1000px){ /* 手机端 */
+ 
+}

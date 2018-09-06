@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>我的客户-客户管理</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link type="text/css" href="ctrl/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" >  
+	
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	<link rel="stylesheet" href="css/table.css" />
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<style type="text/css">
+	#addCustomForm .form-group{
+		margin-bottom: -15px;
+	}
+</style>
+<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="我的客户"/>
+    <input type="hidden"  id="leftstatus" value="客户管理"/>
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">客户管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--right start-->
+	<div class="" id="mgecustom" v-cloak>
+		
+		<!--table start-->
+		<div class="table">
+			<!--表头操作按钮   start-->
+			<div class="tab-header clearfix">
+				<div class="col-md-5 col-sm-5 col-xs-8">
+					<div class="row text-left">
+							<!--选择列表  start-->
+							<div class="col-md-2 col-sm-2 col-xs-2" style="padding-left: 0;">
+								<div class="down-wrap down-wrap-mgrKh">
+								  	<!--bootstrap start-->
+								  	<div class="dropdown">
+										<button type="button" class="btn dropdown-toggle btn-default" id="dropdownMenu1" data-toggle="dropdown">
+											<span class="dec">状态</span>
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1"  @click='batchOpear(0)'>有效</a>
+											</li>
+											<li role="presentation">
+												<a role="menuitem" tabindex="-1"  @click='batchOpear(-1)'>无效</a>
+											</li>
+										</ul>
+									</div>
+								  	<!--选择列表  end-->
+								</div>
+							</div>
+						<!--下拉菜单  end--> 
+						   <div class="col-md-10 col-sm-10 col-xs-10">
+								 <!--<div class="row">-->
+								 	<!--<label for="">搜索:</label>-->
+									<input type="text"  placeholder="填写关键字查询" name=""  value=""  v-model="params['searchItems']" /><!--@keydown="searchList"-->
+									<button type="button" class="btn btn-default"  @click="searchList">
+									  	<!--<i class="iconfont">&#xe612;</i>-->
+									  	查询
+									</button>
+								<!--</div>-->
+							</div>
+
+					
+					</div>
+				</div>
+				<div class="col-md-7 col-sm-7 col-xs-4">
+					<div class=	"row text-right">
+						<!--刷新、添加  start-->
+						<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn btn-default"  @click='reload'>
+						  	<i class="iconfont">&#xe631;</i>
+						  	刷新
+						  </button>
+						  <button type="button" class="addCustom btn btn-default">
+						  	<i class="iconfont">&#xe608;</i>
+						  	添加客户
+						  </button>
+						</div>
+						<!--刷新、添加  end-->
+					</div>
+				</div>
+			</div>
+			
+			<!--表头操作按钮   end-->
+			<table class="table table-bordered table-hover table-condensed tab-ts">
+					<thead>
+						<tr>
+							<th class="wid22">
+								<div class="one-line">用户名</div>
+							</th>
+							<th><!--密码  公司名称-->
+								<!--<div class="l-col">密码</div>-->
+								<div class="r-col">公司名称</div>
+							</th>
+							<th><!--FTP 域名-->
+								<div class="l-col">FTP</div>
+								<div class="r-col">域名</div>
+							</th>
+							<th><!--类型  模板ID-->
+								<div class="l-col">类型</div>
+								<div class="r-col">模板ID</div>
+							</th>
+							<th><!--开始时间  终止时间-->
+								<div class="l-col">开始时间</div>
+								<div class="r-col">终止时间</div>
+							</th>
+							<th class="wid8"><!--状态 -->
+								<div class="one-line">状态</div>
+							</th>
+							<th class="wid18"><!--操作-->
+								<div class="one-line">操作</div>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="contentLine in contentLines">
+							<td><!--用户名-->
+								<div class="one-line">{{ contentLine['userName'] }}</div>
+							</td>
+							<td><!--密码  公司名称-->
+								<!--<div class="l-col one-line">***</div>-->
+								<div class="r-col one-line">{{ contentLine['companyName'] }}</div>
+							</td>
+							<td><!--FTP 域名-->
+								<div class="l-col one-line">{{ contentLine['ftp'] }}</div>
+								<div class="r-col one-line">{{ contentLine['domain'] }}</div>
+							</td>
+							<td><!--类型  模板ID-->
+								<div class="l-col one-line">{{ contentLine['tcName'] }}</div>
+								<div class="r-col one-line">{{ contentLine['modelNo'] }}</div>
+							</td>
+							<td><!--开始时间  终止时间-->
+								<div class="l-col one-line">{{ getTime(new Date(contentLine['beginTime'])) }}</div>
+								<div class="r-col one-line">{{ getTime(new Date(contentLine['endTime'])) }}</div>
+							</td>
+							<td>
+								<div class="one-line">
+									<input v-if="params.searchItem == -1 " type="button" value="无效" >
+									<input v-if-else="params.searchItem == 0 " type="button" value="有效" >
+									<input v-else type="button" value="全部状态" >
+								</div>
+							</td>
+							<td class="opr">
+								<div class="">
+									<a class="a-default modifyPsw" :uid="contentLine['uid']" :compyName="contentLine['companyName']">修改</a>
+									<a class="a-default searchCustom" :uid="contentLine['uid']" :compyName="contentLine['companyName']">查询</a>
+									<a class="a-del"  :href="['http://'+contentLine.domain]"  v-if="contentLine['domain']">访问</a>
+								</div>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!--暂无数据   start-->
+				<div class="no-data" v-if="noData">
+					结果数据0条
+				</div>
+				<!--暂无数据   end-->
+		</div>
+		<!--table end-->
+		<!--修改密码弹窗 start-->
+		<!--01 start-->
+		<div class="md-modifyPsw md-modal-demo md-modal md-effect-1">
+			<div class="md-content">
+				<h3>修改密码<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+				<!--nr start-->
+				<div>
+					<!--中间内容   start-->
+					<div class="form-center">
+						<form class="form-horizontal">
+						  <div class="form-group">
+						    <label for="inputEmail3" class="col-md-3 col-sm-3 control-label pr0">公司名称</label>
+						    <div class="col-sm-9">
+						      <input type="text" class="form-control" disabled="disabled" v-model="modifyCompayName">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-md-3 col-sm-3 control-label pr0">新密码</label>
+						    <div class="col-sm-9">
+						      <input type="text" class="form-control" v-model="pwd">
+						    </div>
+						  </div>
+						
+						</form>
+					</div>
+					<!--中间内容   end-->
+					<div class="tc btn-box">
+						<input class="btn btn-default md-close" type="submit" value="确认" onclick="confirmSubmit()">
+						<input class="btn btn-default md-close" type="submit" value="取消">
+					</div>
+					
+				</div>
+				<!--nr end-->
+			</div>
+		</div>
+		<!--01 end-->
+		 <!--修改弹窗 end-->
+		 <!--添加用户信息 start-->
+		<!--01 start-->
+		<div class="md-addCustom md-modal-demo md-modal md-effect-1">
+			<div class="md-content">
+				<h3>添加用户信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+				<!--nr start-->
+				<div>
+					<!--中间内容   start-->
+					<div class="form-center">
+						<form class="form-horizontal" id="addCustomForm">
+						  <div class="form-group">
+						    <label for="inputEmail3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>用户名</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control" name="userName"  placeholder="用户名|手机号|邮箱" v-model="customParams['userName']">
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>密码</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control"  name="pwd" v-model="customParams['pwd']">
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>公司名称</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control"  name="companyName" v-model="customParams['companyName']">
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>二级域名</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control" name="domain" v-model="customParams['domain']"><span class="sz14">.baijiekj.com</span>
+						       <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>类型</label>
+						    <div class="col-sm-8 col-xs-8">
+								<select class=" form-control" name="modeltype" id="customParams_type" >
+								      <option v-for="modeltype in modelsType" :value="modeltype.id">{{modeltype.name}}&nbsp;&yen;{{modeltype.val}}</option>
+							  	</select>	
+							  	<div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">行业</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control" v-model="customParams['industry']" >
+						      	<div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">网站名称</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <input type="text" class="form-control" v-model="customParams['websit_title']"  >
+						      	<div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>模板ID</label>
+						    <div class="modelIdSearch col-sm-8 col-xs-8">
+						    	 <select id="slpk" name="modelId"  class="selectpicker show-tick form-control" data-live-search="true">
+						    	 	<option value="">请输入选择</option>
+						    	 </select> 
+						    	  <!--<input type="text" id="selectId" class="form-control hidden" value="" name="modelId"  >-->
+						    	 <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label"><span class="red">*</span>开通年限</label>
+						    <div class="col-sm-8 col-xs-8">
+								<select class="form-control" id="customParams_year" name="year">
+									<option value="">--请选择--</option>
+									<option value="1">--1年--</option>
+									<option value="2">--2年--</option>
+									<option value="3">--3年--</option>
+							  	</select>	
+						  	   <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  
+						</form>
+					</div>
+					<!--中间内容   end-->
+					<div class="tc btn-box">
+						<input class="btn btn-default" type="submit" value="确认" onclick="addCustomInfo(this)">
+						<input class="btn btn-default md-close" type="submit" value="取消">
+					</div>
+				</div>
+				<!--nr end-->
+			</div>
+		</div>
+		<!--01 end-->
+		 <!--添加用户信息  end-->
+		 	<!--01 start-->
+		<div class="md-searchCustom md-modal-demo md-modal md-effect-1">
+			<div class="md-content">
+				<h3>查看用户信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+				<!--nr start-->
+				<div>
+					<!--中间内容   start-->
+					<div class="form-center">
+						<form class="form-horizontal">
+							
+						  <div class="form-group">
+						    <label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">用户名:</label>
+						    <div class="col-sm-8 col-xs-8">
+						      	<span>{{searchInfo['userName']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">密码:</label>
+						    <div class="col-sm-8 col-xs-8">
+					         	<span>{{searchInfo['pwd']}}</span>
+						    </div>
+						  </div>
+						
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">公司名称:</label>
+						    <div class="col-sm-8 col-xs-8">
+						      <span>{{searchInfo['companyName']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">二级域名:</label>
+						    <div class="col-sm-8 col-xs-8">
+					   		    <span>{{searchInfo['domain']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">类型:</label>
+						    <div class="col-sm-8 col-xs-8">
+							  	 <span>{{searchInfo['tcName']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">行业:</label>
+						    <div class="col-sm-8 col-xs-8">
+					          <span>{{searchInfo['industry']}}</span>
+						    </div>
+						  </div>
+						  
+						   <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">网站名称:</label>
+						    <div class="col-sm-8 col-xs-8">
+					         <span>{{searchInfo['websit_title']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">模板ID:</label>
+						    <div class="modelIdSearch col-sm-8 col-xs-8">
+						    	 <span>{{searchInfo['modelNo']}}</span>
+						    </div>
+						  </div>
+						  
+						  <div class="form-group">
+						    <label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">开通年限:</label>
+						    <div class="col-sm-8 col-xs-8">
+							  <span>{{searchInfo['year']}}</span>
+						    </div>
+						  </div>
+						  
+						</form>
+					</div>
+					<!--中间内容   end-->
+					<div class="tc btn-box">
+						<input class="btn btn-default md-close" type="submit" value="取消">
+					</div>
+				</div>
+				<!--nr end-->
+			</div>
+		</div>
+		<!--01 end-->
+		 <!--添加用户信息  end-->
+		 <!--分页 start-->
+			<div class="PageF row" v-if="totalPages>=1">
+				<div class="paTotle col-md-3 col-sm-3">本页当前 {{ currentLines }} 条</div>
+				<div class="flip col-md-9 col-sm-9">
+					<div class="page-number fr">
+						<ul>
+							<li @click="subPage('grad')">
+								<i class="fa fa-step-backward"></i>
+							</li>
+							<li @click="subPage('son')">
+								<i class="fa fa-caret-left"></i>
+							</li>
+							<li class="li-3">
+								<p>{{ currentpage }}/{{ totalPages }}</p>
+								<input type="text" class="currentpage" v-model="currentpage">
+								<p style="cursor: pointer;" @click="changeCurrentPage" :value="currentpage">go</p>
+							</li>
+							<li @click="addPage('son')">
+								<i class="fa fa-caret-right"></i>
+							</li>
+							<li @click="addPage('grad')">
+								<i class="fa fa-step-forward"></i>
+							</li>
+						</ul>
+					</div>
+					<div class="filp-x fr">
+						每页显示行
+						<select id="pageNum" @change="selcValue($event)" :value="pagesize">
+							<option v-for="lines in linesPerPage">
+								{{ lines }}
+							</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!--分页1-->
+	</div>
+	<!--right end-->
+	<!--important start-->
+	<div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap-select/js/bootstrap-select.min.js"></script> 
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+    <!--页面独有-->
+	<script type="text/javascript" src="js/user/mgecustom.js"></script><!--本页面加载数据部分-->
+</body>
+<script type="text/javascript">
+		var a=isSignIn();
+      if(a==null){
+        	window.top.location.href = fontBaseUrl+'user/sign.html';
+  		}
+ </script>
+<script type="text/javascript">
+//		$(function(){
+		//添加用户
+  		$('.addCustom').on('click',function(){
+  		//	 $('.md-addCustom').addClass('md-show');
+  			 $('.md-addCustom').toggleCommModal('show');
+	  	})
+  		
+		// 自定义弹窗
+		$('.md-close').on('click', function() {
+			$(this).closest('.md-modal-demo').toggleCommModal('close');
+		});
+		//selectpicker 
+//		   $('.selectpicker').selectpicker('val', '');  
+//		});
+</script>
+</html>

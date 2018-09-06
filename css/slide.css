@@ -1,0 +1,121 @@
+.slide-carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.slide-carousel .item-list {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.slide-carousel .item-list li .item-content {
+  width: 100%;
+  height: 100%;
+}
+.slide-carousel .item-list li .item-content a {
+  display: block;
+  width: 100%;
+ 	height:inherit;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+/*分辨率适配*/
+.slide-carousel .item-list li .item-content a .cover-img{
+		width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    /*margin-left: 20%;*/
+    /*margin-top: 10px;*/
+}
+
+.slide-carousel .indicator-list {
+  position: absolute;
+  bottom:0;
+  left: 50%;
+  margin-left: -63px;
+  z-index: 98;
+  padding-top:5px;
+}
+.slide-carousel .indicator-list a {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ccc;
+  margin-left: 20px;
+  position:relative;
+}
+
+.slide-carousel .indicator-list a i{
+		width:60px;
+   height:20px;
+   display:inline-block;
+   position:absolute;
+   right:-30px;
+   top:0;
+   transform:rotate(-65deg);
+   -ms-transform:rotate(-65deg);
+   -moz-transform:rotate(-65deg);
+   -webkit-transform:rotate(-65deg);
+   -o-transform:rotate(-65deg);
+   background:rgba(255,255,255,.2);
+}
+
+
+.slide-carousel .indicator-list a:nth-of-type(1){background-color: #a483fc;}
+.slide-carousel .indicator-list a:nth-of-type(2){background-color: #fa6569;}
+.slide-carousel .indicator-list a:nth-of-type(3){background-color: #ffc413;}
+.slide-carousel .indicator-list a:nth-of-type(4){background-color: #2faae2;}
+.slide-carousel .indicator-list a:nth-of-type(5){background-color: #60e0b1;}
+
+.slide-carousel .indicator-list a.selected {
+  transform:scale(1.3);
+}
+.slide-carousel .controls {
+  opacity: 0;
+}
+.slide-carousel .controls a {
+  cursor: pointer;
+  text-decoration: none;
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  color: #fff;
+  font-size: 35px;
+  z-index: 2;
+}
+
+.slide-carousel .desc {
+  height: 72px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+.slide-carousel .desc strong {
+  color: #fff;
+  font-size: 20px;
+  line-height: 72px;
+  margin-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.slide-carousel:hover .controls {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+/*//////////////////////////////////////////////////////////////////////*/
+header{
+	
+	
+	
+	
+	
+}

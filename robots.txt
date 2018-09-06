@@ -1,0 +1,10 @@
+# robots.txt 
+
+User-agent: *
+Allow: /models/showmodel.html
+Disallow: /models/
+Disallow: /user/
+Allow: /
+
+Sitemap: http://www.baijiekj.com/sitemap.html
+Sitemap: http://www.baijiekj.com/sitemap.xml

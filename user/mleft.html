@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>用户中心-手机版</title>
+		
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild-->
+
+		<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+		<link type="text/css" href="ctrl/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" >  
+		
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		<link rel="stylesheet" href="css/index-news.css" /> <!--公用样式-->
+		
+		
+		<!--用户中心样式-->
+		<link rel="stylesheet" href="css/table.css" />
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+		</head>
+	<body>
+		<input type="hidden"  id="leftstatu" value="我的客户"/>
+    <input type="hidden"  id="leftstatus" value="客户管理"/>
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+	
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	
+	<!--内容部分 start-->
+	<div class="bjContainer">
+		<div class="useCrumbs">
+			<p class="clearfix container"><span class="fl">用户中心</span><span class="fr"><i class="leftstatu">我的服务</i> <i class="leftstatus">个人信息</i></span></p>
+		</div>
+		
+		<div class="container con-comment containter-mrgKh">
+			<div class="row">
+				<!--left start-->
+				
+				<div id="leftnav" class="col-md-1-5 wordLeft"></div>
+				<!--left end-->
+				<!--right start-->
+				
+				<!--<div class="col-md-4-5 wordRight" >-->
+					<!--手机内页头部-->
+					<!--<div class="wapTop">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<span class="iconfont Back fl">&#xe66e;</span>
+								<span class="leftstatus-mobile fz15">基本信息</span>
+							</div>
+						</div>
+					</div>-->
+				<!--</div>-->
+				
+			</div>
+		</div>
+		
+		
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer id="footer"></footer>
+	<!--footer end-->
+	<!--important start-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap-select/js/bootstrap-select.min.js"></script> 
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/leftnav.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	
+	<script type="text/javascript">
+		var a=isSignIn();
+        if(a==null){
+        		window.location.href = fontBaseUrl+'user/sign.html';
+    }
+			</script>
+	
+	</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>插件管理-图片水印</title>
+    
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+	
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/form-common.css" />
+    <!-- cutImg文件 -->
+    <link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+    <link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+    <!--时间插件样式 -->
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+    <!--用户中心-->
+    <!--用户中心样式-->
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+    <style>
+        #picSize .input-group{
+            float: left;
+        }
+    </style>
+</head>
+
+<body class="userNav form-color">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="图片水印" />
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">图片水印</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--right start-->
+	<div class="" id="wtrMkPic" v-cloak>
+		
+		<div class="form-common ">
+	    <form class="form-horizontal form-mobile-pd">
+	    	<div class="pad-box" >
+	        <div class="form-group"> 
+	            <label class="col-sm-2 col-sm-offset-3 control-label">
+	                <span class="col-danger"></span>水印类型：</label>
+	            <div class="col-sm-4 ">
+	                <select class="form-control" :value="link_type"  disabled="disabled">
+	                    <option value="1">文字水印</option>
+	                    <option value="0">图片水印</option>
+	                </select>
+	            </div>
+	            <!--<div v-show="link_type == '0'">
+	                <label class="col-sm-2  control-label">
+	                    <span class="col-danger"></span>图片水印：</label>
+	                <div class="col-sm-4 ">
+	                    <!-- 上传图片 -->
+	                    <!--<div class="btn-add-box">
+		                    <div class="useupImg maimglst img-btn" title="rImg" >
+		                        <a class="">
+		                            <span class="iconfont sp-color">&#xe602;</span>
+		                            <img src='' alt="" class="uploadimg" name="rImg">
+		                        </a>
+		                    </div>
+	                    </div>
+	                </div>
+	            </div>-->
+	        </div>
+	        
+	        <div class="form-group dis-n link_img" v-show="link_type == '0'">
+            	<label class="col-sm-2 col-sm-offset-3 control-label">
+                        <span class="col-danger"></span>图片水印：</label>
+                    <div class="col-sm-4">
+                        <!-- 上传图片 -->
+                         <div class="btn-add-box">
+	                        <div class="useupImg maimglst img-btn" title="rImg" style="border: 1px solid #ddd;">
+	                            <a class="">
+	                                <span class="iconfont sp-color">&#xe602;</span>
+	                                <img src='' alt="" class="uploadimg" name="rImg" />
+	                            </a>
+	                        </div>
+                         </div>
+                        
+                    </div>
+            </div>
+	        
+	        
+	        
+	        <div class="form-group form-group-tips">
+	            <label class="control-label col-sm-2 col-sm-offset-3">
+	                <span class="col-danger"></span>水印透明度：</label>
+	            <div class="col-sm-4 ">
+	                <input type="text" class="form-control cur-n" name="diaphaneity" v-model="diaphaneity" placeholder="0.5代表透明度为50%" readonly="readonly"/>
+	                <div class="err-msg"></div>
+	            </div>
+	        </div>
+	        <div class="form-group form-group-tips">
+	            <label class="control-label col-sm-2 col-sm-offset-3">
+	                <span class="col-danger"></span>水印文字：</label>
+	            <div class="col-sm-4 ">
+	                <input type="text" class="form-control cur-n" name="v_text" v-model="v_text" readonly="readonly"/>
+	                <div class="err-msg"></div>
+	            </div>
+	        </div>
+	        <div class="form-group form-group-tips">
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印图片宽度：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control cur-n" name="img_width" v-model='img_width' placeholder="单位为px" readonly="readonly"/>
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            
+            <div class="form-group form-group-tips">
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印高度：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control cur-n" name="img_height" v-model='img_height' placeholder="单位为px" readonly="readonly"/>
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+	        
+	        <!--<div class="form-group" id="picSize">
+	           <label class="control-label col-sm-2">
+	                <span class="col-danger"></span>水印尺寸：</label>
+	           </label>
+	           <div class="row">
+	                <div class="col-sm-4 input-group">
+	                    <span class="input-group-addon">宽</span>
+	                    <input type="text" class="form-control" name="img_width" v-model='img_width' readonly="readonly"/>
+	                    <span class="input-group-addon">px</span>
+	                    <div class="err-msg"></div>
+	                </div>
+	                <div class="col-sm-4 input-group col-sm-offset-1">
+	                    <span class="input-group-addon">高</span>
+	                    <input type="text" class="form-control" name="img_height" v-model='img_height' readonly="readonly"/>
+	                    <span class="input-group-addon">px</span>
+	                    <div class="err-msg"></div>
+	                </div>
+	           </div>
+	        </div>-->
+	        <div class="form-group form-group-tips">
+	            <label class="control-label col-sm-2 col-sm-offset-3">
+	                <span class="col-danger"></span>图片偏移：</label>
+	            <div class="col-sm-4 ">
+	                <input type="text" class="form-control cur-n" name="shift"  v-model="shift" placeholder="正数右偏，负数左偏" readonly="readonly"/>
+	                <div class="err-msg"></div>
+	            </div>
+	        </div>
+	        <div class="form-group form-group-tips">
+	            <label class="control-label col-sm-2 col-sm-offset-3">
+	                <span class="col-danger"></span>图片旋转：</label>
+	            <div class="col-sm-4 ">
+	                <input type="text" class="form-control cur-n" name="rotate" v-model="rotate" placeholder="正数正旋，负数反旋" readonly="readonly"/>
+	                <div class="err-msg"></div>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2  control-label col-sm-offset-3">
+	                <span class="col-danger"></span>水印位置：</label>
+	            <div class="col-sm-4 ">
+	                <select class="adfd form-control" disabled="disabled">
+	                    <option value="0">左部居中</option>
+	                    <option value="1">右部居中</option>
+	                </select>
+	            </div>
+	        </div>
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label col-sm-offset-3">
+	                <span class="col-danger"></span>水印位置：</label>
+	            <div class="col-sm-4">
+	                    <label class="radio-inline cur-n">
+	                        <input type="radio" value="1" class="pst-cho" name="pst-cho" checked="checked" readonly="readonly"/>
+	                        <span>启用</span>
+	                    </label>
+	                    <label class="radio-inline cur-n">
+	                        <input type="radio" value="0" class="pst-cho" name="pst-cho" disabled="disabled"/>
+	                        <span>禁用</span>
+	                    </label>
+	            </div>
+	        </div>
+	        <!--<div class="form-group">
+	            <div class="col-sm-offset-10 col-sm-2">
+	                <div class="btn btn-default" @click='setWaterPic'>修改</div>
+	            </div>
+	        </div>-->
+	        <!--一个按钮  start-->
+				  <div class="btn-box btn-box-one text-center">
+				  	 <button type="button" class="btn btn-default" @click='setWaterPic'>修改</button>
+				  </div>
+			  <!--一个按钮  end-->
+	        
+	        
+	        
+	        </div>
+	    </form>
+	    </div>
+	</div>
+	<!--right end-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	<!--公共类库-->
+	<!-- build:js js/user.plugin-libs.js -->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- endbuild-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+
+    <!--页面独有-->
+	<script type="text/javascript" src="js/user/plugMge/wtrMkPic.js"></script>
+    <script type="text/javascript">
+        var a = isSignIn();
+        if (a == null) {
+            window.top.location.href = fontBaseUrl + 'user/sign.html';
+        }
+    </script>
+</body>
+
+</html>

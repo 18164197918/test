@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+		<title>回复评论</title>
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		
+		<link rel="stylesheet" href="css/form-common.css" />
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	    <!--bootstrap 兼容ie8-->
+	</head>
+	<body class="userNav">
+		<input type="hidden" id="leftstatu" value="业务管理"/>
+    	<input type="hidden" id="leftstatus" value="评论管理"/>
+ 		<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">回复评论</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+				<!--left end-->
+				<!--right start-->
+				<div class=""  id="replycomment" v-cloak> 
+					
+					<!--table start-->
+					  <div class="commentBox clearfix" >
+			    		<div class="person col-md-3 col-sm-3 col-xs-12 mobile_height220" >
+			    			<div class="personImage">
+			    				<img :src="contentImg" alt="" onerror="imgerror(this)"/>
+			    			</div>
+			    			<p class="nameP" :title="user_nick"><span class="name">{{user_nick}}</span></p>
+			    		    <p v-if="type==0" :title="title"> <span class="title" >标题：</span>{{title}}</p>
+			    		    <p v-if="type==1" ><span class="title" >商品：</span><span>企业版</span></p>
+			    		    <p v-if="type==1" ><span class="title" >评价：</span><span class="iconfont" style="color: #f40505;">&#xe98f;</span><span class="iconfont" style="color: #f40505;">&#xe98f;</span><span class="iconfont">&#xe98f;</span><span class="iconfont">&#xe98f;</span><span class="iconfont">&#xe98f;</span></p>
+			    		    <p><span class="title">日期：</span><span class="date">{{time}}</span></p>
+			    		</div>
+		   	     	    <div class="comment fl col-md-9 col-sm-9 col-xs-12" id="comment">
+		   	     	     <h2><span class="iconfont mr5" style="color: #ff8a00;">&#xe640;</span>阅读 <span>1000</span></h2>
+		   	     	  	 <div class="ft-cl9">{{comment}}</div>
+		   	     	  	 
+		   	     	  	 
+		   	     	  	 <h2><span class="iconfont mr5" style="color: #3db434;font-size: 13px;">&#xe77b;</span>回复评价</h2>
+				   	    <div class="form-common ">
+				   	    <form  id="replymessageForm" class="form-horizontal" style="border:none;">
+				   	     	<div class=" form-group">
+								<label for="contact" class="col-sm-2 control-label">用户名：</label>
+							    <div class="col-sm-5">
+								    <input type="text" class="form-control" id="contact"   v-model="contact" readonly="readonly">
+							    </div>
+							</div>
+				   	     	<div class=" form-group">
+								<label for="reply" class="col-sm-2 control-label">回复：</label>
+								<div class="col-sm-9">
+								    <textarea type="text" class="form-control" id="reply"  v-model='reply' style="height:150px;"></textarea>
+							    </div>
+							</div>
+							<div class=" form-group">
+						  	    <div class="col-sm-offset-2 col-sm-10">
+									<div class="checkbox">
+										<label class="mr15"><input type="radio" name="isopen" value="1"  onclick="changeStatus(1)" checked="checked">公开</label>
+										<label class="mr15"><input type="radio" name="isopen" value="0"  onclick="changeStatus(0)">隐藏</label>
+									</div>
+								</div>
+							</div>
+							<!--<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+					   	     	      <div class="btn btn-default"   name="sub" id="sub"  onclick='submit()'>发布</div>
+								</div>
+							</div>  -->
+							   <!--一个按钮  start-->
+							  <div class="btn-box btn-box-one text-center">
+							  	 <!--<button type="button" class="btn btn-default" onclick='submit()'>发布</button>-->
+							  	 <button type="button" class="btn btn-default" onclick='submit1()'>发布</button>
+							  </div>
+							  <!--一个按钮  end-->
+				   	     </form>
+		   	     	  	</div> 
+		   	     	  	 <!--  显示当前的评论 列表-->
+				   	     <h2 v-if="replyList.length>0"><span class="iconfont mr5" style="color: #3988e2;">&#xe646;</span><span>全部评论</span></h2>
+				   	     <div class="commentList ml20">	
+				   	     	<div class="commentItem clearfix" v-for="item in replyList">
+					   	     	  <div class="contentbox wid100">
+					   	     	  	  <div class="content" style="color:#1974dd;">{{item.mobile}}</div>
+					   	     	  	  <div class="content ft-cl6 mobile_mb15"><span style="color: #005ea7;" class="mr5"><span v-if="item.moblile">{{item.moblile}}</span><span v-if="item.email">{{item.email}}</span></span>回复：{{item.comment}}</div>
+					   	     	  	  <div class="content" id="contentTime">{{item.insert_time}}
+					   	     	  	  	<div class="fr">
+					   	     	  	  	<span class="aclick" style="cursor: pointer;" onclick="delComm(this,0)" :id="item.id">隐藏</span>
+					   	     	  	  	<span class="aclick" style="cursor: pointer;" onclick="delComm(this,2)" :id="item.id">删除</span>
+					   	     	  	 	 </div>
+					   	     	  	  </div>
+					   	     	  </div>
+				   	     	</div>
+				   	     </div>
+		   	     	  	 
+					    <!--翻页-->
+		    		    <div class="PageF row" v-if="totalPages>=1">
+							<div class="paTotle col-md-3">
+								本页显示 {{ currentLines }}条
+							</div>
+							<div class="flip col-md-9">
+								<div class="page-number fr">
+									<ul>
+										<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+										<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+										<li class="li-3">
+											<p>{{ currentpage }}/{{ totalPages }}</p> 
+											<input type="text" class="currentpage" v-model="currentpage"> 
+												<p @click="changeCurrentPage" :value="currentpage"  value="1" style="cursor: pointer;">go</p>
+										</li> 
+										<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+										<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+									</ul>
+								</div>
+								<div class="filp-x fr">
+						    		每页显示行
+				    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+				    		    		<option v-for="lines in linesPerPage">
+				    		    			{{ lines }}
+				    		    		</option>
+				    		    	</select>
+								</div> 
+							</div>
+						</div>
+		    		    <!--翻页结束-->
+		   	     	  	 
+		   	     	    </div>
+			    	</div>
+					<!--table end-->
+				</div>
+				<!--right end-->
+
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<!--个人公共-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/comRespond.js"></script>     <!--本页面加载js-->
+		<script type="text/javascript">
+			var a=isSignIn();
+        	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+        	}
+        </script>
+		</body>
+</html>

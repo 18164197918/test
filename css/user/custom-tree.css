@@ -1,0 +1,448 @@
+.tc {
+  text-align: center;
+}
+.tr {
+  text-align: right;
+}
+.tl {
+  text-align: left;
+}
+.vc {
+  vertical-align: middle;
+}
+/*浮动*/
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/* 行内、块级 */
+.block {
+  display: block;
+}
+.inline {
+  display: inline-block;
+}
+.none {
+  display: none;
+}
+/* 定位 */
+.rel {
+  position: relative;
+}
+.abs {
+  position: absolute;
+}
+.fix {
+  position: fixed;
+}
+/* 圆角 */
+.radius0 {
+  border-radius: 0;
+}
+.radius3 {
+  border-radius: 3px;
+}
+.radius4 {
+  border-radius: 4px;
+}
+.radius5 {
+  border-radius: 5px;
+}
+.radius6 {
+  border-radius: 6px;
+}
+.radius10 {
+  border-radius: 10px;
+}
+.radius20 {
+  border-radius: 20px;
+}
+.radius50 {
+  border-radius: 50%;
+}
+/* 宽度 */
+.wid100 {
+  width: 100%;
+}
+.wid50 {
+  width: 50%;
+}
+.wid40 {
+  width: 40%;
+}
+.wid30 {
+  width: 30%;
+}
+.wid20 {
+  width: 20%;
+}
+.wid15 {
+  width: 15%;
+}
+.wid10 {
+  width: 10%;
+}
+.wid8 {
+  width: 8%;
+}
+.wid5 {
+  width: 5%;
+}
+/* 高度 */
+.higt100 {
+  height: 100%;
+}
+/* 边线  */
+.b-none {
+  border: 0;
+}
+.b-b-none {
+  border-bottom: 0;
+}
+.b-l-none {
+  border-left: 0;
+}
+.b-r-none {
+  border-right: 0;
+}
+.b-all-c-t {
+  border-color: transparent;
+}
+.b-all-w8 {
+  border-width: 8px;
+}
+.b-all-w7 {
+  border-width: 7px;
+}
+.b-all-t0 {
+  border-top-width: 0;
+}
+.b-all-s-s {
+  border-style: solid;
+}
+.flex-l {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+.flex {
+  box-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  -o-box-flex: 1;
+  flex: 1;
+}
+/* 一行显示 */
+.row-shows {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.txt-ln1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+/*两行文字，多余超出省略*/
+.txt-ln2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+/*三行文字，多余超出省略*/
+.txt-ln3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+/*四行文字，多余超出省略*/
+.txt-ln4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+/*五行文字，多余超出省略*/
+.txt-ln5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+/* 字体粗细 */
+.normal {
+  font-weight: normal;
+}
+.bold {
+  font-weight: bold;
+}
+.fw300 {
+  font-weight: 300;
+}
+.opc8 {
+  opacity: .8;
+}
+.opc1 {
+  opacity: 1;
+}
+/* 文字加线 */
+.underline {
+  text-decoration: underline;
+}
+/*去掉li的点*/
+li {
+  list-style-type: none;
+}
+/*鼠标手势*/
+.cursor {
+  cursor: pointer;
+}
+/* 溢出隐藏  */
+.overflow {
+  overflow: hidden;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.word {
+  word-break: keep-all;
+}
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  height: 0;
+  font-size: 0;
+  content: "";
+  clear: both;
+}
+/*隐藏、显示(没有占位符)*/
+.v-h {
+  visibility: hidden;
+}
+.v-v {
+  visibility: visible;
+}
+/* 去除填充 */
+.pdNone {
+  padding: 0 !important;
+}
+.x-img-box.pd-bottom10:before {
+  padding-bottom: 10%;
+}
+.x-img-box.pd-bottom20:before {
+  padding-bottom: 20%;
+}
+.x-img-box.pd-bottom30:before {
+  padding-bottom: 40%;
+}
+.x-img-box.pd-bottom35:before {
+  padding-bottom: 35%;
+}
+.x-img-box.pd-bottom40:before {
+  padding-bottom: 40%;
+}
+.x-img-box.pd-bottom50:before {
+  padding-bottom: 50%;
+}
+.x-img-box.pd-bottom60:before {
+  padding-bottom: 60%;
+}
+.x-img-box.pd-bottom70:before {
+  padding-bottom: 70%;
+}
+.x-img-box.pd-bottom50:before {
+  padding-bottom: 80%;
+}
+.x-img-box.pd-bottom60:before {
+  padding-bottom: 90%;
+}
+.x-img-box.pd-bottom70:before {
+  padding-bottom: 100%;
+}
+.ztree li a .diyBtn {
+  float: right;
+  line-height: 36px;
+}
+.ztree li a .diyBtn a,
+.ztree li a .diyBtn a i {
+  color: #555;
+  margin-left: 10px;
+}
+.global-editing ul li {
+  float: left;
+  margin-right: 20px;
+  color: #5c5c5c;
+  line-height: 34px;
+}
+.global-editing ul li.editing-active {
+  color: #00cdff;
+}
+#mgecolumn .ztree li a[treenode_a] {
+  width: 97.5%;
+}
+#mgecolumn .ztree li a[treenode_a] {
+  position: relative;
+  overflow: inherit;
+}
+.ztree li a .diyBtn {
+  position: absolute;
+  width: 85px;
+  text-align: center;
+  height: auto;
+  left: 125px;
+  top: 13px;
+  background: #fff;
+  z-index: 20;
+  border: solid 1px #d8d8d8;
+}
+.ztree li a .diyBtn a {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.ztree li .diyBtn a {
+  height: 32px!important;
+  line-height: 32px!important;
+  margin-left: 0px!important;
+  border-bottom: solid 1px #e1e1e1;
+}
+.ztree li a .diyBtn a i {
+  margin-right: 5px!important;
+  margin-left: 0px!important;
+}
+.ztree li span.button.root_open {
+  background-position: -142px -3px;
+}
+.ztree li span.button.root_close {
+  background-position: -112px -4px;
+}
+.ztree * {
+  font-size: 14px;
+  color: #333;
+}
+.ztree li span.button {
+  background-image: url("/img/comm/zTreeStandard2.png");
+}
+.x-select-box {
+  width: 100%;
+  border: 1px solid #E0E0E0;
+}
+.x-input-text {
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+}
+.x-edit-btn {
+  padding-left: 4px;
+  display: inline-block;
+  width: 100%;
+  color: #5A5A5A;
+  font-weight: 600;
+  font-size: 14px!important;
+  background-color: #F6F6F6;
+}
+.x-edit-btn i {
+  margin-right: 6px;
+  cursor: pointer;
+}
+/*样式覆盖 start*/
+.ztree li a {
+  height: 24px;
+}
+.ztree li span.button.switch {
+  width: 24px;
+  height: 24px;
+}
+.ztree li span.button {
+  width: 24px;
+  height: 24px;
+}
+.ztree li a.curSelectedNode {
+  height: 24px;
+}
+.ztree li span {
+  line-height: 24px;
+}
+.ztree li span.button.roots_docu {
+  background-position: -86px 0;
+}
+/*展开*/
+/*一级 第一个*/
+.ztree li span.button.roots_open {
+  background-position: -140px -3px;
+}
+/*一级  中间的*/
+.ztree li span.button.center_open {
+  background-position: -140px -29px;
+}
+/*一级  最后一个*/
+.ztree li span.button.bottom_open {
+  background-position: -140px -55px;
+}
+/*文件夹*/
+.ztree li span.button.ico_open {
+  background-position: -166px -24px;
+  margin-top: -3px;
+}
+.ztree li span.button.center_docu {
+  background-position: -86px -29px;
+}
+.ztree li span.button.bottom_docu {
+  background-position: -86px -55px;
+}
+.ztree li span.button.ico_docu {
+  background-position: -165px -48px;
+}
+/*展开*/
+/*收起*/
+/*一级 第一个*/
+.ztree li span.button.roots_close {
+  background-position: -113px -3px;
+}
+/*一级 中间的*/
+.ztree li span.button.center_close {
+  background-position: -113px -29px;
+}
+/*一级 最后一个*/
+.ztree li span.button.bottom_close {
+  background-position: -113px -55px;
+}
+/*文件夹*/
+.ztree li span.button.ico_close {
+  background-position: -166px 0;
+  margin-top: -3px;
+}
+.ztree li a.curSelectedNode {
+  opacity: 1;
+}
+/*收起*/
+#addcontent .ztree li span.button.chk {
+  width: 20px;
+  height: 20px;
+}
+#addcontent .ztree li span.button.chk.checkbox_true_full {
+  background-position: -20px 0;
+}
+#addcontent .ztree li span.button.chk.checkbox_false_full_focus {
+  background-position: 0 0;
+}
+#addcontent .ztree li span.button.chk.checkbox_true_full_focus {
+  background-position: -20px 0;
+}

@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--<Deject>-->
+	 <!--basepath start-->
+	<base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	<!--<Deject>-->
+	<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	<!--</Deject>-->
+	<!--basepath end-->
+	<!--</Deject>-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta content="telephone=no" name="format-detection">
+	<title>百捷云站_让建站变得像拍照一样简单好用</title>
+	<meta name="keywords" content="百捷云站,云站,建站,网站,自助建站,智能建站,免费建站,网站建设,企业建站,网站模板,网页制作,企业网站,手机站,PC站,Html5" />
+	<meta name="description" content="百捷云站一种全新的在线式自助方式建站，领先的自适应技术，让您的网站变得既简单易用又好用，高效SEO/SEM代码优化技术，让搜索引擎快速收录您的站点。同时帮企业解决网站建设和内容推广两大难题。"/>
+	
+	<link rel="icon" id="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" type="text/css" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" type="text/css" href="ctrl/animate.min.css" /><!--c3s动画样式-->
+		<!-- endbuild -->
+
+	<!-- build:css css/home.css -->
+	<link rel="stylesheet" type="text/css" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" type="text/css" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" type="text/css" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" type="text/css" href="css/slide.css"><!--3d(banner)-->
+	<link rel="stylesheet" type="text/css" href="css/banner.css">
+	<!-- endbuild -->
+
+	<!--<link href="http://172.19.0.26:8080/upload/d3/31/d331ab99b0a747f09c948a3901755149.ico" type="image/x-icon">-->
+	<!--<link rel="icon" href="img/webset.ico" mce_href="img/webset.ico" type="image/x-icon" />-->
+	<!--bootstrap 兼容ie8-->
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+</head>
+<body class="index-body" style="width:100%;height:100%;">
+		<!--banner部分 start-->
+		<div class="com-banner rel" >
+			<!--top start-->
+			<div class="fix-box-header">
+				<div class="header-box clearfix">
+					<div  id="header" v-cloak  data='1'></div> 
+				</div>
+			</div>
+			
+			
+			<!--top end-->
+			<div class="banner x-banner-sign banner-top" data-filter="idx_bnr_001&&首页头部banner&&r.type=''&&4" id="indexBanner" v-cloak>
+				<div class="ban-img">
+					<!--相对定位   start-->
+						<div class="img-fixed">
+							<!--indexbanner start-->
+							<header style="width:100%;height:100%;" class="x-header">
+								<div class="banner slide-ban">
+									<div id="slide-index" class="slide-carousel slide-3d">
+						            <ul  class="item-list clearfix">
+						                <!--4444444444444-->
+						               <li  v-for="(item, index) in bannerList_one" :class="['item'+index]" :style="{'overflow':index== 2 ? 'inherit':'' }">
+						                    <div v-if="index == 0" class="item-content three">
+						                        <a>
+					                            	<!--图片&&文字   start-->
+					                            	<div class="rel fix-box-ban-three animate">
+					                            		<div class="img-three" :style="{backgroundImage: 'url('+ item.img +')'}" style="background-repeat:no-repeat; background-position:center;background-size: 100% 100%;">
+					                            			<div class="wz-three">
+						                            			<p>{{item.text1}}</p>
+						                            			<p>{{item.text2}}</p>
+						                            			<p>{{item.text3}}</p>
+						                            			<p>{{item.text4}}<span class="rel"></span></p>
+						                            		</div>
+					                            		</div>
+					                            	</div>
+					                            	<!--图片&&文字   end-->
+						                        </a>
+						                    </div>
+						                    
+						                    <div v-if="index == 1" class="item-content">
+						                        <a>
+						                            <!--图片&&文字   start-->
+					                            	<div class="rel fix-box-ban">
+					                            		<div class="img-two" :style="{backgroundImage: 'url('+ item.img +')'}" style="background-repeat:no-repeat; background-position:center;background-size: 100% 100%;">
+						                            		<div class="wz second-word">
+						                            			<!--<p>自助式服务 <span>轻松</span>建站</p>-->
+						                            			<p class="first-p">{{item.text1}}</p>
+						                            			<!--<p><span>专业团队支持,</span>为您提供一站式支持!</p>-->
+						                            			<p class="second-p">{{item.text2}}</p>
+						                            			<!--<p>互联网+时代创业、合作首选平台</p>-->
+						                            			<p class="third-p">{{item.text3}}</p>
+						                            		</div>
+					                            		</div>
+					                            	</div>
+					                            	<!--图片&&文字   end-->
+						                        </a>
+						                    </div>
+						                    
+						                    <div v-if="index == 2" class="item-content">
+						                        <a>
+						                            <img class="cover-img img-my" :src="item.img" alt="banner"/>
+						                        </a>
+						                    </div>
+						                </li>
+						            
+						                
+						                <!--6666666-->
+						            </ul>
+						            <!--indicators-->
+						            <div class="indicator-list ban-circle">
+						                <a  v-for="(item, index) in bannerList_one"  :data-slide-index="index" :class="[index == 0 ? 'selected':'']">
+						                </a>
+						                 <!--<a data-slide-index="0" class="selected">
+
+						                </a>
+						                <a data-slide-index="1">
+
+						                </a>
+						                <a data-slide-index="2">
+						                </a>-->
+						            </div>
+						            <!--controls-->
+						            <div class="controls">
+						                <a class="item-prev glyphicon glyphicon-menu-left" style="z-index: 10000;"></a>
+						                <a class="item-next glyphicon glyphicon-menu-right" style="z-index: 10000;"></a>
+						            </div>
+						        </div>
+	    
+								</div>
+							</header>
+							     
+							<!--indexbanner end-->
+						</div>
+	
+					<!--相对定位   end-->
+				</div>
+			</div>
+		</div>
+		<!--banner部分 end-->
+	<div id="allTopTen">	
+		<!--内容部分 start-->
+		<div class="container con-index" >
+			<!--网站宣传语 start-->
+			<div class="publicity con-item-box">
+				<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">颠覆传统建站，无需代码，就可以建站</h1>
+				<p class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">“懒人”的建站神器！无需懂技术，无需下载，一键生成，操作简单，多设备适应；无需代码，不会技术，你也“牛”。</p>
+				<div class="row-item-box">
+					<ul class="ul-icon clearfix wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">
+						<li class="col-lg-24 col-md-24 col-sm-24 col-xs-24">
+							<div class="icon-box purple rel wow rollIn" data-wow-duration="1s" data-wow-delay="0s">
+								<!--透明度   start-->
+								<div class="opacity"></div>
+								<!--透明度   end-->
+								<div class="fix-box text-center">
+									<i class="iconfont">&#xe635;</i>
+								</div>
+								
+							</div>
+							<p class="icon-desc text-center">海量精美模板</p>
+						</li>
+						<li class="col-lg-24 col-md-24 col-sm-24 col-xs-24">
+							<div class="icon-box red rel wow rotateInDownLeft" data-wow-duration="1s" data-wow-delay="0s">
+								<!--透明度   start-->
+								<div class="opacity"></div>
+								<!--透明度   end-->
+								<div class="fix-box text-center">
+									<i class="iconfont">&#xe651;</i>
+								</div>
+							</div>
+							<p class="icon-desc text-center">多种营销工具</p>
+						</li>
+						<li class="col-lg-24 col-md-24 col-sm-24 col-xs-24">
+							<div class="icon-box yellow rel wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">
+								<!--透明度   start-->
+								<div class="opacity"></div>
+								<!--透明度   end-->
+								<div class="fix-box text-center">
+									<i class="iconfont">&#xe66f;</i>
+								</div>
+							</div>
+							<p class="icon-desc text-center">定制化后台管理</p>
+						</li>
+						<li class="col-lg-24 col-md-24 col-sm-24 col-xs-24">
+							<div class="icon-box blue rel wow rotateInDownRight" data-wow-duration="1s" data-wow-delay="0s">
+								<!--透明度   start-->
+								<div class="opacity"></div>
+								<!--透明度   end-->
+								<div class="fix-box text-center">
+									<i class="iconfont">&#xe64d;</i>
+								</div>
+							</div>
+							<p class="icon-desc text-center">“人性化”模板支持</p>
+						</li>
+						<li class="col-lg-24 col-md-24 col-sm-2-4 col-xs-24">
+							<div class="icon-box green rel wow slideInRight" data-wow-duration="1s" data-wow-delay="0s">
+								<!--透明度   start-->
+								<div class="opacity"></div>
+								<!--透明度   end-->
+								<div class="fix-box text-center">
+									<i class="iconfont">&#xe634;</i>
+								</div>
+							</div>
+							<p class="icon-desc text-center">多设备适应</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--网站宣传语  end-->
+			
+			
+			<!--海量模板   start-->
+			<!--列表 start-->
+			<div class="proList container index-list con-item-box x-top-sign" id="siteModel" data-filter="idx_top_001&&首页二楼海量模板任你选择排行&&r.type='25174661566300296'&&6">
+				<div class="phone clearfix">
+					<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0s">海量模板任你选择</h1>
+					<a class="pkTitle tit-more tit-phone wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" href="goods/list.html"><i class="iconfont">&#xe62f;</i>更多</a>
+				</div>
+				<div class="listBox">
+					<!--模板列表 start-->
+					<div class="mList">
+						<div class="">
+							<div class="row">
+								<!--01 start-->
+								<div class="col-md-4 col-sm-4 rowLi wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0" v-for="(mditem, index) in mdList" v-cloak>
+									<div class="mList-imgB">
+										<div class="mList-img clearfix">
+											<div class="mList-imgPcbg">
+												<a class="fr" :href="['models/showmodel.html?id='+mditem.rid+'&p='+ mditem['model_path']+'&cmpid='+ mditem.cid+'&modNum='+mditem.number]" target="_blank">
+													<div class="mList-imgPcI"><img :src="mditem.r_img" class="wid100" onerror="imgerror(this)" alt="pc模板预览图"/></div><!--pc模板预览图-->
+												</a>
+											</div>
+											<div class="mList-imgMapbg">
+												<a :href="['models/showmodel.html?id='+mditem.rid+'&p='+ mditem['model_path']+'&cmpid='+ mditem.cid+'&modNum='+mditem.number]" target="_blank">
+													<div class="mList-imgMapI"><img :src="mditem.res_url" class="wid100" onerror="imgerror(this)" alt="wap模板预览图"/></div><!--手机模板预览图-->
+												</a>
+											</div>
+										</div>
+										<p class="listPrice">￥<span>{{ mditem.price }}</span></p>
+										<p class="listName txt-ln1">
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0">{{ mditem.number }}</span>
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0"> {{mditem.typeNames.join(',')}}</span>
+											<span class="col-md-4 col-sm-4 col-xs-4 txt-ln1 pl0"  :title="mditem.title">{{ mditem.title }}</span>
+										</p>
+										<div class="listInfo clearfix">
+											<div class="fl">
+												<span class="liNam mr20"><i class="iconfont">&#xe607;</i>{{mditem.view_times}}</span>
+											</div>
+											<a class="fr" :href="['models/showmodel.html?id='+mditem.rid+'&p='+ mditem['model_path']+'&cmpid='+ mditem.cid+'&modNum='+mditem.number]" target="_blank"><div class=""><span class="pkTitle">预览模板</span></div></a>
+										</div>
+									</div>
+								</div>
+								<!--01 end-->
+							</div>
+						</div>
+					</div>
+					<!--模板列表 end-->
+				</div>
+			
+				
+			</div>
+			<!--列表 end-->
+			<!--海量模板   end-->
+			
+			
+			<div class="box">
+				<!--我们的服务套餐 start-->
+				<div class="meal con-item-box">
+					<!--套餐背景   start-->
+					<div class="meal-bg">
+						<img src="img/mealBg.png" alt="套餐背景图片" />
+					</div>
+					<!--套餐背景   end-->
+					<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">我们的服务套餐</h1>
+					<div class="row-item-box meal-item-box">
+						<a href="prod/proPack.html">
+							<ul class="ul-meal clearfix">
+								<li class="clearfix wow rollIn" data-wow-delay="0.2s">
+										<!--left start-->
+										<div class="meal-lf mel-purple pull-left">
+											<div class="lf-title tit-purple">
+												<i class="i-tit">￥</i><span class="sp-tit">599</span><i class="i-tit">/年</i>
+											</div>
+											<span class="lf-desc text-center dis-b">买2年送1年</span>
+										</div>
+										<!--left end-->
+										<!--right start-->
+										<div class="meal-rg pull-left">
+											<h3>基础版<small class="sml-meal">适合小微企业建站</small></h3>
+											<div class="feature">
+												<ul>
+													<li>200M网页空间</li>
+													<li>10G每月流量</li>
+													<li>绑定独立域名</li>
+													<li>在线插件系统</li>
+													<li>千套模板</li>
+												</ul>
+											</div>
+										</div>
+										<!--right end-->
+								</li>
+								<li class="clearfix wow bounceInDown" data-wow-delay="0.4s">
+										<!--left start-->
+										<div class="meal-lf mel-red pull-left">
+											<div class="lf-title tit-red">
+												<i class="i-tit">￥</i><span class="sp-tit">999</span><i class="i-tit">/年</i>
+											</div>
+											<span class="lf-desc text-center dis-b">买2年送1年</span>
+										</div>
+										<!--left end-->
+										<!--right start-->
+										<div class="meal-rg pull-left">
+											<h3>企业版<small class="sml-meal">适合小微企业建站</small></h3>
+											<div class="feature">
+												<ul>
+													<li>200M网页空间</li>
+													<li>10G每月流量</li>
+													<li>绑定独立域名</li>
+													<li>在线插件系统</li>
+													<li>千套模板</li>
+												</ul>
+											</div>
+										</div>
+										<!--right end-->
+								</li>
+								<li class="clearfix wow bounceInRight" data-wow-delay="0.6s">
+										<!--left start-->
+										<div class="meal-lf mel-yellow pull-left">
+											<div class="lf-title tit-yellow">
+												<i class="i-tit">￥</i><span class="sp-tit">1299</span><i class="i-tit">/年</i>
+											</div>
+											<span class="lf-desc text-center dis-b">买2年送1年</span>
+										</div>
+										<!--left end-->
+										<!--right start-->
+										<div class="meal-rg pull-left">
+											<h3>电商版<small class="sml-meal">适合小微企业建站</small></h3>
+											<div class="feature">
+												<ul>
+													<li>企业版+</li>
+													<li>500M网页空间 </li>
+													<li>20G每月流量</li>
+													<li>绑定独立域名</li>
+													<li>在线插件系统</li>
+													<li>商城功能</li>
+													<li>在线支付功能</li>
+													<li>千套模板</li>
+												</ul>
+											</div>
+										</div>
+										<!--right end-->
+								</li>
+								<li class="clearfix wow bounceInUp" data-wow-delay="0.8s">
+										<!--left start-->
+										<div class="meal-lf mel-blue pull-left">
+											<div class="lf-title tit-blue">
+												<i class="i-tit">￥</i><span class="sp-tit">1799</span><i class="i-tit">/年</i>
+											</div>
+											<span class="lf-desc text-center dis-b">买2年送1年</span>
+										</div>
+										<!--left end-->
+										<!--right start-->
+										<div class="meal-rg pull-left">
+											<h3>综合版<small class="sml-meal">适合小微企业建站</small></h3>
+											<div class="feature">
+												<ul>
+													<li>电商版+</li>
+													<li>800M网页空间</li>
+													<li>25G每月流量</li>
+													<li>绑定独立域名</li>
+													<li>在线插件系统 </li>
+													<li>支持云站发布的全部功能</li>
+													<li>千套模板</li>
+												</ul>
+											</div>
+										</div>
+										<!--right end-->
+								</li>
+							</ul>
+						</a>
+					</div>
+				</div>
+				<!--我们的服务套餐  end-->
+			</div>
+			
+			
+			<!--营销工具 start-->
+			<div class="market con-item-box">
+				
+				<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">多种营销工具，超大流量入口！</h1>
+				<p class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">通过这些让您的网站产生订单，流量转化神器，让您的生意火火火！</p>
+				<div class="row-item-box market-item-box clearfix wow fadeInUpBig">
+					<div class="col-md-12">
+						<div class="row">
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe684;</i>
+								<span>红包</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe664;</i>
+								<span>优惠券</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe626;</i>
+								<span>众筹</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe647;</i>
+								<span>拼团秒杀</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe689;</i>
+								<span>满赠促销</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe63e;</i>
+								<span>满减促销</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe881;</i>
+								<span>折扣促销</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe9c5;</i>
+								<span>套餐促销</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe669;</i>
+								<span>团购活动</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe788;</i>
+								<span>大转盘</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe762;</i>
+								<span>刮刮卡</span>
+							</div>
+							<!--01 end-->
+							<!--01 start-->
+							<div class="col-md-2 col-sm-2 col-xs-3">
+								<i class="iconfont">&#xe63a;</i>
+								<span>更多定制需求</span>
+							</div>
+							<!--01 end-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--营销工具  end-->
+	
+	
+		</div>
+		<!--内容部分 end-->
+		
+		<!--最近的动态 start-->
+		<div class="news-wid100 con-item-box x-top-sign" data-filter="idx_top_003&&首页五楼最近动态排行&&r.type='25174661566300295'&&6">
+			<!--固定背景   start-->
+			<div class="news-fix-lf"><img src="img/newslf.png" alt="背景left" /></div>
+			<div class="news-fix-rg"><img src="img/newsrg.png" alt="背景right" /></div>
+			<!--固定背景   end-->
+			<div class="news" >
+				<div class="phone clearfix">
+					<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">最近动态</h1>
+					<a class="pkTitle tit-more tit-phone wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" :href="['news/list.html?id='+id]"><i class="iconfont">&#xe62f;</i>更多</a>
+				</div>
+				<div class="row-item-box news-item-box wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="">
+					<!--banner start-->
+					<header>
+						<div class="banner container pdNone">
+					        <div id="slide3d" class="slide-carousel slide-3d">
+					            <ul  class="item-list clearfix">
+					                <li  v-for="(ctnt,index) in topList" :class="['item'+index]">
+					                    <div class="item-content">
+					                        <a :href="['news/info.html?pid='+id+'&id='+ctnt['rid']+'&type='+ctnt.type]">
+					                            <img class="cover-img" :src="ctnt['r_img']" :alt="ctnt.title" onerror="imgerror(this)"/>
+					                        </a>
+					                        <p>{{ ctnt.title }}</p>
+					                    </div>
+					                </li>
+					            </ul>
+					            <!--indicators-->
+					            <div class="indicator-list news-list">
+					            	<a v-for="(ctnt,index) in topList" :class="[index == 0 ? 'selected':'']" :data-slide-index="index"><i class="i-shape"></i></a>
+					            </div>
+					            <!--controls-->
+					            <div class="controls news-btn">
+					                <a  class="item-prev"></a>
+					                <a  class="item-next"></a>
+					            </div>
+					        </div>
+					    </div>
+					</header>
+					<!--banner end-->
+				</div>
+			</div>
+		</div>
+		<!--最近的动态  end-->
+		
+		
+		<!--友情链接   start-->
+		<div class="trust con-item-box">
+			<h1 class="text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s">300+客户的信赖！</h1>
+			<div class="row-item-box trust-item-box clearfix">
+				<!--3等分   start-->
+				<div class="col-md-4 col-sm-4 wow fadeInLeftBig" data-wow-duration="1s" data-wow-delay="0.1s">
+					<div class="row">
+						<div class="col-md-4 col-sm-4 link-one">
+							<ul class="ul-link">
+								<li>
+									<a href=""><img src="img/link1.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a href=""><img src="img/link2.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a href=""><img src="img/link3.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-4 col-sm-4 pdNone">
+							<ul class="ul-link">
+								<li>
+									<a href=""><img src="img/link4.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a href=""><img src="img/link5.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a href=""><img src="img/link6.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-4 col-sm-4 link-three">
+							<ul class="ul-link">
+								<li>
+									<a href=""><img src="img/link7.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a href=""><img src="img/link8.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+				<div class="col-md-4 col-sm-4 wow fadeInUpBig" data-wow-duration="1s" data-wow-delay="0.1s">
+					<div class="rel link-rel">
+						<div class="rel linkHeight">
+							<div class="link-intro">
+								<p>
+									模板非常好，经过多家比较后才选择了云站的产品；后台操作方面，比较简洁，很容易上手。界面美观合理；系统功能人性化，非技术人员也能快速搭建网站。所见即所得，真的是自适应，在手机端展现和实用非常好。
+								</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+				
+				<div class="col-md-4 col-sm-4 wow fadeInRightBig" data-wow-duration="1s" data-wow-delay="0.1s">
+					<div class="row">
+						<div class="col-md-4 col-sm-4 link-three">
+							<ul class="ul-link">
+								<li>
+									<a><img src="img/link9.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a><img src="img/link10.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-4 col-sm-4 pdNone">
+							<ul class="ul-link">
+								<li>
+									<a><img src="img/link11.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a><img src="img/link12.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a><img src="img/link13.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-4 col-sm-4 link-one">
+							<ul class="ul-link">
+								<li>
+									<a><img src="img/link14.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a><img src="img/link15.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+								<li>
+									<a><img src="img/link16.jpg" alt="友情链接" onerror="imgerror(this)"/></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--3等分   end-->
+			</div>
+		</div>
+		<!--友情链接   end-->
+	</div>
+		<!--footer start-->
+		<footer id="footer"></footer>
+		<!--footer end-->	
+	<!--悬浮框 end-->
+	<div id="plugin" class="technicolor"></div>
+</body>
+	<script type="text/javascript" src="js/comm/bluebird.js"></script>  <!--引入解析es6Promise对象-->
+	<!-- build:js js/home.libs.js -->
+	<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js" ></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.offcanvas.min.js"></script>
+	<script type="text/javascript" src="js/comm/es6-promise.js"></script><!--解析es6 promise-->
+	<script type="text/javascript" src="js/comm/vue.min.js"></script><!--vue -->
+	<script type="text/javascript" src="js/comm/axios.js"></script><!--axios-->
+	<script type="text/javascript" src="js/zepto.min.js"></script><!--手机端事件-->
+	<script src="/ctrl/wow/js/wow.min.js"></script><!--页面进入模块动画效果 end-->
+	<!-- endbuild -->
+	
+	<!-- build:js js/home.js -->
+	<script type="text/javascript" src="js/validation.js" ></script>
+	<script type="text/javascript" src="js/slide-index.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/comm/comm.js" ></script><!--公共处理函数-->
+  <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/tpl/plugin.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/index.js"></script><!--首页数据加载 js-->
+	<!-- endbuild -->
+    	
+	<script>
+	    $(function(){
+	        //3d
+	       	$('#slide-index').slideCarsousel({slideType:'3d',indicatorEvent:'mouseover'});
+			
+			// 试着改插件里面的hover事件
+			$('.indicator-list>a').on('mouseover', function() {
+				$('.fix-box-ban,.fix-box-ban-three').addClass('animate');
+				// 背景图片不变
+			}).on('mouseout', function() {
+				$('.fix-box-ban,.fix-box-ban-three').removeClass('animate');
+			});
+
+			// 友情链接高度(垂直居中)
+			function linkHeight(){
+				$('.linkHeight').css('height',0);
+				// 实时监控link高度变化
+				var needHeight = $('.trust-item-box>.col-md-4:eq(0)').height();
+				$('.linkHeight').css('height',needHeight + 'px');
+			};
+			$(window).resize(function() {
+				linkHeight();
+			});
+//			$(window).onload(function() {
+//				linkHeight();
+//			});
+			window.onload=function(){
+				linkHeight();
+			}
+
+ 			//  页面进入动画
+ 			if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+				new WOW().init();
+			};
+			
+	   });
+	   
+	</script>
+	
+</html>

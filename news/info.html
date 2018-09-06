@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+	<base id="bpid" href="/" target="_blank" />
+	<script type="text/javascript">window['fontBaseUrl'] = '/'</script>
+    <!--<Deject>-->
+	<script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--<Deject>-->
+	<!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>新闻详情</title>
+	<meta name="keywords" content="百捷云站新闻详情页" />
+	<meta name="description" content="百捷云站新闻详情页" />
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css" />
+	<link rel="stylesheet" href="ctrl/animate.min.css" />
+	<!--前台页面样式-->
+	<!-- endbuild -->
+
+	<!-- build:css css/other.comm.css -->
+	<link rel="stylesheet" href="css/base.css" />
+	<!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" />
+	<!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" />
+	<!--top 样式-->
+	<!-- endbuild -->
+
+	<style>
+		.decText strong {}
+	</style>
+
+	<!--bootstrap 兼容ie8-->
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+	<!--bootstrap 兼容ie8-->
+</head>
+
+<body>
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+
+	<!--内容部分 start-->
+	<div class="bjContainer">
+
+
+		<!--单页文章 start-->
+		<div class="pageInfoD container">
+			<!--面包屑-->
+			<div class="proTitle">
+				<p class="clearfix">
+					<span class="fl">新闻详情</span>
+					<span class="fr">首页 > 新闻详情</span>
+				</p>
+			</div>
+			<!--面包屑-->
+			<div class="row">
+				<div class="col-md-9">
+					<!--新闻详情开始-->
+					<div class="col-md-12" id="latestDetail" v-cloak>
+						<!--单页标题、事件及分享 start-->
+						<div class="pageTitleD">
+							<!--新闻标题信息-->
+							<h2>{{ news_params.title }}</h2>
+							<p>
+								<span>作者：{{ news_params.author }}</span>
+								<span>{{getTime(new Date(news_params['update_time']))}}</span>
+								<!--发布时间-->
+								<span>来源：{{news_params.vfrom}}</span>
+								<!--<span>收藏 73</span>-->
+								<span>评论 :{{news_params.comment_count}}</span>
+							</p>
+							<div>
+								<span class="iconfont"></span>
+								<span class="iconfont"></span>
+								<span class="iconfont"></span>
+								<span class="iconfont"></span>
+							</div>
+						</div>
+						<!--单页标题、事件及分享 end-->
+
+						<!--正文部分 start-->
+						<div class="pageWordD">
+							<!--新闻正文信息-->
+							<div class="pageLineD"></div>
+
+							<!--首行缩进文本 start-->
+							<p id="decText" class="text-ind">
+							</p>
+
+						</div>
+						<!--正文部分 end-->
+
+						<!--分享及点赞收藏 start-->
+						<div class="pageShareD">
+
+
+						</div>
+						<!--分享及点赞收藏 end-->
+					</div>
+
+					<div class="col-md-12">
+						<!--评论 start-->
+						<div id="remarkTpl" class="commentAll">
+
+						</div>
+						<!--评论 end-->
+					</div>
+
+				</div>
+				<!--新闻详情结束-->
+
+				<div class="col-md-3">
+					<div class="pageRight mb20">
+
+						<div class="newsTop" id="newstop"></div>
+
+					</div>
+					<div class="pageRight mb20 hidden" id="advShow">
+
+						<div class="">
+							<!--广告部分展示-->
+							<div id="myCarousel_adv" class="carousel slide">
+								<ol class="carousel-indicators">
+									<li data-target="#myCarousel_adv" v-for="(item,index) in advList" v-if="index < 6" :data-slide-to="index" :class="[index == 0 ? 'active': '']"></li>
+								</ol>
+								<!-- Carousel items -->
+								<div class="carousel-inner">
+									<div class="item" v-for="(item,index) in advList" v-if="index < 6" :class="[index == 0 ? 'active': '']">
+										<a :href="item.res_url">
+											<img :src="item.img" :alt="item.title" />
+										</a>
+									</div>
+								</div>
+								<!-- Carousel nav -->
+								<a class="carousel-control left" href="#myCarousel_adv" data-slide="prev">&lsaquo;</a>
+								<a class="carousel-control right" href="#myCarousel_adv" data-slide="next">&rsaquo;</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!--列表 end-->
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer class="x-footer x-footer-two" id="footer"></footer>
+	<!--footer end-->
+	
+	<script type="text/javascript" src="js/comm/bluebird.js"></script><!--引入解析es6Promise对象-->
+	<!-- build:js js/other.libs.js -->
+	<script type="text/javascript" src="js/comm/jquery.min.js"></script>
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js" ></script><!-- 占位 -->
+	<script type="text/javascript" src="ctrl/bootstrap/js/bootstrap.offcanvas.min.js"></script>
+	<script type="text/javascript" src="js/comm/es6-promise.js"></script><!--解析es6 promise-->
+	<script src="js/comm/vue.min.js"></script><!--vue -->
+	<script src="js/comm/axios.js"></script><!--axios-->
+	<script type="text/javascript" src="js/zepto.min.js"></script><!-- 占位 -->
+	<!-- endbuild -->
+
+	<!-- build:js js/other.comm.js -->
+	<script type="text/javascript" src="js/validation.js" ></script> <!-- 占位 -->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js"></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/comm/comm.js"></script><!--获取cookie信息-->
+	<script type="text/javascript" src="js/tpl/header.js"></script><!--header 模块加载js-->
+	<script type="text/javascript" src="js/tpl/footer.js"></script><!--footer 模块加载js-->
+	<script type="text/javascript" src="js/tpl/plugin.js"></script><!-- 占位 -->
+	<!-- endbuild -->
+	
+	<script type="text/javascript" src="js/tpl/remark.js"></script><!--remark 模块加载js-->
+	<script type="text/javascript" src="js/news/info.js"></script><!--新闻详情 信息加载 js-->
+	<script type="text/javascript" src="js/tpl/newstop.js"></script><!--newsTopTen 模块加载js-->
+
+</body>
+
+</html>

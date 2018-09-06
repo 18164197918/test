@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>插件管理-广告管理</title>
+    
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+    <link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+
+   <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+    <link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+    <link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+    <link rel="stylesheet" href="css/table.css" />
+    <!--用户中心-->
+    
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+</head>
+
+<body class="userNav">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="广告管理" />
+    <!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">广告管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+    <!--right start-->
+    <div class="mt-phone" id="mgeAdv" v-cloak>
+        <div class="table">
+        	<!--表头操作按钮   start-->
+			<form class="form-inline header-adv mb15 pdNone">
+			  <button type="button" class="btn btn-default btn-search" onclick="addHref()">添加广告</button>
+			</form>
+			<!--表头操作按钮   end-->
+            <!--table start-->
+            <table class="table table-bordered table-hover table-condensed tab-ts">
+                <thead>
+                    <tr>
+                        <!--<th class="tc th30">
+                            <label>
+                                <input type="checkbox" id="selectAll" value="option1" aria-label="...">
+                            </label>
+                        </th>-->
+                        <th>
+                            <!--广告名称-->
+                            <div class="tc">广告名称</div>
+                        </th>
+                        <th class="wid40">
+                            <!--开始时间  结束时间-->
+                            <div class="l-col tc">开始时间</div>
+                            <div class="r-col tc">结束时间</div>
+                        </th>
+                        <th class="wid20">
+                            <!--状态  操作-->
+                            <div class="l-col tc">状态</div>
+                            <div class="r-col tc">操作</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in advList" class="tc">
+                        <!--<td class="selectOne">
+                            <label>
+                                <input type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                            </label>
+                        </td>-->
+                        <td class="tl">
+                            <!--工单主题-->
+                            <div class="one-line">{{item.title}}</div>
+                        </td>
+                        <td class="tl">
+                            <!--提交时间  提交人-->
+                            <div class="l-col">{{item.begin_time}}</div>
+                            <div class="r-col">{{item.end_time}}</div>
+                        </td>
+                        <td class="opr">
+                            <!--状态  操作-->
+                            <div class="l-col one-line">
+                            	<div class="wid100 tc">
+	                                <span class="release" v-if="item.status==1">发布</span>
+	                                <span class="unpublished" v-if="item.status==0">禁用</span>
+                            	</div>
+                            </div>
+                            <div class="r-col tc">
+                                <a :data="item.id" class="modAdv a-default">修改</a>
+                                <a :data="item.id" class="delAdv a-del">删除</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+			<!--暂无数据   start-->
+			<div class="no-data" v-if="noData">
+				结果数据0条
+			</div>
+			<!--暂无数据   end-->
+        </div>
+
+		 <!--翻页-->
+	    <div class="PageF row" v-if="totalPages>=1">
+			<div class="paTotle col-md-3 col-sm-3">
+			</div>
+			<div class="flip col-md-9 col-sm-9">
+				<div class="page-number fr">
+					<ul>
+						<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+						<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+						<li class="li-3">
+							<p>{{ currentpage }}/{{ totalPages }}</p> 
+							<input type="text" class="currentpage" v-model="jumppage"> 
+								<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+						</li> 
+						<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+						<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+					</ul>
+				</div>
+				<div class="filp-x fr">
+		    		每页显示行
+    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+    		    		<option v-for="lines in linesPerPage">
+    		    			{{ lines }}
+    		    		</option>
+    		    	</select>
+				</div> 
+			</div>
+		</div>
+	    <!--翻页结束-->
+        </div>
+    <!--right end-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+    <script  type="text/javascript" src="js/comm/comm.js"></script>
+    
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+    <script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+    
+    <!--页面独有-->
+    <script type="text/javascript" src="js/user/plugMge/mgeAdv.js"></script>
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+    		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+</body>
+
+</html>

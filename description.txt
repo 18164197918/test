@@ -1,0 +1,17 @@
+发布前打包方法注意事项：
+
+对于平台模板打包方法
+    1.运行云站发布.bat(该路径生成的baijiekj.com.zip是平台的结果 是未经过js css等优化的结果)
+    2.到gulpCS下运行zip.bat(该路径生成的baijiekj.com.zip是平台的结果 是已经js css等优化的结果)
+    3.运行base打包.bat	
+    4.到models下运行全模板打包.bat（将3的公共提取合并生成拷贝模板包在每个模板路径下）
+    5.运行zips.bat(针对不同情况在zip_modules/zip_modules_cs1下生成对应的所有模板打包文件结果)
+
+un_models.sh
+
+
+ 上传命令：
+
+   上传模板后解压 ： unzip -o xxx.zip -d xxx
+   	  删除文件： rm  -rf xxx
+    

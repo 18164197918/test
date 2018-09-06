@@ -1,0 +1,7 @@
+.skin .toolbar-add ul li a:hover{background: #ff0000!important;}/*background:{{BGCOLOR}}*/
+.skin .pkTitle{color: #ff0000!important;border-color: #ff0000!important;}/*color:{{FTCOLOR}},border-color:{{FTCOLOR}}*/
+.skin .pkBox p.pkPrice{color: #ff0000!important;}/*color:{{FTCOLOR}}*/
+.skin .pkBox .pkList{border-color: rgba(255,0,0,.2)!important;}/*border-color:{{FTCOLOR,Opacity:0.2}}*/
+.skin .Market .cirBg span{color: #ff0000!important;}/*color:{{FTCOLOR}}*/
+.skin .bjBanner .btn-1 a, .bjBanner .btn-2 a{color: #ff0000!important;}/*color:{{FTCOLOR}}*/
+.skin .Package .packTitle{background: #ff0000!important;}/*background:{{BGCOLOR}}*/

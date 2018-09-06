@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>评论管理</title>
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+    <link href="css/zTreeStyle.css"  rel="stylesheet">
+		<link href="css/user/custom-tree.css"  rel="stylesheet">		
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	    <!--bootstrap 兼容ie8-->
+	</head>
+	<body class="userNav">
+		<input type="hidden"  id="leftstatu" value="业务管理"/>
+    	<input type="hidden"  id="leftstatus" value="评论管理"/>
+		<!--内容部分 start-->
+		<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">评论管理</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+		<!--right start-->
+		<div class="" id="mgecomment" v-cloak>
+			
+			<!--table start-->
+			<div class="table">
+				<!--表头操作按钮   start-->
+				<div class="tab-header clearfix">
+					<div class="col-md-3  col-sm-3 col-xs-3">
+						<div class="row">
+							<!--树形菜单  start-->
+							<!--树形菜单  end-->
+							<div class=" tree-nav">
+								<div  onclick="showMenu()">
+									<input type="hidden" :value="mid" class="cs-point mid"/>
+									<input id="citySel" class="form-control" type="text" readonly value="网站栏目" class="cs-point"/>
+								</div>
+								<div id="menuContent" class="menuContent wid100" style="">
+									<ul id="selctTree" class="ztree" style="margin-top:0; "></ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-3 col-xs-3">
+						<div class="row">
+							<!--选择列表  start-->
+							<div class="down-wrap">
+							  	<!--bootstrap start-->
+							  	<div class="dropdown">
+									<button onclick="batchOpear(1)" type="button" class="btn  btn-default" id="dropdownMenu1" 
+											>
+										<span class="dec">批量删除</span>
+									</button>
+								</div>
+							  	<!--选择列表  end-->
+							</div>
+							<!--下拉菜单  end-->
+						</div>
+					</div>
+					
+		
+					
+				</div>
+				<!--表头操作按钮   end-->
+					<table class="table table-bordered table-hover table-condensed tab-ts">
+						<thead>
+							<tr>
+								<th class="tc th30">
+								  <label>
+								    <input type="checkbox" id="blankCheckbox" class="ck_all" aria-label="...">
+								  </label>
+								</th>
+								<th class="tc wid30">
+									<div class="l-col">评论人</div>
+									<div class="r-col ">评论时间</div>
+								</th>
+								<th class="wid40 tc">
+									<div class="l-col">评论内容</div>
+									<div class="r-col ">所属内容</div>
+								</th>
+								<th class="vertical tc wid5">
+									<div>公开</div>
+								</th>
+								<th class="vertical one wid10 tc">操作</th>
+							</tr>
+						</thead>
+						<tbody class="content-edit-box-bg">
+							<tr v-for='item in commentList' class="tc">
+								<td class="vertical">
+									<label>
+								    	<input type="checkbox" id="blankCheckbox" class="ck_one" :value="item.id" aria-label="...">
+								  	</label>
+								</td>
+								<td>
+									<div class="l-col one-line">
+										{{item.contact}}
+									</div>
+									<div class="r-col one-line tl">
+										{{item.insert_time}}
+									</div>
+								</td>
+								<td class="">
+									<div class="l-col one-line tl">
+										{{item.comment}}
+									</div>
+									<div class="r-col one-line">
+										{{item.title}}
+									</div>
+									
+								</td>
+							
+								<td class="">
+									
+									
+									<div class="">
+										<div class="" v-if="item.status==1" onclick="changeStatus(this,1)" :data='item.id'>
+											<span class="iconfont" style="color:greenyellow;">&#xe65c;</span>
+										</div>
+										<div class="" v-if="item.status==0" onclick="changeStatus(this,0)" :data='item.id'>
+											<span class="iconfont" style="color:red;">&#xe6b8;</span>
+										</div>
+									</div>
+								</td>
+								
+								<td class=" opr">
+									<a class="a-default" :data="item.id"  onclick="operate(1,this)">回复</a><a class="a-del" :data="item.id" onclick="operate(2,this)">删除</a>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<!--暂无数据   start-->
+					<div class="no-data" v-if="noData">
+						结果数据0条
+					</div>
+					<!--翻页-->
+	    		    <div class="PageF row" v-if="totalPages>=1">
+						<div class="paTotle col-md-3 col-sm-3">
+						</div>
+						<div class="flip col-md-9 col-sm-9">
+							<div class="page-number fr">
+								<ul>
+									<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+									<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+									<li class="li-3">
+										<p>{{ currentpage }}/{{ totalPages }}</p> 
+										<input type="text" class="currentpage" v-model="jumppage"> 
+											<p @click="changeCurrentPage" :value="jumppage"   style="cursor: pointer;">go</p>
+									</li> 
+									<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+									<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+								</ul>
+							</div>
+							<div class="filp-x fr">
+					    		每页显示行
+			    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+			    		    		<option v-for="lines in linesPerPage">
+			    		    			{{ lines }}
+			    		    		</option>
+			    		    	</select>
+							</div> 
+						</div>
+					</div>
+	    		    <!--翻页结束-->
+				</div>
+		
+
+			<!--table end-->
+				<!--提示弹窗html start-->
+				<div class="md-modal md-effect-2">
+					<div class="md-content">
+						<h3>提示<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+						<!--nr start-->
+						<div>
+							<!--中间内容   start-->
+							<p>您确定要删除这个元素吗？您确定要删除这个元素吗</p>
+							<!--中间内容   end-->
+							<div class="tc btn-box">
+								<input class="btn btn-default md-close" type="submit" value="取消"><input class="btn btn-default md-close" type="submit" value="确认">
+							</div>
+							
+						</div>
+						<!--nr end-->
+					</div>
+				</div>
+				<!--提示弹窗html end-->
+				<!--遮罩层  start-->
+				<div class="mask-layer"></div>
+				<!--遮罩层  end-->
+		</div>
+		<!--right end-->
+		<div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"  charset="utf-8"></script><!--z-Tree-->
+		<!--个人公共-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script><!--占位-->
+		<!-- endbuild-->
+		<script type="text/javascript" src="js/user/colums.js" charset="utf-8"></script><!--自定义封装zTree方法-->
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/mgrComment.js"></script><!--footer 模块加载js-->
+		<script type="text/javascript">
+		 var a=isSignIn();
+				 if(a==null){
+						window.top.location.href = fontBaseUrl+'user/sign.html';
+				 }
+			 </script>
+		<script>
+			$(function() {
+				// 自定义弹窗
+				$('#show').on('click', function() {
+					$('.md-effect-1').addClass('md-show');
+				});
+				$('.md-close').on('click', function() {
+					$(this).closest('.md-effect-1').removeClass('md-show');
+				});
+				
+				// 提示弹窗
+				$('#show2').on('click', function() {
+					$('.md-effect-2').addClass('md-show');
+				});
+				$('.md-close').on('click', function() {
+					$(this).closest('.md-effect-2').removeClass('md-show');
+				});
+			});
+		</script>
+		</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>云站业务-云站列表</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+	
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	<!--用户中心样式-->
+	<link rel="stylesheet" href="css/table.css" />
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+    <body class="userNav">
+	<input type="hidden"  id="leftstatu" value="云站业务"/>
+    <input type="hidden"  id="leftstatus" value="云站列表"/>
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">云站列表</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+		<!--right start-->
+		<div class="" id="webList" v-cloak>
+			
+			<!--table start-->
+			<div class="table">
+				<!--表头操作按钮   start-->
+				<div class="tab-header clearfix">
+					<div class="col-md-12 col-xs-12">
+						<div class="row">
+							<div class="col-md-2 col-sm-3 col-xs-3" style="padding-left: 0;">
+								<input class="form-control" type="text"  placeholder="公司名称或测试地址" name="" id="d4312" value="" v-model="search_keyWords"/>
+							</div>
+							<button type="button" class="btn btn-default" @click="pointSearch">
+							  	<i class="iconfont">&#xe612;</i>
+							  	点击查询
+							</button>
+						</div>
+					</div>
+				</div>
+				<!--表头操作按钮   end-->
+					<table class="table table-bordered table-hover table-condensed tab-ts">
+						<thead>
+							<tr>
+								<th class="wid6 tc">
+									<div class="txt-ln1">序号</div>
+								</th>
+								<th class="tc">
+									<div class="l-col">产品名称</div>
+									<div class="r-col">公司名称</div>
+								</th>
+								
+								<th class="tc">
+									<div class="l-col">测试地址</div>
+									<div class="r-col">当前状态</div>
+								</th>
+								<th class="wid10 tc">
+									<div class=" tc">详情</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for='(item, index) in ftpList' :id="item.id" class="tc">
+								<td>
+									<!--序号-->
+									<div class="">{{index+ 1}}</div>
+								</td>
+								<td>
+									<!--产品名称  公司名称-->
+									<div class="l-col one-line tl">标准</div>
+									<div class="r-col one-line tl">{{item.companyName}}</div>
+								</td>
+								<td>
+									<!--测试地址  状态-->
+									<div class="l-col one-line tl">{{item['domain_addr']}}</div>
+									<div class="r-col one-line">
+										<input v-if="item.status == 100" type="button" value="FTP申请中" >
+										<input v-if="item.status == 200" type="button" value="FTP已开通" >
+										<input v-if="item.status == 250" type="button" value="复制中" >
+										<input v-if="item.status == 300" type="button" value="复制成功" >
+										<input v-if="item.status == 400" type="button" value="重启Nginx" >
+									</div>
+								</td>
+								<td class="opr"  :data-id="item.id"><!--详情-->
+									<div :data-id="item.id">
+										<a class="a-default searchFTP" :data-id="item.id">查看</a>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--暂无数据   start-->
+					<div class="no-data" v-if="noData">
+						结果数据0条
+					</div>
+					<!--暂无数据   end-->
+			</div>
+			<!--table end-->
+			
+			<!-- 模态框（Modal） -->
+			  	<div class="md-modal md-effect-1"  id="myModal">
+					<div class="md-content">
+						<h3>详情<i class="iconfont pull-right md-close" data-dismiss="modal">&#xe619;</i></h3>
+						<!--nr start-->
+						<div style="min-height: 510px;">
+							<!--中间内容   start-->
+							<div class="form-center">
+								<form class="form-horizontal">
+								  <div class="form-group">
+								    <label for="inputEmail3" class="col-sm-4 col-xs-4 control-label">公司名称:</label>
+								    <div class="col-sm-8 col-xs-8">
+								    	<span>{{getFtpInfo.companyName}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4 control-label">绑定域名:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{bindIP || ''}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4 control-label">开通年限:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo.year}}年</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4 control-label">主机地址:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo.ip}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+							      <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4  control-label">内网ip:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo['intranet_ip']}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4  control-label">主机账号:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo['account']}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4  control-label">主机密码:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo['password']}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								   <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4  control-label">端口号:</label>
+								    <div class="col-sm-8 col-xs-8 ">
+							    		<span>{{getFtpInfo['port_num']}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="inputPassword3" class="col-sm-4 col-xs-4  control-label">测试域名:</label>
+								    <div class="col-sm-8 col-xs-8">
+							    		<span>{{getFtpInfo['domain']&&getFtpInfo['domain']}}</span>
+								      <!--<input type="text" class="form-control">-->
+								    </div>
+								  </div>
+								  
+								</form>
+							</div>
+							<!--中间内容   end-->
+							<div class="tc btn-box">
+								<input class="btn btn-default md-close"  type="submit" value="取消">
+								<!--<input class="btn btn-default md-close" type="submit" value="确认">-->
+							</div>
+							
+						</div>
+						<!--nr end-->
+					</div>
+				</div>
+			
+				 <!--翻页-->
+			    <div class="PageF row" v-if="totalPages>=1">
+					<div class="paTotle col-md-3 col-sm-3">
+					</div>
+					<div class="flip col-md-9 col-sm-9">
+						<div class="page-number fr">
+							<ul>
+								<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+								<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+								<li class="li-3">
+									<p>{{ currentpage }}/{{ totalPages }}</p> 
+									<input type="text" class="currentpage" v-model="jumppage"> 
+										<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+								</li> 
+								<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+								<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+							</ul>
+						</div>
+						<div class="filp-x fr">
+				    		每页显示行
+		    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+		    		    		<option v-for="lines in linesPerPage">
+		    		    			{{ lines }}
+		    		    		</option>
+		    		    	</select>
+						</div> 
+					</div>
+				</div>
+			    <!--翻页结束-->
+		</div>
+		<!--right end-->
+		<!--内容部分 end-->
+		<!--important start-->
+		<div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+		<!--个人公共-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+	    <!--用户中心公共tpl start-->
+	    <!--页面独有-->
+	  <script type="text/javascript" src="js/user/webBusiness/webList.js"></script><!--本页面加载数据部分-->
+	  <script type="text/javascript">
+			var a=isSignIn();
+    	if(a==null){
+    		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+   		<script type="text/javascript">
+   			$('.md-close').on('click', function() {
+				$(this).parents(".md-modal").toggleCommModal('close');
+			});
+   		</script>
+    </body>
+	  
+</html>
+
+

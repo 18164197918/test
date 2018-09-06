@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>banner管理</title>
+		
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/bootstrap-select/css/bootstrap-select.min.css">  
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+        <link href="css/zTreeStyle.css"  rel="stylesheet">
+		<link href="css/user/custom-tree.css"  rel="stylesheet">
+	    <!-- cutImg文件 -->
+		<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+		<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	    <!--bootstrap 兼容ie8-->
+
+	  
+	</head>
+	<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="内容管理"/>
+    <input type="hidden"  id="leftstatus" value="Banner管理"/>
+	<!--内容部分 start-->
+		<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">Banner管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+				<!--right start-->
+				<div class="" id="mgrBanner" v-cloak>
+					
+					<!--table start-->
+					<div class="table">
+						<!--表头操作按钮   start-->
+						<div class="tab-header clearfix">
+							<!--<div class="col-md-3 col-xs-5 rel row" >-->
+								<!--树形菜单  start-->
+								<!--<div class="tree-wrap">
+									<div id="tree"></div>
+								</div>-->
+								<!--树形菜单  end-->
+								<!--<div class=" tree-nav">
+									<div  onclick="showMenu()">
+										<input type="hidden" :value="mid" class="cs-point mid"/>
+										<input id="citySel" class="form-control" type="text" readonly value="网站栏目" class="cs-point"/>
+									</div>
+									<div id="menuContent" class="menuContent wid100" style="">
+										<ul id="selctTree" class="ztree" style="margin-top:0; "></ul>
+									</div>
+								</div>
+							</div>-->
+							
+							<div class="col-md-2 col-sm-3 col-xs-3">
+								<div class="row">
+									<select name="" class="form-control cur-p" id="labelBanner" onchange="getBanList(this)">
+										<option v-for="item in labelList" :value="item.id" :num="item.num">{{item.name}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!--表头操作按钮   end-->
+						<!--02 start-->
+						<table id="tab-ban" class="table table-bordered table-hover table-condensed tab-ts">
+							<thead>
+								<tr>
+									<th class="tc">
+									 	预览
+									</th>
+									<th>
+										<div class="tc">描述</div>
+									</th>
+									<th>
+										<div class="tc">链接</div>
+										
+									</th>
+									<th>
+										<div class="tc">操作</div>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+								<!--新增新tr start-->
+								<tr v-for="(item, index) in bannerList" :id="item.id" :ord="index">
+									<td class="ver-cz rel">
+										<!--<input id="fileBtn" class="file wid100" type="file" />-->
+										<div class="mgr-ban">
+											<div class="add-box text-center add-box-pic" >
+												<!--<img :src="item.img" alt=""/>
+												<span class="iconfont">&#xe602;</span>-->
+												<div class="useupImg maimglst" :title="['bannerImg'+index]" style="height:100%;">
+											      	<a  class="">
+											      		<span class="iconfont">&#xe602;</span>
+											      		<img :src="item.img" :id="['bannerImg'+index]" alt="" class="uploadimg" name="bannerImg"  />
+											      	</a>
+										        </div>
+												<input type="hidden" name="hiddenvalue" />
+						 					 	<input type="file" :data="['bannerImg'+index]"  :id="['uploadBannerImage'+index]" onchange="selectImage(this,'bannerImg');" class="bannerFile" name="bannerfile"  accept="video/*;capture=camcorder"  style="display:none;"/>
+												
+											</div>
+											<span class="iconfont a-close cur-p" :ord="index" :data="item.id" onclick="delBanner(this)">&#xe601;</span>
+										</div>
+									</td>
+									<td class="ver-cz">
+										<div class="ban-txt">
+											
+											
+										</div>
+										<div class="ban-desc add-box text-center" onclick="addBanText(this,event)">
+											<span class="iconfont " >&#xe602;</span>
+										</div>
+									</td>
+									<td class="ver-cz">
+										<div>
+											<input type="text" v-model="item.url" class="form-control bannerUrl" placeholder="http://...">
+										</div>
+									</td>
+									<td class="opr opr-ban tc ver-cz">
+										<div class="a-up"    :data="item.id"  onclick="moveBanner(0,this)"><i class="iconfont">&#xe68b;</i>上移</div>
+										<div class="a-down"  :data="item.id"  onclick="moveBanner(1,this)" ><i class="iconfont">&#xe638;</i>下移</div>
+									</td>
+								</tr>
+								<!--新增新tr end-->
+								
+								<tr>
+									<td colspan="4">
+										<!--添加 start-->
+										<div id="add"  onclick="addBanner()" class="add-box text-center add-box-kuan">
+											<span class="iconfont" >&#xe602;</span>
+										</div>
+										<!--添加 end-->
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<!--暂无数据   start-->
+						<div class="no-data" v-if="noData">
+							结果数据0条
+						</div>
+						<!--暂无数据   end-->
+						<!--02 end-->
+					</div>
+					<!--table end-->
+					<div class="btn-ban btn-box text-right">
+						<input class="btn btn-default" type="button" value="保存设置" onclick="addOReditBanner()">
+					</div>
+					<!--btn start-->
+					<!--btn end-->
+					
+						<!-- 弹出选择图片上传框 -->
+							<div class="show upImg useupImgbox" id="show_cutimg">
+								<div class="modal-dialog">	
+								    <div class="modal-content" id="myModal">
+								        <div class="modal-body">
+								            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+								                <div class="img-container">
+								                    <img  alt="点击下面选择文件按钮进行选择文件！">
+								                    <div class="img-type" style="display:none"></div>
+								                </div>
+								            </div>
+								        </div>
+								        <div class="modal-footer2">
+								            <div class=" col-xs-12">
+								            	<div class="row mt-10 mb-5">
+									        		<div class="col-sm-7">
+									                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+									                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+									                        	<span class="iconfont">&#xe613;</span>
+									                    	</span>
+									                    </button>
+									                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+									                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+									                        	<span class="iconfont">&#xe632;</span>
+									                    	</span>
+									                    </button>
+									                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+									                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+									                        	<span class="iconfont">&#xe60c;</span>
+									                   		 </span>
+									                    </button>
+									                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+									                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+									                        	<span class="iconfont">&#xe60c;</span>
+									                    	</span>
+									                    </button>
+														<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+														    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+																<span class="iconfont">&#xe697;</span>
+														    </span>
+														</button>
+						
+									                </div>
+									                <div class="col-sm-5 upload-fr">
+								                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+								                        <input class="sr-only" id="inputImage" type="file" name="file">
+								                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+								                            选择文件
+								                        </span>
+								                    </label>  
+								                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+								                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+								                            确认上传
+								                        </span>
+								                    </label>
+								                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+								                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+								                            取消
+								                        </span>
+								                    </label>
+									                </div>
+								            	</div>
+								            </div>
+								            
+								            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+								            </div>
+								        </div>
+								    </div> 	
+								</div>
+							</div>
+				</div>
+				<!--right end-->
+	<!--内容部分 end-->
+	<!--页面加载提示-->
+		<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+	    </body>
+		<!--公共类库-->
+		
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script><!--占位-->
+		<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"></script> <!--z-Tree-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/cutimg.libs.js --> 
+		<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+		<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+		<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+		<!-- endbuild-->
+	   <script type="text/javascript" src="ctrl/bootstrap-select/js/bootstrap-select.min.js"></script> 
+	    
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+    	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script><!--占位-->
+		<!-- endbuild-->
+		<script type="text/javascript" src="js/user/colums.js" charset="utf-8"></script><!--自定义封装zTree方法-->
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/contMge/mgrBanner.js"></script><!--本页面js-->
+		
+		 <script type="text/javascript">
+			var a=isSignIn();
+	    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+	    	}
+	    </script>
+		
+		<script type="text/javascript">
+				// 自定义弹窗
+					$('#show').on('click', function() {
+						$('.md-effect-1').addClass('md-show');
+					});
+					$('.md-close').on('click', function() {
+						$(this).closest('.md-effect-1').removeClass('md-show');
+					});
+					 $(document).on('click','.uploadimg',function(){
+					 	$(this).parent().parent().parent().find('.bannerFile').click();
+//									  $('#uploadBannerImage').click();
+					 })
+		</script>
+		
+</html>

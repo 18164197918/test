@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>订单详情</title>
+	
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+	
+	<!--<link rel="stylesheet" href="../../css/form-common.css" />-->
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<input type="hidden" id="leftstatu" value="业务管理" />
+	<input type="hidden" id="leftstatus" value="订单管理" />
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">订单管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--header start-->
+	<div id="header" v-cloak></div>
+	<!--header end-->
+	
+	
+	<!--内容部分 start-->
+	<div class="bjContainer container-column">
+		<div class="useCrumbs">
+			<p class="clearfix container"><span class="fl">订单详情</span><span class="fr">首页 &gt; 订单详情</span></p>
+		</div>
+		
+		<div class="container orderDetail" id="detailOrder">
+			
+			<!--top 状态栏-->
+		    <div class="container status-bar clearfix">
+		    	<ul class="mt30 mb30">
+		    		<li class="fl wid20">
+		    			<div class="overflow">
+		    				<div class="status-cicle radius50 fl" :class="[orderInfo.status == 100 ? 'status-green':'']">
+		    					<span class="iconfont">&#xe61f;</span>
+		    				</div> 
+		    				<div class="status-line fl" :class="[orderInfo.status == 100 ? 'status-green':'']"></div>
+		    			</div> 
+		    			<h1 class="status-title tc">提交订单</h1> 
+		    			<p class="status-time tc"></p>
+		    		</li>
+		    		<li class="fl wid20">
+		    			<div class="overflow">
+		    				<div class="status-cicle radius50 fl" :class="[orderInfo.status == 200 ? 'status-green':'']">
+		    					<span class="iconfont">&#xe61f;</span>
+		    				</div> 
+		    				<div class="status-line fl" :class="[orderInfo.status == 200 ? 'status-green':'']"></div>
+		    			</div> 
+		    			<h1 class="status-title tc">支付订单</h1> 
+		    			<p class="status-time tc"></p>
+		    		</li>
+		    		<li class="fl wid20">
+		    			<div class="overflow">
+		    				<div class="status-cicle radius50 fl" :class="[orderInfo.status == 300 ? 'status-green':'']">
+		    					<span class="iconfont">&#xe61f;</span>
+		    				</div> 
+		    				<div class="status-line fl" :class="[orderInfo.status == 300 ? 'status-green':'']"></div>
+		    			</div> 
+		    			<h1 class="status-title tc">平台发货</h1> 
+		    			<p class="status-time tc">已发货</p>
+		    		</li>
+		    		<li class="fl wid20">
+		    			<div class="overflow">
+		    				<div class="status-cicle radius50 fl"  :class="[orderInfo.status == 500 ? 'status-green':'']">
+		    					<span class="iconfont">&#xe61f;</span>
+		    				</div> 
+		    				<div class="status-line fl" :class="[orderInfo.status == 500 ? 'status-green':'']"></div>
+		    			</div> 
+		    			<h1 class="status-title tc">确认收货</h1> 
+		    			<p class="status-time tc"></p>
+		    		</li>
+		    	</ul>
+		    </div>
+			
+			<div class="oliOrder main-box container">
+				<div class="oliOrderbox">
+					<div class="oliOrderTitle clearfix">
+						<div class="col-md-6 col-danger fz14 or-tip">
+							<span class="iconfont col-danger">&#xe642;</span>
+							当前订单状态：
+							<span v-if="orderInfo.status == -900">已删除</span>
+							<span v-if="orderInfo.status == -100">已关闭</span>
+							<span v-if="orderInfo.status == ''">全部</span>
+							<span v-if="orderInfo.status == 100">待付款</span>
+							<span v-if="orderInfo.status == 200">待发货</span>
+							<span v-if="orderInfo.status == 300">已完成</span>
+							<span v-if="orderInfo.status == 500">已发货</span>
+						</div> 
+						
+						<ul class="col-md-6 clearfix"><!--调好弹窗后加入-->
+							<li v-if="orderInfo.status == 100 || orderInfo.status == 200"  class="fr ml10"  onClick="showPopup('#popup-modify-invoice')"><a  class="btn btn-default">修改发票信息</a></li>
+							<li v-if="orderInfo.status == 100 || orderInfo.status == 200"  class="fr ml10"  onClick="showPopup('#popup-modify-reciver')"><a  class="btn btn-default popup-window-tips" >修改收货人信息</a></li>
+							<li v-if="orderInfo.status == 100"  class="fr ml10"><a class="btn btn-default"  onClick="showPopup('#popup-modify-fee')">修改费用信息</a></li>
+							<li v-if="orderInfo.status == 300 || orderInfo.status == 500"  class="fr ml10"><a  class="btn btn-default"  @click="orderTrack(orderInfo.id)">订单跟踪</a></li>
+							<li v-if="orderInfo.status == -100"  class="fr ml10" onClick="delOrder()"><a  class="btn btn-default" >删除订单</a></li>
+							<li v-if="orderInfo.status == -100" class="fr ml10" ><a  class="btn btn-default" onClick="showPopup('#popup-cancel-order')">取消订单</a></li>
+							<li v-if="orderInfo.status == -900"  class="fr ml10" onClick="showPopup('#popup-modify-remark')"><a  class="btn btn-default">订单备注</a></li>
+						</ul>
+					</div> 
+					
+					
+					<ul id="myTab" class="nav nav-tabs">
+					    <li class="active">
+					   		<a href="#home" data-toggle="tab">基本信息</a>
+					    </li>
+					    <li>
+					   		<a href="#ios" data-toggle="tab">发票信息</a>
+					    </li>
+					    <li>
+					   		<a href="#jmeter" data-toggle="tab">收货人信息</a>
+					    </li>
+					    <li>
+					   		<a href="#goods" data-toggle="tab">商品信息</a>
+					    </li>
+					    <li>
+					   		<a href="#price" data-toggle="tab">费用信息</a>
+					    </li>
+					</ul>
+					<div id="myTabContent" class="tab-content">
+					    <!--基本信息 table start-->
+						<div class="table tab-pane fade in active" id="home">
+							<table class="table table-bordered table-hover table-condensed tab-ts">
+								<thead>
+									<tr>
+										<th class="wid5">
+											<div class="">订单编号</div>
+										</th>
+										<th class="wid15">
+											<div class="l-col">用户账号</div>
+											<div class="r-col">支付方式</div>
+										</th>
+										<th class="wid16">
+											<div class="l-col wid-zj">配送方式</div>
+											<div class="r-col">物流单号</div>
+										</th>
+										<th class="wid8">
+											<div class="">自动确认收货时间</div>
+										</th>
+										<th class="wid10">
+											<div class="">订单备注</div>
+										</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<div class="">{{orderInfo.id}}</div><!--订单编号-->
+										</td>
+										<td>
+											<div class="l-col one-line">{{usrAccount}}</div>
+											<div class="r-col one-line">
+												<i class="mgr-desc" v-if="orderInfo.pay_type == 10">微信支付</i><!--pay_type 10-->
+												<i class="mgr-desc" v-if="orderInfo.pay_type == 20">支付宝支付</i><!--pay_type 20-->
+												<i class="mgr-desc" v-if="orderInfo.pay_type == 30">百度钱包支付</i><!--pay_type 30-->
+												<i class="mgr-desc" v-if="orderInfo.pay_type == 40">网银支付</i><!--pay_type 40-->
+												<i class="mgr-desc" v-if="orderInfo.pay_type == 50">货到付款</i><!--pay_type 50-->
+											</div>
+										</td>
+										<td>
+											<div class="l-col one-line wid-zj">
+												<i class="mgr-desc" v-if="orderInfo.delivery_type == 1">中通快递</i>
+												<i class="mgr-desc" v-if="orderInfo.delivery_type == 2">申通快递</i>
+												<i class="mgr-desc" v-if="orderInfo.delivery_type == 3">圆通快递</i>
+												<i class="mgr-desc" v-if="orderInfo.delivery_type == 4">顺丰快递</i>
+												
+											</div>
+											<div class="r-col wid-time">{{orderInfo.logistics_no}}</div>
+										</td>
+										<td>
+											<div class="">{{orderInfo.act_time}}</div>
+										</td>
+										 <td class="opr">
+											<div class="">{{orderInfo.remark}}</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--table end-->
+						
+					   <!--</div>-->
+					   <div class="tab-pane fade" id="ios">
+					      <!--发票信息 table start-->
+					      <div class="table tab-pane fade in active" id="home">
+								<table class="table table-bordered table-hover table-condensed tab-ts">
+									<thead>
+										<tr>
+											<th class="wid5">
+												<div class="">发票类型</div>
+											</th>
+											<th class="wid5">
+												<div class="">发票抬头</div>
+											</th>
+											<th class="wid5">
+												<div class="">发票内容</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="">
+													<i class="mgr-desc" v-if="orderInfo.invoice_type == 10">个人</i>
+													<i class="mgr-desc" v-if="orderInfo.invoice_type == 20">企业</i>
+												</div>
+											</td>
+											<td>
+												<div class="">{{orderInfo.invoice_title}}</div>
+											</td>
+											<td>
+												<div class="">{{orderInfo.invoice_content}}</div>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							
+							<!--table end-->
+					   </div>
+					   <div class="tab-pane fade" id="jmeter">
+					      <!--收货人信息 table start-->
+							<div class="table tab-pane fade in active" id="home">
+								<table class="table table-bordered table-hover table-condensed tab-ts">
+									<thead>
+										<tr>
+											<th class="wid5">
+												<div class="">收货人</div>
+											</th>
+											<th class="wid5">
+												<div class="">手机号码</div>
+											</th>
+											<th class="wid5">
+												<div class="">邮政编码</div>
+											</th>
+											<th class="wid5">
+												<div class="">收货地址</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="">{{orderInfo.name}}</div>
+											</td>
+											<td>
+												<div class="">{{orderInfo.tel}}</div>
+											</td>
+											<td>
+												<div class="">{{orderInfo.postcode}}</div>
+											</td>
+											<td>
+												<div class="">{{orderInfo.addr}}</div>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<!--table end-->
+					   </div>
+					   <div class="tab-pane fade" id="goods">
+					        <!--商品信息 table start-->
+							<div class="table tab-pane fade in active" id="home">
+								<table class="table table-bordered table-hover table-condensed tab-ts">
+									<thead>
+										<tr>
+											<th class="wid10">
+												<div class="">商品图片</div>
+											</th>
+											<th class="wid16">
+												<div class="l-col">商品名称</div>
+												<div class="r-col">价格</div>
+											</th>
+											<th class="wid16">
+												<div class="l-col wid-zj">数量</div>
+												<div class="r-col">库存</div>
+											</th>
+											<th class="wid5">
+												<div class="">小计</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr v-for="item in resInfo">
+											<td>
+												<div class="goodImg">
+													<img :src="item.img"  onerror="imgerror(this)"/>
+												</div>
+											</td>
+											<td>
+												<div class="l-col one-line">{{item.title}}</div>
+												<div class="r-col one-line">{{item.price}}</div>
+											</td>
+											<td>
+												<div class="l-col one-line wid-zj">{{item.number}}</div>
+												<div class="r-col wid-time">{{Number(item.quantity_count - item.quantity_sold)}}</div>
+											</td>
+											<td>
+												<div class="">{{item.total}}</div>
+											</td>
+											<td v-if="orderInfo.status == 100">
+												<span>
+													<i  :cartid="item.cart_id" :title="item.title" :count="item.number" onclick="showPopupModifyGoods('#popup-modify-goods', this)">修改商品</i>
+												</span>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<!--table end-->
+					   </div>
+					   <div class="tab-pane fade" id="price">
+					        <!--费用信息 table start-->
+							<div class="table tab-pane fade in active" id="home">
+								<table class="table table-bordered table-hover table-condensed tab-ts">
+									<thead>
+										<tr>
+											<th class="wid10">
+												<div class="tc">商品合计</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<div class="tc">{{orderInfo.amount}}</div>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							<!--table end-->
+					   </div>
+					</div>
+					
+				</div>
+			</div>
+			<!--/***********************************************  弹框开始  *********************************************************/-->
+			<!--修改发票信息 start-->
+			<div id="popup-modify-invoice" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>修改发票信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">发票类型:</label>
+							    <div class="col-sm-10">
+									<select class="form-control" id="clm-nr" onchange="selctInvoiceType(this)">
+										  <option catid="0">请选择</option>
+									      <option catid="10">个人</option>
+									      <option catid="20">单位</option>
+								  	</select>							    	
+							    </div>
+							  </div>
+							    <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">发票抬头:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="invoceTitle form-control" v-model="invoiceParams.invoice_title">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">发票内容:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" v-model="invoiceParams.invoice_content">
+							    </div>
+							  </div>
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消">
+							<input class="btn btn-default " type="button" value="确认" onclick="changeInvoice()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--修改发票信息 end-->
+			<!--修改收货人信息  start-->
+				<div id="popup-modify-reciver" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>修改收货人信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">收货人姓名:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control"  v-model="receverParams.name">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">手机号码:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" v-model="receverParams.tel">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">邮政编码:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" v-model="receverParams.postcode">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">收货地址:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" v-model="receverParams.addr">
+							    </div>
+							  </div>
+							  
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消">
+							<input class="btn btn-default" type="button" value="确认" onclick="changeReciver()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--修改收货人信息  end-->
+			<!--修改商品信息  start-->
+			<div id="popup-modify-goods" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>修改商品信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">商品名称:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="goodName form-control"  disabled="disabled" v-model="goodsParams.title" >
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="inputPassword3" class="col-sm-2 control-label">数量:</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="goodCount form-control" v-model="goodsParams.count">
+							    </div>
+							  </div>
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default" type="submit" value="取消">
+							<input class="btn btn-default md-close" type="button" value="确认" onclick="changeGoods()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--修改商品信息  end-->
+			<!--修改费用  start-->
+				<div id="popup-modify-fee" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>修改费用信息<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-3 control-label">商品合计:</label>
+							    <div class="col-sm-9">
+							      <input type="text" class="form-control"  v-model="editCost">
+							    </div>
+							  </div>
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消" >
+							<input class="btn btn-default" type="button" value="确认" onclick="changeFee()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--修改费用  end-->
+			<!--订单备注  start-->
+			<div id="popup-modify-remark" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>订单备注<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-2 control-label">备注:</label>
+							    <div class="col-sm-10">
+							      <textarea type="text" cols="30" rows="6" placeholder="备注字数上限76个字" class="form-control" v-model="remark"></textarea>
+							    </div>
+							  </div>
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消">
+							<input class="btn btn-default" type="button" value="确认" onclick="changeOrderRemark()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--订单备注  end-->
+			<!--取消订单  start-->
+			<div id="popup-cancel-order" class="md-modal md-effect-1">
+				<div class="md-content">
+					<h3>取消订单<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+					<!--nr start-->
+					<div>
+						<!--中间内容   start-->
+						<div class="form-center">
+							<form class="form-horizontal">
+							  <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-3 control-label">取消原因:</label>
+							    <div class="col-sm-9">
+							      <textarea type="text" cols="30" rows="6" placeholder="取消原因" class="form-control" v-model="params.cancel_reason"></textarea>
+							      	<p class="btn-desc" style="font-size: 1.2rem;">会记录在商家给客户的留言中</p>
+							    </div>
+							  </div>
+							  <div class="form-center">
+								<form class="form-horizontal">
+								  <div class="form-group">
+								    <label for="inputEmail3" class="col-sm-3 control-label">商品合计:</label>
+								    <div class="col-sm-9">
+								      <input type="text" class="form-control" disabled="disabled" v-model="orderInfo.amount">
+								    </div>
+								  </div>
+								</form>
+							</div>
+							</form>
+						</div>
+						<!--中间内容   end-->
+						<div class="tc btn-box">
+							<input class="btn btn-default md-close" type="submit" value="取消">
+							<input class="btn btn-default" type="button" value="确认" onclick="cancelOrderFun()">
+						</div>
+						
+					</div>
+					<!--nr end-->
+				</div>
+			</div>
+			<!--弹窗   end-->
+			<!--遮罩层  start-->
+			<div class="mask-layer"></div>
+			<!--遮罩层  end-->
+			<!--取消订单  end-->
+			<!--/***********************************************  弹框结束  *********************************************************/-->
+		</div>
+		
+		
+	</div>
+	<!--内容部分 end-->
+	<!--footer start-->
+	<footer id="footer"></footer>
+	<!--footer end-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/servMge/orderDetail.js"></script><!--订单详情数据加载-->
+	<script type="text/javascript">
+		var a = isSignIn();
+		if(a == null) {
+			window.top.location.href = fontBaseUrl + 'user/sign.html';
+		}
+	</script>
+<script>
+   $(function () {
+      $('#myTab li:eq(1) a').tab('show');
+      
+//	$('#show').on('click', function() {
+//		$('.md-effect-1').addClass('md-show');
+//	});
+	$('.md-close').on('click', function() {
+		$(this).closest('.md-effect-1').removeClass('md-show');
+	});
+	
+	// 提示弹窗
+//	$('#show2').on('click', function() {
+//		$('.md-effect-2').addClass('md-show');
+//	});
+//	$('.md-close').on('click', function() {
+//		$(this).closest('.md-effect-2').removeClass('md-show');
+//	});
+//	
+  
+
+//	function closePopup() { //关闭弹窗
+//		var popId = arguments[0];
+//		if(popId) {
+//			$(popId).hasClass("dis-n") && $(popId).removeClass("dis-n");
+//		} else {
+//			console.log("请添加操作弹窗ID！");
+//		}
+//	}
+      
+   });
+  
+</script>
+
+
+
+
+</body>
+</html>

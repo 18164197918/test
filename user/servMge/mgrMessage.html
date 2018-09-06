@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+	    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>业务管理-留言管理(二级菜单)</title>
+
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+
+		<link rel="stylesheet" href="/ctrl/font-awesome-4.7.0/css/font-awesome.min.css"><!--字体图标-->
+			
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/table.css" /><!--用户中心-->
+	</head>	
+	
+	<body class="userNav">
+	
+		<input type="hidden"  id="leftstatu" value="业务管理"/>
+	    <input type="hidden"  id="leftstatus" value="留言管理"/>
+		<!--banner部分 start-->	
+		<!--banner部分 end-->
+	    <!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">留言管理</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+		<!--内容部分 start-->
+		<!--内容管理(用户中心-内容管理)  start-->
+			<!--right start-->
+			<div class="" id="mgemessage" v-cloak>
+				
+				<!--table start-->
+				<div class="table">
+					<!--表头操作按钮   start-->
+					<!--表头操作按钮   end-->
+					
+					
+					<table class="table table-bordered table-hover table-condensed tab-ts">
+						<thead>
+							<tr>
+								<!--<th class="tc th30">
+									  <label>
+									    <input type="checkbox" id="blankCheckbox" class="ck_all" aria-label="...">
+									  </label>
+								</th>-->
+								<!--<th class="">留言人</th>-->
+								<th>
+									<div class="l-col  tc">留言人</div>
+									<div class="r-col  tc">留言时间</div>
+								</th>
+								<!--<th>
+									<div class="one-line">公开</div>
+								</th>-->
+								<th class="">
+									<div class="tc">留言内容</div>
+								</th>
+								<th class="wid15 tc">
+									<div class="l-col tc">公开</div>
+									<div class="r-col tc">状态</div>
+								</th>
+								<th class="wid11 tc">操作</th>
+							</tr>
+						</thead>
+						<tbody  class="content-edit-box-bg ">
+							<tr v-for='item in messageList' class="tc">
+								<!--<td class="">
+									<label>
+								    	<input type="checkbox" id="blankCheckbox" class="ck_one" :value="item.id" aria-label="...">
+								  	</label>
+								</td>-->
+								<!--<td class="">
+									<div class="one-line">
+										{{item.name}}
+									</div>
+								</td>-->
+								
+								<td class="">
+									<div class="l-col">
+										{{item.name}}
+									</div>
+									<div class="r-col tl txt-ln1">
+										{{item.insert_time}}
+									</div>
+									
+								</td>
+								<!--<td>
+									<div class="one-line">
+										<span v-if="item.status==1" onclick="changeStatus(this,1)" :data='item.id' class="iconfont switch-green">&#xe65c;</span>
+										<span v-if="item.status==0" onclick="changeStatus(this,0)" :data='item.id' class="iconfont switch-red">&#xe6b8;</span>
+									</div>
+								</td>-->
+								<td class="tl">
+									<div class="one-line">
+										{{item.content}}
+									</div>
+								</td>
+								<td>
+									<div class="l-col">
+										<span v-if="item.status==1" onclick="changeStatus(this,1)" :data='item.id' class="iconfont switch-green">&#xe65c;</span>
+										<span v-if="item.status==0" onclick="changeStatus(this,0)" :data='item.id' class="iconfont switch-red">&#xe6b8;</span>
+									</div>
+									<div class="r-col">
+										<div class="one-line unpublished" v-if="item.reply==null">未审核</div>
+										<div class="release" v-else>审核</div>
+									</div>
+								</td>
+								<td class="opr">
+									<a :data="item.id" class="a-default" onclick="operate(1,this)">回复</a><a :data="item.id" class="a-del" onclick="operate(2,this)">删除</a>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<!--暂无数据   start-->
+					<div class="no-data" v-if="noData">
+						结果数据0条
+					</div>
+					<!--暂无数据   end-->
+		           <!--翻页-->
+	    		    <div class="PageF row" v-if="totalPages>=1">
+						<div class="paTotle col-md-3 col-sm-3">
+						</div>
+						<div class="flip col-md-9 col-sm-9">
+							<div class="page-number fr">
+								<ul>
+									<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+									<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+									<li class="li-3">
+										<p>{{ currentpage }}/{{ totalPages }}</p> 
+										<input type="text" class="currentpage" v-model="jumppage"> 
+											<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+									</li> 
+									<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+									<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+								</ul>
+							</div>
+							<div class="filp-x fr">
+					    		每页显示行
+			    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+			    		    		<option v-for="lines in linesPerPage">
+			    		    			{{ lines }}
+			    		    		</option>
+			    		    	</select>
+							</div> 
+						</div>
+					</div>
+	    		    <!--翻页结束-->
+				</div>
+			
+					<!--提示弹窗   end-->
+					<!--提示弹窗html start-->
+					<div class="md-modal md-effect-2">
+						<div class="md-content">
+							<h3>提示<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+							<!--nr start-->
+							<div>
+								<!--中间内容   start-->
+								<p>您确定要删除这个元素吗？您确定要删除这个元素吗</p>
+								<!--中间内容   end-->
+								<div class="tc btn-box">
+									<input class="btn btn-default md-close" type="submit" value="取消"><input class="btn btn-default md-close" type="submit" value="确认">
+								</div>
+								
+							</div>
+							<!--nr end-->
+						</div>
+					</div>
+					<!--提示弹窗html end-->
+					<!--遮罩层  start-->
+					<div class="mask-layer"></div>
+					<!--遮罩层  end-->
+				<!--table end-->
+			</div>
+			<!--right end-->
+		<!--内容部分 end-->
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="/js/comm/jquery.validate.min.js"charset="utf-8"></script>
+		<script  type="text/javascript" src="js/comm/comm.js"></script>
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/mgrMessage.js"></script>
+		<script type="text/javascript">
+			var a=isSignIn();
+        if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+      	}
+	 </script>
+
+	</body>
+</html>

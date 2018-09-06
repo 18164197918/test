@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>用户中心-(内容管理)添加内容</title>
+
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild-->
+		
+		<link href="css/zTreeStyle.css"  rel="stylesheet">
+		<link href="css/user/custom-tree.css"  rel="stylesheet">
+		
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/form-common.css" />
+		<!-- cutImg文件 -->
+		<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+		<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+		<style type="text/css">
+			  #commentForm .goods-close{
+			  	    right: 8px;
+				    top: -8px;
+				    color: #000000;
+				    line-height: 16px;
+				    cursor: pointer;
+			  }
+			  .x-tips{
+			  	width: 100%;
+			  	height: 100%;
+			  	position: fixed;
+			  	top:0;
+			  	left: 0;
+			  	background: #fff;
+			  	z-index:1000 ;
+			  }
+			  .x-tips .x-tips-box{
+				  	max-width: 200px;
+				    border-radius: 3px;
+				    padding: 10px;
+				    position: fixed;
+				    left: 50%;
+				    margin: -20px 0 0 -100px;
+				    top: 20%;
+				    background: rgba(0, 0, 0, 0.5);
+				    z-index:1001 ;
+			  }
+			  .x-tips-box p{
+			  	color: #ffffff;
+			    margin: 0;
+			  }
+		</style>
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	    <!--bootstrap 兼容ie8-->
+	</head>
+	<body class="userNav">
+		<input type="hidden"  id="leftstatu" value="内容管理"/>
+    	<input type="hidden"  id="leftstatus" value="添加内容"/>
+		<!--内容部分 start-->
+		<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">内容管理</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+			<!--right start-->
+			<div class="" id="addcontent" v-cloak>
+				
+			     <div class="cmxform" id="commentForm">
+					<fieldset>
+					<div class="form-common " style="border: none; padding-bottom: 0 !important;">	
+						<form action="" class="form-horizontal" id="columnFrom"> 
+							<div class="pad-box">
+								<div class="form-group">
+							        <label for="cname" class="col-sm-2 control-label col-xs-12 phonelabel">类型分类：</label>
+							        <div class="col-sm-4 col-xs-12">
+								        <select  class="columnName form-control columnType" @change='selColumnByType($event)'  >
+								        	<option v-for="item in columnType" :value="item.id">{{item.code_desc}}</option>
+								        </select>
+							        </div>
+							    </div>
+							</div>    
+						
+							<div class="pad-box">
+								<div class="form-group">
+							        <label for="cname" class="col-sm-2 control-label col-xs-12 phonelabel">栏目菜单：</label>
+							        <div class="col-sm-10 col-xs-12">
+								        <input type="text" id="columnName" style="display: none;" class="form-control" :value="mnid"  readonly="readonly"/>
+								        <span v-for="item in column">
+								        	<input type="checkbox" name="columnName" :value="item.id"/><span v-if="item.name1">{{item.name1}}</span><span v-else>{{item.name}}</span>&nbsp;&nbsp;    
+								        </span>
+								        
+								        <div class="err-msg"></div>
+							        </div>
+							    </div>
+							</div>    
+						</form>
+					</div>	
+		                <!--=======================单页编辑部分开始============================-->
+		                <div class="word-edit word-edit-page form-common" style="border: none;padding-top: 0 !important; display: none;">
+		                	<form action="" class="form-horizontal" id="addPageForm">
+		                		<div class="pad-box">
+		                		<div class="form-group " >
+							        <label for="munType" class="col-sm-2 control-label col-xs-12 phonelabel">网页标题：</label>
+							        <div class="col-sm-4 col-xs-12">
+								        <input type=""  class="form-control" name="munType"  value="" v-model="title" />
+							        </div>
+							    </div>	
+							    <div class="form-group form-group-del keywordBox" >
+								    <label  class="col-sm-2 control-label col-xs-12 phonelabel">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox col-xs-4 mobile_mb15">
+								 		<div class="row row-attr">
+								 			<div class="col-md-9 col-sm-9 col-xs-10">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3 ml-15 col-xs-2" style="margin-left: -25px;">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-6" style="margin-left: -10px;"></div>
+						  			<!--标签值存放框    end-->
+								</div>
+							    <div class="form-group form-group-tips">
+							        <label for="cname" class="control-label col-sm-2">单页描述：</label>
+							        <div class="news-int-word col-sm-10"> 
+										<textarea v-model="pageDesc"  class="form-control"  rows="5" ></textarea>
+										<div class="err-msg"></div>
+									</div> 
+							    </div>
+							    
+							    
+			                	<div class="form-group from-group-wid100">
+							        <!--<label for="content5" class="control-label col-sm-2" id="text">正文：</label>
+							        <div class="col-sm-10">
+										<textarea id="content5" cols="80" name="rc#1.content" rows="10" class="form-control"></textarea>
+							        </div>-->
+							        <div class="fix rel" style="width:100%;height:35px;">
+								  		<label for="content5" class="col-sm-2 control-label control-title text-center abs">正文</label>
+								  	</div>
+							        <div class="col-sm-12  iframe_textarea">
+								      <textarea id="content5" cols="80" name="rc#1.content" rows="10" class="form-control"></textarea>
+								    </div>
+						    	</div>
+						    	
+						    	
+						    	<div class="form-group">
+						    		<label for="" class="control-label col-sm-2" id="text">内容状态：</label>
+							        <div class="col-sm-10">
+										    <label class="radio-inline">
+										    	<input name="Fruit1" class="publish post" type="radio"  checked="checked"/>
+										    	<span>发布</span> 
+										    </label> 
+											<label class="radio-inline">
+												<input name="Fruit1" class="draft post" type="radio" />
+												<span>草稿</span>
+											</label> 
+							  	    </div>
+						    	</div>
+						    	
+						    	<!--<div class="form-group">
+								  	  <div class="col-sm-offset-2 col-sm-10">
+											  <div  class="btn btn-default submit"       @click='giveUp()'>放弃</div>
+											  <div  class="btn btn-default submit sure"  @click='PageOperation()'>确认</div>
+								  	  </div>
+								</div>-->
+								  <!--两个按钮   start--> 
+							      <div class="btn-box btn-box-two text-center">
+							      	<button type="button" class="btn btn-default"  @click='PageOperation(1)'>确认</button>
+							      	<button type="button" class="btn btn-default"  @click='giveUp()'>放弃</button>
+						      		<!--<button type="button" class="btn btn-default"  @click='PageOperation(2)'>继续添加</button>-->
+							      </div>
+							      <!--两个按钮   end-->
+								
+								
+								
+						    	<!--<label class="zl-fuwenben">
+						        	<div class="textareas mb-15 ">			
+									    
+								   		<div class="tabcon-zl pl-5 pr-5">
+								   			<div class=" fade in active" id="profile1">
+											</div>
+										</div>
+							   		</div>
+						        </label>
+						    	<p class="word-ra">
+							        <label for="cname" class="form-title">内容状态：</label>
+							        <label> 
+										<label><input name="Fruit1" class="publish post" type="radio"  checked="checked"/>发布 </label> 
+										<label><input name="Fruit1" class="draft post" type="radio" />草稿 </label> 
+									</label> 
+							    </p>
+							    <p>
+							    	<input class="submit" type="submit" value="放弃" @click='giveUp'>
+							        <input class="submit sure" type="button" value="确认" @click='PageOperation'>
+							    </p>-->
+							   </div> 
+							</form>    
+		                </div>
+		                <!--=======================单页编辑部分结束============================-->
+		                
+						<!--=======================产品编辑部分开始============================-->
+					  <div class="word-edit word-edit-product  form-common"  style="border: none;padding-top: 0 !important; display: none;">
+				    		<form id="addProductForm" class="form-horizontal">
+				    			<div class="pad-box">
+				    			<div class="shangchuan ">
+					    		<div class="form-group form-group-tips">
+								        <label for="prodTitle" class="control-label col-sm-2">产品名称(<i class="i-important">*</i>)：</label>
+								        <div class="col-sm-4">
+									        <input class="titleName form-control"  id="prodTitle" type="text"  name="prodTitle"    v-model="productName"/>
+									    	<div class="err-msg" ></div>
+								        </div>
+							    </div>
+							    <!--产品分类-->
+							    <div class="form-group form-group-tips">
+							        <label for="cname" class="control-label col-sm-2">产品分类(<i class="i-important">*</i>)：</label>
+							       
+							        <div class="col-sm-7"> 
+										<div class="goods-kind wid100" style="position: relative;">
+											<div class="good-classify">
+												<div class="select-tree">
+														<input type="text" value="" style="display: none;" @focus="showMenu"/>
+														
+														<input id="citySel" @click="showMenu($event,'treeProduct')"  readonly="readonly"  v-model='prodcatname'  name="productsClass" type="text"  placeholder="请勾选产品分类" class="form-control">
+														
+														<div class="err-msg"></div>
+												</div>
+											</div>
+											<div id="menuContentPro" class="menuContent menu-product" style="left:0 !important;display: none;top:">
+												<ul id="treeProduct" class="ztree" style="margin-top:0;"></ul>
+											</div>
+											
+										</div>
+									</div> 
+									
+									<!-- Small modal -->
+									<div  class="add-class">
+										<span class="add_label" id="show_product">+新增分类</span>
+									</div>
+						    	</div>
+						    	
+						    	<!--<div class="form-group form-group-tips">
+							        <label for="cname" class="control-label col-sm-2">新闻分类(<i class="i-important">*</i>)：</label>
+							       
+							        <div class="col-sm-7"> 
+										<div class="goods-kind wid100" style="position: relative;">
+											<div class="good-classify">
+												<div class="select-tree">
+														<input type="text" value="" style="display: none;" @focus="showMenu"/>
+														<input id="citySel1" @focus="showMenu($event,1)"    readonly="readonly" v-model='catname1'  name="newsClass" type="text"  placeholder="请勾选新闻分类" class="form-control">
+														<div class="err-msg"></div>
+												</div>
+											</div>
+											<div id="menuContent1" class="menuContent menu-good" style="left:0 !important;display: none;top:">
+												<ul id="treeDemo3" class="ztree" style="margin-top:0;"></ul>
+											</div>
+											
+											<style>
+												#menuContent{left: 0!important;}
+											</style>
+											
+										</div>
+									</div> 
+									<div  class="add-class">
+										<span class="add_label" id="show1">+新增分类</span>
+									</div>
+							    </div>-->
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+						    	
+							    <!--产品分类 end-->
+							    <div class="form-group form-group-del keywordBox" >
+								    <label  class="col-sm-2 control-label">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox ">
+								 		<div class="row row-attr">
+								 			<div class="col-md-7 col-sm-7   col-xs-7">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3 col-xs-2 ml-15">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12"></div>
+						  			<!--标签值存放框    end-->
+								</div>
+							    <div class="form-group productImg">
+							        <label for="cname" class="form-title col-sm-2 control-label">产品图片：</label>
+							      
+							        <div id="addCommodityIndex" class="addCommodityIndex1 col-sm-10">
+							          
+										<!--<div class="mb-15 mt-20 ">-->
+												<!--<div class="text-center mb-15 resImg" aratio="1" title="resImg">
+													<a href="#" class="upload uploadbg uploadbg-zl" data-toggle="modal" data-target="#show_cutimg" >  
+														+
+														<img  alt="" class="uploadimg" name="resImg" >
+													</a>
+												</div>-->
+										<div class="row " style="margin-bottom: 8px;">
+							    			<div class="col-md-12" >		
+												<div class="productBigImg maimglst img-btn  btn-add-box useupImg BigImg" title="resImg" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;" >
+													<a class="">
+														<span class="iconfont sp-color">&#xe602;</span>
+											      		<img  class="uploadimg" name="resImg" id="prodImg"/>
+											      	</a>
+												</div>
+												<div class="col-sm-4">
+											        <input  type="hidden"  value="" name="prodImg"/>
+											    	<div class="err-msg" style="margin-left: -17px;"></div>
+										        </div>
+											</div>
+							    		</div>	
+												
+											<div  class="row" style="overflow:hidden;">
+												<div class="col-md-12 col-sm-12 " style="overflow: hidden;">
+													<div class="upload-product resChildImg fl btn-add-box clearfix"  aratio="1">	
+														  <div class="useupImg img-btn-small  maimglst" title="resImgchild" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;"> 
+													      	<a  class="" >
+												      			<span class='iconfont sp-color'>&#xe602;</span>
+													      		<img alt="" class="uploadimg" name="resImgchild" />
+													      	</a>
+												     	  </div>
+													</div>
+													<div  class="fa fa-plus-square add_img fl cur-p" data="resImgchild" style="font-size: 40px;margin-top: 10px;">+</div>
+												</div>	
+													<p class="btn-desc col-sm-12" style="padding-left: 15px;" >
+														上传图片尺寸建议<span class="col-red">800*800</span>px
+													</p>
+											</div>
+										<!--</div>-->
+									</div>
+								</div>
+						     <!--<div class="form-group from-group-wid100">
+						        <div class="fix rel" style="width:100%;height:35px;">
+						  			<label for="content7" class="col-sm-2 control-label control-title text-center abs">产品描述</label>
+							  	</div>
+							  	
+							  	<div class="col-sm-12 iframe_textarea">
+							      <textarea id="content7" cols="80" name="rc#1.content" rows="10" class="form-control"></textarea>
+							    </div>
+						  	</div>-->
+						  	
+						  	<div class="form-group">
+			                  <label for="cname" class="control-label col-sm-2">正文：</label>
+			                  <div class="col-sm-10 desc-type ">
+				                    <div class="textareas mb-15  goodsDes ">      
+				                       <div class="col-sm-2 goodsDescribe rel mobile_mb15 " ord="1" style="cursor: pointer;">
+				                          <input type="text" class="ipt-text radius0 gradient-bg form-control" value="产品描述" name="rc.name" maxlength="6"  style="border: 1px solid deepskyblue;"/>
+			                        	  <i class='iconfont  abs  small_img goods-close'>&#xe624;</i>
+				                      </div>
+				                  	</div>
+			                        <div class="col-sm-1 a-add cur-p" style="height:34px;line-height: 34px;"><span class="iconfont">&#xe602;</span></div>
+			                  </div>
+			                </div>  
+			                <div class="tabcons form-group">
+			                    	<div class="col-sm-offset-2 col-sm-10 iframe_textarea" id="profile4">
+					                    <div class="tabcon" >
+					                        <textarea id="content11" cols="80"   ord='1' name="rc.content" rows="10" class="form-control"></textarea>
+					                    </div>
+					                    <div class="tabcon dis-n" >
+					                        <textarea id="content12" cols="80" class="dis-n" ord='2' name="rc#1.content" rows="10" class="form-control"></textarea>
+					             		</div>
+					             		<div class="tabcon dis-n" >
+					                        <textarea id="content13" cols="80" class="dis-n" ord='3' name="rc#2.content" rows="10" class="form-control"></textarea>
+					                 	</div>
+					                 	<div class="tabcon dis-n">
+					                        <textarea id="content14" cols="80" class="dis-n" ord='4' name="rc#3.content" rows="10" class="form-control"></textarea>
+										</div>	
+			                    	</div>
+			                    	<div class="edtor_box dis-n" >
+									</div>
+		                    </div>
+						  	
+						  	
+						  	
+						  	
+						        
+					    	</div>
+	                        <div class="form-group">
+						        <label for="cname" class=" col-sm-2 control-label">内容状态：</label>
+						        <div class="col-sm-10">
+										<label class="radio-inline"><input name="Fruit2" class="publish post" type="radio"  checked="checked"/><span>发布</span> </label> 
+										<label class="radio-inline"><input name="Fruit2" class="draft post" type="radio" /><span>草稿</span> </label> 
+								</div> 
+						    </div>
+						    <!--<div class="form-group">
+						    	<div class="col-sm-offset-2 col-sm-10">
+							        <div  class="btn btn-default submit"       @click='giveUp()'>放弃</div>
+								    <div  class="btn btn-default submit sure"  @click='ProductOperation()'>确认</div>
+						        </div>
+						    </div>-->
+						      <!--两个按钮   start--> 
+						      <div class="btn-box btn-box-two text-center">
+						      	<button type="button" class="btn btn-default"  @click='ProductOperation(1)'>确认</button>
+						      	<button type="button" class="btn btn-default"  @click='ProductOperation(2)'>继续添加</button>
+						      	<button type="button" class="btn btn-default"  @click='giveUp()'>放弃</button>
+						      </div>
+						      <!--两个按钮   end-->
+						      </div>
+						    </form>
+					    </div>
+					    <!--=======================产品编辑部分结束============================-->
+					    
+					    <!--=======================新闻编辑部分开始============================-->
+						<div class="word-edit word-edit-news form-common" style="border: none; padding-top: 0 !important;display: none;">
+							<form id="addNewsForm" class="form-horizontal " >
+							<div class="pad-box">
+							<div class="form-group form-group-tips">
+						        <label for="newsTitle" class="control-label col-sm-2">新闻标题(<i class="i-important">*</i>)：</label>
+						        <div class="col-sm-4"> 
+									<input name="newsTitle" id="newsTitle" type="text" v-model="newsTitle" class="form-control"/> 
+									<div class="err-msg"></div>
+								</div> 
+						    </div>
+						    
+						    <div class="form-group form-group-del keywordBox" >
+								    <label  class="col-sm-2 control-label">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox ">
+								 		<div class="row row-attr">
+								 			<div class="col-md-7 col-sm-7  col-xs-7 ">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3  col-xs-2  ml-15">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone  col-xs-12 "></div>
+						  			<!--标签值存放框    end-->
+							</div>
+						    
+						    <div class="form-group form-group-tips">
+						        <label for="cname" class="control-label col-sm-2">新闻分类(<i class="i-important">*</i>)：</label>
+						       
+						        <div class="col-sm-7"> 
+									<div class="goods-kind wid100" style="position: relative;">
+										<div class="good-classify">
+											<div class="select-tree">
+													<input type="text" value="" style="display: none;" @focus="showMenu"/>
+													<input id="citySel1" @focus="showMenu($event,1)"    readonly="readonly" v-model='catname1'  name="newsClass" type="text"  placeholder="请勾选新闻分类" class="form-control">
+													<div class="err-msg"></div>
+											</div>
+										</div>
+										<div id="menuContent1" class="menuContent menu-good" style="left:0 !important;display: none;top:">
+											<ul id="treeDemo3" class="ztree" style="margin-top:0;"></ul>
+										</div>
+										
+										<style>
+											#menuContent{left: 0!important;}
+										</style>
+										
+									</div>
+								</div> 
+								
+								<!-- Small modal -->
+								<div  class="add-class">
+									<span class="add_label" id="show1">+新增分类</span>
+								</div>
+						    </div>
+						    <div class="form-group form-group-tips">
+						        <label for="cname" class="control-label col-sm-2">新闻摘要：</label>
+						        <div class="news-int-word col-sm-10"> 
+									<textarea v-model="headline"  class="form-control"></textarea>
+									<div class="err-msg"></div>
+								</div> 
+						    </div>
+					    	<div class="form-group form-group-tips">
+						        <label for="cname" class="control-label col-sm-2">新闻来源：</label>
+						        <div class="col-sm-10">
+									<label class="radio-inline "><input name="news-f" type="radio" value="" checked="checked"/><span>原创</span> </label> 
+									<label class="radio-inline"><input name="news-f" type="radio" value=""/><span>独家</span> </label> 
+									<label class="radio-inline"><input name="news-f" type="radio" value=""/><span>转载</span> </label> 
+									<div class="err-msg"></div>
+									<!--<label style="margin-left: 40px;">作者：<input type="text"  v-model='author' placeholder="作者" style="height: 36px;margin-left: 4px;min-width: 200px;"/> </label>--> 
+						        </div>
+						    </div>
+						    <div class="form-group form-group-tips">
+						        <label for="author" class="control-label col-sm-2">作者(<i class="i-important">*</i>)：</label>
+						        <div class="col-sm-4"> 
+									<input type="text" name="author" id="author"  v-model='author' placeholder="作者" class="form-control"/> 
+									<div class="err-msg"></div>
+								</div> 
+						    </div>
+						    
+					    	<div class="form-group ">
+						        <label for="cname" class="col-sm-2  control-label">新闻配图：</label>
+						        <div id="addCommodityIndex" class="addCommodityIndex1 col-sm-10">
+						       
+									<!--<div class="mb-15 mt-20 ">-->
+										<!--<div class="text-center mb-15 resImg" title="newImg" aratio="1.441">
+											<a href="#" class="upload uploadbg uploadbg-zl" data-toggle="modal" data-target=".show_cutimg2" onclick="1">
+												+
+												<img src="" alt="" class="uploadimg" name="newImg" >
+											</a>
+										</div>-->
+											<div class="btn-add-box" aratio="1.441">
+												<!--<div class="newsBigImg maimglst BigImg" title="newImg" data-toggle="modal" data-target="#show_cutimg" aratio="1.441" style="border:1px solid #ddd;">-->
+												<div class="newsBigImg maimglst BigImg" title="newImg" data-toggle="modal" data-target="#show_cutimg"  style="border:1px solid #ddd;">
+													<a class=""  onclick="1">
+														<span class="iconfont sp-color">&#xe602;</span>
+											      		<img src="" alt="" class="uploadimg" name="newImg" />
+											      	</a>
+												</div>
+											</div> 
+										<!--<p class="mt-5 mb-5 text-center line-h-20" style="min-height: auto;">
+											上传图片尺寸建议<span class="col-red">800*800</span>px
+										</p>-->
+									<!--</div>-->
+								</div>
+						    </div>
+						    <div class="form-group form-group-tips from-group-wid100">
+						        <!--<label for="content6" class="col-sm-2 control-label">正文：</label>
+					   			<div class=" fade in active col-sm-10" id="profile1">
+									<textarea id="content6" cols="80" name="rc.content" rows="10" class="form-control"></textarea>          
+								</div>-->
+								<div class="fix rel" style="width:100%;height:35px;">
+							  		<label for="content6" class="col-sm-2 control-label control-title text-center abs">正文</label>
+							  	</div>
+						        <div class="col-sm-12 iframe_textarea">
+							      <textarea id="content6" cols="80" name="rc.content" rows="10" class="form-control"></textarea>
+							    </div>
+					    	</div>
+					    	<div class="form-group">
+						        <label for="cname" class="col-sm-2 control-label">内容状态：</label>
+						        <div class="col-sm-10">
+									<label class="radio-inline"><input name="Fruit3" class="publish post" type="radio"  checked="checked"/><span>发布</span> </label> 
+									<label class="radio-inline"><input name="Fruit3" class="draft post" type="radio" /><span>草稿</span> </label> 
+						        </div>
+						    </div>
+						    <!--<div class="form-group">
+						    	<div class="col-sm-offset-2 col-sm-10">
+							        <div  class="btn btn-default submit"   @click='giveUp()'>放弃</div>
+								    <div  class="btn btn-default submit sure"  @click='NewsOperation()'>确认</div>
+						    	</div>
+						    </div>-->
+						    <!--两个按钮   start--> 
+					       <div class="btn-box btn-box-two text-center">
+						      	<button type="button" class="btn btn-default" @click='NewsOperation(1)'>确认</button>
+						      	<button type="button" class="btn btn-default" @click='NewsOperation(2)'>继续添加</button>
+						      	<button type="button" class="btn btn-default" @click='giveUp()'>放弃</button>
+					       </div>
+					       <!--两个按钮   end-->
+						    </div>	
+						  </form>   
+					    </div>
+					    <!--=======================新闻编辑部分结束============================-->
+					    
+					    <!--=======================商品编辑部分开始============================-->
+						<div class="word-edit word-edit-goods form-common" style="border: none; padding-top: 0 !important; display: none;">
+							<form  id="addGoodsForm" class="form-horizontal">
+							<div class="pad-box">
+							<div class="form-group form-group-tips">
+						        <label for="cname" class="control-label col-sm-2">商品名称(<i class="i-important">*</i>)：</label>
+						        <div class="col-sm-4"> 
+										<input name="goodsName" type="text" v-model='goodsTitle' class="form-control"/>
+										<div class="err-msg"></div>
+								</div> 
+						    </div>
+						    <div class="form-group form-group-tips">
+						        <label for="cname" class="control-label col-sm-2">商品分类(<i class="i-important">*</i>)：</label>
+						       
+						        <div class="col-sm-7"> 
+									<div class="goods-kind wid100" style="position: relative;">
+										<div class="good-classify">
+											<div class="select-tree">
+													<input type="text" value="" style="display: none;" @focus="showMenu"/>
+													
+													<input id="citySel" @click="showMenu($event,2)"  readonly="readonly" v-model='catname'  name="goodsClass" type="text"  placeholder="请勾选商品分类" class="form-control">
+													
+													<div class="err-msg"></div>
+											</div>
+										</div>
+										<div id="menuContent2" class="menuContent menu-good" style="left:0 !important;">
+											<ul id="treeDemo4" class="ztree" style="margin-top:0;"></ul>
+										</div>
+										
+										<style>
+											
+											#menuContent{left: 0!important;}
+											
+										</style>
+										
+									</div>
+								</div> 
+								
+								<!-- Small modal -->
+								<div  class="add-class">
+									<span class="add_label" id="show2">+新增分类</span>
+								</div>
+						    </div>
+						    <div class="form-group form-group-del keywordBox" id="keyword">
+								    <label  class="col-sm-2 control-label">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox ">
+								 		<div class="row row-attr">
+								 			<div class="col-md-7 col-sm-7 col-xs-7">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3 col-xs-2 ml-15">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12"></div>
+						  			<!--标签值存放框    end-->
+							</div>
+						    <div class="news-int goodsnum form-group form-group-tips">
+						    		<label for="price" class="col-sm-2 control-label">商品售价：</label>
+							        <div class="col-sm-4" > 
+										 <input name="price" id="price" type="text" class="small-input-size form-control" v-model='price' placeholder="默认为零"/>
+									     <div class="err-msg" ></div>
+							        </div> 
+									<label for="specification" class="col-sm-2 control-label">规格：</label>
+							        <div class="col-sm-4" > 
+										<input name="specification" id="specification" type="text"  class="small-input-size form-control" v-model='specification'/> 
+									     <div class="err-msg" ></div>
+							        </div> 
+						    </div>
+						    <div class="news-int  goodsnum form-group form-group-tips">
+						    		<label for="cname" class="col-sm-2 control-label" >商品库存：</label>
+							        <div class="col-sm-4"> 
+										<input name="quantity_count" id="quantity_count" type="text" class="small-input-size form-control" v-model='quantity_count' placeholder="默认为零"/>
+									     <div class="err-msg" ></div>
+							        </div> 
+									<label for="cname" class="col-sm-2 control-label" >起订量：</label>
+							        <div class="col-sm-4"> 
+										<input name="quantity_minimum" id="quantity_minimum" type="text"  class="small-input-size form-control" v-model='quantity_minimum' placeholder="默认为零"/>
+									     <div class="err-msg" ></div>
+							        </div> 
+						    </div>
+						    <!--<div class= "form-group form-group-tips" id="goods_label">
+					    		<div class="addd-content addd-nom">
+					    			<label for="cname" class="col-sm-2 control-label">商品标签：</label>
+					    			<div class="addd ">
+						    			<div  class="input-select col-sm-4">
+												<i class="fa fa-chevron-down fa-chevron-down-input abs"></i>
+												<input class="in-value form-control " type="text">
+										</div>
+										<div  class="input-select1 col-sm-2">
+											<div class="click-bit-zl mg0 rel">
+												<i class="fa fa-times-circle f-16 close"></i>
+												<input class="in-value1 form-control " type="text" >
+											</div>
+										</div>
+						   			</div>
+										<div for="cname" class="form-title form-title-add col-sm-2 add_label">+新增标签值</div>
+					    		</div>
+						    		
+						    </div>
+		                    <div class="form-group form-group-tips">
+		                    	  <div class="col-sm-offset-2 col-sm-10">
+										<div for="cname" class="form-title-add2 col-sm-2"><div class="add_label" >+新增标签项</div></div>
+		                    	  </div>	
+		                    </div>-->
+		                    
+		                    
+						   
+		                 <!--商品属性   start-->
+						  <div class="from-group from-group-wid100">
+						  	<label for="content5" class="col-sm-2 control-label">商品属性</label>
+						  	<div  class="col-sm-12 attrBox keywordBox" id="attrBox">
+						  		<!--商品属性   start-->
+						  		<div class="row-line mb20 rel">
+						  			<div class="clearfix">
+						  				<!--搜索条件  start-->
+							  			<div class="col-md-2 col-sm-2 row-item mobile_mb15">
+							  				<div class="row">
+						  						<div class="rel">
+						  							<select id="selectBox" class="form-control select-box selectBox">
+													 <option>选择属性</option>
+													  <option>颜色</option>
+													  <option>尺寸</option>
+													  <option>材质</option>
+													  <!--input start-->
+													  <!--input end-->
+													</select>
+													<input id="inputBox" class="abs select-input inputBox" placeholder="输入属性" />
+						  						</div>
+							  				</div>
+						  				</div>
+							  			<!--搜索条件  end-->
+							  			<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12">
+							  				
+							  			</div>
+							  			<!--标签值存放框    end-->
+						  			</div>
+						  			
+						  			<!--删除按钮   start-->
+						  			<a class="iconfont a-del-con" >&#xe636;</a>
+						  			<!--删除按钮   end-->
+						  			
+						  		</div>
+						     	<!--商品属性   end-->
+						     	<!--添加商品属性   start-->
+						     	<div class="row">
+						     		<div class="col-md-12 col-sm-12">
+						     			<div class="btn-attr-box">
+					 		  				<button id="addAttr" type="button" class="btn btn-default btn-attr">+</button>
+							  			</div>
+						     		</div>
+						     		
+						     	</div>
+						     	<!--添加商品属性   end-->
+						    </div>
+						  </div>
+						  <!--商品属性   end-->   
+		                    
+					    	<div class="form-group goodsImg">
+						        <label for="cname" class="form-title col-sm-2 control-label">商品配图：</label>
+						      
+						        <div id="addCommodityIndex" class="addCommodityIndex1  col-sm-10">
+						        
+									<div class="row " style="margin-bottom: 8px;">
+									    <div class="col-md-12" aratio="1">		
+											<div class="goodsBigImg maimglst btn-add-box useupImg BigImg" title="goodsImg" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;">
+												<a class="">
+													<span class="iconfont sp-color">&#xe602;</span>
+										      		<img src="" alt="" class="uploadimg" name="goodsImg" />
+										      	</a>
+											</div>
+										</div>
+									</div>
+										
+									<div style="overflow:hidden;" class="row">
+										<div class="col-md-12 col-sm-12">
+											<div class="upload-goods resChildImg fl btn-add-box clearfix"  aratio="1">	
+												<div class="useupImg maimglst img-btn-small " title="goodsChildImg" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;">
+													<a class="">  <!--onclick="show('show_cutimg')"-->
+														<span class="iconfont sp-color">&#xe602;</span>
+														<img src="" alt="" class="uploadimg" name="goodsChildImg" />
+													</a>
+												</div>
+											</div>
+											<div  class="fa fa-plus-square add_img cur-p dis-i-b" data="goodsChildImg" style="font-size: 40px;margin-top: 10px;">+</div>
+										</div>
+									</div>
+									<p class="btn-desc" style="padding-left: 15px;">
+										上传图片尺寸建议<span class="col-red">800*800</span>px
+									</p>
+								</div>
+						    </div>
+						    <div class="form-group">
+			                  <label for="cname" class="control-label col-sm-2">正文：</label>
+			                  <div class="col-sm-10 desc-type ">
+				                    <div class="textareas mb-15  goodsDes ">      
+				                       <div class="col-sm-2 goodsDescribe rel mobile_mb15 " ord="1" style="cursor: pointer;">
+				                          <input type="text" class="ipt-text radius0 gradient-bg form-control" value="商品详情" name="rc.name" maxlength="6"  style="border: 1px solid deepskyblue;"/>
+			                        	  <i class='iconfont  abs  small_img goods-close'>&#xe624;</i>
+				                      </div>
+				                  	</div>
+			                        <div class="col-sm-1 a-add cur-p" style="height:34px;line-height: 34px;"><span class="iconfont">&#xe602;</span></div>
+			                  </div>
+			                </div>  
+			                <div class="tabcons form-group">
+			                    	<div class="col-sm-offset-2 col-sm-10 iframe_textarea" id="profile3">
+					                    <div class="tabcon" >
+					                        <textarea id="content1" cols="80"   ord='1' name="rc.content" rows="10" class="form-control"></textarea>
+					                    </div>
+					                    <div class="tabcon dis-n" >
+					                        <textarea id="content2" cols="80" class="dis-n" ord='2' name="rc#1.content" rows="10" class="form-control"></textarea>
+					             		</div>
+					             		<div class="tabcon dis-n" >
+					                        <textarea id="content3" cols="80" class="dis-n" ord='3' name="rc#2.content" rows="10" class="form-control"></textarea>
+					                 	</div>
+					                 	<div class="tabcon dis-n">
+					                        <textarea id="content4" cols="80" class="dis-n" ord='4' name="rc#3.content" rows="10" class="form-control"></textarea>
+										</div>	
+			                    	</div>
+			                    	<div class="edtor_box dis-n" >
+									</div>
+		                    </div>
+		                    <div class="form-group">
+						        <label for="cname" class=" col-sm-2 control-label">内容状态：</label>
+						        <div class="col-sm-10"> 
+										<label class="radio-inline"><input name="Fruit4" class="publish post" type="radio"  checked="checked"/><span>发布</span> </label> 
+										<label class="radio-inline"><input name="Fruit4" class="draft post" type="radio" /><span>草稿</span> </label> 
+								</div> 
+						    </div>
+						    <!--<div class="form-group">
+						    	<div class="col-sm-offset-2  col-sm-10">
+						    		    <div  class="btn btn-default submit"       @click='giveUp()'>放弃</div>
+										<div  class="btn btn-default submit sure"  @click='GoodsOperation()'>确认</div>
+						    	</div>
+						    </div>-->
+						    
+						    <!--两个按钮   start--> 
+					        <div class="btn-box btn-box-two text-center">
+						      	<button type="button" class="btn btn-default" @click='GoodsOperation(1)'>确认</button>
+						      	<button type="button" class="btn btn-default" @click='GoodsOperation(2)'>继续添加</button>
+						      	<button type="button" class="btn btn-default" @click='giveUp()'>放弃</button>
+					        </div>
+					        <!--两个按钮   end-->
+						    </div>	
+						    </form>
+					    </div>
+					    
+					    <!--=======================商品编辑部分结束============================-->
+					    
+					    
+					    
+					    
+					    <!--=======================相册编辑部分开始============================-->
+					  	<div class="word-edit word-edit-photo  form-common"  style="border: none;padding-top: 0 !important; display: none;">
+				    		<form id="addPhotoForm" class="form-horizontal">
+				    			<div class="pad-box">
+					    		<div class="form-group form-group-tips">
+								        <label for="prodTitle" class="control-label col-sm-2">相册标题(<i class="i-important">*</i>)：</label>
+								        <div class="col-sm-4">
+									        <input class="photoTitle form-control"  id="photoTitle" type="text"  name="photoTitle"    v-model="photoTitle"/>
+									    	<div class="err-msg" ></div>
+								        </div>
+							    </div>
+							    <div class="form-group form-group-del keywordBox" >
+								    <label  class="col-sm-2 control-label">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox ">
+								 		<div class="row row-attr">
+								 			<div class="col-md-7 col-sm-7   col-xs-7">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3 col-xs-2 ml-15">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+							  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12"></div>
+						  			<!--标签值存放框    end-->
+								</div>
+								<div class="form-group form-group-tips">
+							        <label for="cname" class="control-label col-sm-2">相册描述：</label>
+							        <div class="news-int-word col-sm-10"> 
+										<textarea v-model="photoDesc"  class="form-control"  rows="5" ></textarea>
+										<div class="err-msg"></div>
+									</div> 
+							    </div>
+							    <div class="form-group photoImg">
+							        <label for="cname" class="form-title col-sm-2 control-label">相册配图：</label>
+							      
+							        <div id="addCommodityIndex" class="addCommodityIndex1  col-sm-10">
+							        
+										<div class="row " style="margin-bottom: 8px;">
+										    <div class="col-md-12" >		
+												<div class="photoBigImg maimglst btn-add-box useupImg BigImg" title="photoImg" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;">
+													<a class="">
+														<span class="iconfont sp-color">&#xe602;</span>
+											      		<img src="" alt="" class="uploadimg" name="photoImg" />
+											      	</a>
+												</div>
+											</div>
+										</div>
+											
+											
+											<div style="overflow:hidden;" class="row">
+												<div class="col-md-12 col-sm-12">
+													<div class="upload-photo resChildImg fl btn-add-box clearfix" >	
+														<div class="useupImg maimglst img-btn-small " title="photoChildImg" data-toggle="modal" data-target="#show_cutimg" style="border: 1px solid #ddd;">
+															<a class="">  <!--onclick="show('show_cutimg')"-->
+																<span class="iconfont sp-color">&#xe602;</span>
+																<img src="" alt="" class="uploadimg" name="photoChildImg" />
+															</a>
+														</div>
+													</div>
+													<div  class="fa fa-plus-square add_img cur-p dis-i-b" data="photoChildImg" style="font-size: 40px;margin-top: 10px;">+</div>
+												</div>
+											</div>
+												<p class="btn-desc" style="padding-left: 15px;">
+													上传图片尺寸建议<span class="col-red">800*800</span>px
+												</p>
+									</div>
+							    </div>
+					
+						        
+	                        <div class="form-group">
+						        <label for="cname" class=" col-sm-2 control-label">内容状态：</label>
+						        <div class="col-sm-10">
+										<label class="radio-inline"><input name="Fruit5" class="publish post" type="radio"  checked="checked"/><span>发布</span> </label> 
+										<label class="radio-inline"><input name="Fruit5" class="draft post" type="radio" /><span>草稿</span> </label> 
+								</div> 
+						    </div>
+						      <!--两个按钮   start--> 
+						      <div class="btn-box btn-box-two text-center">
+						      	<button type="button" class="btn btn-default"  @click='PhotoOperation(1)'>确认</button>
+						      	<button type="button" class="btn btn-default"  @click='PhotoOperation(2)'>继续添加</button>
+						      	<button type="button" class="btn btn-default" @click='giveUp()'>放弃</button>
+						      </div>
+						      <!--两个按钮   end-->
+						      </div>
+						    </form>
+					    </div>
+					    <!--=======================相册编辑部分结束============================-->
+					
+					
+						<!--=======================媒体附件编辑部分开始============================-->
+		                <div class="word-edit word-edit-media form-common" style="border: none;padding-top: 0 !important;display: none;">
+		                	<form action="" class="form-horizontal" id="addMediaForm">
+		                		<div class="pad-box">
+		                		<div class="form-group " >
+							        <label for="munType" class="col-sm-2 control-label col-xs-12">标题：</label>
+							        <div class="col-sm-4 col-xs-12">
+								        <input type=""  class="form-control" name="mediaTitle"  value="" v-model="mediaObj.mediaTitle" />
+							        </div>
+							    </div>	
+							    <div class="form-group form-group-del keywordBox" >
+								    <label  class="col-sm-2 control-label col-xs-12">关键词：</label>
+								    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox col-xs-4 mobile_mb15">
+								 		<div class="row row-attr">
+								 			<div class="col-md-9 col-sm-9 col-xs-10">
+								 			   <input type="text" class="form-control control-label" placeholder="关键词" style="text-align: left !important;"/>
+								 			</div>
+								 			<div class="col-md-3 col-sm-3 ml-15 col-xs-2" style="margin-left: -25px;">
+								 				<div class="btn-attr-box">
+								 		  			<button id="tagsSure_media" type="button" class="btn btn-default btn-add tagsSure">+</button>
+								 		  		</div>
+								 	  		</div>
+								 		</div>
+							  		</div>
+							  		<!--标签值存放框    start-->
+						  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-6" style="margin-left: -10px;"></div>
+						  			<!--标签值存放框    end-->
+								</div>
+							    <div class="form-group form-group-tips">
+							        <label for="cname" class="control-label col-sm-2">描述：</label>
+							        <div class="news-int-word col-sm-10"> 
+										<textarea v-model="mediaObj.mediaDesc"  class="form-control"  rows="5" ></textarea>
+										<div class="err-msg"></div>
+									</div> 
+							    </div>
+							    <div class="form-group ">
+							        <label for="cname" class="col-sm-2  control-label">配图：</label>
+							        <div id="addPicture" class="addCommodityIndex1 col-sm-10">
+							       
+										<div class="btn-add-box" aratio="1.441">
+											<div class="newsBigImg maimglst BigImg" title="newImg" data-toggle="modal" data-target="#show_cutimg"  style="border:1px solid #ddd;">
+												<a class=""  onclick="1">
+													<span class="iconfont sp-color">&#xe602;</span>
+										      		<img src="" alt="" class="uploadimg" name="newImg" />
+										      	</a>
+											</div>
+										</div> 
+									</div>
+							    </div>
+							    
+						    	
+						    	<div class="form-group">
+						    		<label for="" class="control-label col-sm-2" id="media_stat">内容状态：</label>
+							        <div class="col-sm-10">
+										    <label class="radio-inline">
+										    	<input name="Fruit1" class="publish post" type="radio"  checked="checked"/>
+										    	<span>发布</span> 
+										    </label> 
+											<label class="radio-inline">
+												<input name="Fruit1" class="draft post" type="radio" />
+												<span>草稿</span>
+											</label> 
+							  	    </div>
+						    	</div>
+						    	
+						    	<div class="form-group">
+						    		<label for="" class="control-label col-sm-2" id="text">媒体附件：</label>
+							        <div class="col-sm-10">
+							        	<div>
+							        		<label class="radio-inline">
+										    	<input name="uplodFile" class="publish post" type="radio" value="1" checked="checked"/>
+										    	<span>输入附件</span> 
+										    </label> 
+											<label class="radio-inline" >
+												<input name="uplodFile" class="draft post" type="radio" value="2"/>
+												<span>上传附件</span>
+											</label> 
+							        	</div>
+											<input type="text" name="iputManul" value="" class="form-control" id="iputManul" style="margin-top: 20px;margin-bottom: 20px;">
+											<iframe src="user/contMge/addMedia.html" width="100%" height="334" frameborder="0" id="mediaFrame" name="mediaFrame" style="margin-top: 20px;overflow-x:hidden;overflow-y: auto;"></iframe>
+							  	    </div>
+						    	</div>
+						    	
+							  	<!--两个按钮   start--> 
+						      	<div class="btn-box btn-box-two text-center">
+						      		<button type="button" class="btn btn-default"  @click='MediaOperation(1)'>确认</button>
+						      		<button type="button" class="btn btn-default"  @click='MediaOperation(2)'>继续添加</button>
+						      		<button type="button" class="btn btn-default"  @click='giveUp()'>放弃</button>
+						      	</div>
+							    <!--两个按钮   end-->
+							   </div> 
+							</form>    
+		                </div>
+		                <!--=======================媒体附件编辑部分结束============================-->
+		                
+					<!--<form id="mediaUpForm" action="http://172.19.0.30:8080/upload/c" method="POST" enctype="MULTIPART/FORM-DATA">
+				        <input type="file" name="user" id="">
+				        <input type="hidden" name="fpath" id="" value="1.png">
+				        
+				        <input type="button" onclick="MediaUpload()" value="提交">
+				    </form>-->
+					</fieldset>
+					       <!--01 start-->
+							<div class="md-modal md-effect-1" style="top: 20%;" id="md-effect-1">
+								<div class="md-content">
+									<h3>添加新闻分类<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+									<!--nr start-->
+									<div>
+										<!--中间内容   start-->
+										<div class="form-center">
+											<form class="form-horizontal" id="newsClassForm">
+											  <div class="form-group md-modal-item modal-content-item" style="margin-bottom: 0;">
+											    <label for="inputEmail3" class="col-sm-3 control-label">上级分类：</label>
+											    <div class="col-sm-5 rel " style="padding: 0px;">
+											     	 <input type="text" class="form-control" id="child-select1"  @click="showMenu2($event,1)" name="childSelect1" readonly="readonly">
+											     	 <div class="err-msg"></div>
+											     	<div class="category  abs" style="display: none;">
+									        			<div class="category-research">
+									        				<input type="text" placeholder="查询新闻分类" @keyup='ClaSer(1)' class="form-control" id="searchClass1"  autocomplete="off"/>
+									        			     <div class="root_class" style="font-size: 1.4rem;">无</div>
+									        			     <div class="search_res news_search_res" style="display: none;">
+									        			     	  <ul>
+									        			     	  	 <li v-for="item in news_search_res" ><span :data='item.id'></span>{{item.name}}</li>
+									        			     	  </ul>
+									        			     </div>
+									        			</div>
+									        			<ul id="treeDemo1" class="ztree treeDemo"></ul>
+									        		</div>	
+											    </div>
+											    <label for="inputEmail3" id="classlabel1" class="col-sm-4 control-label" style="padding: 0px;line-height: 34px;">顶级分类请选择[无]</label>
+											  </div>
+											  <div class="form-group md-modal-item" style="margin-bottom: 0;">
+											    <label for="inputPassword3" class="col-sm-3 control-label">分类名称：</label>
+											    <div class="col-sm-5" style="padding: 0px;">
+													 <input type="text" class="form-control" id="newsClassName"  name="newsClassName" v-model="newsClass">
+													 <div class="err-msg"></div>
+											    </div>
+											  </div>
+											</form>
+										</div>
+										<!--中间内容   end-->
+										<div class="tc btn-box" style="margin: 0;">
+											<input class="btn btn-default " type="submit" @click='clearClass'  value="取消">
+											<input class="btn btn-default " type="submit" @click='keepClass(1)' value="确认">
+										</div>
+										
+									</div>
+									<!--nr end-->
+								</div>
+							</div>
+							<!--01 end--> 	
+							
+							<!--01 start-->
+							<div class="md-modal md-effect-1" style="top: 20%;" id="md-effect-2">
+								<div class="md-content">
+									<h3>添加商品分类<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+									<!--nr start-->
+									<div>
+										<!--中间内容   start-->
+										<div class="form-center">
+											<form class="form-horizontal" id="goodsClassForm">
+											  <div class="form-group md-modal-item modal-content-item" style="margin-bottom: 0;">
+											    <label for="inputEmail3" class="col-sm-3 control-label">上级分类：</label>
+											    <div class="col-sm-5 rel " style="padding: 0px;">
+											     	 <input type="text" class="form-control" id="child-select2"      @click='showMenu2($event,2)' name="childSelect2" readonly="readonly">
+											     	<div class="err-msg"></div>
+											     	<div class="category  abs" style="display: none;" tabindex="1" >
+									        			<div class="category-research">
+									        				<input type="text" placeholder="查询商品分类" @keyup='ClaSer(2)' class="form-control" id="searchClass2" autocomplete="off"/>
+									        			     <div class="root_class" style="font-size: 1.4rem;">无</div>
+									        			     <div class="search_res goods_search_res" style="display: none;">
+									        			     	  <ul>
+									        			     	  	 <li v-for="item in goods_search_res" ><span :data='item.id'></span>{{item.name}}</li>
+									        			     	  </ul>
+									        			     </div>
+									        			</div>
+									        			<ul id="treeDemo2" class="ztree treeDemo"></ul>
+									        		</div>	
+											    </div>
+											    <label for="inputEmail3" id="classlabel2" class="col-sm-4 control-label" style="padding: 0px;">顶级分类请选择[无]</label>
+											  </div>
+											  <div class="form-group md-modal-item" style="margin-bottom: 0;">
+											    <label for="inputPassword3" class="col-sm-3 control-label">分类名称：</label>
+											    <div class="col-sm-5" style="padding: 0px;">
+														 <input type="text" class="form-control" id="goodsClassName"  name="goodsClassName" v-model="goodsClass">
+														 <div class="err-msg"></div>
+											    </div>
+											  </div>
+											</form>
+										</div>
+										<!--中间内容   end-->
+										<div class="tc btn-box" style="margin: 0;">
+											<input class="btn btn-default " type="submit" @click='clearClass'  value="取消">
+											<input class="btn btn-default " type="submit" @click='keepClass(2)' value="确认">
+										</div>
+										
+									</div>
+									<!--nr end-->
+								</div>
+							</div>
+							<!--添加产品分类-->
+							<!--01 start-->
+							<div class="md-modal md-effect-3" style="top: 20%;" id="md-effect-3">
+								<div class="md-content">
+									<h3>添加产品分类<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+									<!--nr start-->
+									<div>
+										<!--中间内容   start-->
+										<div class="form-center">
+											<form class="form-horizontal" id="prodClassForm">
+											  <div class="form-group md-modal-item modal-content-item" style="margin-bottom: 0;">
+											    <label for="inputEmail3" class="col-sm-3 control-label">上级分类：</label>
+											    <div class="col-sm-5 rel " style="padding: 0px;">
+											     	 <input type="text" class="form-control" id="child-select3"      @click='showMenuSon($event,"treeProduct2")' name="childSelect3" readonly="readonly">
+											     	<div class="err-msg"></div>
+											     	<div class="category  abs" style="display: none;" tabindex="1" >
+									        			<div class="category-research">
+									        				<input type="text" placeholder="查询产品分类" @keyup='ClaSer(3)' class="form-control searchClass2" id="searchClass2" autocomplete="off"/>
+									        			     <div class="root_class" style="font-size: 1.4rem;">无</div>
+									        			     <div class="search_res prod_search_res" style="display: none;">
+									        			     	  <ul>
+									        			     	  	 <li v-for="item in goods_search_res" ><span :data='item.id'></span>{{item.name}}</li>
+									        			     	  </ul>
+									        			     </div>
+									        			</div>
+									        			<ul id="treeProduct2" class="ztree treeDemo"></ul>
+									        		</div>	
+											    </div>
+											    <label for="inputEmail3" id="classlabel2" class="col-sm-4 control-label" style="padding: 0px;">顶级分类请选择[无]</label>
+											  </div>
+											  <div class="form-group md-modal-item" style="margin-bottom: 0;">
+											    <label for="inputPassword3" class="col-sm-3 control-label">分类名称：</label>
+											    <div class="col-sm-5" style="padding: 0px;">
+														 <input type="text" class="form-control" id="prodClassName"  name="prodClassName" v-model="prodClass">
+														 <div class="err-msg"></div>
+											    </div>
+											  </div>
+											</form>
+										</div>
+										<!--中间内容   end-->
+										<div class="tc btn-box" style="margin: 0;">
+											<input class="btn btn-default md-close" type="submit" @click='clearClass'  value="取消">
+											<input class="btn btn-default " type="submit" @click='keepClass(3)' value="确认">
+										</div>
+										
+									</div>
+									<!--nr end-->
+								</div>
+							</div>
+							<!--添加产品分类   end-->
+				</div>
+			<!--01 end-->  
+			<!--遮罩层  start-->
+			<!--<div class="mask-layer"></div>-->
+			<!--遮罩层  end-->
+			
+			<!--上传图片-->
+			<div class="show useupImgbox in upImg" id="show_cutimg">
+				<div class="modal-dialog">	
+				    <div class="modal-content" id="myModal">
+				        <div class="modal-body">
+				            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+				                <div class="img-container">
+				                    <img  alt="点击下面选择文件按钮进行选择文件！" style="opacity: 0;">
+				                    <p class="cutimg-tips">点击下面选择文件按钮进行选择文件！</p>
+				                    <div class="img-type" style="display:none"></div>
+				                </div>
+				            </div>
+				        </div>
+				        <div class="modal-footer2">
+				            <div class=" col-xs-12">
+				            	<div class="row mt-10 mb-5">
+					        		<div class="col-sm-7">
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe613;</span>
+					                    	</span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe632;</span>
+					                    	</span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+					                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe60c;</span>
+					                   		 </span>
+					                    </button>
+					                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+					                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+					                        	<span class="iconfont">&#xe60c;</span>
+					                    	</span>
+					                    </button>
+										<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+										    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+												<span class="iconfont">&#xe697;</span>
+										    </span>
+										</button>
+		
+					                </div>
+					                <div class="col-sm-5 upload-fr">
+				                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+				                        <input class="sr-only" id="inputImage" type="file" name="file">
+				                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+				                            选择文件
+				                        </span>
+				                    </label>  
+				                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+				                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+				                            确认上传
+				                        </span>
+				                    </label>
+				                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+				                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+				                            取消
+				                        </span>
+				                    </label>
+					                </div>
+				            	</div>
+				            </div>
+				            
+				            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+				            </div>
+				        </div>
+				    </div> 	
+				</div>
+			</div>
+			
+			
+			
+
+			</div>
+			<div class="x-tips">
+				<div class="x-tips-box">
+					<p>页面正在加载中...</p>
+				</div>
+			</div>
+		<!--公共类库-->
+		 
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="ctrl/ckeditor/ckeditor.js" ></script>
+		<script type="text/javascript" src="ctrl/ckeditor/config.js" ></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	
+	    <script type="text/javascript" src="js/comm/comm.js"></script>
+		<!-- build:js js/cutimg.libs.js --> 
+		<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+		<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+		<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+		<!-- endbuild-->
+		<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"></script> <!--z-Tree-->
+		
+		<!--个人公共-->
+
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	    <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+
+		<script type="text/javascript" src="js/user/colums.js" ></script><!--自定义封装zTree方法-->
+		<script type="text/javascript" src="js/form.js"></script><!--本页面效果-->
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/contMge/addCon.js?time=New Date()"></script><!--本页面加载js-->
+		 <script type="text/javascript">
+			var a=isSignIn();
+	    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+	    	}
+	    </script>
+		<script>
+			$(function(){
+				// 自定义弹窗
+				$('#show1').on('click', function() {
+					$('#md-effect-1').toggleCommModal('show');
+				});
+				// 提示弹窗
+				$('#show2').on('click', function() {
+					$('#md-effect-2').toggleCommModal('show');
+				});
+				
+				// 提示弹窗
+				$('#show_product').on('click', function() {
+					$('#md-effect-3').toggleCommModal('show');
+				});
+				$('.md-close').on('click', function() {
+					$(this).closest('.md-modal').toggleCommModal('close');
+				});
+				
+				//切换媒体附件
+				toggleMedia();
+				$(document).on('change', "input[name='uplodFile']",function(){
+					toggleMedia();
+				});
+			});
+			//切换媒体附件效果函数
+			function toggleMedia(){
+				var sign = $("input[name='uplodFile']:checked").val();
+				sign == '1' && $("#iputManul").fadeIn() && $("#mediaFrame").fadeOut();
+				sign == '2' && $("#mediaFrame").fadeIn() &&  $("#iputManul").fadeOut();
+				callBackLoadIframe();
+			}
+			//获取上传成功的媒体路径
+			function transContent(data){
+				 typeof data.path != 'undefined' && $("#iputManul").val(data.path);
+			}
+		</script>
+		</body>
+</html>
+

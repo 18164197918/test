@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Hello, World</title>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2&services=true"></script>
+	</head>
+
+	<body onLoad="initMap()">
+		地址：<input type="text" name="address" id="address" value="上海市" />
+		<button id="mapsearch">搜索</button>
+		<input type="checkbox" name="insertAuto" id="insertAuto" value="" /><label for="insertAuto">动态插入地图</label>
+		<div style="width:540px;height:320px;border:1px solid gray" id="container"></div>
+		<!--<p>-->
+			<!--<iframe id="testiframe" src="#" height="1" width="1"></iframe>-->
+			<!--<div id="append">
+
+			</div>-->
+
+	</body>
+
+</html>
+<div></div>
+
+<script type="text/javascript">
+	var map = new BMap.Map("container"); // 创建地图实例
+	var point = new BMap.Point(121.404, 31); // 创建点坐标
+	map.centerAndZoom(point, 13);
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.ScaleControl());
+	map.addControl(new BMap.OverviewMapControl());
+	var marker = new BMap.Marker(point); // 创建标注
+	map.addOverlay(marker); // 将标注添加到地图中
+	marker.enableDragging(); //可以拖拽
+
+	var staticWith = 540;
+	var staticHeight =420;
+	function checkBox(){//获取当前插入状态
+		return document.getElementById('insertAuto').checked;
+	}
+	function initMap(flag) {
+		var mapsearch = document.getElementById("mapsearch");
+		mapsearch.onclick = function() {
+			var address = document.getElementById("address").value;
+			if(address == "undefined" || address == "") {
+				//alert("请输入地址，再进行搜索！");
+				return;
+			}
+			var myGeo = new BMap.Geocoder();
+			myGeo.getPoint(address, function(point) {
+				if(point) {
+					marker.setPosition(point); //重新设置标注的坐标
+					window.setTimeout(function() { //移动地图
+						map.panTo(point);
+					}, 2000);
+				}
+			}, "上海市");
+		}
+		//生成图片地址
+		function getStaticMap() {
+			if(map == '' || map == 'undefined' || marker == '') {
+				return;
+			}
+			var center = map.getCenter().lng + ',' + map.getCenter().lat;
+			var markers = marker.getPosition().lng + ',' + marker.getPosition().lat;
+			var zoom = map.getZoom();
+			var staticmapstr = 'http://api.map.baidu.com/staticimage?center=' + center + '&markers=' + markers + '&zoom=' + zoom + '&width=' + staticWith + '&height=' + staticHeight;
+			var iframestr = 'http://www.baijiekj.com/mapLink.html?center='+center+'&zoom='+zoom+'&point='+markers;
+			var auto = false;
+			if(checkBox()){
+        		auto = true;
+        	}
+			if(auto){//返回动态的
+        		return iframestr;
+        		
+        	}else{//返回图片
+        		return staticmapstr;
+        	}
+		}
+        if(flag){
+        	return getStaticMap();
+        }
+	}
+</script>

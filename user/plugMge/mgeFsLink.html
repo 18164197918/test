@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>插件管理-友情链接</title>
+   
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+    <link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+    <link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+    <link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+	
+    <link rel="stylesheet" href="css/table.css" />
+    <!--用户中心-->
+    <!--用户中心样式-->
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+</head>
+
+<body class="userNav">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="友情链接" />
+    
+    <!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">友情链接</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+    <!--right start-->
+    <div class="" id="mgeFsLink" v-cloak>
+    	
+        <!--table start-->
+        <div class="table">
+        	<!--表头操作按钮   start-->
+			<div class="tab-header clearfix">
+				<div class="col-md-3 col-sm-2 col-xs-4">
+					<div class="row">
+						<button  type="button" class="btn btn-default btn-search form-control" onclick="addLinkHref()">添加友情链接</button>
+					</div>
+				</div>
+			  
+			    <div class="col-md-3 col-sm-2 col-xs-4">
+					<div class="row">
+						<!--选择列表  start-->
+						<div class="down-wrap">
+						  	<!--bootstrap start-->
+						  	<div class="dropdown">
+								<button onclick="batchOpear(1)" type="button" class="btn  btn-default" id="dropdownMenu1" 
+										>
+									<span class="dec">批量删除</span>
+								</button>
+							</div>
+						  	<!--选择列表  end-->
+						</div>
+						<!--下拉菜单  end-->
+					</div>
+				</div>
+			  
+			</div>
+			<!--表头操作按钮   end-->
+	        
+            <table class="table table-bordered table-hover table-condensed tab-ts">
+                <thead>
+                    <tr>
+                        <th class="tc"  style="width:30px;">
+                            <label>
+                                <input type="checkbox"  class="ck_all" id="selectAll" value="option1" aria-label="...">
+                            </label>
+                        </th>
+                        <th class="tc">
+                            <!--前台显示-->
+                            <div class="">前台显示</div>
+                        </th>
+                        <th class="tc">
+                            <div class="tc">链接地址</div>
+                        </th>
+                        <th class="tc wid10">
+                            <div class="tc">类型</div>
+                        </th>
+                        <!--<th>
+                            <div class="l-col tc">链接地址</div>
+                            <div class="r-col tc">类型</div>
+                        </th>-->
+                        <th class="wid20">
+                            <!--状态  操作-->
+                            <div class="l-col tc">状态</div>
+                            <div class="r-col tc">操作</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="content-edit-box-bg">
+                    <tr v-for="item in fskList" class="tc">
+                        <td class="selectOne">
+                            <label>
+                                <input class="ck_one" type="checkbox" name='contentChk' id="" :value="item['id']" />
+                            </label>
+                        </td>
+                        <td>
+                            <!--工单主题-->
+                            <div class="">
+                            		 <!--<div  v-if="item.img" :style="{'background-image':'url('+item.img+')'}" class="fsLinkImg"></div>-->  <!--背景图片-->
+                                    <img v-if="item.img" :src="item.img" style="width:122px;height:30px;" class="mt5 mb5" onerror="imgerror(this)"/>
+                                    <span v-else>{{item.title}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <!--提交时间  提交人-->
+                            <div class="one-line tl">{{item.res_url}}</div>
+                            <!--<div class="l-col one-line">{{item.res_url}}</div>-->
+                            <!--<div class="r-col">
+                                <span v-if="item.link_type==0">图片</span>
+                                <span v-if="item.link_type==1">文字</span>
+                            </div>-->
+                        </td>
+                        <td>
+                        	<span v-if="item.link_type==0">图片</span>
+                            <span v-if="item.link_type==1">文字</span>
+                        </td>
+                        <td class="opr tc">
+                            <!--状态  操作-->
+                            <div class="l-col tc">
+                                <p class="release tc wid100" v-if="item.status==1" >发布</p>
+                                <p class="unpublished tc wid100" v-if="item.status==0" >未发布</p>
+                            </div>
+                            <div class="r-col" style="line-height: 40px;">
+                                <a :data="item.id" class="modLink a-default" onclick="operate(this,1)">修改</a>
+                                <a :data="item.id" class="delLink a-del" onclick="operate(this,2)">删除</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+			<!--暂无数据   start-->
+			<div class="no-data" v-if="noData">
+				结果数据0条
+			</div>
+			<!--暂无数据   end-->
+        </div>
+
+         <!--翻页-->
+	    <div class="PageF row" v-if="totalPages>=1">
+			<div class="paTotle col-md-3 col-sm-3">
+			</div>
+			<div class="flip col-md-9 col-sm-9">
+				<div class="page-number fr">
+					<ul>
+						<li  @click="subPage('grad')"><i class="iconfont">&#xe6e8;</i></li> 
+						<li  @click="subPage('son')"><i class="iconfont">&#xe758;</i></li> 
+						<li class="li-3">
+							<p>{{ currentpage }}/{{ totalPages }}</p> 
+							<input type="text" class="currentpage" v-model="jumppage"> 
+								<p @click="changeCurrentPage" :value="jumppage"  value="1" style="cursor: pointer;">go</p>
+						</li> 
+						<li  @click="addPage('son')"><i class="iconfont">&#xe759;</i></li> 
+						<li  @click="addPage('grad')"><i class="iconfont">&#xe6f4;</i></li>
+					</ul>
+				</div>
+				<div class="filp-x fr">
+		    		每页显示行
+    		    	<select class="" @change="selcValue($event)" :value="pagesize">
+    		    		<option v-for="lines in linesPerPage">
+    		    			{{ lines }}
+    		    		</option>
+    		    	</select>
+				</div> 
+			</div>
+		</div>
+	    <!--翻页结束-->
+        </div>
+
+        <!--right end-->
+    </div>
+    <!--right end-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+    <!--公共类库-->
+    <script type="text/javascript" src="dist/js/base.min.js"></script>
+    <script type="text/javascript" src="js/comm/jquery.validate.min.js"></script><!-- 占位 -->
+    <script  type="text/javascript" src="js/comm/comm.js"></script>
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+    <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+    <script type="text/javascript" src="js/validation.js"></script><!-- 占位 -->
+   
+	<!-- endbuild-->
+    
+    <!--页面独有-->
+    <script type="text/javascript" src="js/user/plugMge/mgeFsLink.js"></script>
+    <script type="text/javascript">
+       var a=isSignIn();
+       if(a==null){
+            window.top.location.href = fontBaseUrl+'user/sign.html';
+       }
+   </script>
+</body>
+
+</html>

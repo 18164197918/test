@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--basepath start-->
+	    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+	    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+		 <!--basepath end-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<title>回复留言</title>
+		
+		<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+		<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+		<!-- endbuild -->
+
+		<!-- build:css css/user.comm.css -->
+		<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+		<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+		<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+		<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+		<!-- endbuild -->
+		
+		<link rel="stylesheet" href="css/form-common.css" />
+		
+		<!--bootstrap 兼容ie8-->
+		<!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+	    <!--bootstrap 兼容ie8-->
+	</head>
+	<body class="userNav">
+		<input type="hidden"  id="leftstatu" value="业务管理"/>
+    	<input type="hidden"  id="leftstatus" value="留言管理"/>
+    	<!--手机内页头部-->
+		<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="leftstatus-mobile fz15">回复留言</span>
+				</div>
+			</div>
+		</div><!--手机内页头部end-->
+
+				<!--left end-->
+				<!--right start-->
+				<div class=""  id="replymessage" v-cloak> 
+					
+				<!--右侧form表单    start-->
+					<div class="form-common rel"><!--悬浮框有的时候,才需要加rel的class样式-->	
+					<!--table start-->
+					 	 <form id="replymessageForm" class="form-horizontal">
+					 	 <div class="pad-box">	
+					  	  <div class="form-group form-group-tips">
+						    <label for="messageTitle" class="col-sm-2 control-label">留言标题：</label>
+						    <div class="col-sm-4">
+							    <input type="text" class="form-control" id="messageTitle"  v-model='title' placeholder="" readonly="readonly">
+						        <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  <div class="form-group form-group-tips">
+						    <label for="content" class="col-sm-2 control-label">留言内容：</label>
+						    <div class="col-sm-7">
+							    <textarea type="text" class="form-control" id="content" v-model='content' readonly="readonly" style="height: 100px;"></textarea>
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  <div class="form-group form-group-tips">
+						    <label for="contact" class="col-sm-2 control-label">联系人：</label>
+						    <div class="col-sm-4">
+							    <input type="text" class="form-control" id="contact"   v-model="contact" readonly="readonly">
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  <div class="form-group form-group-tips">
+						    <label for="phone" class="col-sm-2 control-label">联系方式：</label>
+						    <div class="col-sm-4">
+							    <input type="text" class="form-control" id="phone"    v-model="phone" readonly="readonly">
+						         <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  <div class="form-group form-group-tips">
+						    <label for="reply" class="col-sm-2 control-label">回复：</label>
+						    <div class="col-sm-7">
+							    <textarea type="text" class="form-control" id="reply"  v-model='reply' style="height:100px;"></textarea>
+						        <div class="err-msg"></div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						  	  <div class="col-sm-offset-2 col-sm-10">
+									    <label class="radio-inline"><input type="radio" name="isopen" value="1" checked="checked"><span>公开</span></label>
+										<label class="radio-inline"><input type="radio" name="isopen" value="0"><span>隐藏</span></label>
+						  	  </div>
+						  </div>
+						  <!--<div class="form-group">
+						  	  <div class="col-sm-offset-2 col-sm-10">
+									  <div  class="btn btn-default" onclick='submit()'>提交</div>
+						  	  </div>
+						  </div>-->
+						   <!--一个按钮  start-->
+						  <div class="btn-box btn-box-one text-center">
+						  	 <div type="button" class="btn btn-default" onclick='submit()'>提交</div>
+						  </div>
+						  <!--一个按钮  end-->
+						  
+						</div>  
+			   	     </form>
+					<!--table end-->
+					</div>
+				</div>	
+				<!--right end-->
+
+		<!--公共类库-->
+		<script type="text/javascript" src="dist/js/base.min.js"></script>
+		<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script><!--占位-->
+		<script type="text/javascript" src="js/comm/comm.js"></script>
+		<!--个人公共-->
+		<!-- build:js js/user.comm.js -->
+		<script type="text/javascript" src="js/api.js"></script>
+		<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+		<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+		<script type="text/javascript" src="js/validation.js"></script>
+		<!-- endbuild-->
+		<!--页面独有-->
+		<script type="text/javascript" src="js/user/servMge/mesRespond.js"></script>     <!--footer 模块加载js-->
+		 <script type="text/javascript">
+			var a=isSignIn();
+        	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+        	}
+        </script>
+		</body>
+</html>

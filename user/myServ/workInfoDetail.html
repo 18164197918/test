@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>我的服务-工单信息</title>
+   
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--字体图标-->
+    <link rel="stylesheet" href="ctrl/animate.min.css" />
+    <!--前台页面样式-->
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+    <link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+    <link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+    
+    <!--用户中心样式-->
+    <!-- cutImg文件 -->
+    <link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+    <link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+
+    <!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <style>
+        
+    </style>
+</head>
+
+<body class="userNav">
+   
+    <input type="hidden" id="leftstatu" value="我的服务" />
+    <input type="hidden" id="leftstatus" value="工单信息" />
+
+    <!--banner部分 start-->
+    <!--banner部分 end-->
+
+    <!--内容部分 start-->
+ 	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">工单信息</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+    <!--right start-->
+    <div class="" id="worInfoDetail" v-cloak>
+                    <div class="infoFlow" style="display: table; margin:20px 0;">
+                        <ul >
+                            <li class="stepInfo" style="color: #2790e1"><span class="myCircle" style="background: #2790e1">1</span>新建工单&nbsp;&nbsp;&gt;</li>
+                            <li class="stepInfo" style="color: #2790e1"><span class="myCircle" style="background: #2790e1">2</span>处理中&nbsp;&nbsp;&gt;</li>
+                            <li class="stepInfo"><span class="myCircle">3</span>已完成</li>
+                        </ul>
+                    </div>
+                    <div class="infoContent">
+                         <table class="table">
+                             <tbody>
+                                <tr>
+                                    <td class="vm wid20 tr">工单编号：</td>
+                                    <td class="vm" style="line-height: 34px;">
+                                        {{orderContent.id}}
+                                        <button class="oder-detail-btn btn btn-default pull-right" @click="setOrderStatu" data-status="-100">撤销工单</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tr">工单状态：</td>
+                                    <td>
+                                        <span class="alert-danger" v-if="orderContent.status == 0" style="padding: 3px 7px;">*&nbsp;进行中</span>
+                                        <span class="alert-danger" v-if="orderContent.status == -100" style="padding: 3px 7px;">*&nbsp;撤销</span>
+                                        <span class="alert-danger" v-if="orderContent.status == 100" style="padding: 3px 7px;">*&nbsp;已回复</span>
+                                        <span class="alert-danger" v-if="orderContent.status == 200" style="padding: 3px 7px;">*&nbsp;已完成</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tr">提交时间：</td>
+                                    <td>{{new Date(orderContent['insert_time']).toLocaleString() }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tr">工单标题：</td>
+                                    <td>{{orderContent.title}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="tr">工单类型：</td>
+                                    <td>
+                                        <span v-if="orderContent.type == 0">&nbsp;提交工单</span>
+                                        <span v-if="orderContent.type == 1">&nbsp;回复工单</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tr">工单描述：</td>
+                                    <td>{{orderContent.vtext}} </td>
+                                </tr>
+                             </tbody>
+                         </table>
+                    </div>
+                    <!--<div class="comment">
+                        <h5>用户反馈</h5>
+                        <div class="comment-body row">
+                            <div class="col-md-3 comment-l">
+                                <a href="#" class="">
+                                    <img src="img/logo.png" alt="头像">
+                                </a>
+                            </div>
+                            <div class="col-md-6 comment-r">
+                                <p><span class="text-info">客服</span>2017-10-1 10:59:02</p>
+                                <div class="comment-content">
+                                     您好！主题名..... 您好！主题名..... 您好！主题名..... 您好！主题名..... 您好！主题名..... v 您好！主题名..... 您好！主题名.....
+                                </div>
+                                <div class="comment-bottom">
+                                    <span class="">是否解决您的问题：</span>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="200">已解决</button>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="100">未解决</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="comment">
+                        <h5 class="fz16 mb15 mt0">用户反馈</h5>
+                        <div class="comment-body clearfix">
+                            <div class="col-md-2 col-sm-2 col-xs-2 comment-l">
+                                <a href="#" class="">
+                                    <img src="img/logo.png" alt="头像" onerror="imgerror(this)">
+                                </a>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-xs-10 comment-r">
+                                <p class="fz13 mb10">
+                                    <span class="text-info">客服</span><span class="baDate">2017-10-1 10:59:02</span></p>
+                                <div class="comment-content mb10 fz13">
+                                    您好！主题名..... 您好！主题名..... 您好！主题名..... 您好！主题名..... 您好！主题名..... v 您好！主题名..... 您好！主题名.....
+                                </div>
+                                <div class="comment-bottom fz13">
+                                    <span class="ft-cl9">是否解决您的问题：</span>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="200">已解决</button>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="100">未解决</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <h5 class="fz16 mb15 mt0">沟通记录</h5>
+                        <div class="comment-body clearfix">
+                            <div class="col-md-2 col-sm-2 col-xs-2 comment-l">
+                                <a href="#" class="thumbnail">
+                                    <img src="img/lianjie2.png" alt="头像" onerror="imgerror(this)">
+                                </a>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-xs-10 comment-r">
+                                <p class="fz13 mb10">
+                                    <span class="text-info">自己</span><span class="baDate">2017-10-1 10:59:02</span></p>
+                                <div class="comment-content mb10 fz13">
+                                    您好！主题名..... 
+                                </div>
+                                <div class="comment-bottom">
+                                    <span class="ft-cl9">是否解决您的问题：</span>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="200">已解决</button>
+                                    <button type="button" class="oder-detail-btn btn btn-default" @click="setOrderStatu" data-status="100">未解决</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--翻页-->
+                    <div class="PageF row" v-if="totalPages>=1">
+                        <!--<div class="paTotle col-md-3">
+                            本页显示 {{ currentLines }}条
+                        </div>-->
+                        <div class="flip col-md-12">
+                            <div class="page-number fr">
+                                <ul>
+                                    <li @click="subPage('grad')">
+                                        <i class="iconfont">&#xe6e8;</i>
+                                    </li>
+                                    <li @click="subPage('son')">
+                                        <i class="iconfont">&#xe63b;</i>
+                                    </li>
+                                    <li class="li-3">
+                                        <p>{{ params.currentpage }}/{{ totalPages }}</p>
+                                        <input type="text" class="" :value="params.currentpage" @blur="changeCurrentPage" />
+                                        <p>go</p>
+                                    </li>
+                                    <li @click="addPage('son')">
+                                        <i class="iconfont">&#xe65a;</i>
+                                    </li>
+                                    <li @click="addPage('grad')">
+                                        <i class="iconfont">&#xe6f4;</i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="filp-x fr">
+                                每页显示行
+                                <select class="" @change="selcValue($event)" :value="pagesize">
+                                    <option v-for="lines in linesPerPage">
+                                        {{ lines }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--翻页结束-->
+                <!--right end-->
+            </div>
+      
+    <!--footer end-->
+    <!--公共类库-->
+     <!--页面加载提示-->
+    <div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+
+    <script type="text/javascript" src="dist/js/base.min.js"></script>
+    <script type="text/javascript" src="js/comm/jquery.validate.min.js"></script><!--占位-->
+	 <script type="text/javascript" src="js/comm/comm.js"></script>
+	 
+    <!-- build:js js/cutimg.libs.js --> 
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+    <script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->  
+	<!-- endbuild-->
+
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+    <script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+    <script type="text/javascript" src="js/validation.js"></script><!--占位-->
+	<!-- endbuild-->
+    
+	<!--页面独有-->
+    <!--展示预览图片-->
+    <script type="text/javascript" src="js/user/myServ/workInfoDetail.js"></script>
+    
+    <script type="text/javascript"> 
+        var a = isSignIn();
+        if (a == null) {
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+        }
+    </script>
+</body>
+
+</html>

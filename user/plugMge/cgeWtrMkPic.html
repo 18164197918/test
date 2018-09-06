@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--basepath start-->
+    <base id="bpid" href="/" target="_blank" />
+    <script type="text/javascript">
+        window['fontBaseUrl'] = '/'
+    </script>
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+    <!--basepath end-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>插件管理-图片水印</title>
+    
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+    <link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--前台页面样式-->
+    <!--top 样式-->
+    <!--全局基础样式-->
+    
+    <!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+    <link rel="stylesheet" href="css/user.css" />
+	<!-- endbuild -->
+	
+    <link rel="stylesheet" href="css/table.css" />
+    <link rel="stylesheet" href="css/form-common.css" />
+    <!-- cutImg文件 -->
+    <link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+    <link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+    <!--时间插件样式 -->
+    <link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap-datetimepicker.css" />
+    <!--用户中心-->
+    <!--用户中心样式-->
+    <!--bootstrap 兼容ie8-->
+    <!--[if lt IE 9]>
+	　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+	    <![endif]-->
+    <!--bootstrap 兼容ie8-->
+    <style>
+        #picSize .input-group {
+            float: left;
+        }
+    </style>
+</head>
+
+<body class="userNav">
+    <input type="hidden" id="leftstatu" value="插件管理" />
+    <input type="hidden" id="leftstatus" value="图片水印" />
+   <!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">图片水印</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+    <!--right start-->
+    <div class="" id="cgeWtrMkPic">
+    	
+    <div class="form-common ">	
+        <form class="form-horizontal" id="wtrMkPicForm">
+        	<div class="pad-box">
+            <div class="form-group">
+                <label class="col-sm-2  control-label col-sm-offset-3"> 水印类型：</label>
+                <div class="col-sm-4 ">
+                    <select class="form-control" :value="link_type" onchange="chooseType(this)">
+                        <option value="1">文字水印</option>
+                        <option value="0">图片水印</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group dis-n link_img">
+            	<label class="col-sm-2  control-label col-sm-offset-3">
+                        <span class="col-danger"></span>图片水印：</label>
+                    <div class="col-sm-4">
+                        <!-- 上传图片 -->
+                         <div class="btn-add-box">
+	                        <div class="useupImg maimglst img-btn" title="rImg" data-toggle="modal" data-target="#show_cutimg" onclick="1" style="border: 1px solid #ddd;">
+	                            <a class="">
+	                                <span class="iconfont sp-color">&#xe602;</span>
+	                                <img src='' alt="" class="uploadimg" name="rImg">
+	                            </a>
+	                        </div>
+                         </div>
+                        
+                    </div>
+            </div>
+            
+            
+            <div class="form-group form-group-tips" >
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印透明度：</label>
+                <div class="col-sm-4 ">
+                    <input type="text" class="form-control" name="diaphaneity" v-model="diaphaneity" placeholder="0.5代表透明度为50%" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            <div class="form-group form-group-tips">
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印文字：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="v_text" v-model="v_text" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            <div class="form-group form-group-tips">
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印图片宽度：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="img_width" v-model='img_width' placeholder="单位为px" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            
+            <div class="form-group form-group-tips">
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>水印高度：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="img_height" v-model='img_height' placeholder="单位为px" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            
+            
+            <div class="form-group form-group-tips" >
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>图片偏移：</label>
+                <div class="col-sm-4 ">
+                    <input type="text" class="form-control" name="shift" v-model="shift" placeholder="正数右偏，负数左偏" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            <div class="form-group form-group-tips" >
+                <label class="control-label col-sm-2 col-sm-offset-3">
+                    <span class="col-danger"></span>图片旋转：</label>
+                <div class="col-sm-4 ">
+                    <input type="text" class="form-control" name="rotate" v-model="rotate" placeholder="正数正旋，负数反旋" />
+                    <div class="err-msg"></div>
+                </div>
+            </div>
+            <div class="form-group" >
+                <label class="col-sm-2 control-label col-sm-offset-3">
+                    <span class="col-danger"></span>水印位置：</label>
+                <div class="col-sm-4">
+                    <select class="adfd form-control">
+                        <option value="0">左部居中</option>
+                        <option value="1">右部居中</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2  control-label col-sm-offset-3">
+                    <span class="col-danger"></span>水印位置：</label>
+                <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" value="1" class="pst-cho" name="pst-cho" checked="checked" />
+                            <span>启用</span>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" value="0" class="pst-cho" name="pst-cho" />
+                            <span>禁用</span>
+                        </label>
+                </div>
+            </div>
+             <!--一个按钮  start-->
+				  <div class="btn-box btn-box-one text-center">
+				  	 <button type="button" class="btn btn-default" @click='setWtrmkPic'>保存</button>
+				  </div>
+			  <!--一个按钮  end-->
+            
+            
+            
+            </div>
+        </form>
+    </div>
+    <!-- 弹出选择图片上传框 -->
+        <div class="show  useupImgbox in upImg" id="show_cutimg">
+            <div class="modal-dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="myModal">
+                        <div class="modal-body">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+                                <div class="img-container">
+                                    <img  alt="点击下面选择文件按钮进行选择文件！">
+                                    <div class="img-type" style="display:none"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer2">
+                            <div class=" col-xs-12">
+                                <div class="row mt-10 mb-5">
+                                    <div class="col-sm-7">
+                                        <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+                                            <span class="docs-tooltip inline-block" data-toggle="tooltip">
+                                                <span class="iconfont">&#xe613;</span>
+                                            </span>
+                                        </button>
+                                        <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+                                            <span class="docs-tooltip inline-block" data-toggle="tooltip">
+                                                <span class="iconfont">&#xe632;</span>
+                                            </span>
+                                        </button>
+                                        <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+                                            <span class="docs-tooltip inline-block" data-toggle="tooltip">
+                                                <span class="iconfont">&#xe60c;</span>
+                                            </span>
+                                        </button>
+                                        <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+                                            <span class="docs-tooltip inline-block" data-toggle="tooltip">
+                                                <span class="iconfont">&#xe60c;</span>
+                                            </span>
+                                        </button>
+                                        <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+                                            <span class="docs-tooltip inline-block" data-toggle="tooltip">
+                                                <span class="iconfont">&#xe697;</span>
+                                            </span>
+                                        </button>
+
+                                    </div>
+                                    <div class="col-sm-5 upload-fr">
+                                        <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+                                            <input class="sr-only" id="inputImage" type="file" name="file">
+                                            <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+                                                选择文件
+                                            </span>
+                                        </label>
+                                        <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+                                            <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+                                                确认上传
+                                            </span>
+                                        </label>
+                                        <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+                                            <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+                                                取消
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle"
+                                role="dialog" tabindex="-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <!--right end-->
+    <div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+    <!--公共类库-->
+	<!-- build:js js/user.plugin-libs.js -->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/moment-with-locales.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="ctrl/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- endbuild-->
+    <script type="text/javascript" src="js/comm/comm.js"></script>
+    <!-- build:js js/cutimg.libs.js -->
+    <script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+	
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+    <script type="text/javascript" src="js/validation.js"></script>
+
+	<!-- endbuild-->
+    
+    <!--页面独有-->
+    <script type="text/javascript" src="js/user/plugMge/addFsLink.js"></script>
+    <script type="text/javascript" src="js/user/plugMge/cgeWtrMkPic.js"></script>
+    <script type="text/javascript">
+        var a = isSignIn();
+        if (a == null) {
+            window.top.location.href = fontBaseUrl + 'user/sign.html';
+        }
+    </script>
+</body>
+
+</html>

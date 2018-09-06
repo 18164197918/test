@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="/cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>栏目管理</title>
+
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild -->
+	<link rel="stylesheet" href="ctrl/font-awesome-4.7.0/css/font-awesome.min.css">
+	
+
+	<link href="css/zTreeStyle.css"  rel="stylesheet">
+	<link href="css/user/custom-tree.css"  rel="stylesheet">
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	<link rel="stylesheet" href="css/form-common.css" /><!--用户中心样式-->
+	<!--用户中心样式-->
+	<link rel="stylesheet" href="css/table.css" />
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+    <style>
+    	#mgecolumn .border-column{
+    		height: 592px;
+    		overflow-y: auto;
+    	}
+    	.border-column .ztree li{
+    		overflow:visible;
+    	}
+    	.border-column .ztree li:hover ul li{
+		    background: #fff;
+    	}
+    	.border-column .ztree li ul li:hover{
+    		background:transparent;
+    	}
+    	/*标签分类*/
+    	.signContent .menuContent{
+    		width: 100%;
+    		border: 1px solid #e3e3e3;
+    		height: 183px;
+    		position: absolute;
+    		overflow-y: auto;
+    		background-color: #fff;
+    		z-index: 2000;
+    	}
+    	
+    	.md-modal .form-content{
+		    height: 436px;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		}
+		/*栏目上传图片*/
+		.upload-file{
+		 		float: left;
+			    width: 35px;
+			    height: 35px;
+			    border: 1px dashed;
+			    border-color: #e1e1e1;
+			    overflow: hidden;
+			    line-height: 32px;
+			    text-align: center;
+			    color: #b8b8b8;
+			    font-size: 30px;
+			    position: relative;
+			    margin-left: 10px;
+	    	}
+	    	.upload-file input{
+    		    width: 35px;
+			    height: 35px;
+			    opacity: 0;
+			    position: absolute;
+			    top: 0;
+			    left: 0
+	    	}
+    </style>
+</head>
+<body class="userNav">
+	<input type="hidden"  id="leftstatu" value="栏目管理"/>
+	
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">栏目管理</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+		<!--right start-->
+		<div class="pd-768 mgecolumn" id="mgecolumn" v-cloak>
+			<!--table start-->
+			<div class="table">
+				<!--表头操作按钮   start-->
+				<div class="tab-header clearfix tab-header-culumn">
+					<div class="col-md-12 col-xs-12 global-editing ztree-container">
+						<ul>
+			    			<li class="all-open editing-active cur-p"  @click="opreTree('expend')"><i class="fa fa-plus-square-o i-open-all"></i>全部展开</li>
+			    			<li class="all-close cur-p"  @click="opreTree('collapse')"><i class="fa fa-minus-square-o i-close-all"></i>全部收起</li>
+			    		</ul>
+					</div>
+				</div>
+				<!--表头操作按钮   end-->
+				<div class="border-column">
+				<!--form start-->
+					<div class="treeContainer">
+		    			<ul id="treeDemo" class="ztree treeDemo-mge tree-mb">
+		    				
+		    			</ul>
+		    			<div role="group" aria-label="..." class="btn-group">
+							  <button type="button" class="createSite btn btn-default"  id="column_levelOne"><i class="iconfont"></i>
+							  增加一级栏目
+							  </button>
+		    			</div>
+						<!--增加一级栏目 start -->
+						<!--01 start-->
+						<div class="md-modal md-effect-1" id="md-addColumn">
+							<div class="md-content">
+								<h3><span class="md-title">添加子级栏目</span><i class="iconfont pull-right md-close">&#xe619;</i></h3>
+								<!--nr start-->
+								<div style="padding:25px 0 30px;padding-bottom: 0;" class="form-content">
+									<!--中间内容   start-->
+									<div class="form-center">
+										<form class="form-horizontal form-common" method="post" id="addFirst" style="padding: 0;border: 0;">
+										  <div class="form-group">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-xs-3 col-sm-3 control-label">栏目名称：</label>
+											    <div class="col-xs-7 col-sm-7">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['name']">
+											    </div>
+											
+											    <div class="col-xs-2 col-sm-2 pdNone">
+											    	<div class="upload-file ">
+											    		<div class="useupImg maimglst" title="columnImg" style="height:100%;width: 100%;">
+													      	<a  class="">
+													      		<span class="iconfont" style="width: 100%; height:100%;font-size: 30px; line-height: 32px;text-align: center;display: inline-block;color: #C0C0C0;">+</span>
+													      		<img    :src="saveTreeData['img']" id="columnImg" alt="栏目显示图片" class="uploadimg" name="columnImg" />
+													      	</a>
+												        </div>
+											    		<input type="file" data="columnImg" id="uploadColumnImg" onchange="selectImage(this,'columnImg')" accept="video/*;capture=camcorder"  style="display:none;"/>
+											    	</div>
+											    </div>
+										  	</div>
+										  	<div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										   
+										  </div>
+										  <div class="form-group">
+								 		 	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-xs-3 col-sm-3 control-label">栏目英文：</label>
+											    <div class="col-xs-8 col-sm-9">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colenamePar" v-model="saveTreeData['en']">
+											    </div>
+										  	</div>
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  <div class="form-group">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputPassword3" class="col-xs-3 col-sm-3 control-label">栏目类型：</label>
+											    <div class="col-xs-8 col-sm-9">
+													<select class="form-control" @change="selectVal('selColumn')" id="selColumn" >
+													      <option value="">-----------请选择-------------</option>
+													      <option v-for="columnSort in columnSorts"  :value="columnSort.id">{{ columnSort['code_desc'] }}</option>
+												  	</select>							    	
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"><label id="" class="alert-danger" for="selFater"></label></div>
+										  </div>
+										  
+									  	  <div class="form-group ">
+									  	  	<div class="col-sm-12 col-xs-12">
+									  	  		<label for="inputPassword3" class="col-xs-3 col-sm-3 control-label">模板页面：</label>
+											    <div class="col-xs-8 col-sm-9">
+											    	 <div class="row">
+											    	 	<div class="col-sm-10 col-xs-8">
+															<select class="form-control" @change="selectValModelLink('selLink')" id="selLink" >
+														      	<option value="">-----------请选择-------------</option>
+										        				<option v-for="modelLink in modelLinks"  :id="modelLink.id" :img="modelLink.img">{{ modelLink['value'] }}</option>
+															 </select>
+											    	 	</div>
+													 	<div class="col-sm-2 col-xs-4">
+													 		<div class="tempPrev" data-toggle="modal" data-target="#myModalL" style="height: 34px;overflow: hidden;">
+										        				<img :src="pageImg" style="width: 100%;" onerror="imgerror(this)"/>
+										        			</div>
+													 	</div>
+									        		</div>
+											    </div>
+									  	  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"><label id="" class="alert-danger" for="selFater"></label></div>
+										  </div>
+										<!--标签 [相册首页除外]-->
+										 	<div class="form-group signContent">
+										 		<div class="col-sm-12 col-xs-12">
+										        <label for="cname" class="control-label col-xs-3 col-sm-3 ">标签分类：</label>
+										        <div class="col-sm-6 col-xs-5"> 
+													<div class="goods-kind wid100" style="position: relative;">
+														<div class="good-classify">
+															<div class="select-tree">
+																<input id="signListIds" type="text" value="" style="display: none;"/>
+																<input id="signList"  readonly="readonly"  name="newsClass" type="text"  placeholder="请选择标签分类" class="form-control callbackVal">
+															</div>
+														</div>
+														<div id="menuContent1" class="menuContent menu-good dis-n" tabindex="1">
+															<ul id="signClasify" class="ztree" style="margin-top:0;"></ul>
+														</div>
+													</div>
+												</div> 
+												<div  class="add-class">
+													<span class="add_label" id="showAddSign">+新增标签</span>
+												</div>
+												</div>
+										    </div>
+										  <!--哈哈哈哈-->
+										  <div class="form-group seoContent">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-xs-3 col-sm-3 control-label">页面标题：</label>
+											    <div class="col-xs-9 col-sm-9">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['title']">
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										  <!--<div class="form-group ">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-4 col-xs-4 control-label">页面关键字：</label>
+											    <div class="col-sm-7 col-xs-7 pdNone">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['keywords']" placeholder='搜索关键词,以","隔开'>
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>-->
+										  <div class="form-group  keywordBox seoContent" id="keywordBox_add">
+									  		<div class="col-sm-12 col-xs-12">
+											    <label  class="control-label col-xs-3 col-sm-3">关键词：</label>
+											    <div class="col-xs-6 col-sm-4 row-item row-item-box attrBox  mobile_mb15" style="margin-bottom: 0;">
+											 		<div class="row row-attr">
+											 			<div class="col-md-9 col-sm-9 col-xs-9">
+											 			   <input type="text" class="form-control " placeholder="关键词" style=""/>
+											 			</div>
+											 			<div class="col-md-3 col-sm-3 ml-15 col-xs-3">
+											 				<div class="btn-attr-box">
+											 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+											 		  		</div>
+											 	  		</div>
+											 		</div>
+										  		</div>
+										  		<!--标签值存放框    start-->
+										  		<!--<div class="col-xs-6 col-md-<!--7 col-sm-7 ">-->
+										  			<!--<div  class="control-label col-xs-3"></div>-->
+										  		<div class="col-xs-9 row-item row-tagsBox " style="margin-left: -10px;margin-left: 25%;"></div>
+										  		<!--</div>-->
+									  			
+									  			<!--标签值存放框    end-->
+								  			</div>
+										</div>
+										  
+										  <div class="form-group seoContent">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-xs-3 control-label">页面描述：</label>
+											    <div class="col-xs-9 ">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <textarea name="colnamePar" rows="3" cols="3" class="form-control" v-model="saveTreeData['description']" placeholder="200字以内"></textarea>
+											      <!--<input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['description']" placeholder="200字以内">-->
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										  <!--哈哈哈哈哈或-->
+										   <div class="form-group">
+										   	<div class="col-sm-12 col-xs-12">
+										   		<label for="inputPassword3" class="col-xs-3 control-label">栏目状态：</label>
+											    <div class="col-xs-9 ">
+													<label class="radio-css" style="line-height: 32px;margin-left: 0;"><input name="Fruit" type="radio" value=""  checked="checked" @click="radioCheck('20')"/>启用 </label> 
+													<label class="radio-css" style="line-height: 32px;margin-left: 20px;"><input name="Fruit" type="radio" value=""  @click="radioCheck('10')"/>禁用 </label> 					    	
+											    </div>
+										   	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"><label id="" class="alert-danger" for="selFater"></label></div>
+										  </div>
+										</form>
+									</div>
+									</div>
+									<!--中间内容   end-->
+									<div class="tc btn-box" style="margin-top: 0;padding-top: 0;">
+										<input class="btn btn-default " type="button" value="确认" @click.prevent="zTreeAddNode('root')">
+										<input class="btn btn-default md-close" type="submit" value="取消" >
+									</div>
+									
+								
+								<!--nr end-->
+							</div>
+						</div>
+						<!--01 end-->
+					
+						<!--<div class="mask-layer"></div>-->
+						<!--增加一级栏目 end-->
+						<!--点击预览模板大图 开始-->
+						<div class="modal fade" id="myModalL" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 2000;">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<img :src="pageImg" style="width: 100%;height: 100%;" onerror="imgerror(this)"/>
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal -->
+						</div>
+						<!--点击预览模板大图  结束-->
+						<!--增加一级栏目 start -->
+						<!--01 start-->
+						<div class="md-modal md-effect-1" id="md-modColumn">
+							<div class="md-content">
+								<h3><span class="md-title">编辑栏目</span><i class="iconfont pull-right md-close">&#xe619;</i></h3>
+								<!--nr start-->
+								<!--<div>-->
+									<!--中间内容   start-->
+									<div class="form-center" style="padding: 25px 0 0;">
+										<form class="form-horizontal formSam form-common" method="post" id="modFirst">
+											<div class="form-content">
+										  <div class="form-group">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">栏目名称：</label>
+											    <div class="col-sm-6 col-xs-6">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['name']">
+											    </div>
+											    <div class="upload-file ">
+										    		<div class="useupImg maimglst" title="columnImg1" style="height:100%;width: 100%;">
+												      	<a  class="">
+												      		<span class="iconfont" style="width: 100%; height:100%;font-size: 30px; line-height: 32px;text-align: center;display: inline-block;color: #C0C0C0;">+</span>
+												      		<img     :src="saveTreeData['img']" id="columnImg1" alt="栏目显示图片" class="uploadimg" name="columnImg1" />
+												      	</a>
+											        </div>
+										    		<input type="file" data="columnImg" id="uploadColumnImg" onchange="selectImage(this,'columnImg1')" accept="video/*;capture=camcorder"  style="display:none;"/>
+										    	</div>
+										  	</div>
+									  	    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  <div class="form-group">
+										    <div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-xs-3 col-sm-3 control-label">栏目英文：</label>
+											    <div class="col-xs-8 col-sm-8">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['en']">
+											    </div>
+										  	</div>
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										 <div class="form-group">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">栏目类型：</label>
+											    <div class="col-sm-8 col-xs-8">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['catName']" readonly="readonly">
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										  <div class="form-group">
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">模板页面：</label>
+											    <div class="col-sm-8 col-xs-8">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['link']" readonly="readonly">
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										  	<!--标签 [相册首页除外]-->
+										 	<div class="form-group signContent">
+										 		<div class="col-sm-12 col-xs-12">
+										        <label for="cname" class="control-label col-sm-3 col-xs-3">标签分类：</label>
+										        <div class="col-sm-5 col-xs-5"> 
+													<div class="goods-kind wid100" style="position: relative;">
+														<div class="good-classify">
+															<div class="select-tree">
+																<input  id="signListIds_edit" type="text" value="" style="display: none;"/>
+																<input id="signList_edit"  readonly="readonly"  name="newsClass1" type="text"  placeholder="请选择标签分类" class="form-control callbackVal">
+															</div>
+														</div>
+														<div id="menuContent1_edit" class="menuContent menu-good dis-n" tabindex="1">
+															<ul id="signClasify_edit" class="ztree" style="margin-top:0;"></ul>
+														</div>
+													</div>
+												</div> 
+												<div  class="add-class">
+													<span class="add_label" id="showAddSign_edit">+新增标签</span>
+												</div>
+												</div>
+										    </div>
+										    
+										  <div class="form-group seoContent" >
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">页面标题：</label>
+											    <div class="col-sm-8 col-xs-8">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['title']">
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										  <!--<div class="form-group seoContent" >
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-4 col-xs-4 control-label">页面关键字：</label>
+											    <div class="col-sm-7 col-xs-7 pdNone">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											      <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['keywords']" placeholder='搜索关键词,以","隔开'>
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>-->
+										  
+									  	  <div class="form-group keywordBox seoContent" id="keywordBox_mod">
+									  		<div class="col-sm-12 col-xs-12">
+											    <label  class="control-label col-sm-3 col-xs-3">关键字：</label>
+											    <div class="col-xs-6 col-sm-4 row-item row-item-box attrBox  mobile_mb15">
+											 		<div class="row row-attr">
+											 			<div class="col-md-9 col-sm-9 col-xs-9">
+											 			   <input type="text" class="form-control" placeholder="关键词"/>
+											 			</div>
+											 			<div class="col-md-3 col-sm-3 ml-15 col-xs-3">
+											 				<div class="btn-attr-box">
+											 		  			<button id="tagsSure_mod" type="button" class="btn btn-default btn-add tagsSure">+</button>
+											 		  		</div>
+											 	  		</div>
+											 		</div>
+										  		</div>
+										  		<!--标签值存放框    start-->
+									  			<div class="col-md-9 col-sm-9 row-item row-tagsBox col-xs-12" style="margin-left: 25%;"></div>
+									  			<!--标签值存放框    end-->
+								  			</div>
+										</div>
+										  
+										  <div class="form-group seoContent" >
+										  	<div class="col-sm-12 col-xs-12">
+										  		<label for="inputEmail3" class="col-sm-3 col-xs-3 control-label">页面描述：</label>
+											    <div class="col-sm-8 col-xs-8">
+											      <input type="text" class="dis-n" style="display:none;"/>	
+											 <!--     <input type="text" class="form-control" name="colnamePar" v-model="saveTreeData['description']" placeholder="200字以内">-->
+											      <textarea name="colnamePar" rows="3" cols="3" class="form-control" v-model="saveTreeData['description']" placeholder="200字以内"></textarea>
+											    </div>
+										  	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"></div>
+										  </div>
+										  
+										   <div class="form-group">
+										   	<div class="col-sm-12 col-xs-12">
+										   		<label for="inputPassword3" class="col-sm-3 col-xs-3 control-label">栏目状态：</label>
+											    <div class="col-sm-8 col-xs-8">
+													<label class="radio-css" style="line-height: 32px;margin-left: 0;"><input name="Fruit" type="radio" value=""  checked="checked" @click="radioCheck('20')"/>启用 </label> 
+													<label class="radio-css" style="line-height: 32px;margin-left: 20px;"><input name="Fruit" type="radio" value=""  @click="radioCheck('10')"/>禁用 </label> 					    	
+											    </div>
+										   	</div>
+										    
+										    <div class="v-error" style="position:absolute;top:31px;left: 0;"><label id="" class="alert-danger" for="selFater"></label></div>
+										  </div>
+										  
+										  </div>
+										</form>
+									</div>
+									<!--中间内容   end-->
+									<div class="tc btn-box" style="padding-top: 0;margin-top: 0;">
+										<input class="btn btn-default " type="button" value="确认" @click.prevent="saveUpdateEditNode('keywordBox_mod')">
+										<input class="btn btn-default" type="submit" value="取消" @click.prevent="clearValue(this)">
+									</div>
+									
+								<!--</div>-->
+								<!--nr end-->
+							</div>
+						</div>
+						<!--01 end-->
+							<!--新增标签分类-->
+					     <!--02 start-->
+							<div class="md-modal md-effect-1" style="top: 32%;width: 40%;" id="md-addSign">
+								<div class="md-content">
+									<h3>添加标签分类<i class="iconfont pull-right md-close">&#xe619;</i></h3>
+									<!--nr start-->
+									<div>
+										<!--中间内容   start-->
+										<div class="form-center">
+											<form class="form-horizontal" id="newsClassForm">
+											  <div class="form-group md-modal-item" style="margin-bottom: 0;">
+											    <label for="inputEmail3" class="col-sm-3 col-md-3 col-xs-3 control-label" style="padding: 0;">上级分类：</label>
+											    <div class="col-sm-5 col-xs-5 col-md-5 rel" style="padding: 0px;">
+											     	 <input type="text" class="form-control" id="child-select1" name="childSelect1" readonly="readonly"><!--@click='showMenu2($event,1)' -->
+											     	 <div class="err-msg"></div>
+											     	<div class="category  abs dis-n" id="category" tabindex="1">
+									        			<div class="category-research">
+									        				<!--<input type="text" placeholder="查询新闻分类"  class="form-control" id="searchClass1"  autocomplete="off"/><!--@keyup='ClaSer(1)'-->
+									        			     <!--<div class="root_class" style="font-size: 1.4rem;">无</div>-->
+									        			     <div class="search_res news_search_res" style="display: none;">
+									        			     	  <ul>
+									        			     	  	 <!--<li v-for="item in news_search_res" ><span :data='item.id'></span>{{item.name}}</li>-->
+									        			     	  </ul>
+									        			     </div>
+									        			</div>
+									        			<ul id="treeClasifyParent" class="ztree treeDemo"></ul>
+									        		</div>	
+											    </div>
+											    <label for="inputEmail3" id="classlabel1" class="col-sm-4 col-xs-4 col-md-4 control-label" style="padding-right: 0;">顶级分类请选择[无]</label>
+											  </div>
+											  <div class="form-group md-modal-item" style="margin-bottom: 0;">
+											    <label for="inputPassword3" class="col-sm-3 col-xs-3 col-md-3 control-label" style="padding: 0;">分类名称：</label>
+											    <div class="col-sm-5 col-xs-5 col-md-5" style="padding: 0px;">
+													 <input type="text" class="form-control" id="newsClassName"  name="newsClassName"><!-- v-model="newsClassName"-->
+													 <div class="err-msg"></div>
+											    </div>
+											  </div>
+											</form>
+										</div>
+										<!--中间内容   end-->
+										<div class="tc btn-box" style="margin: 0;">
+											<input class="btn btn-default" type="submit" value="确认" onclick="saveNewSg()"><!-- @click='keepClass(1)'-->
+											<input class="btn btn-default md-close" type="submit"  value="取消"><!--@click='clearClass' -->
+										</div>
+										
+									</div>
+									<!--nr end-->
+								</div>
+							</div>
+							<!--02 end--> 	
+										  
+		    		</div>
+				<!--form end-->
+				</div>
+			</div>
+			<!--table end-->
+		</div>
+		<!--right end-->
+	<!--内容部分 end-->
+	
+</body>
+<!--important start-->
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"  charset="utf-8"></script>
+	<script type="text/javascript" src="js/comm/jquery.ztree.all-3.5.min.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/bootstrap-select/2.0.0-beta1/js/bootstrap-select.js"></script>  <!--bootstrap select-->
+	<!--个人公共-->
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/form.js"></script><!--本页面效果--> 
+  <script type="text/javascript" src="js/user/colums.js"  charset="utf-8"></script>
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/mgecolumn.js"></script><!--本页面加载数据部分-->
+	<script type="text/javascript">
+			var a=isSignIn();
+        	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+        	}
+  </script>
+	<script>
+	$(function(){
+		// 关闭菜单
+		$('body').on('click', function() {
+			$('.diyBtn').remove();
+		});
+	});
+			
+	$('.md-close').on('click', function() {
+		if($(this).parents('#md-addSign')){
+				$(this).parents(".md-modal").toggleCommModal('close', false);
+				$("#category").hasClass('dis-n') || $("#category").addClass('dis-n');
+		}else{
+			$(this).parents(".md-modal").toggleCommModal('close');
+			$(this).parents(".md-modal").find(".seoContent").removeClass("dis-n");
+			$("select").find("option:first").prop("selected",true);
+		}
+	});
+	
+	//新增标签
+	$("#showAddSign,#showAddSign_edit").on('click',function(){
+		$("#md-addSign").toggleCommModal('show', false);//不关闭底层弹窗
+	})
+	$(document).on('click','.uploadimg',function(){
+		$(this).parent().parent().parent().find('input').click();
+	})
+	
+	
+	
+	</script>
+</html>

@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script> 
+    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>网站设置-基本信息</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild-->
+	
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	<link rel="stylesheet" href="css/form-common.css" /><!--用户中心样式-->
+    <!-- cutImg文件 -->
+	<link rel="stylesheet" href="ctrl/cutImg/dist/cropper.css">
+	<link rel="stylesheet" href="ctrl/cutImg/css/main.css">
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="userNav form-color">
+	<input type="hidden"  id="leftstatu" value="网站设置"/>
+    <input type="hidden"  id="leftstatus" value="基本信息"/>
+	
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">基本信息</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->	
+	<!--right start-->
+	<div class="pd-768" id="sitebox" v-cloak>
+		<!--手机内页头部-->
+		<!--<div class="wapTop">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<span class="iconfont Back fl">&#xe66e;</span>
+					<span class="fz15">基本信息</span>
+				</div>
+			</div>
+		</div>-->
+		<!--手机内页头部-->
+		
+		<div class="contBorder form-common">
+			<!--form start-->
+			<form class="form-horizontal userForm userFormF" id="commentForm" >
+				<div class="pad-box">
+				<div class="form-group row form-group-tips">
+					<div class="col-sm-6 col-xs-6">
+						<label for="" class="col-sm-4 control-label userFormL pr0 pt0">网站logo：</label>
+					    <div class="col-sm-8">
+					      <div class="useupImg maimglst" title="logoImg" >
+					      	<a  class="">
+					      		<span class="iconfont">&#xe602;</span>
+					      		<img id="logoImg"  alt="" class="uploadimg" name="logoImg" onerror="imgerror(this)"/>
+					      	</a>
+					      </div>
+					      <p style="margin-top: 4px;color: #7d7d7d;font-size: 12px;">建议logo尺寸：136*86</p>
+					      <input type="hidden" name="hiddenvalue" />
+						  <input type="file" id="uploadLogoImage" onchange="selectImage(this,'logoImg');"  name="logofile" accept="image/*"  style="display:none;"/>
+					    </div>
+					</div>
+					<div class="col-sm-6 col-xs-6">
+						<label for="" class="col-sm-4 control-label userFormL pr0 pt0">网站icon：</label>
+					    <div class="col-sm-8">
+					      <div class="useupImg maimglst" title="iconImg" >  <!--data-toggle="modal" data-target="#show_cutimg"-->
+					      	<a  class="">
+					      		<span class="iconfont">&#xe602;</span>
+					      		<img  id="iconImg"  alt="" class="uploadimg" name="iconImg" onerror="imgerror(this)"/>
+					      	</a>
+					      </div>
+					      <p style="margin-top: 4px;color: #7d7d7d;font-size: 12px;">在线生成icon：<a href="http://www.bitbug.net/" style="color:#7d7d7d;;">http://www.bitbug.net/</a></p>
+					      <div class="err-msg"></div>
+					       <input type="hidden" name="hiddenvalue" />
+						   <input type="file" id="uploadIconImage" onchange="selectImage(this,'iconImg');" name="iconfile" accept="image/x-icon"  style="display:none;"/>
+					    </div>
+					</div>
+				    
+			    </div>
+			    <div class="form-group pd-infor form-group-tips">
+				    <label for="" class="col-sm-2 control-label userFormL pr0 pt0">网站所属(<i class="i-important">*</i>)：</label>
+				    <div class="col-sm-9">
+				      <input type="text" id="cpname" name="cpname" v-model="params['name']"   class="form-control" placeholder="如：百捷集团/个人">
+				      <div class="err-msg"></div>
+				    </div>
+			    </div>
+			    <div class="form-group pd-infor form-group-tips">
+				    <label for="" class="col-sm-2 control-label userFormL pr0 pt0">网站标题(<i class="i-important">*</i>)：</label>
+				    <div class="col-sm-9">
+				      <input type="text" id="websiteTitle" name="websiteTitle"  v-model="params['website_title']"  class="form-control" placeholder="如：百捷云站">
+				      <div class="err-msg"></div>
+				    </div>
+			    </div>
+			    <div class="form-group pd-infor form-group-tips">
+				    <label for="" class="col-sm-2 control-label userFormL pr0 pt0">备案号：</label>
+				    <div class="col-sm-9">
+				      <input type="text" id="record" name="record"  v-model="params['record']"  class="form-control" placeholder="如： 粤icp备11016779号">
+				      <div class="err-msg"></div>
+				    </div>
+			    </div>
+			     <div class="form-group form-group-del keywordBox pd-infor" >
+				    <label  class="col-sm-2 control-label userFormL pr0 pt0">站点关键词：</label>
+				    <div class="col-md-3 col-sm-3 row-item row-item-box attrBox col-xs-12 mobile_mb15">
+				 		<div class="row row-attr">
+				 			<div class="col-md-9 col-sm-9 col-xs-9">
+				 			   <input type="text" class="form-control control-label" placeholder="如：旅游 电商" style="text-align: left !important;margin-bottom:20px ;"/>
+				 			</div>
+				 			<div class="col-md-3 col-sm-3 ml-15 col-xs-3" style="margin-left: -25px;">
+				 				<div class="btn-attr-box">
+				 		  			<button id="tagsSure" type="button" class="btn btn-default btn-add tagsSure">+</button>
+				 		  		</div>
+				 	  		</div>
+				 		</div>
+			  		</div>
+			  		<!--标签值存放框    start-->
+			  			<div class="col-md-7 col-sm-7 row-item row-tagsBox pdNone col-xs-12" style="margin-left: -10px;"></div>
+		  			<!--标签值存放框    end-->
+				</div>
+			    <div class="form-group pd-infor form-group-tips">
+				    <label for="" class="col-sm-2 control-label userFormL pr0 pt0">站点描述：</label>
+				    <div class="col-sm-9">
+				      <textarea class="form-control" rows="3"  maxlength="76" placeholder="如：主题的关键词及网站特色，字数上限76个字" v-model="params['description']" name="site_description"></textarea>
+				      <div class="err-msg"></div>
+				    </div>
+			    </div>
+			
+				
+				
+				
+					<div class="btn-box btn-box-one text-center">
+						<div type="button" class="btn btn-default" onclick="nextSaveParams()">下一步</div>
+					</div>
+			   </div>
+			</form>
+			
+			<form class="form-horizontal userForm userFormS" id="commentForm2" >
+			   <div class="pad-box">
+				<div class="form-group row form-group-tips">
+					<label for="" class="col-sm-2 control-label userFormL pr0 pt0">企业地址(<i class="i-important">*</i>)：</label>
+				    <div class="col-sm-10">
+				      		<div class="col-md-3 col-sm-3 mobile_mb15">
+						        <div class="row">
+					      			<select class="form-control provinceList" onchange='chooseProvince()'>
+									   <option v-for="item in provinceList" >{{item.areaname}}</option>
+									</select>
+						      	</div>	
+				      		</div>
+				      		<div class="col-md-3 col-sm-3  cityList mobile_mb15">
+				      			<select class="form-control cityList" onchange='chooseCity()'>
+								   <option v-for="item in cityList" >{{item.areaname}}</option>
+								</select>
+								<div class="err-msg"></div>
+				      		</div>
+				      		<div class="col-md-3 col-sm-3  countyList mobile_mb15">
+				      			<select class="form-control">
+								   <option v-for="item in countyList" >{{item.areaname}}</option>
+								</select>
+				      		</div>
+				      		<!--<div class="col-md-3 col-sm-3 ">
+				      			<div class="row">
+						      			<input type="text" name="address" id="address"  v-model="params['address']" class="form-control" placeholder="详细地址">
+								        <div class="err-msg"></div>
+				      			</div>
+			      			</div>-->
+				    </div>
+			    </div>
+			    <div class="form-group form-group-tips">
+			    		<div class="col-sm-6" >
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">街道地址：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="address" id="address"  v-model="params['address']" class="form-control" placeholder="详细地址">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>
+			    <div class="form-group form-group-tips">
+			    		<div class="col-sm-6" >
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">邮政编码：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="mail" id="mail" v-model="params['postal_code']" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>			    
+			    <div class="form-group form-group-tips">
+			    		<div class="col-sm-6 ">
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">公司传真：</label>
+						    <div class="col-sm-8">
+						        <input type="text"  name="fax" id="fax" class="form-control" v-model="params['fax']" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>
+			    
+			    
+			    
+			    <!--<div class="form-group form-group-tips">
+			    		<div class="col-sm-6" >
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">邮政编码：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="mail" id="mail" v-model="params['postal_code']" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+						<div class="col-sm-6 pdNone">
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">公司传真：</label>
+						    <div class="col-sm-8">
+						        <input type="text"  name="fax" id="fax" class="form-control" v-model="params['fax']" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>-->
+			    <div class="" style="border-top:1px solid #eee; height:30px;width:100%;"></div>
+			    <div class="form-group form-group-tips">
+			    		<div class="col-sm-6" >
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">联系人(<i class="i-important">*</i>)：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="contactname" id="contactname"  v-model="params['contactname']" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+						<div class="col-sm-6 pdNone">
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">电话号码：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="contact" id="contact" v-model="params['contact']" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>
+			   <div class="form-group form-group-tips">
+			    		<div class="col-sm-6" >
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">手机号(<i class="i-important">*</i>)：</label>
+						    <div class="col-sm-8">
+						        <input type="text" name="phone" id="phone"  v-model="params['phone']" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+						<div class="col-sm-6 pdNone">
+							<label for="" class="col-sm-4 control-label userFormL pr0 pt0">电子邮箱：</label>
+						    <div class="col-sm-8">
+						        <input name="email" id="email"  v-model="params['email']" type="text" class="form-control" placeholder="">
+				      			<div class="err-msg"></div>
+						    </div>
+						</div>
+			    </div>
+			    <div class="" style="border-bottom:1px solid #eee; height:30px;width:100%;"></div>
+				<div class="btn-box btn-box-two text-center">
+					<button type="button" class="btn btn-default " onclick="prevSaveParams()">上一步</button>
+					<button type="button" class="btn btn-default " onclick="saveData()">保存</button>
+				</div>
+			  </div>		
+			</form>
+			<!--form end-->
+		</div>
+	</div>
+	<!--right end-->
+		
+		<!-- 弹出选择图片上传框 -->
+				<div class="show upImg useupImgbox" id="show_cutimg">
+					<div class="modal-dialog">	
+					    <div class="modal-content" id="myModal">
+					        <div class="modal-body">
+					            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:0px;">
+					                <div class="img-container">
+					                    <img  alt="点击下面选择文件按钮进行选择文件！">
+					                    <div class="img-type" style="display:none"></div>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="modal-footer2">
+					            <div class=" col-xs-12">
+					            	<div class="row mt-10 mb-5">
+						        		<div class="col-sm-7">
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe613;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe632;</span>
+						                    	</span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="-90" type="button" title="Rotate Left">
+						                   		<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                   		 </span>
+						                    </button>
+						                    <button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="rotate" data-option="90" type="button" title="Rotate Right">
+						                    	<span class="docs-tooltip inline-block" data-toggle="tooltip">
+						                        	<span class="iconfont">&#xe60c;</span>
+						                    	</span>
+						                    </button>
+											<button class="btn btn-operate btn-margin-t3 bbttnn operate" data-method="reset" type="button" title="Reset">
+											    <span class="docs-tooltip inline-block" data-toggle="tooltip">
+													<span class="iconfont">&#xe697;</span>
+											    </span>
+											</button>
+			
+						                </div>
+						                <div class="col-sm-5 upload-fr">
+					                    <label style="overflow:hidden;" class="btn btn-upload btn-margin-r3 bbttnn pull-left" for="inputImage" title="Upload image file">
+					                        <input class="sr-only" id="inputImage" type="file" name="file">
+					                        <span class="btn-operate docs-tooltip chose" data-toggle="tooltip">
+					                            选择文件
+					                        </span>
+					                    </label>  
+					                    <label class="btn btn-operate btn-upload btn-margin-r3 bbttnn pull-left" data-method="getCroppedCanvas" type="button">
+					                        <span class="span-upload docs-tooltip inline-block" data-toggle="tooltip">
+					                            确认上传
+					                        </span>
+					                    </label>
+					                    <label class="btn btn-operate btn-margin-r3 bbttnn inline-block pull-left" type="button">
+					                        <span class="span-upload docs-tooltip inline-block cancle" data-dismiss="modal">
+					                            取消
+					                        </span>
+					                    </label>
+						                </div>
+					            	</div>
+					            </div>
+					            
+					            <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+					            </div>
+					        </div>
+					    </div> 	
+					</div>
+				</div>
+				
+				<!--上传图片结束-->
+		
+		
+		
+	<!--内容部分 end-->
+	<div class="x-tips" ><div class="x-tips-box"><p>页面正在加载中！</p></div></div>
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+ 	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!-- build:js js/cutimg.libs.js --> 
+	<script type="text/javascript" src="dist/js/cutImgAux.min.js" ></script>
+	<script type="text/javascript" src='ctrl/cutImg/js/mobileBUGFix.mini.js'></script>
+	<script type="text/javascript" src="ctrl/cutImg/js/main_res.js"></script><!--展示预览图片-->
+	<!-- endbuild-->
+
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	<script type="text/javascript" src="js/form.js"></script><!--本页面效果-->
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/webSet/webBasinfo.js"></script>
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+    		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+</body>
+</html>

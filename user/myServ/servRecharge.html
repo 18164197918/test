@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<!--basepath start-->
+    <base id="bpid" href="/" target="_blank"/><script type="text/javascript">window['fontBaseUrl']='/'</script>
+    <script type="text/javascript" src="../cwsproject4/js/basepath.js"></script>
+	 <!--basepath end-->
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<title>我的服务-账户充值</title>
+	<!-- build:css ctrl/bootstrap/css/comm.lib.css -->
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="ctrl/bootstrap/css/bootstrap.offcanvas.min.css"/>
+	<link rel="stylesheet" href="ctrl/animate.min.css" /><!--前台页面样式-->
+	<!-- endbuild-->
+
+	<!-- build:css css/user.comm.css -->
+	<link rel="stylesheet" href="css/base.css" /><!--全局基础样式-->
+	<link rel="stylesheet" href="css/index.css" /><!--前台页面样式-->
+	<link rel="stylesheet" href="css/top.css" /><!--top 样式-->
+	<link rel="stylesheet" href="css/user.css" /><!--用户中心样式-->
+	<!-- endbuild -->
+	
+	
+	
+	<!--[if lt IE 9]>
+　		<script src="https://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="userNav">
+	
+	<input type="hidden"  id="leftstatu" value="我的服务"/>
+    <input type="hidden"  id="leftstatus" value="账户充值"/>
+	<!--banner部分 start-->	
+	<!--banner部分 end-->
+	<!--手机内页头部-->
+	<div class="wapTop">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<span class="iconfont Back fl">&#xe66e;</span>
+				<span class="leftstatus-mobile fz15">账户充值</span>
+			</div>
+		</div>
+	</div><!--手机内页头部end-->
+	<!--内容部分 start-->
+		<!--right start-->
+		<div class="Recharge" id="recharge" v-cloak>
+			<div class="">
+				<div id="alipay"></div>
+				<div class="rechT">
+					<span class="iconfont mr5">&#xe64f;</span>账户充值
+				</div>
+				
+				<!--form start-->
+				<form class="form-horizontal userForm rechTform form-mobile-pd" id="rechargeForm" >
+				    <div class="form-group">
+					    <label for="" class="col-sm-2 col-xs-3 control-label userFormL pr0 pt0">可用余额：</label>
+					    <div class="col-sm-9 col-xs-9">
+					      <p class="rechTp">{{available_balance}}元</p>
+					    </div>
+				    </div>
+				    <div class="form-group">
+					    <label for="" class="col-sm-2 col-xs-3 control-label userFormL pr0 pt0">充值方式：</label>
+					    <div class="col-sm-9   col-xs-9">
+						    <div class="">
+							    <label class="rechTp mb0 mr20">
+							    	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+							    	线上支付
+							    </label>
+							    <!--<label class="rechTp mb0 mr20">
+							    	<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" >
+							    	线下支付
+							    </label>-->
+							</div>
+					    </div>
+				    </div>
+				    <div class="form-group mt15">
+					    <label for="" class="col-sm-2 col-xs-3 control-label userFormL pr0 pt0">充值金额：</label>
+					    <div class="col-sm-9 col-xs-9">
+					    	<ul class="Rech clearfix pay_amount">
+					    		<li class="RechOn">100</li>
+					    		<li>200</li>
+					    		<li>500</li>
+					    		<li>800</li>
+					    		<li>1000</li>
+					    		<li>2000</li>
+					    		
+					    	</ul>
+					    	<div class="otherR">
+					    		<input type="text" class="dis-n"/>
+					    		<input type="text" id="otherMoney" placeholder="其他金额" name="otherMoney"/>元
+					    	</div>
+					        <div class="err-msg"></div>
+					    </div>
+				    </div>
+				     <div class="form-group">
+					    <label for="" class="col-sm-2  col-xs-3 control-label userFormL pr0 pt0">充值平台：</label>
+					    <div class="col-sm-9 col-xs-9">
+					    	<ul class="Rech clearfix platform">
+					    		<li  data="10" class="RechOn"><span><img src="img/user/wei.png"  alt="微信支付"/></span>微信支付</li>
+					    		<li  data="20"><span><img src="img/user/zhifu1.png"  alt="支付宝支付"/></span>支付宝</li>
+					    	</ul>
+					        <div class="err-msg"></div>
+					    </div>
+				    </div>
+				    <div class="form-group">
+					    <label for="" class="col-sm-2 control-label userFormL pr0 pt0"></label>
+					    <div class="col-sm-9">
+					    	<div class="tr sub">
+					    		<button type="button" onclick="recharge(event)"  class="btn nextBtn">确认充值</button>
+					    	</div>
+					      	<div class="err-msg"></div>
+					    </div>
+				    </div>
+				</form>
+			</div>
+		</div>
+	
+		<!--right end-->
+		<!--页面加载提示-->
+	<div class="x-tips"><div class="x-tips-box"><p>页面正在加载中...</p></div></div>
+	<!--公共类库-->
+	<script type="text/javascript" src="dist/js/base.min.js"></script>
+	<script type="text/javascript" src="js/comm/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/comm/comm.js"></script>
+	<!--个人公共-->
+	<!-- build:js js/user.comm.js -->
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/common.js" ></script><!--全局基础效果-->
+	<script type="text/javascript" src="js/cwspopup.js"></script><!--统一弹窗提示-->
+	<script type="text/javascript" src="js/validation.js"></script>
+	<!-- endbuild-->
+	
+	<!--页面独有-->
+	<script type="text/javascript" src="js/user/myServ/servRecharge.js"></script>
+	 <script type="text/javascript">
+		var a=isSignIn();
+    	if(a==null){
+        		 window.top.location.href = fontBaseUrl+'user/sign.html';
+    	}
+    </script>
+	<script>
+		$('.pay_amount li').click(function(){
+			$(this).addClass('RechOn').siblings().removeClass('RechOn');
+			$('.otherR input').removeClass("active");
+		})
+		$('.otherR input').click(function(){
+			$(this).parent().prev().children().removeClass('RechOn');
+			$(this).addClass("active");
+			
+		})
+		
+		
+	</script>
+</body>
+</html>
